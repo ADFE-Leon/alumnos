@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control de Alumnos</title>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#f0f2f5;color:#1f2937;padding:16px}
+.wrap{max-width:1200px;margin:0 auto}
+h1{text-align:center;color:#1e3a8a;font-size:28px;margin-bottom:4px}
+.sub{text-align:center;color:#6b7280;font-size:13px;margin-bottom:20px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.card{background:#fff;padding:20px;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.08);text-align:center}
+.card small{color:#6b7280;font-size:12px;display:block;margin-bottom:6px}
+.card .n{font-size:28px;font-weight:700}
+.c1{color:#2563eb}.c2{color:#dc2626}.c3{color:#9333ea}
+.tabs{display:flex;gap:2px;flex-wrap:wrap;margin-bottom:0}
+.tb{padding:10px 18px;border:none;cursor:pointer;font-size:14px;font-weight:600;border-radius:8px 8px 0 0;background:#e5e7eb;color:#374151}
+.tb.on{background:#2563eb;color:#fff}
+.pnl{background:#fff;padding:24px;border-radius:0 10px 10px 10px;box-shadow:0 1px 3px rgba(0,0,0,.08);display:none}
+.pnl.on{display:block}
+.pnl h2{margin-bottom:16px;font-size:20px;color:#1f2937}
+.fr{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;align-items:end}
+.fr label{font-size:12px;font-weight:600;display:block;margin-bottom:4px;color:#374151}
+.fr input,.fr select{width:100%;padding:9px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:14px}
+.btn{padding:9px 22px;border:none;border-radius:6px;cursor:pointer;font-size:14px;font-weight:600;color:#fff;margin-right:5px;margin-bottom:5px}
+.b1{background:#2563eb}.b1:hover{background:#1d4ed8}
+.b2{background:#16a34a}.b2:hover{background:#15803d}
+.b3{background:#dc2626}.b3:hover{background:#b91c1c}
+.b4{background:#6b7280}.b4:hover{background:#4b5563}
+.b5{background:#059669}.b5:hover{background:#047857}
+.b6{background:#7c3aed}.b6:hover{background:#6d28d9}
+table{width:100%;border-collapse:collapse;margin-top:8px}
+th{background:#f9fafb;text-align:left;padding:8px 10px;font-size:11px;text-transform:uppercase;color:#6b7280;font-weight:600}
+th.r,td.r{text-align:center}
+td{padding:8px 10px;border-bottom:1px solid #f3f4f6;font-size:13px}
+tr.tot{background:#f3f4f6;font-weight:700}
+tr:hover{background:#f9fafb}
+.sel{padding:9px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;margin-right:8px}
+.box{background:#f9fafb;padding:14px;border-radius:8px;margin-top:16px;font-size:14px}
+.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:15px}
+.cal-header{background:#2563eb;color:#fff;padding:8px;text-align:center;font-weight:600;font-size:12px;border-radius:4px}
+.cal-day{background:#fff;border:1px solid #e5e7eb;padding:6px;min-height:100px;cursor:pointer;border-radius:4px;position:relative}
+.cal-day:hover{background:#f0f9ff;border-color:#3b82f6}
+.cal-day.empty{background:#f9fafb;border-color:#f3f4f6;cursor:default}
+.cal-day.present{background:#dcfce7;border-color:#86efac}
+.cal-day.absent{background:#fee2e2;border-color:#fca5a5}
+.cal-day.late{background:#fef3c7;border-color:#fcd34d}
+.cal-day.early{background:#fce7f3;border-color:#f9a8d4}
+.cal-day.medical{background:#dbeafe;border-color:#93c5fd}
+.cal-day.conciliation{background:#e0e7ff;border-color:#a5b4fc}
+.cal-day .day-num{font-weight:700;font-size:12px;margin-bottom:4px;color:#1f2937}
+.cal-day .pkg-info{font-size:10px;color:#1e40af;background:#fff;padding:2px 4px;border-radius:3px;margin:1px 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cal-day .pkg-total{font-size:11px;font-weight:600;color:#2563eb;margin-top:2px}
+.action-btn{padding:4px 8px;font-size:11px;margin:2px}
+.print-area{display:none}
+.status-bar{background:#e0f2fe;color:#0369a1;padding:8px 12px;border-radius:6px;font-size:12px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
+.alert{padding:12px;border-radius:6px;margin-bottom:16px;font-size:13px;display:flex;align-items:center;gap:8px;animation:slideIn .3s ease}
+.alert-info{background:#dbeafe;color:#1e40af;border:1px solid #93c5fd}
+.alert-error{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
+.alert-success{background:#dcfce7;color:#166534;border:1px solid #86efac}
+.alert-warning{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
+@keyframes slideIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.filters{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;align-items:end}
+.filter-group{display:flex;flex-direction:column;gap:4px}
+.filter-group label{font-size:12px;font-weight:600;color:#374151}
+.filter-group select{padding:9px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;min-width:150px}
+.entrada-config{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-bottom:20px;padding:16px;background:#f0f9ff;border-radius:8px}
+.entrada-config .filter-group{flex:1;min-width:150px}
+.calendario-input{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:15px}
+.cal-input-header{background:#2563eb;color:#fff;padding:8px;text-align:center;font-weight:600;font-size:12px;border-radius:4px}
+.cal-input-day{background:#fff;border:1px solid #e5e7eb;padding:6px;min-height:140px;border-radius:4px;display:flex;flex-direction:column}
+.cal-input-day.empty{background:#f9fafb;border-color:#f3f4f6;opacity:0.5}
+.cal-input-day .day-label{font-weight:700;font-size:12px;margin-bottom:4px;color:#1f2937}
+.cal-input-day .day-label.weekend{color:#dc2626}
+.cal-input-day .day-label.holiday{color:#9333ea}
+.cal-input-day .day-label.vacation{color:#ea580c}
+.cal-input-day .day-label.course-end{color:#059669}
+.cal-input-day select{width:100%;padding:4px;border:1px solid #d1d5db;border-radius:4px;font-size:11px;margin-bottom:4px}
+.cal-input-day input[type="text"],.cal-input-day input[type="time"]{width:100%;padding:4px;border:1px solid #d1d5db;border-radius:4px;font-size:11px;margin-bottom:4px}
+.cal-input-day .checkbox-label{display:flex;align-items:center;gap:4px;font-size:11px;margin-bottom:4px}
+.cal-input-day input[type="number"]:disabled{background:#f3f4f6;color:#9ca3af;cursor:not-allowed}
+.cal-input-day.holiday{background:#faf5ff;border-color:#d8b4fe;opacity:0.7}
+.cal-input-day.vacation{background:#fff7ed;border-color:#fdba74;opacity:0.7}
+.cal-input-day.course-end{background:#ecfdf5;border-color:#6ee7b7}
+.cal-input-day .day-type{font-size:9px;color:#6b7280;margin-top:2px;font-style:italic}
+.cal-input-day.present{background:#dcfce7;border-color:#86efac}
+.cal-input-day.absent{background:#fee2e2;border-color:#fca5a5}
+.cal-input-day.late{background:#fef3c7;border-color:#fcd34d}
+.cal-input-day.early{background:#fce7f3;border-color:#f9a8d4}
+.cal-input-day.medical{background:#dbeafe;border-color:#93c5fd}
+.cal-input-day.conciliation{background:#e0e7ff;border-color:#a5b4fc}
+.resumen-entrada{background:#f0fdf4;border:1px solid #86efac;padding:14px;border-radius:8px;margin-top:16px;font-size:14px}
+.resumen-entrada h4{color:#166534;margin-bottom:8px}
+.resumen-entrada ul{margin-left:20px;color:#166534}
+.resumen-entrada li{margin-bottom:4px}
+.leyenda{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;font-size:11px}
+.leyenda-item{display:flex;align-items:center;gap:6px}
+.leyenda-color{width:16px;height:16px;border-radius:3px;border:1px solid #d1d5db}
+.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:1000}
+.modal-overlay.show{display:flex}
+.modal{background:#fff;border-radius:12px;padding:24px;max-width:500px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.3);animation:modalIn .2s ease}
+@keyframes modalIn{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
+.modal h3{margin-bottom:12px;color:#1f2937;font-size:18px}
+.modal p{margin-bottom:16px;color:#4b5563;line-height:1.5}
+.modal input[type="text"],.modal input[type="number"],.modal input[type="time"],.modal select{width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;margin-bottom:12px}
+.modal .form-row{display:flex;gap:12px}
+.modal .form-row>div{flex:1}
+.modal .checkbox-label{display:flex;align-items:center;gap:8px;margin-bottom:12px;font-size:14px}
+.modal-buttons{display:flex;gap:8px;justify-content:flex-end}
+.modal-buttons button{padding:8px 16px;border:none;border-radius:6px;cursor:pointer;font-size:14px;font-weight:600}
+.modal-btn-cancel{background:#e5e7eb;color:#374151}
+.modal-btn-cancel:hover{background:#d1d5db}
+.modal-btn-ok{background:#2563eb;color:#fff}
+.modal-btn-ok:hover{background:#1d4ed8}
+.modal-btn-danger{background:#dc2626;color:#fff}
+.modal-btn-danger:hover{background:#b91c1c}
+.botones-datos{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:12px}
+
+/* --- ESTILOS NUEVOS PARA LA NUBE --- */
+#loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); z-index: 3000; display: flex; justify-content: center; align-items: center; font-size: 20px; color: #2563eb; font-weight: bold; flex-direction: column; gap: 15px; }
+#loader.hidden { display: none; }
+.spinner { border: 4px solid #f3f3f3; border-top: 4px solid #2563eb; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+@media print{body *{visibility:hidden}.print-area,.print-area *{visibility:visible}.print-area{position:absolute;left:0;top:0;display:block;width:100%}.no-print{display:none!important}}
+@media(max-width:768px){.cards,.fr{grid-template-columns:1fr}.calendar,.calendario-input{grid-template-columns:repeat(7,1fr);gap:2px}.cal-day,.cal-input-day{min-height:60px;padding:3px}.filters,.entrada-config{flex-direction:column}.botones-datos{flex-direction:column}.modal .form-row{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<!-- LOADER DE CARGA EN LA NUBE -->
+<div id="loader"><div class="spinner"></div>⏳ Cargando datos desde la nube...</div>
+
+<div class="wrap">
+<h1>Control de Alumnos</h1>
+<p class="sub">Seguimiento de asistencias - Curso 2026/2027 (1/03/2026 - 28/02/2027)</p>
+<div id="mainApp">
+<div class="status-bar">
+<span>📂 Origen: <strong id="dataSource">Cargando...</strong></span>
+<span>📅 Hoy: <strong id="todayDate">-</strong></span>
+</div>
+<div id="alertContainer"></div>
+<div class="cards">
+<div class="card"><small>Total Asistencias</small><div class="n c1" id="sP">0</div></div>
+<div class="card"><small>Total Ausencias</small><div class="n c2" id="sH">0</div></div>
+<div class="card"><small>Alumnos Activos</small><div class="n c3" id="sC">0</div></div>
+</div>
+<div class="tabs">
+<button class="tb on" data-t="p7">Entrada por Meses</button>
+<button class="tb" data-t="p2">Por Alumno</button>
+<button class="tb" data-t="p3">Por Mes/Año</button>
+<button class="tb" data-t="p4">Calendario</button>
+<button class="tb" data-t="p5">Editar</button>
+<button class="tb" data-t="p6">Datos</button>
+</div>
+
+<div id="p7" class="pnl on">
+<h2>📝 Entrada por Meses</h2>
+<p style="color:#6b7280;margin-bottom:16px;font-size:13px">Selecciona alumno, mes y año. Marca cada día con el tipo de asistencia correspondiente.</p>
+<div class="entrada-config">
+<div class="filter-group"><label>Alumno</label><select id="erMaquina" onchange="generarCalendarioEntrada()"></select></div>
+<div class="filter-group"><label>Mes</label><select id="erMes" onchange="generarCalendarioEntrada()"></select></div>
+<div class="filter-group"><label>Año</label><select id="erAnio" onchange="generarCalendarioEntrada()"></select></div>
+</div>
+<div class="leyenda">
+<div class="leyenda-item"><div class="leyenda-color" style="background:#dcfce7"></div>Presente</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#fee2e2"></div>Ausente</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#fef3c7"></div>Entrada tarde</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#fce7f3"></div>Salida pronto</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#dbeafe"></div>Cita médica</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#e0e7ff"></div>Conciliación</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#faf5ff"></div>Festivo</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#f9fafb;opacity:0.5"></div>Fin de semana</div>
+</div>
+<div id="calendarioEntrada" style="display:none">
+<div id="calendarioInput" class="calendario-input"></div>
+<div class="resumen-entrada" id="resumenEntrada" style="display:none">
+<h4>📊 Resumen de lo que se guardará:</h4>
+<ul id="listaResumen"></ul>
+<p style="margin-top:8px;font-weight:600" id="totalResumen"></p>
+</div>
+<div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+<button class="btn b2" onclick="guardarEntradaRapida()">💾 Guardar todos los registros</button>
+<button class="btn b4" onclick="limpiarCalendarioEntrada()">🧹 Limpiar todo</button>
+</div>
+</div>
+</div>
+
+<div id="p2" class="pnl">
+<h2>Total por Alumno <button class="btn b4" style="float:right" onclick="imprimir('maquinas')">🖨️ Imprimir</button></h2>
+<table id="tablaMaquinasTbl"><thead><tr><th>Alumno</th><th class="r">Presentes</th><th class="r">Ausencias</th><th class="r">Entradas tarde</th><th class="r">Salidas pronto</th><th class="r">Citas médicas</th><th class="r">Conciliaciones</th></tr></thead><tbody id="t2"></tbody></table>
+</div>
+
+<div id="p3" class="pnl">
+<h2>Resumen por Periodo <button class="btn b4" style="float:right" onclick="imprimir('tiempo')">🖨️ Imprimir</button></h2>
+<div class="filters">
+<div class="filter-group">
+<label>Periodo del curso</label>
+<select id="fPeriodo" onchange="renderTiempo()">
+<option value="ALL">Todo el curso</option>
+</select>
+</div>
+<div class="filter-group">
+<label>Alumno</label>
+<select id="fMaq" onchange="renderTiempo()">
+<option value="TODOS">Todos los alumnos</option>
+</select>
+</div>
+</div>
+<table id="tablaTiempoTbl"><thead><tr><th>Periodo</th><th class="r">Presentes</th><th class="r">Ausencias</th><th class="r">Entradas tarde</th><th class="r">Salidas pronto</th></tr></thead><tbody id="t3"></tbody></table>
+</div>
+
+<div id="p4" class="pnl">
+<h2>Calendario de Asistencias</h2>
+<div style="margin-bottom:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:end">
+<div class="filter-group">
+<label>Periodo</label>
+<select class="sel" id="calPeriodo" onchange="actualizarCalendarioDesdePeriodo()"></select>
+</div>
+</div>
+<div id="calendar" class="calendar"></div>
+<div id="calDetalle" class="box" style="display:none"></div>
+</div>
+
+<div id="p5" class="pnl">
+<h2>Editar Registros</h2>
+<div style="margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap">
+<select class="sel" id="editPeriodo" onchange="cargarRegistrosEditarDesdePeriodo()"></select>
+</div>
+<table><thead><tr><th>Fecha</th><th>Alumno</th><th class="r">Estado</th><th>Detalles</th><th>Acciones</th></tr></thead><tbody id="tEdit"></tbody></table>
+</div>
+
+<div id="p6" class="pnl">
+<h2>Gestión de Datos</h2>
+<div class="box">
+<div class="botones-datos">
+<button class="btn b1" onclick="cargarDatosNube()">☁️ Cargar desde la Nube</button>
+<button class="btn b5" onclick="guardarDatosNube()">💾 Guardar en la Nube</button>
+<button class="btn b6" onclick="exportarDatos()">📥 Exportar Backup (JSON)</button>
+<button class="btn b2" onclick="document.getElementById('importFile').click()">📤 Importar desde JSON</button>
+<button class="btn b3" onclick="resetearTodo()">🗑️ Resetear todo</button>
+<input type="file" id="importFile" accept=".json" style="display:none" onchange="importarDatos(event)">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="modal-overlay" id="modalOverlay">
+<div class="modal">
+<h3 id="modalTitle">Confirmar</h3>
+<p id="modalMessage">¿Estás seguro?</p>
+<div id="modalContent"></div>
+<div class="modal-buttons">
+<button class="modal-btn-cancel" id="modalCancel">Cancelar</button>
+<button class="modal-btn-ok" id="modalOk">Aceptar</button>
+</div>
+</div>
+</div>
+<div id="printArea" class="print-area"></div>
+
+<script>
+// ⚠️ URL DE TU APLICACIÓN WEB DE GOOGLE APPS SCRIPT ACTUALIZADA
+const GOOGLE_SCRIPT_URL_ALUMNOS = 'https://script.google.com/macros/s/AKfycbzozRyJZ2Y8Cpv9SFKbZFHU2OPHuJEoC48MllHrhDNdCHTX0ZKWIQwRa-Umjnuven3q/exec';
+
+const ALUMNOS_BASE=["AMEZ FUERTES, RAUL","BLANCO FRANCO, SANTIAGO ANDRÉS","FERNÁNDEZ MACAYO, M. ISABEL","MAIQUEZ DOMINGUEZ, HECTOR JOSÉ","MALLO RODRÍGUEZ, MIGUEL","MUÑIZ CAÑIBANO, MARÍA BELÉN"];
+const MESES=["Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre","Enero","Febrero"];
+const DIAS=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
+
+const INICIO_CURSO={y:2026,m:3,d:1};
+const FIN_CURSO={y:2027,m:2,d:28};
+
+const FESTIVOS=[
+  {y:2026,m:10,d:5,nombre:"San Froilán"},
+  {y:2026,m:10,d:12,nombre:"Fiesta Nacional de España"},
+  {y:2026,m:11,d:2,nombre:"Todos los Santos (compensación)"},
+  {y:2026,m:12,d:7,nombre:"Constitución Española (compensación)"},
+  {y:2026,m:12,d:8,nombre:"Inmaculada Concepción"},
+  {y:2026,m:12,d:24,nombre:"Nochebuena"},
+  {y:2026,m:12,d:25,nombre:"Navidad"},
+  {y:2026,m:12,d:31,nombre:"Nochevieja"},
+  {y:2027,m:1,d:1,nombre:"Año Nuevo"},
+  {y:2027,m:1,d:6,nombre:"Reyes"}
+];
+
+const VACACIONES=[
+  {y:2026,m:12,d:21}, {y:2026,m:12,d:22}, {y:2026,m:12,d:23}, {y:2026,m:12,d:28}
+];
+
+const LABELS_ESTADOS={
+  presente:'Presente', ausente:'Ausente', entrada_tarde:'Entrada tarde',
+  salida_pronto:'Salida pronto', cita_medica:'Cita médica', conciliacion:'Conciliación'
+};
+
+function getPeriodoLabel(year, month){
+  const monthNames=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+  return monthNames[month-1]+" "+year;
+}
+
+function getDayType(year, month, day){
+  const fecha=new Date(year,month-1,day);
+  const diaSemana=fecha.getDay();
+  if(diaSemana===0||diaSemana===6) return {type:'weekend',label:'Fin de semana'};
+  const fechaInicio=new Date(INICIO_CURSO.y,INICIO_CURSO.m-1,INICIO_CURSO.d);
+  const fechaActual=new Date(year,month-1,day);
+  if(fechaActual<fechaInicio) return {type:'before-course',label:'Antes del curso'};
+  const fechaFin=new Date(FIN_CURSO.y,FIN_CURSO.m-1,FIN_CURSO.d);
+  if(fechaActual>fechaFin) return {type:'after-course',label:'Después del curso'};
+  for(const f of FESTIVOS){ if(f.y===year&&f.m===month&&f.d===day) return {type:'holiday',label:f.nombre}; }
+  for(const v of VACACIONES){ if(v.y===year&&v.m===month&&v.d===day) return {type:'vacation',label:'Vacaciones'}; }
+  return {type:'lectivo',label:'Día lectivo'};
+}
+
+let ALUMNOS=[...ALUMNOS_BASE];
+let historicalRecords=[];
+let userRecords=[];
+let dataSourceMsg="Cargando...";
+let modalCallback=null;
+let alertTimeout=null;
+
+function generarPeriodos(){
+  const periodos=[];
+  let year=INICIO_CURSO.y, month=INICIO_CURSO.m;
+  const endYear=FIN_CURSO.y, endMonth=FIN_CURSO.m;
+  while(year<endYear||(year===endYear&&month<=endMonth)){
+    periodos.push({y:year,m:month,label:getPeriodoLabel(year,month)});
+    month++; if(month>12){month=1;year++;}
+  }
+  return periodos;
+}
+
+function showModal(titulo,mensaje,tipo,data,callback){
+  tipo=tipo||'confirm'; data=data||{}; callback=callback||null;
+  document.getElementById('modalTitle').textContent=titulo;
+  document.getElementById('modalMessage').textContent=mensaje;
+  const modalContent=document.getElementById('modalContent');
+  const okBtn=document.getElementById('modalOk');
+  const cancelBtn=document.getElementById('modalCancel');
+
+  if(tipo==='edit'){
+    modalContent.innerHTML=`
+      <select id="modalEstado" onchange="toggleModalFields()">
+        <option value="presente" ${data.estado==='presente'?'selected':''}>Presente</option>
+        <option value="ausente" ${data.estado==='ausente'?'selected':''}>Ausente</option>
+        <option value="entrada_tarde" ${data.estado==='entrada_tarde'?'selected':''}>Entrada tarde</option>
+        <option value="salida_pronto" ${data.estado==='salida_pronto'?'selected':''}>Salida pronto</option>
+        <option value="cita_medica" ${data.estado==='cita_medica'?'selected':''}>Cita médica</option>
+        <option value="conciliacion" ${data.estado==='conciliacion'?'selected':''}>Conciliación</option>
+      </select>
+      <input type="text" id="modalCausa" placeholder="Causa/Razón" value="${data.causa||''}" style="display:${data.estado!=='presente'?'block':'none'}">
+      <div class="form-row" id="timeFields" style="display:${data.estado==='cita_medica'||data.estado==='conciliacion'?'flex':'none'}">
+        <div><label>Hora salida</label><input type="time" id="modalHoraSalida" value="${data.horaSalida||''}"></div>
+        <div><label>Hora llegada</label><input type="time" id="modalHoraLlegada" value="${data.horaLlegada||''}"></div>
+      </div>
+      <div id="horaUnicaField" style="display:${data.estado==='entrada_tarde'||data.estado==='salida_pronto'?'block':'none'}">
+        <label>Hora</label><input type="time" id="modalHoraUnica" value="${data.horaUnica||''}">
+      </div>
+      <label class="checkbox-label" style="display:${data.estado==='ausente'?'flex':'none'}">
+        <input type="checkbox" id="modalJustificada" ${data.justificada?'checked':''}> Justificada
+      </label>`;
+    okBtn.textContent='Guardar'; okBtn.className='modal-btn-ok'; cancelBtn.style.display='inline-block';
+  } else if(tipo==='danger'){
+    modalContent.innerHTML=''; okBtn.textContent='Sí, eliminar'; okBtn.className='modal-btn-danger'; cancelBtn.style.display='inline-block';
+  } else {
+    modalContent.innerHTML=''; okBtn.textContent='Aceptar'; okBtn.className='modal-btn-ok'; cancelBtn.style.display='none';
+  }
+  modalCallback=callback;
+  document.getElementById('modalOverlay').classList.add('show');
+}
+
+window.toggleModalFields=function(){
+  const estado=document.getElementById('modalEstado').value;
+  document.getElementById('modalCausa').style.display=estado!=='presente'?'block':'none';
+  document.getElementById('timeFields').style.display=(estado==='cita_medica'||estado==='conciliacion')?'flex':'none';
+  document.getElementById('horaUnicaField').style.display=(estado==='entrada_tarde'||estado==='salida_pronto')?'block':'none';
+  document.getElementById('modalJustificada').parentElement.style.display=estado==='ausente'?'flex':'none';
+};
+
+document.getElementById('modalOk').addEventListener('click',function(){
+  const tipo=document.getElementById('modalContent').querySelector('select')?'edit':(document.getElementById('modalContent').innerHTML===''?'confirm':'edit');
+  let data=null;
+  if(tipo==='edit'){
+    data={
+      estado:document.getElementById('modalEstado').value,
+      causa:document.getElementById('modalCausa').value,
+      justificada:document.getElementById('modalJustificada').checked,
+      horaSalida:document.getElementById('modalHoraSalida').value,
+      horaLlegada:document.getElementById('modalHoraLlegada').value,
+      horaUnica:document.getElementById('modalHoraUnica').value
+    };
+  }
+  document.getElementById('modalOverlay').classList.remove('show');
+  if(modalCallback)modalCallback(data);
+});
+document.getElementById('modalCancel').addEventListener('click',function(){
+  document.getElementById('modalOverlay').classList.remove('show');
+  if(modalCallback)modalCallback(null);
+});
+document.getElementById('modalOverlay').addEventListener('click',function(e){
+  if(e.target===this){this.classList.remove('show');if(modalCallback)modalCallback(null);}
+});
+
+function mostrarAlerta(tipo,mensaje){
+  const cont=document.getElementById('alertContainer');
+  const iconos={info:'ℹ️',error:'❌',success:'✅',warning:'⚠️'};
+  cont.innerHTML='<div class="alert alert-'+tipo+'"><span>'+(iconos[tipo]||'')+'</span><span>'+mensaje+'</span></div>';
+  if(alertTimeout)clearTimeout(alertTimeout);
+  alertTimeout=setTimeout(function(){if(cont)cont.innerHTML='';},5000);
+}
+
+// --- FUNCIONES DE NUBE (GOOGLE SHEETS) ---
+async function cargarDatosNube() {
+  document.getElementById('loader').classList.remove('hidden');
+  try {
+    const res = await fetch(GOOGLE_SCRIPT_URL_ALUMNOS);
+    const datos = await res.json();
+    
+    if (datos.alumnos && datos.alumnos.length > 0) {
+      ALUMNOS = datos.alumnos;
+    }
+    if (datos.registros) {
+      historicalRecords = datos.registros.filter(r => r.hist === true || r.hist === undefined);
+      userRecords = datos.registros.filter(r => r.hist === false);
+    }
+    
+    dataSourceMsg = "☁️ Google Sheets (Nube)";
+    document.getElementById('dataSource').textContent = dataSourceMsg;
+    saveUser(); // Guardar caché local por seguridad
+    inicializarApp();
+    renderAll();
+    mostrarAlerta('success', '✅ Datos cargados correctamente desde la nube');
+  } catch (e) {
+    console.error('Error al cargar datos:', e);
+    mostrarAlerta('error', '❌ Error al conectar con la nube. Revisa la URL o la conexión.');
+    // Fallback a local si falla la nube
+    try{
+      const cached=localStorage.getItem('ca_cache');
+      if(cached){
+        const data=JSON.parse(cached);
+        ALUMNOS=data.alumnos; historicalRecords=data.registros||[];
+        dataSourceMsg="Caché local (Fallo de nube)";
+        document.getElementById('dataSource').textContent = dataSourceMsg;
+        inicializarApp(); renderAll();
+      }
+    }catch(err){}
+  } finally {
+    document.getElementById('loader').classList.add('hidden');
+  }
+}
+
+async function guardarDatosNube() {
+  mostrarAlerta('info', '💾 Guardando en la nube...');
+  try {
+    const payload = {
+      alumnos: ALUMNOS,
+      registros: [...historicalRecords, ...userRecords]
+    };
+    
+    await fetch(GOOGLE_SCRIPT_URL_ALUMNOS, {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    });
+    
+    mostrarAlerta('success', '✅ Datos guardados correctamente en la nube');
+  } catch (e) {
+    console.error('Error al guardar:', e);
+    mostrarAlerta('error', '❌ Error al guardar en la nube');
+  }
+}
+
+function inicializarApp(){
+  document.getElementById('todayDate').textContent=new Date().toLocaleDateString('es-ES');
+  if(dataSourceMsg === "Cargando...") dataSourceMsg = "Local (Sin nube)";
+  document.getElementById('dataSource').textContent=dataSourceMsg;
+  
+  const erMaquina=document.getElementById('erMaquina');erMaquina.innerHTML='';
+  ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;erMaquina.appendChild(o);});
+
+  const periodos=generarPeriodos();
+  const erMes=document.getElementById('erMes');erMes.innerHTML='';
+  periodos.forEach(function(p){
+    const o=document.createElement('option'); o.value=p.y+'-'+p.m; o.textContent=p.label; erMes.appendChild(o);
+  });
+  const fechaActual=new Date();
+  const periodoActual=periodos.find(function(p){ return (fechaActual.getFullYear()===p.y&&fechaActual.getMonth()+1===p.m); });
+  if(periodoActual){erMes.value=periodoActual.y+'-'+periodoActual.m;}
+
+  const erAnio=document.getElementById('erAnio');erAnio.innerHTML='<option value="2026">2026</option><option value="2027">2027</option>';
+  erAnio.value=fechaActual.getFullYear()===2026?'2026':'2027';
+
+  const fPeriodo=document.getElementById('fPeriodo'); fPeriodo.innerHTML='<option value="ALL">Todo el curso</option>';
+  periodos.forEach(function(p){
+    const o=document.createElement('option'); o.value=p.y+'-'+p.m; o.textContent=p.label; fPeriodo.appendChild(o);
+  });
+
+  const fMaq=document.getElementById('fMaq'); fMaq.innerHTML='<option value="TODOS">Todos los alumnos</option>';
+  ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;fMaq.appendChild(o);});
+
+  const calPeriodo=document.getElementById('calPeriodo'); calPeriodo.innerHTML='';
+  periodos.forEach(function(p){
+    const o=document.createElement('option'); o.value=p.y+'-'+p.m; o.textContent=p.label; calPeriodo.appendChild(o);
+  });
+
+  const editPeriodo=document.getElementById('editPeriodo'); editPeriodo.innerHTML='';
+  periodos.forEach(function(p){
+    const o=document.createElement('option'); o.value=p.y+'-'+p.m; o.textContent=p.label; editPeriodo.appendChild(o);
+  });
+
+  renderAll();
+  setTimeout(function(){generarCalendarioEntrada();actualizarCalendarioDesdePeriodo();},200);
+}
+
+function getAll(){return[...historicalRecords,...userRecords.map(function(r){return{y:r.y,m:r.m,d:r.d,alumno:r.alumno,estado:r.estado,causa:r.causa,justificada:r.justificada,horaSalida:r.horaSalida,horaLlegada:r.horaLlegada,horaUnica:r.horaUnica,hist:false};})];}
+function saveUser(){localStorage.setItem('ca_user',JSON.stringify(userRecords));localStorage.setItem('ca_cache',JSON.stringify({alumnos:ALUMNOS,registros:[...historicalRecords,...userRecords.map(function(r){return{y:r.y,m:r.m,d:r.d,alumno:r.alumno,estado:r.estado,causa:r.causa,justificada:r.justificada,horaSalida:r.horaSalida,horaLlegada:r.horaLlegada,horaUnica:r.horaUnica,hist:false};})]}));}
+function pad(n){return n<10?'0'+n:''+n;}
+
+function showTab(id){
+  document.querySelectorAll('.pnl').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tb').forEach(function(t){t.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  const btn=document.querySelector('[data-t="'+id+'"]');
+  if(btn)btn.classList.add('on');
+  if(id==='p7')setTimeout(function(){generarCalendarioEntrada();},100);
+  if(id==='p4')setTimeout(function(){actualizarCalendarioDesdePeriodo();},100);
+  if(id==='p5')setTimeout(function(){cargarRegistrosEditarDesdePeriodo();},100);
+}
+document.querySelectorAll('.tb').forEach(function(b){b.addEventListener('click',function(){showTab(this.getAttribute('data-t'));});});
+
+function renderAll(){
+  const R=getAll();
+  const totalPresentes=R.filter(function(r){return r.estado==='presente';}).length;
+  const totalAusentes=R.filter(function(r){return r.estado==='ausente';}).length;
+  const alumnosConRegistros=new Set(R.map(function(r){return r.alumno;})).size;
+  const alumnosActivos=alumnosConRegistros>0?alumnosConRegistros:ALUMNOS.length;
+  document.getElementById('sP').textContent=totalPresentes;
+  document.getElementById('sH').textContent=totalAusentes;
+  document.getElementById('sC').textContent=alumnosActivos;
+  renderMaquinas();renderTiempo();
+}
+
+function renderMaquinas(){
+  const R=getAll(); const tb=document.getElementById('t2'); tb.innerHTML='';
+  const sm={}; ALUMNOS.forEach(function(m){sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0};});
+  R.forEach(function(r){ if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined){ sm[r.alumno][r.estado]++; } });
+  let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0};
+  ALUMNOS.forEach(function(m){
+    const s=sm[m];
+    totales.presente+=s.presente; totales.ausente+=s.ausente; totales.entrada_tarde+=s.entrada_tarde;
+    totales.salida_pronto+=s.salida_pronto; totales.cita_medica+=s.cita_medica; totales.conciliacion+=s.conciliacion;
+    tb.innerHTML+='<tr><td>'+m+'</td><td class="r">'+s.presente+'</td><td class="r">'+s.ausente+'</td><td class="r">'+s.entrada_tarde+'</td><td class="r">'+s.salida_pronto+'</td><td class="r">'+s.cita_medica+'</td><td class="r">'+s.conciliacion+'</td></tr>';
+  });
+  tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.cita_medica+'</td><td class="r">'+totales.conciliacion+'</td></tr>';
+}
+
+function renderTiempo(){
+  const R=getAll(); const fPeriodo=document.getElementById('fPeriodo').value; const falumno=document.getElementById('fMaq').value;
+  const tb=document.getElementById('t3'); tb.innerHTML='';
+  let filt=R;
+  if(fPeriodo!=='ALL'){
+    const parts=fPeriodo.split('-'); filt=filt.filter(function(r){return r.y===parseInt(parts[0])&&r.m===parseInt(parts[1]);});
+  }
+  if(falumno!=='TODOS')filt=filt.filter(function(r){return r.alumno===falumno;});
+  const ag={};
+  filt.forEach(function(r){
+    const k=getPeriodoLabel(r.y,r.m);
+    if(!ag[k])ag[k]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,s:new Date(r.y,r.m-1,1).getTime()};
+    if(ag[k][r.estado]!==undefined)ag[k][r.estado]++;
+  });
+  const ks=Object.keys(ag).sort(function(a,b){
+    const monthNames=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+    const partsA=a.split(' '), monthA=monthNames.indexOf(partsA[0]), yearA=parseInt(partsA[1]);
+    const partsB=b.split(' '), monthB=monthNames.indexOf(partsB[0]), yearB=parseInt(partsB[1]);
+    if(yearA!==yearB)return yearA-yearB; return monthA-monthB;
+  });
+  let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0};
+  if(ks.length===0){ tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:#9ca3af">Sin registros para los filtros seleccionados</td></tr>'; }
+  else {
+    ks.forEach(function(k){
+      totales.presente+=ag[k].presente; totales.ausente+=ag[k].ausente; totales.entrada_tarde+=ag[k].entrada_tarde; totales.salida_pronto+=ag[k].salida_pronto;
+      tb.innerHTML+='<tr><td>'+k+'</td><td class="r">'+ag[k].presente+'</td><td class="r">'+ag[k].ausente+'</td><td class="r">'+ag[k].entrada_tarde+'</td><td class="r">'+ag[k].salida_pronto+'</td></tr>';
+    });
+    tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td></tr>';
+  }
+}
+
+function generarCalendarioEntrada(){
+  const alumno=document.getElementById('erMaquina').value;
+  const periodoVal=document.getElementById('erMes').value;
+  const parts=periodoVal.split('-'); const mes=parseInt(parts[1]); const anio=parseInt(parts[0]);
+  const cont=document.getElementById('calendarioInput'); cont.innerHTML='';
+  DIAS.forEach(function(d){const h=document.createElement('div');h.className='cal-input-header';h.textContent=d;cont.appendChild(h);});
+  const first=new Date(anio,mes-1,1); const last=new Date(anio,mes,0); const start=first.getDay()||7;
+  for(let i=1;i<start;i++){const e=document.createElement('div');e.className='cal-input-day empty';cont.appendChild(e);}
+  for(let d=1;d<=last.getDate();d++){
+    const fecha=new Date(anio,mes-1,d); const diaSemana=fecha.getDay(); const esFinde=(diaSemana===0||diaSemana===6);
+    const dayInfo=getDayType(anio,mes,d);
+    const e=document.createElement('div'); e.className='cal-input-day';
+    if(dayInfo.type==='holiday')e.classList.add('holiday');
+    else if(dayInfo.type==='vacation')e.classList.add('vacation');
+    else if(dayInfo.type==='course-end')e.classList.add('course-end');
+    else if(dayInfo.type==='before-course'||dayInfo.type==='after-course')e.classList.add('empty');
+    else if(esFinde)e.classList.add('empty');
+    const esEditable=!esFinde&&dayInfo.type==='lectivo';
+    const existing=getAll().find(function(r){return r.y===anio&&r.m===mes&&r.d===d&&r.alumno===alumno;});
+    const estadoInicial=existing?existing.estado:'';
+    const causaInicial=existing?existing.causa||'':'';
+    const justificadaInicial=existing?existing.justificada:false;
+    const horaSalidaInicial=existing?existing.horaSalida||'':'';
+    const horaLlegadaInicial=existing?existing.horaLlegada||'':'';
+    const horaUnicaInicial=existing?existing.horaUnica||'':'';
+    if(estadoInicial) e.classList.add(estadoInicial);
+    let html='<div class="day-label '+(esFinde?'weekend':(dayInfo.type==='holiday'?'holiday':(dayInfo.type==='vacation'?'vacation':(dayInfo.type==='course-end'?'course-end':''))))+'">'+d+'</div>';
+    if(esEditable){
+      html+='<select data-dia="'+d+'" data-field="estado" onchange="actualizarDia(this)">';
+      html+='<option value="">--</option>';
+      Object.keys(LABELS_ESTADOS).forEach(function(key){ html+='<option value="'+key+'" '+(estadoInicial===key?'selected':'')+'>'+LABELS_ESTADOS[key]+'</option>'; });
+      html+='</select>';
+      html+='<input type="text" data-dia="'+d+'" data-field="causa" placeholder="Causa/Razón" value="'+causaInicial+'" style="display:'+(estadoInicial&&estadoInicial!=='presente'?'block':'none')+'">';
+      if(estadoInicial==='cita_medica'||estadoInicial==='conciliacion'){
+        html+='<div style="display:flex;gap:4px"><input type="time" data-dia="'+d+'" data-field="horaSalida" value="'+horaSalidaInicial+'" placeholder="Salida" style="flex:1"><input type="time" data-dia="'+d+'" data-field="horaLlegada" value="'+horaLlegadaInicial+'" placeholder="Llegada" style="flex:1"></div>';
+      }else if(estadoInicial==='entrada_tarde'||estadoInicial==='salida_pronto'){
+        html+='<input type="time" data-dia="'+d+'" data-field="horaUnica" value="'+horaUnicaInicial+'">';
+      }else{
+        html+='<label class="checkbox-label" style="display:'+(estadoInicial==='ausente'?'flex':'none')+'"><input type="checkbox" data-dia="'+d+'" data-field="justificada" '+(justificadaInicial?'checked':'')+'> Justificada</label>';
+      }
+    }else{
+      html+='<div style="font-size:11px;color:#6b7280;margin-top:10px">'+dayInfo.label+'</div>';
+    }
+    e.innerHTML=html; cont.appendChild(e);
+  }
+  document.getElementById('calendarioEntrada').style.display='block';
+  actualizarResumenEntrada();
+}
+
+window.actualizarDia=function(select){
+  const dia=select.getAttribute('data-dia'); const container=select.parentElement;
+  const causaInput=container.querySelector('[data-field="causa"]');
+  const justifLabel=container.querySelector('[data-field="justificada"]');
+  const horaSalidaInput=container.querySelector('[data-field="horaSalida"]');
+  const horaLlegadaInput=container.querySelector('[data-field="horaLlegada"]');
+  const horaUnicaInput=container.querySelector('[data-field="horaUnica"]');
+  const estado=select.value;
+  causaInput.style.display=estado&&estado!=='presente'?'block':'none';
+  if(estado==='cita_medica'||estado==='conciliacion'){
+    if(!horaSalidaInput){
+      const div=document.createElement('div'); div.style.display='flex'; div.style.gap='4px';
+      div.innerHTML='<input type="time" data-dia="'+dia+'" data-field="horaSalida" placeholder="Salida" style="flex:1"><input type="time" data-dia="'+dia+'" data-field="horaLlegada" placeholder="Llegada" style="flex:1">';
+      causaInput.parentNode.insertBefore(div,causaInput.nextSibling);
+    }
+    if(horaUnicaInput)horaUnicaInput.style.display='none'; if(justifLabel)justifLabel.style.display='none';
+  }else if(estado==='entrada_tarde'||estado==='salida_pronto'){
+    if(!horaUnicaInput){
+      const input=document.createElement('input'); input.type='time'; input.setAttribute('data-dia',dia); input.setAttribute('data-field','horaUnica');
+      input.style.cssText='width:100%;padding:4px;border:1px solid #d1d5db;border-radius:4px;font-size:11px;margin-bottom:4px';
+      causaInput.parentNode.insertBefore(input,causaInput.nextSibling);
+    }
+    if(horaSalidaInput){horaSalidaInput.style.display='none';horaLlegadaInput.style.display='none';}
+    if(justifLabel)justifLabel.style.display='none';
+  }else{
+    if(horaSalidaInput){horaSalidaInput.style.display='none';horaLlegadaInput.style.display='none';}
+    if(horaUnicaInput)horaUnicaInput.style.display='none';
+    if(justifLabel)justifLabel.style.display=estado==='ausente'?'flex':'none';
+  }
+  container.classList.remove('present','absent','late','early','medical','conciliation');
+  if(estado)container.classList.add(estado);
+  actualizarResumenEntrada();
+};
+
+function actualizarResumenEntrada(){
+  const selects=document.querySelectorAll('#calendarioInput select[data-field="estado"]');
+  const lista=document.getElementById('listaResumen'); const totalEl=document.getElementById('totalResumen'); const resumenDiv=document.getElementById('resumenEntrada');
+  lista.innerHTML=''; const counts={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0};
+  selects.forEach(function(sel){
+    if(sel.value){
+      const dia=sel.getAttribute('data-dia'); counts[sel.value]++;
+      if(sel.value!=='presente'){
+        const container=sel.parentElement; const causa=container.querySelector('[data-field="causa"]').value;
+        const li=document.createElement('li'); li.textContent='Día '+dia+': '+LABELS_ESTADOS[sel.value]+(causa?' - '+causa:'');
+        lista.appendChild(li);
+      }
+    }
+  });
+  const totalDias=Object.values(counts).reduce(function(a,b){return a+b;},0);
+  if(totalDias>0){
+    resumenDiv.style.display='block';
+    const partes=[];
+    if(counts.presente>0)partes.push(counts.presente+' presente'+(counts.presente>1?'s':''));
+    if(counts.ausente>0)partes.push(counts.ausente+' ausencia'+(counts.ausente>1?'s':''));
+    if(counts.entrada_tarde>0)partes.push(counts.entrada_tarde+' entrada'+(counts.entrada_tarde>1?'s':'')+' tarde');
+    if(counts.salida_pronto>0)partes.push(counts.salida_pronto+' salida'+(counts.salida_pronto>1?'s':'')+' pronto');
+    if(counts.cita_medica>0)partes.push(counts.cita_medica+' cita'+(counts.cita_medica>1?'s':'')+' médica');
+    if(counts.conciliacion>0)partes.push(counts.conciliacion+' conciliación'+(counts.conciliacion>1?'es':''));
+    totalEl.textContent='Total: '+partes.join(', ');
+  }else{ resumenDiv.style.display='none'; }
+}
+
+function limpiarCalendarioEntrada(){
+  showModal('🧹 Limpiar calendario','¿Seguro que quieres borrar todos los valores?','danger',null,function(respuesta){
+    if(respuesta!==null){
+      const selects=document.querySelectorAll('#calendarioInput select[data-field="estado"]');
+      selects.forEach(function(sel){
+        sel.value=''; const container=sel.parentElement;
+        container.querySelector('[data-field="causa"]').value=''; container.querySelector('[data-field="causa"]').style.display='none';
+        const justifLabel=container.querySelector('[data-field="justificada"]');
+        if(justifLabel){ justifLabel.checked=false; justifLabel.style.display='none'; }
+        const horaSalida=container.querySelector('[data-field="horaSalida"]'); const horaLlegada=container.querySelector('[data-field="horaLlegada"]'); const horaUnica=container.querySelector('[data-field="horaUnica"]');
+        if(horaSalida){horaSalida.value='';horaSalida.style.display='none';}
+        if(horaLlegada){horaLlegada.value='';horaLlegada.style.display='none';}
+        if(horaUnica){horaUnica.value='';horaUnica.style.display='none';}
+        container.classList.remove('present','absent','late','early','medical','conciliation');
+      });
+      actualizarResumenEntrada(); mostrarAlerta('success','Calendario limpiado');
+    }
+  });
+}
+
+function guardarEntradaRapida(){
+  const alumno=document.getElementById('erMaquina').value;
+  const periodoVal=document.getElementById('erMes').value;
+  const parts=periodoVal.split('-'); const mes=parseInt(parts[1]); const anio=parseInt(parts[0]);
+  const selects=document.querySelectorAll('#calendarioInput select[data-field="estado"]');
+  const nuevos=[];
+  selects.forEach(function(sel){
+    if(sel.value){
+      const dia=parseInt(sel.getAttribute('data-dia')); const container=sel.parentElement;
+      const estado=sel.value; const causa=container.querySelector('[data-field="causa"]').value;
+      const justificada=estado==='ausente'?(container.querySelector('[data-field="justificada"]').checked):false;
+      const horaSalida=(estado==='cita_medica'||estado==='conciliacion')?(container.querySelector('[data-field="horaSalida"]').value):'';
+      const horaLlegada=(estado==='cita_medica'||estado==='conciliacion')?(container.querySelector('[data-field="horaLlegada"]').value):'';
+      const horaUnica=(estado==='entrada_tarde'||estado==='salida_pronto')?(container.querySelector('[data-field="horaUnica"]').value):'';
+      const idx=userRecords.findIndex(function(r){return r.y===anio&&r.m===mes&&r.d===dia&&r.alumno===alumno;});if(idx>=0)userRecords.splice(idx,1);
+      const idxH=historicalRecords.findIndex(function(r){return r.y===anio&&r.m===mes&&r.d===dia&&r.alumno===alumno;});if(idxH>=0)historicalRecords.splice(idxH,1);
+      userRecords.push({y:anio,m:mes,d:dia,alumno:alumno,estado:estado,causa:causa,justificada:justificada,horaSalida:horaSalida,horaLlegada:horaLlegada,horaUnica:horaUnica,hist:false});
+      nuevos.push({dia:dia,estado:estado});
+    }
+  });
+  if(nuevos.length===0){mostrarAlerta('warning','No hay ningún día registrado. Marca al menos un día.');return;}
+  saveUser(); renderAll(); generarCalendarioEntrada();
+  mostrarAlerta('success','Guardados '+nuevos.length+' registro'+(nuevos.length>1?'s':'')+' de '+alumno+' en '+getPeriodoLabel(anio,mes));
+}
+
+function actualizarCalendarioDesdePeriodo(){
+  const periodoVal=document.getElementById('calPeriodo').value;
+  const parts=periodoVal.split('-'); actualizarCalendario(parseInt(parts[0]),parseInt(parts[1]));
+}
+
+function actualizarCalendario(y,m){
+  const cal=document.getElementById('calendar');cal.innerHTML='';
+  DIAS.forEach(function(d){const h=document.createElement('div');h.className='cal-header';h.textContent=d;cal.appendChild(h);});
+  const first=new Date(y,m-1,1);const last=new Date(y,m,0);const start=first.getDay()||7;
+  for(let i=1;i<start;i++){const e=document.createElement('div');e.className='cal-day empty';cal.appendChild(e);}
+  const R=getAll().filter(function(r){return r.y===y&&r.m===m;});
+  const byDay={};
+  R.forEach(function(r){
+    if(!byDay[r.d])byDay[r.d]={counts:{presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0},alumnos:{}};
+    byDay[r.d].counts[r.estado]++;
+    byDay[r.d].alumnos[r.alumno]={estado:r.estado,causa:r.causa,horaSalida:r.horaSalida,horaLlegada:r.horaLlegada,horaUnica:r.horaUnica};
+  });
+  for(let d=1;d<=last.getDate();d++){
+    const dayInfo=getDayType(y,m,d); const e=document.createElement('div'); e.className='cal-day';
+    const counts=byDay[d]?byDay[d].counts:null;
+    if(counts){
+      if(counts.presente>0&&counts.ausente===0&&counts.entrada_tarde===0&&counts.salida_pronto===0&&counts.cita_medica===0&&counts.conciliacion===0)e.classList.add('present');
+      else if(counts.ausente>0)e.classList.add('absent');
+      else if(counts.entrada_tarde>0)e.classList.add('late');
+      else if(counts.salida_pronto>0)e.classList.add('early');
+      else if(counts.cita_medica>0)e.classList.add('medical');
+      else if(counts.conciliacion>0)e.classList.add('conciliation');
+    }
+    if(dayInfo.type==='holiday')e.style.background='#faf5ff';
+    else if(dayInfo.type==='vacation')e.style.background='#fff7ed';
+    else if(dayInfo.type==='before-course'||dayInfo.type==='after-course')e.style.background='#f3f4f6';
+    let html='<div class="day-num">'+d+'</div>';
+    if(byDay[d]){
+      const c=byDay[d].counts;
+      if(c.presente>0)html+='<div class="pkg-info" style="color:#166534">✓ '+c.presente+'</div>';
+      if(c.ausente>0)html+='<div class="pkg-info" style="color:#991b1b">✗ '+c.ausente+'</div>';
+      if(c.entrada_tarde>0)html+='<div class="pkg-info" style="color:#92400e">⏰ '+c.entrada_tarde+'</div>';
+      if(c.salida_pronto>0)html+='<div class="pkg-info" style="color:#9d174d"> '+c.salida_pronto+'</div>';
+      if(c.cita_medica>0)html+='<div class="pkg-info" style="color:#1e40af">🏥 '+c.cita_medica+'</div>';
+      if(c.conciliacion>0)html+='<div class="pkg-info" style="color:#3730a3">👨‍👩‍👧 '+c.conciliacion+'</div>';
+      Object.keys(byDay[d].alumnos).sort().forEach(function(alumName){
+        const info=byDay[d].alumnos[alumName]; const nombreCorto=alumName.split(',')[0];
+        let detalle=LABELS_ESTADOS[info.estado].charAt(0).toUpperCase();
+        if(info.horaUnica)detalle+=' '+info.horaUnica;
+        else if(info.horaSalida&&info.horaLlegada)detalle+=' '+info.horaSalida+'-'+info.horaLlegada;
+        html+='<div class="pkg-info" title="'+alumName+': '+LABELS_ESTADOS[info.estado]+(info.causa?' - '+info.causa:'')+(info.horaUnica?' ('+info.horaUnica+')':'')+(info.horaSalida?' ('+info.horaSalida+'-'+info.horaLlegada+')':'')+'">'+nombreCorto+': '+detalle+'</div>';
+      });
+    }
+    if(dayInfo.type==='holiday'||dayInfo.type==='vacation'){ html+='<div style="font-size:9px;color:#6b7280;margin-top:2px;font-style:italic">'+dayInfo.label+'</div>'; }
+    e.innerHTML=html;cal.appendChild(e);
+  }
+  const det=document.getElementById('calDetalle');
+  const totalPresentes=R.filter(function(r){return r.estado==='presente';}).length;
+  const totalAusentes=R.filter(function(r){return r.estado==='ausente';}).length;
+  const totalEntradasTarde=R.filter(function(r){return r.estado==='entrada_tarde';}).length;
+  const totalSalidasPronto=R.filter(function(r){return r.estado==='salida_pronto';}).length;
+  det.innerHTML='<strong>Total '+getPeriodoLabel(y,m)+':</strong> '+totalPresentes+' presente'+(totalPresentes>1?'s':'')+', '+totalAusentes+' ausencia'+(totalAusentes>1?'s':'')+', '+totalEntradasTarde+' entrada'+(totalEntradasTarde>1?'s':'')+' tarde, '+totalSalidasPronto+' salida'+(totalSalidasPronto>1?'s':'')+' pronto';
+  det.style.display='block';
+}
+
+function cargarRegistrosEditarDesdePeriodo(){
+  const periodoVal=document.getElementById('editPeriodo').value;
+  const parts=periodoVal.split('-'); cargarRegistrosEditar(parseInt(parts[0]),parseInt(parts[1]));
+}
+
+function cargarRegistrosEditar(y,m){
+  const tb=document.getElementById('tEdit');tb.innerHTML='';
+  const R=[...historicalRecords,...userRecords].filter(function(r){return r.y===y&&r.m===m;}).sort(function(a,b){return a.d-b.d;});
+  if(R.length===0){tb.innerHTML='<tr><td colspan="5" style="text-align:center">Sin registros este mes</td></tr>';return;}
+  R.forEach(function(r,i){
+    const estadoText='<span style="color:'+getColorEstado(r.estado)+'">'+LABELS_ESTADOS[r.estado]+'</span>';
+    let detalles='';
+    if(r.causa)detalles+=r.causa;
+    if(r.horaUnica)detalles+=(detalles?', ':'')+'Hora: '+r.horaUnica;
+    if(r.horaSalida&&r.horaLlegada)detalles+=(detalles?', ':'')+r.horaSalida+'-'+r.horaLlegada;
+    if(r.justificada)detalles+=' (Justificada)';
+    tb.innerHTML+='<tr><td>'+pad(r.d)+'/'+pad(r.m)+'/'+r.y+'</td><td>'+r.alumno+'</td><td class="r">'+estadoText+'</td><td>'+(detalles||'-')+'</td><td><button class="btn b2 action-btn" onclick="editarRegistro('+i+')">✏️ Editar</button> <button class="btn b3 action-btn" onclick="eliminarRegistro('+i+')">️ Eliminar</button></td></tr>';
+  });
+}
+
+function getColorEstado(estado){
+  const colors={presente:'#166534',ausente:'#991b1b',entrada_tarde:'#92400e',salida_pronto:'#9d174d',cita_medica:'#1e40af',conciliacion:'#3730a3'};
+  return colors[estado]||'#374151';
+}
+
+function editarRegistro(idx){
+  const periodoVal=document.getElementById('editPeriodo').value;
+  const parts=periodoVal.split('-'); const y=parseInt(parts[0]); const m=parseInt(parts[1]);
+  const R=[...historicalRecords,...userRecords].filter(function(r){return r.y===y&&r.m===m;}).sort(function(a,b){return a.d-b.d;});
+  const r=R[idx];
+  showModal('✏️ Editar registro','Modifica el registro del '+pad(r.d)+'/'+pad(r.m)+'/'+r.y+' ('+r.alumno+')','edit',{estado:r.estado,causa:r.causa,justificada:r.justificada,horaSalida:r.horaSalida,horaLlegada:r.horaLlegada,horaUnica:r.horaUnica},function(data){
+    if(data!==null){
+      const idxH=historicalRecords.findIndex(function(x){return x.y===r.y&&x.m===r.m&&x.d===r.d&&x.alumno===r.alumno;}); if(idxH>=0)historicalRecords.splice(idxH,1);
+      const idxU=userRecords.findIndex(function(x){return x.y===r.y&&x.m===r.m&&x.d===r.d&&x.alumno===r.alumno;}); if(idxU>=0)userRecords.splice(idxU,1);
+      userRecords.push({y:r.y,m:r.m,d:r.d,alumno:r.alumno,estado:data.estado,causa:data.causa,justificada:data.justificada,horaSalida:data.horaSalida,horaLlegada:data.horaLlegada,horaUnica:data.horaUnica,hist:false});
+      saveUser();renderAll();cargarRegistrosEditar(y,m); mostrarAlerta('success','Registro actualizado correctamente');
+    }
+  });
+}
+
+function eliminarRegistro(idx){
+  const periodoVal=document.getElementById('editPeriodo').value;
+  const parts=periodoVal.split('-'); const y=parseInt(parts[0]); const m=parseInt(parts[1]);
+  const R=[...historicalRecords,...userRecords].filter(function(r){return r.y===y&&r.m===m;}).sort(function(a,b){return a.d-b.d;});
+  const r=R[idx];
+  showModal('️ Eliminar registro','¿Seguro que quieres eliminar el registro del '+pad(r.d)+'/'+pad(r.m)+'/'+r.y+' ('+r.alumno+')?','danger',null,function(respuesta){
+    if(respuesta!==null){
+      const idxH=historicalRecords.findIndex(function(x){return x.y===r.y&&x.m===r.m&&x.d===r.d&&x.alumno===r.alumno;}); if(idxH>=0)historicalRecords.splice(idxH,1);
+      const idxU=userRecords.findIndex(function(x){return x.y===r.y&&x.m===r.m&&x.d===r.d&&x.alumno===r.alumno;}); if(idxU>=0)userRecords.splice(idxU,1);
+      saveUser();renderAll();cargarRegistrosEditar(y,m); mostrarAlerta('success','Registro eliminado');
+    }
+  });
+}
+
+function imprimir(tipo){
+  const area=document.getElementById('printArea');let contenido='';
+  if(tipo==='maquinas')contenido='<h1>Total por Alumno</h1>'+document.getElementById('tablaMaquinasTbl').outerHTML;
+  else if(tipo==='tiempo')contenido='<h1>Resumen por Periodo</h1>'+document.getElementById('tablaTiempoTbl').outerHTML;
+  area.innerHTML=contenido;window.print();setTimeout(function(){area.innerHTML='';},1000);
+}
+
+function exportarDatos(){
+  const data={alumnos:ALUMNOS,registros:[...historicalRecords,...userRecords],exportDate:new Date().toISOString()};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download='control_alumnos_backup_'+new Date().toISOString().split('T')[0]+'.json';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+  mostrarAlerta('success','Backup exportado correctamente');
+}
+
+function importarDatos(event){
+  const file=event.target.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(e){
+    try{
+      const data=JSON.parse(e.target.result);
+      if(data.alumnos)ALUMNOS=data.alumnos;
+      if(data.registros){
+        historicalRecords=data.registros.filter(function(r){return r.hist!==false;});
+        userRecords=data.registros.filter(function(r){return r.hist===false;});
+        saveUser();
+      }
+      mostrarAlerta('success','Datos importados. Recargando...');
+      setTimeout(function(){location.reload();},1500);
+    }catch(err){mostrarAlerta('error','Error al importar: '+err.message);}
+  };
+  reader.readAsText(file);event.target.value='';
+}
+
+function resetearTodo(){
+  showModal('🗑️ Resetear todo','¿Seguro? Se borrarán TODOS los datos. Esta acción no se puede deshacer.','danger',null,function(respuesta){
+    if(respuesta!==null){localStorage.removeItem('ca_cache');localStorage.removeItem('ca_user');location.reload();}
+  });
+}
+
+document.getElementById('fPeriodo').addEventListener('change',renderTiempo);
+
+// INICIALIZACIÓN: Cargar desde la nube al abrir la app
+document.getElementById('todayDate').textContent = new Date().toLocaleDateString('es-ES');
+inicializarApp(); // Inicializa selectores vacíos primero
+cargarDatosNube(); // Luego trae los datos de la nube
+</script>
+</body>
+</html>
