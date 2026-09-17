@@ -119,19 +119,26 @@ tr:hover{background:#f9fafb}
 .modal-btn-danger:hover{background:#b91c1c}
 .botones-datos{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:12px}
 
-/* --- ESTILOS NUEVOS PARA LA NUBE --- */
 #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); z-index: 3000; display: flex; justify-content: center; align-items: center; font-size: 20px; color: #2563eb; font-weight: bold; flex-direction: column; gap: 15px; }
 #loader.hidden { display: none; }
 .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #2563eb; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
+.config-section{margin-bottom:30px;padding:20px;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb}
+.config-section h3{margin-bottom:16px;color:#1e3a8a;font-size:18px}
+.config-form{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-bottom:16px}
+.config-form .filter-group{flex:1;min-width:150px}
+.config-list{margin-top:16px}
+.config-item{display:flex;justify-content:space-between;align-items:center;padding:10px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;margin-bottom:8px}
+.config-item-info{flex:1}
+.config-item-actions{display:flex;gap:8px}
+
 @media print{body *{visibility:hidden}.print-area,.print-area *{visibility:visible}.print-area{position:absolute;left:0;top:0;display:block;width:100%}.no-print{display:none!important}}
-@media(max-width:768px){.cards,.fr{grid-template-columns:1fr}.calendar,.calendario-input{grid-template-columns:repeat(7,1fr);gap:2px}.cal-day,.cal-input-day{min-height:60px;padding:3px}.filters,.entrada-config{flex-direction:column}.botones-datos{flex-direction:column}.modal .form-row{flex-direction:column}}
+@media(max-width:768px){.cards,.fr{grid-template-columns:1fr}.calendar,.calendario-input{grid-template-columns:repeat(7,1fr);gap:2px}.cal-day,.cal-input-day{min-height:60px;padding:3px}.filters,.entrada-config{flex-direction:column}.botones-datos{flex-direction:column}.modal .form-row{flex-direction:column}.config-form{flex-direction:column}}
 </style>
 </head>
 <body>
 
-<!-- LOADER DE CARGA EN LA NUBE -->
 <div id="loader"><div class="spinner"></div>⏳ Cargando datos desde la nube...</div>
 
 <div class="wrap">
@@ -155,6 +162,7 @@ tr:hover{background:#f9fafb}
 <button class="tb" data-t="p4">Calendario</button>
 <button class="tb" data-t="p5">Editar</button>
 <button class="tb" data-t="p6">Datos</button>
+<button class="tb" data-t="p8">⚙️ Configuración</button>
 </div>
 
 <div id="p7" class="pnl on">
@@ -246,6 +254,107 @@ tr:hover{background:#f9fafb}
 </div>
 </div>
 </div>
+
+<!-- NUEVA PESTAÑA: CONFIGURACIÓN -->
+<div id="p8" class="pnl">
+<h2>⚙️ Configuración</h2>
+
+<!-- SECCIÓN: GESTIÓN DE ALUMNOS -->
+<div class="config-section">
+<h3>👥 Gestión de Alumnos</h3>
+<div class="config-form">
+<div class="filter-group">
+<label>Nombre del alumno</label>
+<input type="text" id="nuevoAlumno" placeholder="Ej: GARCÍA LÓPEZ, JUAN">
+</div>
+<button class="btn b2" onclick="agregarAlumno()">➕ Añadir Alumno</button>
+</div>
+<div class="config-list" id="listaAlumnos"></div>
+</div>
+
+<!-- SECCIÓN: GESTIÓN DE FESTIVOS -->
+<div class="config-section">
+<h3>🎉 Gestión de Festivos</h3>
+<div class="config-form">
+<div class="filter-group">
+<label>Día</label>
+<input type="number" id="nuevoFestivoDia" min="1" max="31" placeholder="Día">
+</div>
+<div class="filter-group">
+<label>Mes</label>
+<select id="nuevoFestivoMes">
+<option value="1">Enero</option>
+<option value="2">Febrero</option>
+<option value="3">Marzo</option>
+<option value="4">Abril</option>
+<option value="5">Mayo</option>
+<option value="6">Junio</option>
+<option value="7">Julio</option>
+<option value="8">Agosto</option>
+<option value="9">Septiembre</option>
+<option value="10">Octubre</option>
+<option value="11">Noviembre</option>
+<option value="12">Diciembre</option>
+</select>
+</div>
+<div class="filter-group">
+<label>Año</label>
+<select id="nuevoFestivoAnio">
+<option value="2026">2026</option>
+<option value="2027">2027</option>
+</select>
+</div>
+<div class="filter-group">
+<label>Nombre del festivo</label>
+<input type="text" id="nuevoFestivoNombre" placeholder="Ej: Día del Trabajo">
+</div>
+<button class="btn b2" onclick="agregarFestivo()">➕ Añadir Festivo</button>
+</div>
+<div class="config-list" id="listaFestivos"></div>
+</div>
+
+<!-- SECCIÓN: GESTIÓN DE VACACIONES -->
+<div class="config-section">
+<h3>🏖️ Gestión de Vacaciones</h3>
+<div class="config-form">
+<div class="filter-group">
+<label>Día</label>
+<input type="number" id="nuevaVacacionDia" min="1" max="31" placeholder="Día">
+</div>
+<div class="filter-group">
+<label>Mes</label>
+<select id="nuevaVacacionMes">
+<option value="1">Enero</option>
+<option value="2">Febrero</option>
+<option value="3">Marzo</option>
+<option value="4">Abril</option>
+<option value="5">Mayo</option>
+<option value="6">Junio</option>
+<option value="7">Julio</option>
+<option value="8">Agosto</option>
+<option value="9">Septiembre</option>
+<option value="10">Octubre</option>
+<option value="11">Noviembre</option>
+<option value="12">Diciembre</option>
+</select>
+</div>
+<div class="filter-group">
+<label>Año</label>
+<select id="nuevaVacacionAnio">
+<option value="2026">2026</option>
+<option value="2027">2027</option>
+</select>
+</div>
+<button class="btn b2" onclick="agregarVacacion()">➕ Añadir Día de Vacaciones</button>
+</div>
+<div class="config-list" id="listaVacaciones"></div>
+</div>
+
+<div style="margin-top:20px;padding:16px;background:#fef3c7;border-radius:8px;border:1px solid #fcd34d">
+<p style="color:#92400e;font-size:13px"><strong>⚠️ Importante:</strong> Después de hacer cambios en la configuración, pulsa <strong>"💾 Guardar en la Nube"</strong> en la pestaña "Datos" para que los cambios se guarden permanentemente.</p>
+</div>
+</div>
+
 </div>
 </div>
 <div class="modal-overlay" id="modalOverlay">
@@ -262,7 +371,6 @@ tr:hover{background:#f9fafb}
 <div id="printArea" class="print-area"></div>
 
 <script>
-// ⚠️ URL DE TU APLICACIÓN WEB DE GOOGLE APPS SCRIPT ACTUALIZADA
 const GOOGLE_SCRIPT_URL_ALUMNOS = 'https://script.google.com/macros/s/AKfycbzozRyJZ2Y8Cpv9SFKbZFHU2OPHuJEoC48MllHrhDNdCHTX0ZKWIQwRa-Umjnuven3q/exec';
 
 const ALUMNOS_BASE=["AMEZ FUERTES, RAUL","BLANCO FRANCO, SANTIAGO ANDRÉS","FERNÁNDEZ MACAYO, M. ISABEL","MAIQUEZ DOMINGUEZ, HECTOR JOSÉ","MALLO RODRÍGUEZ, MIGUEL","MUÑIZ CAÑIBANO, MARÍA BELÉN"];
@@ -272,27 +380,9 @@ const DIAS=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
 const INICIO_CURSO={y:2026,m:3,d:1};
 const FIN_CURSO={y:2027,m:2,d:28};
 
-const FESTIVOS=[
-  {y:2026,m:10,d:5,nombre:"San Froilán"},
-  {y:2026,m:10,d:12,nombre:"Fiesta Nacional de España"},
-  {y:2026,m:11,d:2,nombre:"Todos los Santos (compensación)"},
-  {y:2026,m:12,d:7,nombre:"Constitución Española (compensación)"},
-  {y:2026,m:12,d:8,nombre:"Inmaculada Concepción"},
-  {y:2026,m:12,d:24,nombre:"Nochebuena"},
-  {y:2026,m:12,d:25,nombre:"Navidad"},
-  {y:2026,m:12,d:31,nombre:"Nochevieja"},
-  {y:2027,m:1,d:1,nombre:"Año Nuevo"},
-  {y:2027,m:1,d:6,nombre:"Reyes"}
-];
-
-// ACTUALIZADO: Vacaciones de verano (13 al 31 de julio de 2026) + Navidad
-const VACACIONES=[
-  {y:2026,m:7,d:13}, {y:2026,m:7,d:14}, {y:2026,m:7,d:15}, {y:2026,m:7,d:16}, {y:2026,m:7,d:17}, 
-  {y:2026,m:7,d:18}, {y:2026,m:7,d:19}, {y:2026,m:7,d:20}, {y:2026,m:7,d:21}, {y:2026,m:7,d:22}, 
-  {y:2026,m:7,d:23}, {y:2026,m:7,d:24}, {y:2026,m:7,d:25}, {y:2026,m:7,d:26}, {y:2026,m:7,d:27}, 
-  {y:2026,m:7,d:28}, {y:2026,m:7,d:29}, {y:2026,m:7,d:30}, {y:2026,m:7,d:31},
-  {y:2026,m:12,d:21}, {y:2026,m:12,d:22}, {y:2026,m:12,d:23}, {y:2026,m:12,d:28}
-];
+// Arrays dinámicos que se cargarán desde la nube
+let FESTIVOS=[];
+let VACACIONES=[];
 
 const LABELS_ESTADOS={
   presente:'Presente', ausente:'Ausente', entrada_tarde:'Entrada tarde',
@@ -415,6 +505,159 @@ function mostrarAlerta(tipo,mensaje){
   alertTimeout=setTimeout(function(){if(cont)cont.innerHTML='';},5000);
 }
 
+// --- FUNCIONES DE CONFIGURACIÓN ---
+function renderConfiguracion(){
+  renderListaAlumnos();
+  renderListaFestivos();
+  renderListaVacaciones();
+}
+
+function renderListaAlumnos(){
+  const lista=document.getElementById('listaAlumnos');
+  lista.innerHTML='';
+  ALUMNOS.forEach(function(alumno,idx){
+    lista.innerHTML+=`<div class="config-item">
+      <div class="config-item-info"><strong>${alumno}</strong></div>
+      <div class="config-item-actions">
+        <button class="btn b1 action-btn" onclick="editarAlumno(${idx})">✏️ Editar</button>
+        <button class="btn b3 action-btn" onclick="eliminarAlumno(${idx})">🗑️ Eliminar</button>
+      </div>
+    </div>`;
+  });
+}
+
+function agregarAlumno(){
+  const nombre=document.getElementById('nuevoAlumno').value.trim();
+  if(!nombre){mostrarAlerta('warning','Introduce un nombre de alumno');return;}
+  if(ALUMNOS.includes(nombre)){mostrarAlerta('error','Este alumno ya existe');return;}
+  ALUMNOS.push(nombre);
+  document.getElementById('nuevoAlumno').value='';
+  renderListaAlumnos();
+  mostrarAlerta('success','Alumno añadido correctamente');
+}
+
+function editarAlumno(idx){
+  const alumnoActual=ALUMNOS[idx];
+  showModal('✏️ Editar nombre del alumno','Introduce el nuevo nombre para: '+alumnoActual,'edit-alumno',{nombreActual:alumnoActual},function(nuevoNombre){
+    if(nuevoNombre&&nuevoNombre.trim()){
+      ALUMNOS[idx]=nuevoNombre.trim();
+      renderListaAlumnos();
+      mostrarAlerta('success','Nombre del alumno actualizado');
+    }
+  });
+}
+
+function eliminarAlumno(idx){
+  const alumno=ALUMNOS[idx];
+  showModal('🗑️ Eliminar alumno','¿Seguro que quieres eliminar a '+alumno+'? Se perderán todos sus registros.','danger',null,function(respuesta){
+    if(respuesta!==null){
+      ALUMNOS.splice(idx,1);
+      renderListaAlumnos();
+      mostrarAlerta('success','Alumno eliminado');
+    }
+  });
+}
+
+function renderListaFestivos(){
+  const lista=document.getElementById('listaFestivos');
+  lista.innerHTML='';
+  if(FESTIVOS.length===0){
+    lista.innerHTML='<p style="color:#6b7280;font-style:italic">No hay festivos configurados</p>';
+    return;
+  }
+  FESTIVOS.sort((a,b)=>{
+    if(a.y!==b.y)return a.y-b.y;
+    if(a.m!==b.m)return a.m-b.m;
+    return a.d-b.d;
+  });
+  FESTIVOS.forEach(function(festivo,idx){
+    const fecha=pad(festivo.d)+'/'+pad(festivo.m)+'/'+festivo.y;
+    lista.innerHTML+=`<div class="config-item">
+      <div class="config-item-info"><strong>${fecha}</strong> - ${festivo.nombre}</div>
+      <div class="config-item-actions">
+        <button class="btn b3 action-btn" onclick="eliminarFestivo(${idx})">🗑️ Eliminar</button>
+      </div>
+    </div>`;
+  });
+}
+
+function agregarFestivo(){
+  const dia=parseInt(document.getElementById('nuevoFestivoDia').value);
+  const mes=parseInt(document.getElementById('nuevoFestivoMes').value);
+  const anio=parseInt(document.getElementById('nuevoFestivoAnio').value);
+  const nombre=document.getElementById('nuevoFestivoNombre').value.trim();
+  
+  if(!dia||!mes||!anio||!nombre){mostrarAlerta('warning','Completa todos los campos');return;}
+  
+  const existe=FESTIVOS.find(f=>f.y===anio&&f.m===mes&&f.d===dia);
+  if(existe){mostrarAlerta('error','Ya existe un festivo en esa fecha');return;}
+  
+  FESTIVOS.push({y:anio,m:mes,d:dia,nombre:nombre});
+  document.getElementById('nuevoFestivoDia').value='';
+  document.getElementById('nuevoFestivoNombre').value='';
+  renderListaFestivos();
+  mostrarAlerta('success','Festivo añadido correctamente');
+}
+
+function eliminarFestivo(idx){
+  showModal('🗑️ Eliminar festivo','¿Seguro que quieres eliminar este festivo?','danger',null,function(respuesta){
+    if(respuesta!==null){
+      FESTIVOS.splice(idx,1);
+      renderListaFestivos();
+      mostrarAlerta('success','Festivo eliminado');
+    }
+  });
+}
+
+function renderListaVacaciones(){
+  const lista=document.getElementById('listaVacaciones');
+  lista.innerHTML='';
+  if(VACACIONES.length===0){
+    lista.innerHTML='<p style="color:#6b7280;font-style:italic">No hay vacaciones configuradas</p>';
+    return;
+  }
+  VACACIONES.sort((a,b)=>{
+    if(a.y!==b.y)return a.y-b.y;
+    if(a.m!==b.m)return a.m-b.m;
+    return a.d-b.d;
+  });
+  VACACIONES.forEach(function(vacacion,idx){
+    const fecha=pad(vacacion.d)+'/'+pad(vacacion.m)+'/'+vacacion.y;
+    lista.innerHTML+=`<div class="config-item">
+      <div class="config-item-info"><strong>${fecha}</strong></div>
+      <div class="config-item-actions">
+        <button class="btn b3 action-btn" onclick="eliminarVacacion(${idx})">🗑️ Eliminar</button>
+      </div>
+    </div>`;
+  });
+}
+
+function agregarVacacion(){
+  const dia=parseInt(document.getElementById('nuevaVacacionDia').value);
+  const mes=parseInt(document.getElementById('nuevaVacacionMes').value);
+  const anio=parseInt(document.getElementById('nuevaVacacionAnio').value);
+  
+  if(!dia||!mes||!anio){mostrarAlerta('warning','Completa todos los campos');return;}
+  
+  const existe=VACACIONES.find(v=>v.y===anio&&v.m===mes&&v.d===dia);
+  if(existe){mostrarAlerta('error','Ya existe una vacación en esa fecha');return;}
+  
+  VACACIONES.push({y:anio,m:mes,d:dia});
+  document.getElementById('nuevaVacacionDia').value='';
+  renderListaVacaciones();
+  mostrarAlerta('success','Día de vacaciones añadido correctamente');
+}
+
+function eliminarVacacion(idx){
+  showModal('🗑️ Eliminar vacaciones','¿Seguro que quieres eliminar este día de vacaciones?','danger',null,function(respuesta){
+    if(respuesta!==null){
+      VACACIONES.splice(idx,1);
+      renderListaVacaciones();
+      mostrarAlerta('success','Día de vacaciones eliminado');
+    }
+  });
+}
+
 // --- FUNCIONES DE NUBE (GOOGLE SHEETS) ---
 async function cargarDatosNube() {
   document.getElementById('loader').classList.remove('hidden');
@@ -429,25 +672,32 @@ async function cargarDatosNube() {
       historicalRecords = datos.registros.filter(r => r.hist === true || r.hist === undefined);
       userRecords = datos.registros.filter(r => r.hist === false);
     }
+    if (datos.festivos) {
+      FESTIVOS = datos.festivos;
+    }
+    if (datos.vacaciones) {
+      VACACIONES = datos.vacaciones;
+    }
     
     dataSourceMsg = "☁️ Google Sheets (Nube)";
     document.getElementById('dataSource').textContent = dataSourceMsg;
-    saveUser(); // Guardar caché local por seguridad
+    saveUser();
     inicializarApp();
     renderAll();
+    renderConfiguracion();
     mostrarAlerta('success', '✅ Datos cargados correctamente desde la nube');
   } catch (e) {
     console.error('Error al cargar datos:', e);
     mostrarAlerta('error', '❌ Error al conectar con la nube. Revisa la URL o la conexión.');
-    // Fallback a local si falla la nube
     try{
       const cached=localStorage.getItem('ca_cache');
       if(cached){
         const data=JSON.parse(cached);
         ALUMNOS=data.alumnos; historicalRecords=data.registros||[];
+        FESTIVOS=data.festivos||[]; VACACIONES=data.vacaciones||[];
         dataSourceMsg="Caché local (Fallo de nube)";
         document.getElementById('dataSource').textContent = dataSourceMsg;
-        inicializarApp(); renderAll();
+        inicializarApp(); renderAll(); renderConfiguracion();
       }
     }catch(err){}
   } finally {
@@ -460,7 +710,9 @@ async function guardarDatosNube() {
   try {
     const payload = {
       alumnos: ALUMNOS,
-      registros: [...historicalRecords, ...userRecords]
+      registros: [...historicalRecords, ...userRecords],
+      festivos: FESTIVOS,
+      vacaciones: VACACIONES
     };
     
     await fetch(GOOGLE_SCRIPT_URL_ALUMNOS, {
@@ -518,7 +770,7 @@ function inicializarApp(){
 }
 
 function getAll(){return[...historicalRecords,...userRecords.map(function(r){return{y:r.y,m:r.m,d:r.d,alumno:r.alumno,estado:r.estado,causa:r.causa,justificada:r.justificada,horaSalida:r.horaSalida,horaLlegada:r.horaLlegada,horaUnica:r.horaUnica,hist:false};})];}
-function saveUser(){localStorage.setItem('ca_user',JSON.stringify(userRecords));localStorage.setItem('ca_cache',JSON.stringify({alumnos:ALUMNOS,registros:[...historicalRecords,...userRecords.map(function(r){return{y:r.y,m:r.m,d:r.d,alumno:r.alumno,estado:r.estado,causa:r.causa,justificada:r.justificada,horaSalida:r.horaSalida,horaLlegada:r.horaLlegada,horaUnica:r.horaUnica,hist:false};})]}));}
+function saveUser(){localStorage.setItem('ca_user',JSON.stringify(userRecords));localStorage.setItem('ca_cache',JSON.stringify({alumnos:ALUMNOS,registros:[...historicalRecords,...userRecords.map(function(r){return{y:r.y,m:r.m,d:r.d,alumno:r.alumno,estado:r.estado,causa:r.causa,justificada:r.justificada,horaSalida:r.horaSalida,horaLlegada:r.horaLlegada,horaUnica:r.horaUnica,hist:false};})],festivos:FESTIVOS,vacaciones:VACACIONES}));}
 function pad(n){return n<10?'0'+n:''+n;}
 
 function showTab(id){
@@ -530,6 +782,7 @@ function showTab(id){
   if(id==='p7')setTimeout(function(){generarCalendarioEntrada();},100);
   if(id==='p4')setTimeout(function(){actualizarCalendarioDesdePeriodo();},100);
   if(id==='p5')setTimeout(function(){cargarRegistrosEditarDesdePeriodo();},100);
+  if(id==='p8')setTimeout(function(){renderConfiguracion();},100);
 }
 document.querySelectorAll('.tb').forEach(function(b){b.addEventListener('click',function(){showTab(this.getAttribute('data-t'));});});
 
@@ -868,7 +1121,7 @@ function imprimir(tipo){
 }
 
 function exportarDatos(){
-  const data={alumnos:ALUMNOS,registros:[...historicalRecords,...userRecords],exportDate:new Date().toISOString()};
+  const data={alumnos:ALUMNOS,registros:[...historicalRecords,...userRecords],festivos:FESTIVOS,vacaciones:VACACIONES,exportDate:new Date().toISOString()};
   const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');a.href=url;a.download='control_alumnos_backup_'+new Date().toISOString().split('T')[0]+'.json';
@@ -886,8 +1139,10 @@ function importarDatos(event){
       if(data.registros){
         historicalRecords=data.registros.filter(function(r){return r.hist!==false;});
         userRecords=data.registros.filter(function(r){return r.hist===false;});
-        saveUser();
       }
+      if(data.festivos)FESTIVOS=data.festivos;
+      if(data.vacaciones)VACACIONES=data.vacaciones;
+      saveUser();
       mostrarAlerta('success','Datos importados. Recargando...');
       setTimeout(function(){location.reload();},1500);
     }catch(err){mostrarAlerta('error','Error al importar: '+err.message);}
@@ -903,10 +1158,9 @@ function resetearTodo(){
 
 document.getElementById('fPeriodo').addEventListener('change',renderTiempo);
 
-// INICIALIZACIÓN: Cargar desde la nube al abrir la app
 document.getElementById('todayDate').textContent = new Date().toLocaleDateString('es-ES');
-inicializarApp(); // Inicializa selectores vacíos primero
-cargarDatosNube(); // Luego trae los datos de la nube
+inicializarApp();
+cargarDatosNube();
 </script>
 </body>
 </html>
