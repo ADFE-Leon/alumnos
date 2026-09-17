@@ -51,6 +51,7 @@ tr:hover{background:#f9fafb}
 .cal-day.early{background:#fce7f3;border-color:#f9a8d4}
 .cal-day.medical{background:#dbeafe;border-color:#93c5fd}
 .cal-day.conciliation{background:#e0e7ff;border-color:#a5b4fc}
+.cal-day.sick-leave{background:#fecaca;border-color:#f87171}
 .cal-day .day-num{font-weight:700;font-size:12px;margin-bottom:4px;color:#1f2937}
 .cal-day .pkg-info{font-size:10px;color:#1e40af;background:#fff;padding:2px 4px;border-radius:3px;margin:1px 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cal-day .pkg-total{font-size:11px;font-weight:600;color:#2563eb;margin-top:2px}
@@ -92,6 +93,7 @@ tr:hover{background:#f9fafb}
 .cal-input-day.early{background:#fce7f3;border-color:#f9a8d4}
 .cal-input-day.medical{background:#dbeafe;border-color:#93c5fd}
 .cal-input-day.conciliation{background:#e0e7ff;border-color:#a5b4fc}
+.cal-input-day.sick-leave{background:#fecaca;border-color:#f87171}
 .resumen-entrada{background:#f0fdf4;border:1px solid #86efac;padding:14px;border-radius:8px;margin-top:16px;font-size:14px}
 .resumen-entrada h4{color:#166534;margin-bottom:8px}
 .resumen-entrada ul{margin-left:20px;color:#166534}
@@ -138,7 +140,6 @@ tr:hover{background:#f9fafb}
 .rango-box .rango-inputs{display:flex;gap:8px}
 .rango-box .rango-inputs .filter-group{flex:1;min-width:0}
 
-/* NUEVOS ESTILOS PARA ESTADÍSTICAS DE CONFIGURACIÓN */
 .stats-config{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:24px}
 .stats-group{background:#fff;padding:16px;border-radius:8px;border:2px solid #e5e7eb}
 .stats-group h4{font-size:14px;color:#6b7280;margin-bottom:12px;text-transform:uppercase;font-weight:600}
@@ -154,13 +155,17 @@ tr:hover{background:#f9fafb}
 .stat-item.consumidos .stat-value{color:#059669}
 .stat-item.pendientes .stat-value{color:#dc2626}
 
+.leyenda-calendario{background:#f9fafb;padding:12px;border-radius:6px;margin-top:16px;display:flex;flex-wrap:wrap;gap:12px;font-size:12px}
+.leyenda-calendario-item{display:flex;align-items:center;gap:6px}
+.leyenda-calendario-color{width:20px;height:20px;border-radius:3px;border:1px solid #d1d5db;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px}
+
 @media print{body *{visibility:hidden}.print-area,.print-area *{visibility:visible}.print-area{position:absolute;left:0;top:0;display:block;width:100%}.no-print{display:none!important}}
 @media(max-width:768px){.cards,.fr{grid-template-columns:1fr}.calendar,.calendario-input{grid-template-columns:repeat(7,1fr);gap:2px}.cal-day,.cal-input-day{min-height:60px;padding:3px}.filters,.entrada-config{flex-direction:column}.botones-datos{flex-direction:column}.modal .form-row{flex-direction:column}.config-form{flex-direction:column}.rango-fechas{flex-direction:column}.rango-box .rango-inputs{flex-direction:column}.stats-config{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<div id="loader"><div class="spinner"></div>⏳ Cargando datos desde la nube...</div>
+<div id="loader"><div class="spinner"></div> Cargando datos desde la nube...</div>
 
 <div class="wrap">
 <h1>Control de Alumnos</h1>
@@ -183,7 +188,7 @@ tr:hover{background:#f9fafb}
 <button class="tb" data-t="p4">Calendario</button>
 <button class="tb" data-t="p5">Editar</button>
 <button class="tb" data-t="p6">Datos</button>
-<button class="tb" data-t="p8">⚙️ Configuración</button>
+<button class="tb" data-t="p8">️ Configuración</button>
 </div>
 
 <div id="p7" class="pnl on">
@@ -201,6 +206,7 @@ tr:hover{background:#f9fafb}
 <div class="leyenda-item"><div class="leyenda-color" style="background:#fce7f3"></div>Salida pronto</div>
 <div class="leyenda-item"><div class="leyenda-color" style="background:#dbeafe"></div>Cita médica</div>
 <div class="leyenda-item"><div class="leyenda-color" style="background:#e0e7ff"></div>Conciliación</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#fecaca"></div>Baja</div>
 <div class="leyenda-item"><div class="leyenda-color" style="background:#faf5ff"></div>Festivo</div>
 <div class="leyenda-item"><div class="leyenda-color" style="background:#f9fafb;opacity:0.5"></div>Fin de semana</div>
 </div>
@@ -220,7 +226,7 @@ tr:hover{background:#f9fafb}
 
 <div id="p2" class="pnl">
 <h2>Total por Alumno <button class="btn b4" style="float:right" onclick="imprimir('maquinas')">🖨️ Imprimir</button></h2>
-<table id="tablaMaquinasTbl"><thead><tr><th>Alumno</th><th class="r">Presentes</th><th class="r">Ausencias</th><th class="r">Entradas tarde</th><th class="r">Salidas pronto</th><th class="r">Citas médicas</th><th class="r">Conciliaciones</th></tr></thead><tbody id="t2"></tbody></table>
+<table id="tablaMaquinasTbl"><thead><tr><th>Alumno</th><th class="r">Presentes</th><th class="r">Ausencias</th><th class="r">Entradas tarde</th><th class="r">Salidas pronto</th><th class="r">Citas médicas</th><th class="r">Conciliaciones</th><th class="r">Bajas</th></tr></thead><tbody id="t2"></tbody></table>
 </div>
 
 <div id="p3" class="pnl">
@@ -239,7 +245,7 @@ tr:hover{background:#f9fafb}
 </select>
 </div>
 </div>
-<table id="tablaTiempoTbl"><thead><tr><th>Periodo</th><th class="r">Presentes</th><th class="r">Ausencias</th><th class="r">Entradas tarde</th><th class="r">Salidas pronto</th></tr></thead><tbody id="t3"></tbody></table>
+<table id="tablaTiempoTbl"><thead><tr><th>Periodo</th><th class="r">Presentes</th><th class="r">Ausencias</th><th class="r">Entradas tarde</th><th class="r">Salidas pronto</th><th class="r">Bajas</th></tr></thead><tbody id="t3"></tbody></table>
 </div>
 
 <div id="p4" class="pnl">
@@ -252,6 +258,15 @@ tr:hover{background:#f9fafb}
 </div>
 <div id="calendar" class="calendar"></div>
 <div id="calDetalle" class="box" style="display:none"></div>
+<div class="leyenda-calendario">
+<div class="leyenda-calendario-item"><div class="leyenda-calendario-color" style="background:#dcfce7;color:#166534">P</div>Presente</div>
+<div class="leyenda-calendario-item"><div class="leyenda-calendario-color" style="background:#fee2e2;color:#991b1b">A</div>Ausente</div>
+<div class="leyenda-calendario-item"><div class="leyenda-calendario-color" style="background:#fef3c7;color:#92400e">T</div>Entrada tarde</div>
+<div class="leyenda-calendario-item"><div class="leyenda-calendario-color" style="background:#fce7f3;color:#9d174d">S</div>Salida pronto</div>
+<div class="leyenda-calendario-item"><div class="leyenda-calendario-color" style="background:#dbeafe;color:#1e40af">C</div>Cita médica</div>
+<div class="leyenda-calendario-item"><div class="leyenda-calendario-color" style="background:#e0e7ff;color:#3730a3">O</div>Conciliación</div>
+<div class="leyenda-calendario-item"><div class="leyenda-calendario-color" style="background:#fecaca;color:#991b1b">B</div>Baja</div>
+</div>
 </div>
 
 <div id="p5" class="pnl">
@@ -279,7 +294,6 @@ tr:hover{background:#f9fafb}
 <div id="p8" class="pnl">
 <h2>⚙️ Configuración</h2>
 
-<!-- NUEVO: PANEL DE ESTADÍSTICAS -->
 <div class="stats-config" id="statsConfig">
 <div class="stats-group vacaciones">
 <h4>🏖️ Vacaciones</h4>
@@ -330,7 +344,7 @@ tr:hover{background:#f9fafb}
 </div>
 
 <div class="config-section">
-<h3>🎉 Gestión de Festivos</h3>
+<h3> Gestión de Festivos</h3>
 <div class="config-form">
 <div class="filter-group">
 <label>Día</label>
@@ -366,7 +380,7 @@ tr:hover{background:#f9fafb}
 <p style="color:#6b7280;font-size:13px;margin-bottom:12px">Introduce la fecha de inicio y la fecha final (ambas inclusive). <strong>Se añadirán automáticamente solo los días lectivos</strong> (se excluyen sábados, domingos y festivos).</p>
 <div class="rango-fechas">
 <div class="rango-box">
-<h4>📅 Fecha de inicio</h4>
+<h4> Fecha de inicio</h4>
 <div class="rango-inputs">
 <div class="filter-group"><label>Día</label><input type="number" id="nuevaVacacionDiaIni" min="1" max="31" placeholder="Día"></div>
 <div class="filter-group"><label>Mes</label>
@@ -431,7 +445,7 @@ tr:hover{background:#f9fafb}
 <div id="printArea" class="print-area"></div>
 
 <script>
-const GOOGLE_SCRIPT_URL_ALUMNOS = 'https://script.google.com/macros/s/AKfycbzjQMtBa3zK-O3IiQ1yws5oiGv1iDFTzLa0r7ijZvedyvGq0pYmPoKHFbzMgrQsJK5F/exec'
+const GOOGLE_SCRIPT_URL_ALUMNOS = 'https://script.google.com/macros/s/AKfycbzozRyJZ2Y8Cpv9SFKbZFHU2OPHuJEoC48MllHrhDNdCHTX0ZKWIQwRa-Umjnuven3q/exec';
 
 const ALUMNOS_BASE=["AMEZ FUERTES, RAUL","BLANCO FRANCO, SANTIAGO ANDRÉS","FERNÁNDEZ MACAYO, M. ISABEL","MAIQUEZ DOMINGUEZ, HECTOR JOSÉ","MALLO RODRÍGUEZ, MIGUEL","MUÑIZ CAÑIBANO, MARÍA BELÉN"];
 const MESES=["Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre","Enero","Febrero"];
@@ -445,7 +459,14 @@ let VACACIONES=[];
 
 const LABELS_ESTADOS={
   presente:'Presente', ausente:'Ausente', entrada_tarde:'Entrada tarde',
-  salida_pronto:'Salida pronto', cita_medica:'Cita médica', conciliacion:'Conciliación'
+  salida_pronto:'Salida pronto', cita_medica:'Cita médica', conciliacion:'Conciliación',
+  baja:'Baja'
+};
+
+const ABBREVIATIONS={
+  presente:'P', ausente:'A', entrada_tarde:'T',
+  salida_pronto:'S', cita_medica:'C', conciliacion:'O',
+  baja:'B'
 };
 
 function getPeriodoLabel(year, month){
@@ -502,6 +523,7 @@ function showModal(titulo,mensaje,tipo,data,callback){
         <option value="salida_pronto" ${data.estado==='salida_pronto'?'selected':''}>Salida pronto</option>
         <option value="cita_medica" ${data.estado==='cita_medica'?'selected':''}>Cita médica</option>
         <option value="conciliacion" ${data.estado==='conciliacion'?'selected':''}>Conciliación</option>
+        <option value="baja" ${data.estado==='baja'?'selected':''}>Baja</option>
       </select>
       <input type="text" id="modalCausa" placeholder="Causa/Razón" value="${data.causa||''}" style="display:${data.estado!=='presente'?'block':'none'}">
       <div class="form-row" id="timeFields" style="display:${data.estado==='cita_medica'||data.estado==='conciliacion'?'flex':'none'}">
@@ -576,12 +598,10 @@ function mostrarAlerta(tipo,mensaje){
   alertTimeout=setTimeout(function(){if(cont)cont.innerHTML='';},5000);
 }
 
-// --- NUEVA FUNCIÓN: Renderizar estadísticas de configuración ---
 function renderEstadisticasConfig(){
   const hoy=new Date();
   hoy.setHours(0,0,0,0);
   
-  // Estadísticas de vacaciones
   const vacTotal=VACACIONES.length;
   let vacConsumidas=0;
   let vacPendientes=0;
@@ -599,7 +619,6 @@ function renderEstadisticasConfig(){
   document.getElementById('statVacConsumidas').textContent=vacConsumidas;
   document.getElementById('statVacPendientes').textContent=vacPendientes;
   
-  // Estadísticas de festivos
   const festTotal=FESTIVOS.length;
   let festConsumidos=0;
   let festPendientes=0;
@@ -618,7 +637,6 @@ function renderEstadisticasConfig(){
   document.getElementById('statFestPendientes').textContent=festPendientes;
 }
 
-// --- FUNCIONES DE CONFIGURACIÓN ---
 function renderConfiguracion(){
   renderEstadisticasConfig();
   renderListaAlumnos();
@@ -1002,16 +1020,17 @@ function renderAll(){
 
 function renderMaquinas(){
   const R=getAll(); const tb=document.getElementById('t2'); tb.innerHTML='';
-  const sm={}; ALUMNOS.forEach(function(m){sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0};});
+  const sm={}; ALUMNOS.forEach(function(m){sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
   R.forEach(function(r){ if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined){ sm[r.alumno][r.estado]++; } });
-  let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0};
+  let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
   ALUMNOS.forEach(function(m){
     const s=sm[m];
     totales.presente+=s.presente; totales.ausente+=s.ausente; totales.entrada_tarde+=s.entrada_tarde;
     totales.salida_pronto+=s.salida_pronto; totales.cita_medica+=s.cita_medica; totales.conciliacion+=s.conciliacion;
-    tb.innerHTML+='<tr><td>'+m+'</td><td class="r">'+s.presente+'</td><td class="r">'+s.ausente+'</td><td class="r">'+s.entrada_tarde+'</td><td class="r">'+s.salida_pronto+'</td><td class="r">'+s.cita_medica+'</td><td class="r">'+s.conciliacion+'</td></tr>';
+    totales.baja+=s.baja;
+    tb.innerHTML+='<tr><td>'+m+'</td><td class="r">'+s.presente+'</td><td class="r">'+s.ausente+'</td><td class="r">'+s.entrada_tarde+'</td><td class="r">'+s.salida_pronto+'</td><td class="r">'+s.cita_medica+'</td><td class="r">'+s.conciliacion+'</td><td class="r">'+s.baja+'</td></tr>';
   });
-  tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.cita_medica+'</td><td class="r">'+totales.conciliacion+'</td></tr>';
+  tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.cita_medica+'</td><td class="r">'+totales.conciliacion+'</td><td class="r">'+totales.baja+'</td></tr>';
 }
 
 function renderTiempo(){
@@ -1025,7 +1044,7 @@ function renderTiempo(){
   const ag={};
   filt.forEach(function(r){
     const k=getPeriodoLabel(r.y,r.m);
-    if(!ag[k])ag[k]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,s:new Date(r.y,r.m-1,1).getTime()};
+    if(!ag[k])ag[k]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0,s:new Date(r.y,r.m-1,1).getTime()};
     if(ag[k][r.estado]!==undefined)ag[k][r.estado]++;
   });
   const ks=Object.keys(ag).sort(function(a,b){
@@ -1034,14 +1053,15 @@ function renderTiempo(){
     const partsB=b.split(' '), monthB=monthNames.indexOf(partsB[0]), yearB=parseInt(partsB[1]);
     if(yearA!==yearB)return yearA-yearB; return monthA-monthB;
   });
-  let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0};
+  let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};
   if(ks.length===0){ tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:#9ca3af">Sin registros para los filtros seleccionados</td></tr>'; }
   else {
     ks.forEach(function(k){
       totales.presente+=ag[k].presente; totales.ausente+=ag[k].ausente; totales.entrada_tarde+=ag[k].entrada_tarde; totales.salida_pronto+=ag[k].salida_pronto;
-      tb.innerHTML+='<tr><td>'+k+'</td><td class="r">'+ag[k].presente+'</td><td class="r">'+ag[k].ausente+'</td><td class="r">'+ag[k].entrada_tarde+'</td><td class="r">'+ag[k].salida_pronto+'</td></tr>';
+      totales.baja+=ag[k].baja;
+      tb.innerHTML+='<tr><td>'+k+'</td><td class="r">'+ag[k].presente+'</td><td class="r">'+ag[k].ausente+'</td><td class="r">'+ag[k].entrada_tarde+'</td><td class="r">'+ag[k].salida_pronto+'</td><td class="r">'+ag[k].baja+'</td></tr>';
     });
-    tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td></tr>';
+    tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.baja+'</td></tr>';
   }
 }
 
@@ -1123,7 +1143,7 @@ window.actualizarDia=function(select){
     if(horaUnicaInput)horaUnicaInput.style.display='none';
     if(justifLabel)justifLabel.style.display=estado==='ausente'?'flex':'none';
   }
-  container.classList.remove('present','absent','late','early','medical','conciliation');
+  container.classList.remove('present','absent','late','early','medical','conciliation','sick-leave');
   if(estado)container.classList.add(estado);
   actualizarResumenEntrada();
 };
@@ -1131,7 +1151,7 @@ window.actualizarDia=function(select){
 function actualizarResumenEntrada(){
   const selects=document.querySelectorAll('#calendarioInput select[data-field="estado"]');
   const lista=document.getElementById('listaResumen'); const totalEl=document.getElementById('totalResumen'); const resumenDiv=document.getElementById('resumenEntrada');
-  lista.innerHTML=''; const counts={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0};
+  lista.innerHTML=''; const counts={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
   selects.forEach(function(sel){
     if(sel.value){
       const dia=sel.getAttribute('data-dia'); counts[sel.value]++;
@@ -1152,6 +1172,7 @@ function actualizarResumenEntrada(){
     if(counts.salida_pronto>0)partes.push(counts.salida_pronto+' salida'+(counts.salida_pronto>1?'s':'')+' pronto');
     if(counts.cita_medica>0)partes.push(counts.cita_medica+' cita'+(counts.cita_medica>1?'s':'')+' médica');
     if(counts.conciliacion>0)partes.push(counts.conciliacion+' conciliación'+(counts.conciliacion>1?'es':''));
+    if(counts.baja>0)partes.push(counts.baja+' baja'+(counts.baja>1?'s':''));
     totalEl.textContent='Total: '+partes.join(', ');
   }else{ resumenDiv.style.display='none'; }
 }
@@ -1169,7 +1190,7 @@ function limpiarCalendarioEntrada(){
         if(horaSalida){horaSalida.value='';horaSalida.style.display='none';}
         if(horaLlegada){horaLlegada.value='';horaLlegada.style.display='none';}
         if(horaUnica){horaUnica.value='';horaUnica.style.display='none';}
-        container.classList.remove('present','absent','late','early','medical','conciliation');
+        container.classList.remove('present','absent','late','early','medical','conciliation','sick-leave');
       });
       actualizarResumenEntrada(); mostrarAlerta('success','Calendario limpiado');
     }
@@ -1214,7 +1235,7 @@ function actualizarCalendario(y,m){
   const R=getAll().filter(function(r){return r.y===y&&r.m===m;});
   const byDay={};
   R.forEach(function(r){
-    if(!byDay[r.d])byDay[r.d]={counts:{presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0},alumnos:{}};
+    if(!byDay[r.d])byDay[r.d]={counts:{presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0},alumnos:{}};
     byDay[r.d].counts[r.estado]++;
     byDay[r.d].alumnos[r.alumno]={estado:r.estado,causa:r.causa,horaSalida:r.horaSalida,horaLlegada:r.horaLlegada,horaUnica:r.horaUnica};
   });
@@ -1222,12 +1243,13 @@ function actualizarCalendario(y,m){
     const dayInfo=getDayType(y,m,d); const e=document.createElement('div'); e.className='cal-day';
     const counts=byDay[d]?byDay[d].counts:null;
     if(counts){
-      if(counts.presente>0&&counts.ausente===0&&counts.entrada_tarde===0&&counts.salida_pronto===0&&counts.cita_medica===0&&counts.conciliacion===0)e.classList.add('present');
+      if(counts.presente>0&&counts.ausente===0&&counts.entrada_tarde===0&&counts.salida_pronto===0&&counts.cita_medica===0&&counts.conciliacion===0&&counts.baja===0)e.classList.add('present');
       else if(counts.ausente>0)e.classList.add('absent');
       else if(counts.entrada_tarde>0)e.classList.add('late');
       else if(counts.salida_pronto>0)e.classList.add('early');
       else if(counts.cita_medica>0)e.classList.add('medical');
       else if(counts.conciliacion>0)e.classList.add('conciliation');
+      else if(counts.baja>0)e.classList.add('sick-leave');
     }
     if(dayInfo.type==='holiday')e.style.background='#faf5ff';
     else if(dayInfo.type==='vacation')e.style.background='#fff7ed';
@@ -1240,10 +1262,11 @@ function actualizarCalendario(y,m){
       if(c.entrada_tarde>0)html+='<div class="pkg-info" style="color:#92400e">⏰ '+c.entrada_tarde+'</div>';
       if(c.salida_pronto>0)html+='<div class="pkg-info" style="color:#9d174d"> '+c.salida_pronto+'</div>';
       if(c.cita_medica>0)html+='<div class="pkg-info" style="color:#1e40af">🏥 '+c.cita_medica+'</div>';
-      if(c.conciliacion>0)html+='<div class="pkg-info" style="color:#3730a3">👨‍👩‍👧 '+c.conciliacion+'</div>';
+      if(c.conciliacion>0)html+='<div class="pkg-info" style="color:#3730a3">👨👩‍👧 '+c.conciliacion+'</div>';
+      if(c.baja>0)html+='<div class="pkg-info" style="color:#991b1b"> '+c.baja+'</div>';
       Object.keys(byDay[d].alumnos).sort().forEach(function(alumName){
         const info=byDay[d].alumnos[alumName]; const nombreCorto=alumName.split(',')[0];
-        let detalle=LABELS_ESTADOS[info.estado].charAt(0).toUpperCase();
+        let detalle=ABBREVIATIONS[info.estado]||info.estado.charAt(0).toUpperCase();
         if(info.horaUnica)detalle+=' '+info.horaUnica;
         else if(info.horaSalida&&info.horaLlegada)detalle+=' '+info.horaSalida+'-'+info.horaLlegada;
         html+='<div class="pkg-info" title="'+alumName+': '+LABELS_ESTADOS[info.estado]+(info.causa?' - '+info.causa:'')+(info.horaUnica?' ('+info.horaUnica+')':'')+(info.horaSalida?' ('+info.horaSalida+'-'+info.horaLlegada+')':'')+'">'+nombreCorto+': '+detalle+'</div>';
@@ -1257,7 +1280,8 @@ function actualizarCalendario(y,m){
   const totalAusentes=R.filter(function(r){return r.estado==='ausente';}).length;
   const totalEntradasTarde=R.filter(function(r){return r.estado==='entrada_tarde';}).length;
   const totalSalidasPronto=R.filter(function(r){return r.estado==='salida_pronto';}).length;
-  det.innerHTML='<strong>Total '+getPeriodoLabel(y,m)+':</strong> '+totalPresentes+' presente'+(totalPresentes>1?'s':'')+', '+totalAusentes+' ausencia'+(totalAusentes>1?'s':'')+', '+totalEntradasTarde+' entrada'+(totalEntradasTarde>1?'s':'')+' tarde, '+totalSalidasPronto+' salida'+(totalSalidasPronto>1?'s':'')+' pronto';
+  const totalBajas=R.filter(function(r){return r.estado==='baja';}).length;
+  det.innerHTML='<strong>Total '+getPeriodoLabel(y,m)+':</strong> '+totalPresentes+' presente'+(totalPresentes>1?'s':'')+', '+totalAusentes+' ausencia'+(totalAusentes>1?'s':'')+', '+totalEntradasTarde+' entrada'+(totalEntradasTarde>1?'s':'')+' tarde, '+totalSalidasPronto+' salida'+(totalSalidasPronto>1?'s':'')+' pronto, '+totalBajas+' baja'+(totalBajas>1?'s':'');
   det.style.display='block';
 }
 
@@ -1282,7 +1306,7 @@ function cargarRegistrosEditar(y,m){
 }
 
 function getColorEstado(estado){
-  const colors={presente:'#166534',ausente:'#991b1b',entrada_tarde:'#92400e',salida_pronto:'#9d174d',cita_medica:'#1e40af',conciliacion:'#3730a3'};
+  const colors={presente:'#166534',ausente:'#991b1b',entrada_tarde:'#92400e',salida_pronto:'#9d174d',cita_medica:'#1e40af',conciliacion:'#3730a3',baja:'#991b1b'};
   return colors[estado]||'#374151';
 }
 
@@ -1291,7 +1315,7 @@ function editarRegistro(idx){
   const parts=periodoVal.split('-'); const y=parseInt(parts[0]); const m=parseInt(parts[1]);
   const R=[...historicalRecords,...userRecords].filter(function(r){return r.y===y&&r.m===m;}).sort(function(a,b){return a.d-b.d;});
   const r=R[idx];
-  showModal('✏️ Editar registro','Modifica el registro del '+pad(r.d)+'/'+pad(r.m)+'/'+r.y+' ('+r.alumno+')','edit',{estado:r.estado,causa:r.causa,justificada:r.justificada,horaSalida:r.horaSalida,horaLlegada:r.horaLlegada,horaUnica:r.horaUnica},function(data){
+  showModal('️ Editar registro','Modifica el registro del '+pad(r.d)+'/'+pad(r.m)+'/'+r.y+' ('+r.alumno+')','edit',{estado:r.estado,causa:r.causa,justificada:r.justificada,horaSalida:r.horaSalida,horaLlegada:r.horaLlegada,horaUnica:r.horaUnica},function(data){
     if(data!==null){
       const idxH=historicalRecords.findIndex(function(x){return x.y===r.y&&x.m===r.m&&x.d===r.d&&x.alumno===r.alumno;}); if(idxH>=0)historicalRecords.splice(idxH,1);
       const idxU=userRecords.findIndex(function(x){return x.y===r.y&&x.m===r.m&&x.d===r.d&&x.alumno===r.alumno;}); if(idxU>=0)userRecords.splice(idxU,1);
