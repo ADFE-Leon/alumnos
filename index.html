@@ -132,9 +132,14 @@ tr:hover{background:#f9fafb}
 .config-item{display:flex;justify-content:space-between;align-items:center;padding:10px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;margin-bottom:8px}
 .config-item-info{flex:1}
 .config-item-actions{display:flex;gap:8px}
+.rango-fechas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.rango-box{flex:1;min-width:280px;padding:12px;background:#fff7ed;border-radius:6px;border:1px solid #fdba74}
+.rango-box h4{color:#9a3412;margin-bottom:10px;font-size:14px}
+.rango-box .rango-inputs{display:flex;gap:8px}
+.rango-box .rango-inputs .filter-group{flex:1;min-width:0}
 
 @media print{body *{visibility:hidden}.print-area,.print-area *{visibility:visible}.print-area{position:absolute;left:0;top:0;display:block;width:100%}.no-print{display:none!important}}
-@media(max-width:768px){.cards,.fr{grid-template-columns:1fr}.calendar,.calendario-input{grid-template-columns:repeat(7,1fr);gap:2px}.cal-day,.cal-input-day{min-height:60px;padding:3px}.filters,.entrada-config{flex-direction:column}.botones-datos{flex-direction:column}.modal .form-row{flex-direction:column}.config-form{flex-direction:column}}
+@media(max-width:768px){.cards,.fr{grid-template-columns:1fr}.calendar,.calendario-input{grid-template-columns:repeat(7,1fr);gap:2px}.cal-day,.cal-input-day{min-height:60px;padding:3px}.filters,.entrada-config{flex-direction:column}.botones-datos{flex-direction:column}.modal .form-row{flex-direction:column}.config-form{flex-direction:column}.rango-fechas{flex-direction:column}.rango-box .rango-inputs{flex-direction:column}}
 </style>
 </head>
 <body>
@@ -255,11 +260,9 @@ tr:hover{background:#f9fafb}
 </div>
 </div>
 
-<!-- NUEVA PESTAÑA: CONFIGURACIÓN -->
 <div id="p8" class="pnl">
 <h2>⚙️ Configuración</h2>
 
-<!-- SECCIÓN: GESTIÓN DE ALUMNOS -->
 <div class="config-section">
 <h3>👥 Gestión de Alumnos</h3>
 <div class="config-form">
@@ -272,7 +275,6 @@ tr:hover{background:#f9fafb}
 <div class="config-list" id="listaAlumnos"></div>
 </div>
 
-<!-- SECCIÓN: GESTIÓN DE FESTIVOS -->
 <div class="config-section">
 <h3>🎉 Gestión de Festivos</h3>
 <div class="config-form">
@@ -283,18 +285,10 @@ tr:hover{background:#f9fafb}
 <div class="filter-group">
 <label>Mes</label>
 <select id="nuevoFestivoMes">
-<option value="1">Enero</option>
-<option value="2">Febrero</option>
-<option value="3">Marzo</option>
-<option value="4">Abril</option>
-<option value="5">Mayo</option>
-<option value="6">Junio</option>
-<option value="7">Julio</option>
-<option value="8">Agosto</option>
-<option value="9">Septiembre</option>
-<option value="10">Octubre</option>
-<option value="11">Noviembre</option>
-<option value="12">Diciembre</option>
+<option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option>
+<option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
+<option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option>
+<option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
 </select>
 </div>
 <div class="filter-group">
@@ -313,40 +307,52 @@ tr:hover{background:#f9fafb}
 <div class="config-list" id="listaFestivos"></div>
 </div>
 
-<!-- SECCIÓN: GESTIÓN DE VACACIONES -->
 <div class="config-section">
-<h3>🏖️ Gestión de Vacaciones</h3>
-<div class="config-form">
-<div class="filter-group">
-<label>Día</label>
-<input type="number" id="nuevaVacacionDia" min="1" max="31" placeholder="Día">
-</div>
-<div class="filter-group">
-<label>Mes</label>
-<select id="nuevaVacacionMes">
-<option value="1">Enero</option>
-<option value="2">Febrero</option>
-<option value="3">Marzo</option>
-<option value="4">Abril</option>
-<option value="5">Mayo</option>
-<option value="6">Junio</option>
-<option value="7">Julio</option>
-<option value="8">Agosto</option>
-<option value="9">Septiembre</option>
-<option value="10">Octubre</option>
-<option value="11">Noviembre</option>
-<option value="12">Diciembre</option>
+<h3>🏖️ Gestión de Vacaciones (por rangos)</h3>
+<p style="color:#6b7280;font-size:13px;margin-bottom:12px">Introduce la fecha de inicio y la fecha final (ambas inclusive). Se añadirán automáticamente todos los días del rango.</p>
+<div class="rango-fechas">
+<div class="rango-box">
+<h4>📅 Fecha de inicio</h4>
+<div class="rango-inputs">
+<div class="filter-group"><label>Día</label><input type="number" id="nuevaVacacionDiaIni" min="1" max="31" placeholder="Día"></div>
+<div class="filter-group"><label>Mes</label>
+<select id="nuevaVacacionMesIni">
+<option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option>
+<option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
+<option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option>
+<option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
 </select>
 </div>
-<div class="filter-group">
-<label>Año</label>
-<select id="nuevaVacacionAnio">
+<div class="filter-group"><label>Año</label>
+<select id="nuevaVacacionAnioIni">
 <option value="2026">2026</option>
 <option value="2027">2027</option>
 </select>
 </div>
-<button class="btn b2" onclick="agregarVacacion()">➕ Añadir Día de Vacaciones</button>
 </div>
+</div>
+<div class="rango-box">
+<h4>📅 Fecha final (inclusive)</h4>
+<div class="rango-inputs">
+<div class="filter-group"><label>Día</label><input type="number" id="nuevaVacacionDiaFin" min="1" max="31" placeholder="Día"></div>
+<div class="filter-group"><label>Mes</label>
+<select id="nuevaVacacionMesFin">
+<option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option>
+<option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
+<option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option>
+<option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
+</select>
+</div>
+<div class="filter-group"><label>Año</label>
+<select id="nuevaVacacionAnioFin">
+<option value="2026">2026</option>
+<option value="2027">2027</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<button class="btn b2" onclick="agregarVacacion()">➕ Añadir Rango de Vacaciones</button>
 <div class="config-list" id="listaVacaciones"></div>
 </div>
 
@@ -380,7 +386,6 @@ const DIAS=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
 const INICIO_CURSO={y:2026,m:3,d:1};
 const FIN_CURSO={y:2027,m:2,d:28};
 
-// Arrays dinámicos que se cargarán desde la nube
 let FESTIVOS=[];
 let VACACIONES=[];
 
@@ -426,6 +431,7 @@ function generarPeriodos(){
   return periodos;
 }
 
+// --- MODAL MEJORADO ---
 function showModal(titulo,mensaje,tipo,data,callback){
   tipo=tipo||'confirm'; data=data||{}; callback=callback||null;
   document.getElementById('modalTitle').textContent=titulo;
@@ -456,6 +462,9 @@ function showModal(titulo,mensaje,tipo,data,callback){
         <input type="checkbox" id="modalJustificada" ${data.justificada?'checked':''}> Justificada
       </label>`;
     okBtn.textContent='Guardar'; okBtn.className='modal-btn-ok'; cancelBtn.style.display='inline-block';
+  } else if(tipo==='edit-alumno'){
+    modalContent.innerHTML=`<input type="text" id="modalNombreAlumno" value="${data.nombreActual||''}" placeholder="Nuevo nombre">`;
+    okBtn.textContent='Guardar'; okBtn.className='modal-btn-ok'; cancelBtn.style.display='inline-block';
   } else if(tipo==='danger'){
     modalContent.innerHTML=''; okBtn.textContent='Sí, eliminar'; okBtn.className='modal-btn-danger'; cancelBtn.style.display='inline-block';
   } else {
@@ -473,10 +482,15 @@ window.toggleModalFields=function(){
   document.getElementById('modalJustificada').parentElement.style.display=estado==='ausente'?'flex':'none';
 };
 
+// --- MODAL OK: CORREGIDO para devolver true en confirm/danger ---
 document.getElementById('modalOk').addEventListener('click',function(){
-  const tipo=document.getElementById('modalContent').querySelector('select')?'edit':(document.getElementById('modalContent').innerHTML===''?'confirm':'edit');
+  const modalContent=document.getElementById('modalContent');
+  const tieneSelect=modalContent.querySelector('select#modalEstado');
+  const tieneInputAlumno=modalContent.querySelector('input#modalNombreAlumno');
+  
   let data=null;
-  if(tipo==='edit'){
+  if(tieneSelect){
+    // Tipo edit (registro)
     data={
       estado:document.getElementById('modalEstado').value,
       causa:document.getElementById('modalCausa').value,
@@ -485,10 +499,18 @@ document.getElementById('modalOk').addEventListener('click',function(){
       horaLlegada:document.getElementById('modalHoraLlegada').value,
       horaUnica:document.getElementById('modalHoraUnica').value
     };
+  } else if(tieneInputAlumno){
+    // Tipo edit-alumno
+    data=document.getElementById('modalNombreAlumno').value;
+  } else {
+    // Tipo confirm o danger -> devuelve true para confirmar
+    data=true;
   }
+  
   document.getElementById('modalOverlay').classList.remove('show');
   if(modalCallback)modalCallback(data);
 });
+
 document.getElementById('modalCancel').addEventListener('click',function(){
   document.getElementById('modalOverlay').classList.remove('show');
   if(modalCallback)modalCallback(null);
@@ -515,6 +537,10 @@ function renderConfiguracion(){
 function renderListaAlumnos(){
   const lista=document.getElementById('listaAlumnos');
   lista.innerHTML='';
+  if(ALUMNOS.length===0){
+    lista.innerHTML='<p style="color:#6b7280;font-style:italic">No hay alumnos configurados</p>';
+    return;
+  }
   ALUMNOS.forEach(function(alumno,idx){
     lista.innerHTML+=`<div class="config-item">
       <div class="config-item-info"><strong>${alumno}</strong></div>
@@ -539,7 +565,7 @@ function agregarAlumno(){
 function editarAlumno(idx){
   const alumnoActual=ALUMNOS[idx];
   showModal('✏️ Editar nombre del alumno','Introduce el nuevo nombre para: '+alumnoActual,'edit-alumno',{nombreActual:alumnoActual},function(nuevoNombre){
-    if(nuevoNombre&&nuevoNombre.trim()){
+    if(nuevoNombre&&typeof nuevoNombre==='string'&&nuevoNombre.trim()){
       ALUMNOS[idx]=nuevoNombre.trim();
       renderListaAlumnos();
       mostrarAlerta('success','Nombre del alumno actualizado');
@@ -550,7 +576,7 @@ function editarAlumno(idx){
 function eliminarAlumno(idx){
   const alumno=ALUMNOS[idx];
   showModal('🗑️ Eliminar alumno','¿Seguro que quieres eliminar a '+alumno+'? Se perderán todos sus registros.','danger',null,function(respuesta){
-    if(respuesta!==null){
+    if(respuesta===true){
       ALUMNOS.splice(idx,1);
       renderListaAlumnos();
       mostrarAlerta('success','Alumno eliminado');
@@ -600,8 +626,10 @@ function agregarFestivo(){
 }
 
 function eliminarFestivo(idx){
-  showModal('🗑️ Eliminar festivo','¿Seguro que quieres eliminar este festivo?','danger',null,function(respuesta){
-    if(respuesta!==null){
+  const festivo=FESTIVOS[idx];
+  const fecha=pad(festivo.d)+'/'+pad(festivo.m)+'/'+festivo.y;
+  showModal('🗑️ Eliminar festivo','¿Seguro que quieres eliminar el festivo del '+fecha+' ('+festivo.nombre+')?','danger',null,function(respuesta){
+    if(respuesta===true){
       FESTIVOS.splice(idx,1);
       renderListaFestivos();
       mostrarAlerta('success','Festivo eliminado');
@@ -632,25 +660,78 @@ function renderListaVacaciones(){
   });
 }
 
+// --- NUEVA FUNCIÓN: Añadir vacaciones por rango ---
 function agregarVacacion(){
-  const dia=parseInt(document.getElementById('nuevaVacacionDia').value);
-  const mes=parseInt(document.getElementById('nuevaVacacionMes').value);
-  const anio=parseInt(document.getElementById('nuevaVacacionAnio').value);
+  const diaIni=parseInt(document.getElementById('nuevaVacacionDiaIni').value);
+  const mesIni=parseInt(document.getElementById('nuevaVacacionMesIni').value);
+  const anioIni=parseInt(document.getElementById('nuevaVacacionAnioIni').value);
+  const diaFin=parseInt(document.getElementById('nuevaVacacionDiaFin').value);
+  const mesFin=parseInt(document.getElementById('nuevaVacacionMesFin').value);
+  const anioFin=parseInt(document.getElementById('nuevaVacacionAnioFin').value);
   
-  if(!dia||!mes||!anio){mostrarAlerta('warning','Completa todos los campos');return;}
+  if(!diaIni||!mesIni||!anioIni||!diaFin||!mesFin||!anioFin){
+    mostrarAlerta('warning','Completa todos los campos (inicio y final)');
+    return;
+  }
   
-  const existe=VACACIONES.find(v=>v.y===anio&&v.m===mes&&v.d===dia);
-  if(existe){mostrarAlerta('error','Ya existe una vacación en esa fecha');return;}
+  const fechaIni=new Date(anioIni,mesIni-1,diaIni);
+  const fechaFin=new Date(anioFin,mesFin-1,diaFin);
   
-  VACACIONES.push({y:anio,m:mes,d:dia});
-  document.getElementById('nuevaVacacionDia').value='';
+  // Validar que las fechas sean reales
+  if(fechaIni.getDate()!==diaIni||fechaIni.getMonth()!==mesIni-1){
+    mostrarAlerta('error','La fecha de inicio no es válida');
+    return;
+  }
+  if(fechaFin.getDate()!==diaFin||fechaFin.getMonth()!==mesFin-1){
+    mostrarAlerta('error','La fecha final no es válida');
+    return;
+  }
+  
+  if(fechaFin<fechaIni){
+    mostrarAlerta('error','La fecha final debe ser posterior o igual a la inicial');
+    return;
+  }
+  
+  let diasAñadidos=0;
+  let diasDuplicados=0;
+  const fechaActual=new Date(fechaIni);
+  
+  while(fechaActual<=fechaFin){
+    const y=fechaActual.getFullYear();
+    const m=fechaActual.getMonth()+1;
+    const d=fechaActual.getDate();
+    
+    const existe=VACACIONES.find(v=>v.y===y&&v.m===m&&v.d===d);
+    if(!existe){
+      VACACIONES.push({y:y,m:m,d:d});
+      diasAñadidos++;
+    }else{
+      diasDuplicados++;
+    }
+    
+    fechaActual.setDate(fechaActual.getDate()+1);
+  }
+  
+  // Limpiar campos
+  document.getElementById('nuevaVacacionDiaIni').value='';
+  document.getElementById('nuevaVacacionDiaFin').value='';
+  
   renderListaVacaciones();
-  mostrarAlerta('success','Día de vacaciones añadido correctamente');
+  
+  if(diasAñadidos>0){
+    let msg='✅ Añadidos '+diasAñadidos+' día'+(diasAñadidos>1?'s':'')+' de vacaciones';
+    if(diasDuplicados>0) msg+=' ('+diasDuplicados+' ya existían)';
+    mostrarAlerta('success',msg);
+  }else{
+    mostrarAlerta('info','Todos los días del rango ya estaban marcados como vacaciones');
+  }
 }
 
 function eliminarVacacion(idx){
-  showModal('🗑️ Eliminar vacaciones','¿Seguro que quieres eliminar este día de vacaciones?','danger',null,function(respuesta){
-    if(respuesta!==null){
+  const vacacion=VACACIONES[idx];
+  const fecha=pad(vacacion.d)+'/'+pad(vacacion.m)+'/'+vacacion.y;
+  showModal('🗑️ Eliminar día de vacaciones','¿Seguro que quieres eliminar el día '+fecha+' de vacaciones?','danger',null,function(respuesta){
+    if(respuesta===true){
       VACACIONES.splice(idx,1);
       renderListaVacaciones();
       mostrarAlerta('success','Día de vacaciones eliminado');
@@ -658,7 +739,7 @@ function eliminarVacacion(idx){
   });
 }
 
-// --- FUNCIONES DE NUBE (GOOGLE SHEETS) ---
+// --- FUNCIONES DE NUBE ---
 async function cargarDatosNube() {
   document.getElementById('loader').classList.remove('hidden');
   try {
@@ -956,7 +1037,7 @@ function actualizarResumenEntrada(){
 
 function limpiarCalendarioEntrada(){
   showModal('🧹 Limpiar calendario','¿Seguro que quieres borrar todos los valores?','danger',null,function(respuesta){
-    if(respuesta!==null){
+    if(respuesta===true){
       const selects=document.querySelectorAll('#calendarioInput select[data-field="estado"]');
       selects.forEach(function(sel){
         sel.value=''; const container=sel.parentElement;
@@ -1105,7 +1186,7 @@ function eliminarRegistro(idx){
   const R=[...historicalRecords,...userRecords].filter(function(r){return r.y===y&&r.m===m;}).sort(function(a,b){return a.d-b.d;});
   const r=R[idx];
   showModal('️ Eliminar registro','¿Seguro que quieres eliminar el registro del '+pad(r.d)+'/'+pad(r.m)+'/'+r.y+' ('+r.alumno+')?','danger',null,function(respuesta){
-    if(respuesta!==null){
+    if(respuesta===true){
       const idxH=historicalRecords.findIndex(function(x){return x.y===r.y&&x.m===r.m&&x.d===r.d&&x.alumno===r.alumno;}); if(idxH>=0)historicalRecords.splice(idxH,1);
       const idxU=userRecords.findIndex(function(x){return x.y===r.y&&x.m===r.m&&x.d===r.d&&x.alumno===r.alumno;}); if(idxU>=0)userRecords.splice(idxU,1);
       saveUser();renderAll();cargarRegistrosEditar(y,m); mostrarAlerta('success','Registro eliminado');
@@ -1152,7 +1233,7 @@ function importarDatos(event){
 
 function resetearTodo(){
   showModal('🗑️ Resetear todo','¿Seguro? Se borrarán TODOS los datos. Esta acción no se puede deshacer.','danger',null,function(respuesta){
-    if(respuesta!==null){localStorage.removeItem('ca_cache');localStorage.removeItem('ca_user');location.reload();}
+    if(respuesta===true){localStorage.removeItem('ca_cache');localStorage.removeItem('ca_user');location.reload();}
   });
 }
 
