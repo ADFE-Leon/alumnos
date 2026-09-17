@@ -138,8 +138,24 @@ tr:hover{background:#f9fafb}
 .rango-box .rango-inputs{display:flex;gap:8px}
 .rango-box .rango-inputs .filter-group{flex:1;min-width:0}
 
+/* NUEVOS ESTILOS PARA ESTADÍSTICAS DE CONFIGURACIÓN */
+.stats-config{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:24px}
+.stats-group{background:#fff;padding:16px;border-radius:8px;border:2px solid #e5e7eb}
+.stats-group h4{font-size:14px;color:#6b7280;margin-bottom:12px;text-transform:uppercase;font-weight:600}
+.stats-group.vacaciones{border-color:#fdba74;background:#fff7ed}
+.stats-group.vacaciones h4{color:#9a3412}
+.stats-group.festivos{border-color:#a5b4fc;background:#e0e7ff}
+.stats-group.festivos h4{color:#3730a3}
+.stats-items{display:flex;flex-direction:column;gap:8px}
+.stat-item{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#f9fafb;border-radius:6px}
+.stat-item .stat-label{font-size:13px;color:#4b5563;font-weight:500}
+.stat-item .stat-value{font-size:20px;font-weight:700}
+.stat-item.total .stat-value{color:#1e3a8a}
+.stat-item.consumidos .stat-value{color:#059669}
+.stat-item.pendientes .stat-value{color:#dc2626}
+
 @media print{body *{visibility:hidden}.print-area,.print-area *{visibility:visible}.print-area{position:absolute;left:0;top:0;display:block;width:100%}.no-print{display:none!important}}
-@media(max-width:768px){.cards,.fr{grid-template-columns:1fr}.calendar,.calendario-input{grid-template-columns:repeat(7,1fr);gap:2px}.cal-day,.cal-input-day{min-height:60px;padding:3px}.filters,.entrada-config{flex-direction:column}.botones-datos{flex-direction:column}.modal .form-row{flex-direction:column}.config-form{flex-direction:column}.rango-fechas{flex-direction:column}.rango-box .rango-inputs{flex-direction:column}}
+@media(max-width:768px){.cards,.fr{grid-template-columns:1fr}.calendar,.calendario-input{grid-template-columns:repeat(7,1fr);gap:2px}.cal-day,.cal-input-day{min-height:60px;padding:3px}.filters,.entrada-config{flex-direction:column}.botones-datos{flex-direction:column}.modal .form-row{flex-direction:column}.config-form{flex-direction:column}.rango-fechas{flex-direction:column}.rango-box .rango-inputs{flex-direction:column}.stats-config{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -263,6 +279,44 @@ tr:hover{background:#f9fafb}
 <div id="p8" class="pnl">
 <h2>⚙️ Configuración</h2>
 
+<!-- NUEVO: PANEL DE ESTADÍSTICAS -->
+<div class="stats-config" id="statsConfig">
+<div class="stats-group vacaciones">
+<h4>🏖️ Vacaciones</h4>
+<div class="stats-items">
+<div class="stat-item total">
+<span class="stat-label">Solicitadas</span>
+<span class="stat-value" id="statVacTotal">0</span>
+</div>
+<div class="stat-item consumidos">
+<span class="stat-label">Disfrutadas</span>
+<span class="stat-value" id="statVacConsumidas">0</span>
+</div>
+<div class="stat-item pendientes">
+<span class="stat-label">Pendientes</span>
+<span class="stat-value" id="statVacPendientes">0</span>
+</div>
+</div>
+</div>
+<div class="stats-group festivos">
+<h4>🎉 Festivos</h4>
+<div class="stats-items">
+<div class="stat-item total">
+<span class="stat-label">Otorgados</span>
+<span class="stat-value" id="statFestTotal">0</span>
+</div>
+<div class="stat-item consumidos">
+<span class="stat-label">Consumidos</span>
+<span class="stat-value" id="statFestConsumidos">0</span>
+</div>
+<div class="stat-item pendientes">
+<span class="stat-label">Pendientes</span>
+<span class="stat-value" id="statFestPendientes">0</span>
+</div>
+</div>
+</div>
+</div>
+
 <div class="config-section">
 <h3>👥 Gestión de Alumnos</h3>
 <div class="config-form">
@@ -309,7 +363,7 @@ tr:hover{background:#f9fafb}
 
 <div class="config-section">
 <h3>🏖️ Gestión de Vacaciones (por rangos)</h3>
-<p style="color:#6b7280;font-size:13px;margin-bottom:12px">Introduce la fecha de inicio y la fecha final (ambas inclusive). Se añadirán automáticamente todos los días del rango.</p>
+<p style="color:#6b7280;font-size:13px;margin-bottom:12px">Introduce la fecha de inicio y la fecha final (ambas inclusive). <strong>Se añadirán automáticamente solo los días lectivos</strong> (se excluyen sábados, domingos y festivos).</p>
 <div class="rango-fechas">
 <div class="rango-box">
 <h4>📅 Fecha de inicio</h4>
@@ -431,7 +485,6 @@ function generarPeriodos(){
   return periodos;
 }
 
-// --- MODAL MEJORADO ---
 function showModal(titulo,mensaje,tipo,data,callback){
   tipo=tipo||'confirm'; data=data||{}; callback=callback||null;
   document.getElementById('modalTitle').textContent=titulo;
@@ -482,7 +535,6 @@ window.toggleModalFields=function(){
   document.getElementById('modalJustificada').parentElement.style.display=estado==='ausente'?'flex':'none';
 };
 
-// --- MODAL OK: CORREGIDO para devolver true en confirm/danger ---
 document.getElementById('modalOk').addEventListener('click',function(){
   const modalContent=document.getElementById('modalContent');
   const tieneSelect=modalContent.querySelector('select#modalEstado');
@@ -490,7 +542,6 @@ document.getElementById('modalOk').addEventListener('click',function(){
   
   let data=null;
   if(tieneSelect){
-    // Tipo edit (registro)
     data={
       estado:document.getElementById('modalEstado').value,
       causa:document.getElementById('modalCausa').value,
@@ -500,10 +551,8 @@ document.getElementById('modalOk').addEventListener('click',function(){
       horaUnica:document.getElementById('modalHoraUnica').value
     };
   } else if(tieneInputAlumno){
-    // Tipo edit-alumno
     data=document.getElementById('modalNombreAlumno').value;
   } else {
-    // Tipo confirm o danger -> devuelve true para confirmar
     data=true;
   }
   
@@ -527,8 +576,51 @@ function mostrarAlerta(tipo,mensaje){
   alertTimeout=setTimeout(function(){if(cont)cont.innerHTML='';},5000);
 }
 
+// --- NUEVA FUNCIÓN: Renderizar estadísticas de configuración ---
+function renderEstadisticasConfig(){
+  const hoy=new Date();
+  hoy.setHours(0,0,0,0);
+  
+  // Estadísticas de vacaciones
+  const vacTotal=VACACIONES.length;
+  let vacConsumidas=0;
+  let vacPendientes=0;
+  
+  VACACIONES.forEach(v=>{
+    const fechaVac=new Date(v.y,v.m-1,v.d);
+    if(fechaVac<hoy){
+      vacConsumidas++;
+    }else{
+      vacPendientes++;
+    }
+  });
+  
+  document.getElementById('statVacTotal').textContent=vacTotal;
+  document.getElementById('statVacConsumidas').textContent=vacConsumidas;
+  document.getElementById('statVacPendientes').textContent=vacPendientes;
+  
+  // Estadísticas de festivos
+  const festTotal=FESTIVOS.length;
+  let festConsumidos=0;
+  let festPendientes=0;
+  
+  FESTIVOS.forEach(f=>{
+    const fechaFest=new Date(f.y,f.m-1,f.d);
+    if(fechaFest<hoy){
+      festConsumidos++;
+    }else{
+      festPendientes++;
+    }
+  });
+  
+  document.getElementById('statFestTotal').textContent=festTotal;
+  document.getElementById('statFestConsumidos').textContent=festConsumidos;
+  document.getElementById('statFestPendientes').textContent=festPendientes;
+}
+
 // --- FUNCIONES DE CONFIGURACIÓN ---
 function renderConfiguracion(){
+  renderEstadisticasConfig();
   renderListaAlumnos();
   renderListaFestivos();
   renderListaVacaciones();
@@ -622,6 +714,7 @@ function agregarFestivo(){
   document.getElementById('nuevoFestivoDia').value='';
   document.getElementById('nuevoFestivoNombre').value='';
   renderListaFestivos();
+  renderEstadisticasConfig();
   mostrarAlerta('success','Festivo añadido correctamente');
 }
 
@@ -632,6 +725,7 @@ function eliminarFestivo(idx){
     if(respuesta===true){
       FESTIVOS.splice(idx,1);
       renderListaFestivos();
+      renderEstadisticasConfig();
       mostrarAlerta('success','Festivo eliminado');
     }
   });
@@ -660,7 +754,6 @@ function renderListaVacaciones(){
   });
 }
 
-// --- NUEVA FUNCIÓN: Añadir vacaciones por rango ---
 function agregarVacacion(){
   const diaIni=parseInt(document.getElementById('nuevaVacacionDiaIni').value);
   const mesIni=parseInt(document.getElementById('nuevaVacacionMesIni').value);
@@ -677,7 +770,6 @@ function agregarVacacion(){
   const fechaIni=new Date(anioIni,mesIni-1,diaIni);
   const fechaFin=new Date(anioFin,mesFin-1,diaFin);
   
-  // Validar que las fechas sean reales
   if(fechaIni.getDate()!==diaIni||fechaIni.getMonth()!==mesIni-1){
     mostrarAlerta('error','La fecha de inicio no es válida');
     return;
@@ -694,12 +786,28 @@ function agregarVacacion(){
   
   let diasAñadidos=0;
   let diasDuplicados=0;
+  let diasFinde=0;
+  let diasFestivos=0;
   const fechaActual=new Date(fechaIni);
   
   while(fechaActual<=fechaFin){
     const y=fechaActual.getFullYear();
     const m=fechaActual.getMonth()+1;
     const d=fechaActual.getDate();
+    const diaSemana=fechaActual.getDay();
+    
+    if(diaSemana===0||diaSemana===6){
+      diasFinde++;
+      fechaActual.setDate(fechaActual.getDate()+1);
+      continue;
+    }
+    
+    const esFestivo=FESTIVOS.find(f=>f.y===y&&f.m===m&&f.d===d);
+    if(esFestivo){
+      diasFestivos++;
+      fechaActual.setDate(fechaActual.getDate()+1);
+      continue;
+    }
     
     const existe=VACACIONES.find(v=>v.y===y&&v.m===m&&v.d===d);
     if(!existe){
@@ -712,18 +820,31 @@ function agregarVacacion(){
     fechaActual.setDate(fechaActual.getDate()+1);
   }
   
-  // Limpiar campos
   document.getElementById('nuevaVacacionDiaIni').value='';
   document.getElementById('nuevaVacacionDiaFin').value='';
   
   renderListaVacaciones();
+  renderEstadisticasConfig();
   
   if(diasAñadidos>0){
-    let msg='✅ Añadidos '+diasAñadidos+' día'+(diasAñadidos>1?'s':'')+' de vacaciones';
-    if(diasDuplicados>0) msg+=' ('+diasDuplicados+' ya existían)';
+    let msg='✅ Añadidos '+diasAñadidos+' día'+(diasAñadidos>1?'s':'')+' lectivo'+(diasAñadidos>1?'s':'')+' de vacaciones';
+    const omitidos=[];
+    if(diasFinde>0) omitidos.push(diasFinde+' fin de semana');
+    if(diasFestivos>0) omitidos.push(diasFestivos+' festivo'+(diasFestivos>1?'s':''));
+    if(diasDuplicados>0) omitidos.push(diasDuplicados+' ya existía'+(diasDuplicados>1?'n':''));
+    
+    if(omitidos.length>0){
+      msg+=' (omitidos: '+omitidos.join(', ')+')';
+    }
     mostrarAlerta('success',msg);
   }else{
-    mostrarAlerta('info','Todos los días del rango ya estaban marcados como vacaciones');
+    let msg='ℹ️ No se han añadido días lectivos de vacaciones';
+    const motivos=[];
+    if(diasFinde>0) motivos.push(diasFinde+' eran fin de semana');
+    if(diasFestivos>0) motivos.push(diasFestivos+' eran festivos');
+    if(diasDuplicados>0) motivos.push(diasDuplicados+' ya existían');
+    if(motivos.length>0) msg+=' ('+motivos.join(', ')+')';
+    mostrarAlerta('info',msg);
   }
 }
 
@@ -734,12 +855,12 @@ function eliminarVacacion(idx){
     if(respuesta===true){
       VACACIONES.splice(idx,1);
       renderListaVacaciones();
+      renderEstadisticasConfig();
       mostrarAlerta('success','Día de vacaciones eliminado');
     }
   });
 }
 
-// --- FUNCIONES DE NUBE ---
 async function cargarDatosNube() {
   document.getElementById('loader').classList.remove('hidden');
   try {
