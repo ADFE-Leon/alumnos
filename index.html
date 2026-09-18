@@ -180,7 +180,7 @@ tr:hover{background:#f9fafb}
 <button class="tb" data-t="p4">Calendario</button>
 <button class="tb" data-t="p5">Editar</button>
 <button class="tb" data-t="p6">Datos</button>
-<button class="tb" data-t="p8">️ Configuración</button>
+<button class="tb" data-t="p8">⚙️ Configuración</button>
 </div>
 
 <div id="p7" class="pnl on">
@@ -276,8 +276,8 @@ tr:hover{background:#f9fafb}
 <button class="btn b1" onclick="cargarDatosNube()">☁️ Cargar desde la Nube</button>
 <button class="btn b5" onclick="guardarDatosNube()">💾 Guardar en la Nube</button>
 <button class="btn b6" onclick="exportarDatos()">📥 Exportar Backup (JSON)</button>
-<button class="btn b2" onclick="document.getElementById('importFile').click()"> Importar desde JSON</button>
-<button class="btn b3" onclick="resetearTodo()">️ Resetear todo</button>
+<button class="btn b2" onclick="document.getElementById('importFile').click()">📤 Importar desde JSON</button>
+<button class="btn b3" onclick="resetearTodo()">🗑️ Resetear todo</button>
 <input type="file" id="importFile" accept=".json" style="display:none" onchange="importarDatos(event)">
 </div>
 </div>
@@ -417,7 +417,7 @@ tr:hover{background:#f9fafb}
 </div>
 
 <div style="margin-top:20px;padding:16px;background:#fef3c7;border-radius:8px;border:1px solid #fcd34d">
-<p style="color:#92400e;font-size:13px"><strong>️ Importante:</strong> Después de hacer cambios en la configuración, pulsa <strong>"💾 Guardar en la Nube"</strong> en la pestaña "Datos" para que los cambios se guarden permanentemente.</p>
+<p style="color:#92400e;font-size:13px"><strong>⚠️ Importante:</strong> Después de hacer cambios en la configuración, pulsa <strong>"💾 Guardar en la Nube"</strong> en la pestaña "Datos" para que los cambios se guarden permanentemente.</p>
 </div>
 </div>
 
@@ -437,7 +437,8 @@ tr:hover{background:#f9fafb}
 <div id="printArea" class="print-area"></div>
 
 <script>
-const GOOGLE_SCRIPT_URL_ALUMNOS = 'https://script.google.com/macros/s/AKfycbzozRyJZ2Y8Cpv9SFKbZFHU2OPHuJEoC48MllHrhDNdCHTX0ZKWIQwRa-Umjnuven3q/exec';
+// ⚠️ ¡NUEVA URL DE IMPLEMENTACIÓN ACTUALIZADA!
+const GOOGLE_SCRIPT_URL_ALUMNOS = 'https://script.google.com/macros/s/AKfycbzjQMtBa3zK-O3IiQ1yws5oiGv1iDFTzLa0r7ijZvedyvGq0pYmPoKHFbzMgrQsJK5F/exec';
 
 const ALUMNOS_BASE=["AMEZ FUERTES, RAUL","BLANCO FRANCO, SANTIAGO ANDRÉS","FERNÁNDEZ MACAYO, M. ISABEL","MAIQUEZ DOMINGUEZ, HECTOR JOSÉ","MALLO RODRÍGUEZ, MIGUEL","MUÑIZ CAÑIBANO, MARÍA BELÉN"];
 const MESES=["Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre","Enero","Febrero"];
@@ -630,16 +631,10 @@ function renderEstadisticasConfig(){
 }
 
 function renderConfiguracion(){
-  console.log('🎨 Renderizando configuración...');
-  console.log('FESTIVOS:', FESTIVOS);
-  console.log('VACACIONES:', VACACIONES);
-  
   renderEstadisticasConfig();
   renderListaAlumnos();
   renderListaFestivos();
   renderListaVacaciones();
-  
-  console.log('✅ Configuración renderizada');
 }
 
 function renderListaAlumnos(){
@@ -672,7 +667,7 @@ function agregarAlumno(){
 
 function editarAlumno(idx){
   const alumnoActual=ALUMNOS[idx];
-  showModal('️ Editar nombre del alumno','Introduce el nuevo nombre para: '+alumnoActual,'edit-alumno',{nombreActual:alumnoActual},function(nuevoNombre){
+  showModal('✏️ Editar nombre del alumno','Introduce el nuevo nombre para: '+alumnoActual,'edit-alumno',{nombreActual:alumnoActual},function(nuevoNombre){
     if(nuevoNombre&&typeof nuevoNombre==='string'&&nuevoNombre.trim()){
       ALUMNOS[idx]=nuevoNombre.trim();
       renderListaAlumnos();
@@ -683,7 +678,7 @@ function editarAlumno(idx){
 
 function eliminarAlumno(idx){
   const alumno=ALUMNOS[idx];
-  showModal('️ Eliminar alumno','¿Seguro que quieres eliminar a '+alumno+'? Se perderán todos sus registros.','danger',null,function(respuesta){
+  showModal('🗑️ Eliminar alumno','¿Seguro que quieres eliminar a '+alumno+'? Se perderán todos sus registros.','danger',null,function(respuesta){
     if(respuesta===true){
       ALUMNOS.splice(idx,1);
       renderListaAlumnos();
@@ -694,27 +689,16 @@ function eliminarAlumno(idx){
 
 function renderListaFestivos(){
   const lista=document.getElementById('listaFestivos');
-  console.log(' Renderizando lista de festivos, total:', FESTIVOS.length);
-  
-  if(!lista){
-    console.error('❌ No se encontró el elemento listaFestivos');
-    return;
-  }
-  
   lista.innerHTML='';
-  
   if(FESTIVOS.length===0){
     lista.innerHTML='<p style="color:#6b7280;font-style:italic">No hay festivos configurados</p>';
-    console.log('ℹ️ No hay festivos para mostrar');
     return;
   }
-  
   FESTIVOS.sort((a,b)=>{
     if(a.y!==b.y)return a.y-b.y;
     if(a.m!==b.m)return a.m-b.m;
     return a.d-b.d;
   });
-  
   FESTIVOS.forEach(function(festivo,idx){
     const fecha=pad(festivo.d)+'/'+pad(festivo.m)+'/'+festivo.y;
     lista.innerHTML+=`<div class="config-item">
@@ -724,8 +708,6 @@ function renderListaFestivos(){
       </div>
     </div>`;
   });
-  
-  console.log('✅ Lista de festivos renderizada:', FESTIVOS.length, 'elementos');
 }
 
 function agregarFestivo(){
@@ -762,27 +744,16 @@ function eliminarFestivo(idx){
 
 function renderListaVacaciones(){
   const lista=document.getElementById('listaVacaciones');
-  console.log('🏖️ Renderizando lista de vacaciones, total:', VACACIONES.length);
-  
-  if(!lista){
-    console.error('❌ No se encontró el elemento listaVacaciones');
-    return;
-  }
-  
   lista.innerHTML='';
-  
   if(VACACIONES.length===0){
     lista.innerHTML='<p style="color:#6b7280;font-style:italic">No hay vacaciones configuradas</p>';
-    console.log('ℹ️ No hay vacaciones para mostrar');
     return;
   }
-  
   VACACIONES.sort((a,b)=>{
     if(a.y!==b.y)return a.y-b.y;
     if(a.m!==b.m)return a.m-b.m;
     return a.d-b.d;
   });
-  
   VACACIONES.forEach(function(vacacion,idx){
     const fecha=pad(vacacion.d)+'/'+pad(vacacion.m)+'/'+vacacion.y;
     lista.innerHTML+=`<div class="config-item">
@@ -792,8 +763,6 @@ function renderListaVacaciones(){
       </div>
     </div>`;
   });
-  
-  console.log('✅ Lista de vacaciones renderizada:', VACACIONES.length, 'elementos');
 }
 
 function agregarVacacion(){
@@ -906,25 +875,16 @@ function eliminarVacacion(idx){
 async function cargarDatosNube() {
   document.getElementById('loader').classList.remove('hidden');
   try {
-    console.log('🔄 Iniciando carga desde la nube...');
     const res = await fetch(GOOGLE_SCRIPT_URL_ALUMNOS);
     const datos = await res.json();
     
-    console.log('📦 Datos recibidos:', datos);
-    console.log(' Festivos recibidos:', datos.festivos);
-    console.log('🏖️ Vacaciones recibidas:', datos.vacaciones);
-    
     if (datos.alumnos && datos.alumnos.length > 0) {
       ALUMNOS = datos.alumnos;
-      console.log('✅ Alumnos cargados:', ALUMNOS.length);
     }
-    
     if (datos.registros) {
       historicalRecords = datos.registros.filter(r => r.hist === true || r.hist === undefined);
       userRecords = datos.registros.filter(r => r.hist === false);
-      console.log('✅ Registros cargados - Históricos:', historicalRecords.length, 'Usuario:', userRecords.length);
     }
-    
     if (datos.festivos && datos.festivos.length > 0) {
       FESTIVOS = datos.festivos.map(f => ({
         y: parseInt(f.y) || f.y,
@@ -932,21 +892,16 @@ async function cargarDatosNube() {
         d: parseInt(f.d) || f.d,
         nombre: f.nombre
       }));
-      console.log('✅ Festivos cargados:', FESTIVOS.length, FESTIVOS);
     } else {
-      console.log('⚠️ No hay festivos en la nube');
       FESTIVOS = [];
     }
-    
     if (datos.vacaciones && datos.vacaciones.length > 0) {
       VACACIONES = datos.vacaciones.map(v => ({
         y: parseInt(v.y) || v.y,
         m: parseInt(v.m) || v.m,
         d: parseInt(v.d) || v.d
       }));
-      console.log('✅ Vacaciones cargadas:', VACACIONES.length, VACACIONES);
     } else {
-      console.log('⚠️ No hay vacaciones en la nube');
       VACACIONES = [];
     }
     
@@ -955,27 +910,20 @@ async function cargarDatosNube() {
     saveUser();
     inicializarApp();
     renderAll();
-    
-    console.log('🎨 Renderizando configuración...');
     renderConfiguracion();
-    
     mostrarAlerta('success', '✅ Datos cargados: ' + FESTIVOS.length + ' festivos, ' + VACACIONES.length + ' vacaciones');
   } catch (e) {
-    console.error('❌ Error al cargar datos:', e);
-    mostrarAlerta('error', ' Error al conectar con la nube: ' + e.message);
+    console.error('Error al cargar datos:', e);
+    mostrarAlerta('error', '❌ Error al conectar con la nube: ' + e.message);
     try{
       const cached=localStorage.getItem('ca_cache');
       if(cached){
         const data=JSON.parse(cached);
-        ALUMNOS=data.alumnos; 
-        historicalRecords=data.registros||[];
-        FESTIVOS=data.festivos||[]; 
-        VACACIONES=data.vacaciones||[];
+        ALUMNOS=data.alumnos; historicalRecords=data.registros||[];
+        FESTIVOS=data.festivos||[]; VACACIONES=data.vacaciones||[];
         dataSourceMsg="Caché local (Fallo de nube)";
         document.getElementById('dataSource').textContent = dataSourceMsg;
-        inicializarApp(); 
-        renderAll(); 
-        renderConfiguracion();
+        inicializarApp(); renderAll(); renderConfiguracion();
       }
     }catch(err){}
   } finally {
@@ -984,11 +932,6 @@ async function cargarDatosNube() {
 }
 
 async function guardarDatosNube() {
-  console.log('💾 Iniciando guardado en la nube...');
-  console.log('Registros a guardar:', [...historicalRecords, ...userRecords].length);
-  console.log('Festivos a guardar:', FESTIVOS.length);
-  console.log('Vacaciones a guardar:', VACACIONES.length);
-  
   mostrarAlerta('info', '💾 Guardando en la nube...');
   try {
     const payload = {
@@ -998,26 +941,20 @@ async function guardarDatosNube() {
       vacaciones: VACACIONES
     };
     
-    console.log('📤 Enviando payload:', payload);
-    
     const response = await fetch(GOOGLE_SCRIPT_URL_ALUMNOS, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
     
     const result = await response.json();
-    console.log(' Respuesta de la nube:', result);
-    
     if (result.status === 'success') {
       mostrarAlerta('success', '✅ Datos guardados correctamente en la nube');
     } else {
       mostrarAlerta('error', '❌ Error al guardar: ' + (result.message || 'Desconocido'));
     }
   } catch (e) {
-    console.error('❌ Error al guardar:', e);
+    console.error('Error al guardar:', e);
     mostrarAlerta('error', '❌ Error al guardar en la nube: ' + e.message);
   }
 }
@@ -1334,10 +1271,10 @@ function actualizarCalendario(y,m){
       const c=byDay[d].counts;
       if(c.presente>0)html+='<div class="pkg-info" style="color:#166534">✓ '+c.presente+'</div>';
       if(c.ausente>0)html+='<div class="pkg-info" style="color:#991b1b">✗ '+c.ausente+'</div>';
-      if(c.entrada_tarde>0)html+='<div class="pkg-info" style="color:#92400e"> '+c.entrada_tarde+'</div>';
+      if(c.entrada_tarde>0)html+='<div class="pkg-info" style="color:#92400e">⏰ '+c.entrada_tarde+'</div>';
       if(c.salida_pronto>0)html+='<div class="pkg-info" style="color:#9d174d">📤 '+c.salida_pronto+'</div>';
-      if(c.cita_medica>0)html+='<div class="pkg-info" style="color:#1e40af"> '+c.cita_medica+'</div>';
-      if(c.conciliacion>0)html+='<div class="pkg-info" style="color:#3730a3">👨‍‍👧 '+c.conciliacion+'</div>';
+      if(c.cita_medica>0)html+='<div class="pkg-info" style="color:#1e40af">🏥 '+c.cita_medica+'</div>';
+      if(c.conciliacion>0)html+='<div class="pkg-info" style="color:#3730a3">👨‍👩‍👧 '+c.conciliacion+'</div>';
       if(c.baja>0)html+='<div class="pkg-info" style="color:#991b1b">🏥 '+c.baja+'</div>';
       Object.keys(byDay[d].alumnos).sort().forEach(function(alumName){
         const info=byDay[d].alumnos[alumName]; const nombreCorto=alumName.split(',')[0];
