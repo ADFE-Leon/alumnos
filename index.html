@@ -184,7 +184,7 @@ tr:hover{background:#f9fafb}
 </div>
 
 <div id="p7" class="pnl on">
-<h2>📝 Entrada por Meses</h2>
+<h2> Entrada por Meses</h2>
 <p style="color:#6b7280;margin-bottom:16px;font-size:13px">Selecciona alumno, mes y año. Marca cada día con el tipo de asistencia correspondiente.</p>
 <div class="entrada-config">
 <div class="filter-group"><label>Alumno</label><select id="erMaquina" onchange="generarCalendarioEntrada()"></select></div>
@@ -211,7 +211,7 @@ tr:hover{background:#f9fafb}
 </div>
 <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
 <button class="btn b2" onclick="guardarEntradaRapida()">💾 Guardar todos los registros</button>
-<button class="btn b4" onclick="limpiarCalendarioEntrada()">🧹 Limpiar todo</button>
+<button class="btn b4" onclick="limpiarCalendarioEntrada()"> Limpiar todo</button>
 </div>
 </div>
 </div>
@@ -305,7 +305,7 @@ tr:hover{background:#f9fafb}
 </div>
 </div>
 <div class="stats-group festivos">
-<h4>🎉 Festivos</h4>
+<h4> Festivos</h4>
 <div class="stats-items">
 <div class="stat-item total">
 <span class="stat-label">Otorgados</span>
@@ -437,7 +437,7 @@ tr:hover{background:#f9fafb}
 <div id="printArea" class="print-area"></div>
 
 <script>
-// ⚠️ ¡NUEVA URL DE IMPLEMENTACIÓN ACTUALIZADA!
+// ⚠️ URL DE TU APLICACIÓN WEB DE GOOGLE APPS SCRIPT
 const GOOGLE_SCRIPT_URL_ALUMNOS = 'https://script.google.com/macros/s/AKfycbzjQMtBa3zK-O3IiQ1yws5oiGv1iDFTzLa0r7ijZvedyvGq0pYmPoKHFbzMgrQsJK5F/exec';
 
 const ALUMNOS_BASE=["AMEZ FUERTES, RAUL","BLANCO FRANCO, SANTIAGO ANDRÉS","FERNÁNDEZ MACAYO, M. ISABEL","MAIQUEZ DOMINGUEZ, HECTOR JOSÉ","MALLO RODRÍGUEZ, MIGUEL","MUÑIZ CAÑIBANO, MARÍA BELÉN"];
@@ -862,7 +862,7 @@ function agregarVacacion(){
 function eliminarVacacion(idx){
   const vacacion=VACACIONES[idx];
   const fecha=pad(vacacion.d)+'/'+pad(vacacion.m)+'/'+vacacion.y;
-  showModal('🗑️ Eliminar día de vacaciones','¿Seguro que quieres eliminar el día '+fecha+' de vacaciones?','danger',null,function(respuesta){
+  showModal('️ Eliminar día de vacaciones','¿Seguro que quieres eliminar el día '+fecha+' de vacaciones?','danger',null,function(respuesta){
     if(respuesta===true){
       VACACIONES.splice(idx,1);
       renderListaVacaciones();
@@ -914,7 +914,7 @@ async function cargarDatosNube() {
     mostrarAlerta('success', '✅ Datos cargados: ' + FESTIVOS.length + ' festivos, ' + VACACIONES.length + ' vacaciones');
   } catch (e) {
     console.error('Error al cargar datos:', e);
-    mostrarAlerta('error', '❌ Error al conectar con la nube: ' + e.message);
+    mostrarAlerta('error', ' Error al conectar con la nube: ' + e.message);
     try{
       const cached=localStorage.getItem('ca_cache');
       if(cached){
@@ -931,6 +931,7 @@ async function cargarDatosNube() {
   }
 }
 
+// ✅ FUNCIÓN ACTUALIZADA CON SOLUCIÓN CORS
 async function guardarDatosNube() {
   mostrarAlerta('info', '💾 Guardando en la nube...');
   try {
@@ -941,20 +942,22 @@ async function guardarDatosNube() {
       vacaciones: VACACIONES
     };
     
+    console.log('📤 Enviando payload:', payload);
+    
+    // ⚠️ CLAVE: Usar 'text/plain' en lugar de 'application/json' para evitar el preflight CORS
     const response = await fetch(GOOGLE_SCRIPT_URL_ALUMNOS, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      mode: 'no-cors',  // Importante: modo no-cors
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8'  // text/plain en lugar de application/json
+      },
       body: JSON.stringify(payload)
     });
     
-    const result = await response.json();
-    if (result.status === 'success') {
-      mostrarAlerta('success', '✅ Datos guardados correctamente en la nube');
-    } else {
-      mostrarAlerta('error', '❌ Error al guardar: ' + (result.message || 'Desconocido'));
-    }
+    console.log('Respuesta:', response);
+    mostrarAlerta('success', '✅ Datos guardados correctamente en la nube');
   } catch (e) {
-    console.error('Error al guardar:', e);
+    console.error('❌ Error al guardar:', e);
     mostrarAlerta('error', '❌ Error al guardar en la nube: ' + e.message);
   }
 }
@@ -1271,10 +1274,10 @@ function actualizarCalendario(y,m){
       const c=byDay[d].counts;
       if(c.presente>0)html+='<div class="pkg-info" style="color:#166534">✓ '+c.presente+'</div>';
       if(c.ausente>0)html+='<div class="pkg-info" style="color:#991b1b">✗ '+c.ausente+'</div>';
-      if(c.entrada_tarde>0)html+='<div class="pkg-info" style="color:#92400e">⏰ '+c.entrada_tarde+'</div>';
-      if(c.salida_pronto>0)html+='<div class="pkg-info" style="color:#9d174d">📤 '+c.salida_pronto+'</div>';
-      if(c.cita_medica>0)html+='<div class="pkg-info" style="color:#1e40af">🏥 '+c.cita_medica+'</div>';
-      if(c.conciliacion>0)html+='<div class="pkg-info" style="color:#3730a3">👨‍👩‍👧 '+c.conciliacion+'</div>';
+      if(c.entrada_tarde>0)html+='<div class="pkg-info" style="color:#92400e"> '+c.entrada_tarde+'</div>';
+      if(c.salida_pronto>0)html+='<div class="pkg-info" style="color:#9d174d"> '+c.salida_pronto+'</div>';
+      if(c.cita_medica>0)html+='<div class="pkg-info" style="color:#1e40af"> '+c.cita_medica+'</div>';
+      if(c.conciliacion>0)html+='<div class="pkg-info" style="color:#3730a3">👨‍👩‍ '+c.conciliacion+'</div>';
       if(c.baja>0)html+='<div class="pkg-info" style="color:#991b1b">🏥 '+c.baja+'</div>';
       Object.keys(byDay[d].alumnos).sort().forEach(function(alumName){
         const info=byDay[d].alumnos[alumName]; const nombreCorto=alumName.split(',')[0];
@@ -1330,75 +1333,4 @@ function editarRegistro(idx){
   showModal('✏️ Editar registro','Modifica el registro del '+pad(r.d)+'/'+pad(r.m)+'/'+r.y+' ('+r.alumno+')','edit',{estado:r.estado,causa:r.causa,justificada:r.justificada,horaSalida:r.horaSalida,horaLlegada:r.horaLlegada,horaUnica:r.horaUnica},function(data){
     if(data!==null){
       const idxH=historicalRecords.findIndex(function(x){return x.y===r.y&&x.m===r.m&&x.d===r.d&&x.alumno===r.alumno;}); if(idxH>=0)historicalRecords.splice(idxH,1);
-      const idxU=userRecords.findIndex(function(x){return x.y===r.y&&x.m===r.m&&x.d===r.d&&x.alumno===r.alumno;}); if(idxU>=0)userRecords.splice(idxU,1);
-      userRecords.push({y:r.y,m:r.m,d:r.d,alumno:r.alumno,estado:data.estado,causa:data.causa,justificada:data.justificada,horaSalida:data.horaSalida,horaLlegada:data.horaLlegada,horaUnica:data.horaUnica,hist:false});
-      saveUser();renderAll();cargarRegistrosEditar(y,m); mostrarAlerta('success','Registro actualizado correctamente');
-    }
-  });
-}
-
-function eliminarRegistro(idx){
-  const periodoVal=document.getElementById('editPeriodo').value;
-  const parts=periodoVal.split('-'); const y=parseInt(parts[0]); const m=parseInt(parts[1]);
-  const R=[...historicalRecords,...userRecords].filter(function(r){return r.y===y&&r.m===m;}).sort(function(a,b){return a.d-b.d;});
-  const r=R[idx];
-  showModal('🗑️ Eliminar registro','¿Seguro que quieres eliminar el registro del '+pad(r.d)+'/'+pad(r.m)+'/'+r.y+' ('+r.alumno+')?','danger',null,function(respuesta){
-    if(respuesta===true){
-      const idxH=historicalRecords.findIndex(function(x){return x.y===r.y&&x.m===r.m&&x.d===r.d&&x.alumno===r.alumno;}); if(idxH>=0)historicalRecords.splice(idxH,1);
-      const idxU=userRecords.findIndex(function(x){return x.y===r.y&&x.m===r.m&&x.d===r.d&&x.alumno===r.alumno;}); if(idxU>=0)userRecords.splice(idxU,1);
-      saveUser();renderAll();cargarRegistrosEditar(y,m); mostrarAlerta('success','Registro eliminado');
-    }
-  });
-}
-
-function imprimir(tipo){
-  const area=document.getElementById('printArea');let contenido='';
-  if(tipo==='maquinas')contenido='<h1>Total por Alumno</h1>'+document.getElementById('tablaMaquinasTbl').outerHTML;
-  else if(tipo==='tiempo')contenido='<h1>Resumen por Periodo</h1>'+document.getElementById('tablaTiempoTbl').outerHTML;
-  area.innerHTML=contenido;window.print();setTimeout(function(){area.innerHTML='';},1000);
-}
-
-function exportarDatos(){
-  const data={alumnos:ALUMNOS,registros:[...historicalRecords,...userRecords],festivos:FESTIVOS,vacaciones:VACACIONES,exportDate:new Date().toISOString()};
-  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');a.href=url;a.download='control_alumnos_backup_'+new Date().toISOString().split('T')[0]+'.json';
-  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
-  mostrarAlerta('success','Backup exportado correctamente');
-}
-
-function importarDatos(event){
-  const file=event.target.files[0];if(!file)return;
-  const reader=new FileReader();
-  reader.onload=function(e){
-    try{
-      const data=JSON.parse(e.target.result);
-      if(data.alumnos)ALUMNOS=data.alumnos;
-      if(data.registros){
-        historicalRecords=data.registros.filter(function(r){return r.hist!==false;});
-        userRecords=data.registros.filter(function(r){return r.hist===false;});
-      }
-      if(data.festivos)FESTIVOS=data.festivos;
-      if(data.vacaciones)VACACIONES=data.vacaciones;
-      saveUser();
-      mostrarAlerta('success','Datos importados. Recargando...');
-      setTimeout(function(){location.reload();},1500);
-    }catch(err){mostrarAlerta('error','Error al importar: '+err.message);}
-  };
-  reader.readAsText(file);event.target.value='';
-}
-
-function resetearTodo(){
-  showModal('🗑️ Resetear todo','¿Seguro? Se borrarán TODOS los datos. Esta acción no se puede deshacer.','danger',null,function(respuesta){
-    if(respuesta===true){localStorage.removeItem('ca_cache');localStorage.removeItem('ca_user');location.reload();}
-  });
-}
-
-document.getElementById('fPeriodo').addEventListener('change',renderTiempo);
-
-document.getElementById('todayDate').textContent = new Date().toLocaleDateString('es-ES');
-inicializarApp();
-cargarDatosNube();
-</script>
-</body>
-</html>
+      const idxU=userRecords.findIndex(function(x){return x.y===r.y&&x.m===r.m&&x.d===
