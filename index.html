@@ -54,7 +54,6 @@ tr:hover{background:#f9fafb}
 .cal-day.sick-leave{background:#fecaca;border-color:#f87171}
 .cal-day .day-num{font-weight:700;font-size:12px;margin-bottom:4px;color:#1f2937}
 .cal-day .pkg-info{font-size:10px;color:#1e40af;background:#fff;padding:2px 4px;border-radius:3px;margin:1px 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.cal-day .pkg-total{font-size:11px;font-weight:600;color:#2563eb;margin-top:2px}
 .action-btn{padding:4px 8px;font-size:11px;margin:2px}
 .print-area{display:none}
 .status-bar{background:#e0f2fe;color:#0369a1;padding:8px 12px;border-radius:6px;font-size:12px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
@@ -78,15 +77,11 @@ tr:hover{background:#f9fafb}
 .cal-input-day .day-label.weekend{color:#dc2626}
 .cal-input-day .day-label.holiday{color:#9333ea}
 .cal-input-day .day-label.vacation{color:#ea580c}
-.cal-input-day .day-label.course-end{color:#059669}
 .cal-input-day select{width:100%;padding:4px;border:1px solid #d1d5db;border-radius:4px;font-size:11px;margin-bottom:4px}
 .cal-input-day input[type="text"],.cal-input-day input[type="time"]{width:100%;padding:4px;border:1px solid #d1d5db;border-radius:4px;font-size:11px;margin-bottom:4px}
 .cal-input-day .checkbox-label{display:flex;align-items:center;gap:4px;font-size:11px;margin-bottom:4px}
-.cal-input-day input[type="number"]:disabled{background:#f3f4f6;color:#9ca3af;cursor:not-allowed}
 .cal-input-day.holiday{background:#faf5ff;border-color:#d8b4fe;opacity:0.7}
 .cal-input-day.vacation{background:#fff7ed;border-color:#fdba74;opacity:0.7}
-.cal-input-day.course-end{background:#ecfdf5;border-color:#6ee7b7}
-.cal-input-day .day-type{font-size:9px;color:#6b7280;margin-top:2px;font-style:italic}
 .cal-input-day.present{background:#dcfce7;border-color:#86efac}
 .cal-input-day.absent{background:#fee2e2;border-color:#fca5a5}
 .cal-input-day.late{background:#fef3c7;border-color:#fcd34d}
@@ -114,11 +109,8 @@ tr:hover{background:#f9fafb}
 .modal-buttons{display:flex;gap:8px;justify-content:flex-end}
 .modal-buttons button{padding:8px 16px;border:none;border-radius:6px;cursor:pointer;font-size:14px;font-weight:600}
 .modal-btn-cancel{background:#e5e7eb;color:#374151}
-.modal-btn-cancel:hover{background:#d1d5db}
 .modal-btn-ok{background:#2563eb;color:#fff}
-.modal-btn-ok:hover{background:#1d4ed8}
 .modal-btn-danger{background:#dc2626;color:#fff}
-.modal-btn-danger:hover{background:#b91c1c}
 .botones-datos{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:12px}
 
 #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); z-index: 3000; display: flex; justify-content: center; align-items: center; font-size: 20px; color: #2563eb; font-weight: bold; flex-direction: column; gap: 15px; }
@@ -284,8 +276,8 @@ tr:hover{background:#f9fafb}
 <button class="btn b1" onclick="cargarDatosNube()">☁️ Cargar desde la Nube</button>
 <button class="btn b5" onclick="guardarDatosNube()">💾 Guardar en la Nube</button>
 <button class="btn b6" onclick="exportarDatos()">📥 Exportar Backup (JSON)</button>
-<button class="btn b2" onclick="document.getElementById('importFile').click()">📤 Importar desde JSON</button>
-<button class="btn b3" onclick="resetearTodo()">🗑️ Resetear todo</button>
+<button class="btn b2" onclick="document.getElementById('importFile').click()"> Importar desde JSON</button>
+<button class="btn b3" onclick="resetearTodo()">️ Resetear todo</button>
 <input type="file" id="importFile" accept=".json" style="display:none" onchange="importarDatos(event)">
 </div>
 </div>
@@ -344,7 +336,7 @@ tr:hover{background:#f9fafb}
 </div>
 
 <div class="config-section">
-<h3> Gestión de Festivos</h3>
+<h3>🎉 Gestión de Festivos</h3>
 <div class="config-form">
 <div class="filter-group">
 <label>Día</label>
@@ -380,7 +372,7 @@ tr:hover{background:#f9fafb}
 <p style="color:#6b7280;font-size:13px;margin-bottom:12px">Introduce la fecha de inicio y la fecha final (ambas inclusive). <strong>Se añadirán automáticamente solo los días lectivos</strong> (se excluyen sábados, domingos y festivos).</p>
 <div class="rango-fechas">
 <div class="rango-box">
-<h4> Fecha de inicio</h4>
+<h4>📅 Fecha de inicio</h4>
 <div class="rango-inputs">
 <div class="filter-group"><label>Día</label><input type="number" id="nuevaVacacionDiaIni" min="1" max="31" placeholder="Día"></div>
 <div class="filter-group"><label>Mes</label>
@@ -425,7 +417,7 @@ tr:hover{background:#f9fafb}
 </div>
 
 <div style="margin-top:20px;padding:16px;background:#fef3c7;border-radius:8px;border:1px solid #fcd34d">
-<p style="color:#92400e;font-size:13px"><strong>⚠️ Importante:</strong> Después de hacer cambios en la configuración, pulsa <strong>"💾 Guardar en la Nube"</strong> en la pestaña "Datos" para que los cambios se guarden permanentemente.</p>
+<p style="color:#92400e;font-size:13px"><strong>️ Importante:</strong> Después de hacer cambios en la configuración, pulsa <strong>"💾 Guardar en la Nube"</strong> en la pestaña "Datos" para que los cambios se guarden permanentemente.</p>
 </div>
 </div>
 
@@ -638,10 +630,16 @@ function renderEstadisticasConfig(){
 }
 
 function renderConfiguracion(){
+  console.log('🎨 Renderizando configuración...');
+  console.log('FESTIVOS:', FESTIVOS);
+  console.log('VACACIONES:', VACACIONES);
+  
   renderEstadisticasConfig();
   renderListaAlumnos();
   renderListaFestivos();
   renderListaVacaciones();
+  
+  console.log('✅ Configuración renderizada');
 }
 
 function renderListaAlumnos(){
@@ -674,7 +672,7 @@ function agregarAlumno(){
 
 function editarAlumno(idx){
   const alumnoActual=ALUMNOS[idx];
-  showModal('✏️ Editar nombre del alumno','Introduce el nuevo nombre para: '+alumnoActual,'edit-alumno',{nombreActual:alumnoActual},function(nuevoNombre){
+  showModal('️ Editar nombre del alumno','Introduce el nuevo nombre para: '+alumnoActual,'edit-alumno',{nombreActual:alumnoActual},function(nuevoNombre){
     if(nuevoNombre&&typeof nuevoNombre==='string'&&nuevoNombre.trim()){
       ALUMNOS[idx]=nuevoNombre.trim();
       renderListaAlumnos();
@@ -685,7 +683,7 @@ function editarAlumno(idx){
 
 function eliminarAlumno(idx){
   const alumno=ALUMNOS[idx];
-  showModal('🗑️ Eliminar alumno','¿Seguro que quieres eliminar a '+alumno+'? Se perderán todos sus registros.','danger',null,function(respuesta){
+  showModal('️ Eliminar alumno','¿Seguro que quieres eliminar a '+alumno+'? Se perderán todos sus registros.','danger',null,function(respuesta){
     if(respuesta===true){
       ALUMNOS.splice(idx,1);
       renderListaAlumnos();
@@ -696,16 +694,27 @@ function eliminarAlumno(idx){
 
 function renderListaFestivos(){
   const lista=document.getElementById('listaFestivos');
-  lista.innerHTML='';
-  if(FESTIVOS.length===0){
-    lista.innerHTML='<p style="color:#6b7280;font-style:italic">No hay festivos configurados</p>';
+  console.log(' Renderizando lista de festivos, total:', FESTIVOS.length);
+  
+  if(!lista){
+    console.error('❌ No se encontró el elemento listaFestivos');
     return;
   }
+  
+  lista.innerHTML='';
+  
+  if(FESTIVOS.length===0){
+    lista.innerHTML='<p style="color:#6b7280;font-style:italic">No hay festivos configurados</p>';
+    console.log('ℹ️ No hay festivos para mostrar');
+    return;
+  }
+  
   FESTIVOS.sort((a,b)=>{
     if(a.y!==b.y)return a.y-b.y;
     if(a.m!==b.m)return a.m-b.m;
     return a.d-b.d;
   });
+  
   FESTIVOS.forEach(function(festivo,idx){
     const fecha=pad(festivo.d)+'/'+pad(festivo.m)+'/'+festivo.y;
     lista.innerHTML+=`<div class="config-item">
@@ -715,6 +724,8 @@ function renderListaFestivos(){
       </div>
     </div>`;
   });
+  
+  console.log('✅ Lista de festivos renderizada:', FESTIVOS.length, 'elementos');
 }
 
 function agregarFestivo(){
@@ -751,16 +762,27 @@ function eliminarFestivo(idx){
 
 function renderListaVacaciones(){
   const lista=document.getElementById('listaVacaciones');
-  lista.innerHTML='';
-  if(VACACIONES.length===0){
-    lista.innerHTML='<p style="color:#6b7280;font-style:italic">No hay vacaciones configuradas</p>';
+  console.log('🏖️ Renderizando lista de vacaciones, total:', VACACIONES.length);
+  
+  if(!lista){
+    console.error('❌ No se encontró el elemento listaVacaciones');
     return;
   }
+  
+  lista.innerHTML='';
+  
+  if(VACACIONES.length===0){
+    lista.innerHTML='<p style="color:#6b7280;font-style:italic">No hay vacaciones configuradas</p>';
+    console.log('ℹ️ No hay vacaciones para mostrar');
+    return;
+  }
+  
   VACACIONES.sort((a,b)=>{
     if(a.y!==b.y)return a.y-b.y;
     if(a.m!==b.m)return a.m-b.m;
     return a.d-b.d;
   });
+  
   VACACIONES.forEach(function(vacacion,idx){
     const fecha=pad(vacacion.d)+'/'+pad(vacacion.m)+'/'+vacacion.y;
     lista.innerHTML+=`<div class="config-item">
@@ -770,6 +792,8 @@ function renderListaVacaciones(){
       </div>
     </div>`;
   });
+  
+  console.log('✅ Lista de vacaciones renderizada:', VACACIONES.length, 'elementos');
 }
 
 function agregarVacacion(){
@@ -882,21 +906,48 @@ function eliminarVacacion(idx){
 async function cargarDatosNube() {
   document.getElementById('loader').classList.remove('hidden');
   try {
+    console.log('🔄 Iniciando carga desde la nube...');
     const res = await fetch(GOOGLE_SCRIPT_URL_ALUMNOS);
     const datos = await res.json();
     
+    console.log('📦 Datos recibidos:', datos);
+    console.log(' Festivos recibidos:', datos.festivos);
+    console.log('🏖️ Vacaciones recibidas:', datos.vacaciones);
+    
     if (datos.alumnos && datos.alumnos.length > 0) {
       ALUMNOS = datos.alumnos;
+      console.log('✅ Alumnos cargados:', ALUMNOS.length);
     }
+    
     if (datos.registros) {
       historicalRecords = datos.registros.filter(r => r.hist === true || r.hist === undefined);
       userRecords = datos.registros.filter(r => r.hist === false);
+      console.log('✅ Registros cargados - Históricos:', historicalRecords.length, 'Usuario:', userRecords.length);
     }
-    if (datos.festivos) {
-      FESTIVOS = datos.festivos;
+    
+    if (datos.festivos && datos.festivos.length > 0) {
+      FESTIVOS = datos.festivos.map(f => ({
+        y: parseInt(f.y) || f.y,
+        m: parseInt(f.m) || f.m,
+        d: parseInt(f.d) || f.d,
+        nombre: f.nombre
+      }));
+      console.log('✅ Festivos cargados:', FESTIVOS.length, FESTIVOS);
+    } else {
+      console.log('⚠️ No hay festivos en la nube');
+      FESTIVOS = [];
     }
-    if (datos.vacaciones) {
-      VACACIONES = datos.vacaciones;
+    
+    if (datos.vacaciones && datos.vacaciones.length > 0) {
+      VACACIONES = datos.vacaciones.map(v => ({
+        y: parseInt(v.y) || v.y,
+        m: parseInt(v.m) || v.m,
+        d: parseInt(v.d) || v.d
+      }));
+      console.log('✅ Vacaciones cargadas:', VACACIONES.length, VACACIONES);
+    } else {
+      console.log('⚠️ No hay vacaciones en la nube');
+      VACACIONES = [];
     }
     
     dataSourceMsg = "☁️ Google Sheets (Nube)";
@@ -904,20 +955,27 @@ async function cargarDatosNube() {
     saveUser();
     inicializarApp();
     renderAll();
+    
+    console.log('🎨 Renderizando configuración...');
     renderConfiguracion();
-    mostrarAlerta('success', '✅ Datos cargados correctamente desde la nube');
+    
+    mostrarAlerta('success', '✅ Datos cargados: ' + FESTIVOS.length + ' festivos, ' + VACACIONES.length + ' vacaciones');
   } catch (e) {
-    console.error('Error al cargar datos:', e);
-    mostrarAlerta('error', '❌ Error al conectar con la nube. Revisa la URL o la conexión.');
+    console.error('❌ Error al cargar datos:', e);
+    mostrarAlerta('error', ' Error al conectar con la nube: ' + e.message);
     try{
       const cached=localStorage.getItem('ca_cache');
       if(cached){
         const data=JSON.parse(cached);
-        ALUMNOS=data.alumnos; historicalRecords=data.registros||[];
-        FESTIVOS=data.festivos||[]; VACACIONES=data.vacaciones||[];
+        ALUMNOS=data.alumnos; 
+        historicalRecords=data.registros||[];
+        FESTIVOS=data.festivos||[]; 
+        VACACIONES=data.vacaciones||[];
         dataSourceMsg="Caché local (Fallo de nube)";
         document.getElementById('dataSource').textContent = dataSourceMsg;
-        inicializarApp(); renderAll(); renderConfiguracion();
+        inicializarApp(); 
+        renderAll(); 
+        renderConfiguracion();
       }
     }catch(err){}
   } finally {
@@ -926,6 +984,11 @@ async function cargarDatosNube() {
 }
 
 async function guardarDatosNube() {
+  console.log('💾 Iniciando guardado en la nube...');
+  console.log('Registros a guardar:', [...historicalRecords, ...userRecords].length);
+  console.log('Festivos a guardar:', FESTIVOS.length);
+  console.log('Vacaciones a guardar:', VACACIONES.length);
+  
   mostrarAlerta('info', '💾 Guardando en la nube...');
   try {
     const payload = {
@@ -935,15 +998,27 @@ async function guardarDatosNube() {
       vacaciones: VACACIONES
     };
     
-    await fetch(GOOGLE_SCRIPT_URL_ALUMNOS, {
+    console.log('📤 Enviando payload:', payload);
+    
+    const response = await fetch(GOOGLE_SCRIPT_URL_ALUMNOS, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(payload)
     });
     
-    mostrarAlerta('success', '✅ Datos guardados correctamente en la nube');
+    const result = await response.json();
+    console.log(' Respuesta de la nube:', result);
+    
+    if (result.status === 'success') {
+      mostrarAlerta('success', '✅ Datos guardados correctamente en la nube');
+    } else {
+      mostrarAlerta('error', '❌ Error al guardar: ' + (result.message || 'Desconocido'));
+    }
   } catch (e) {
-    console.error('Error al guardar:', e);
-    mostrarAlerta('error', '❌ Error al guardar en la nube');
+    console.error('❌ Error al guardar:', e);
+    mostrarAlerta('error', '❌ Error al guardar en la nube: ' + e.message);
   }
 }
 
@@ -1259,11 +1334,11 @@ function actualizarCalendario(y,m){
       const c=byDay[d].counts;
       if(c.presente>0)html+='<div class="pkg-info" style="color:#166534">✓ '+c.presente+'</div>';
       if(c.ausente>0)html+='<div class="pkg-info" style="color:#991b1b">✗ '+c.ausente+'</div>';
-      if(c.entrada_tarde>0)html+='<div class="pkg-info" style="color:#92400e">⏰ '+c.entrada_tarde+'</div>';
-      if(c.salida_pronto>0)html+='<div class="pkg-info" style="color:#9d174d"> '+c.salida_pronto+'</div>';
-      if(c.cita_medica>0)html+='<div class="pkg-info" style="color:#1e40af">🏥 '+c.cita_medica+'</div>';
-      if(c.conciliacion>0)html+='<div class="pkg-info" style="color:#3730a3">👨👩‍👧 '+c.conciliacion+'</div>';
-      if(c.baja>0)html+='<div class="pkg-info" style="color:#991b1b"> '+c.baja+'</div>';
+      if(c.entrada_tarde>0)html+='<div class="pkg-info" style="color:#92400e"> '+c.entrada_tarde+'</div>';
+      if(c.salida_pronto>0)html+='<div class="pkg-info" style="color:#9d174d">📤 '+c.salida_pronto+'</div>';
+      if(c.cita_medica>0)html+='<div class="pkg-info" style="color:#1e40af"> '+c.cita_medica+'</div>';
+      if(c.conciliacion>0)html+='<div class="pkg-info" style="color:#3730a3">👨‍‍👧 '+c.conciliacion+'</div>';
+      if(c.baja>0)html+='<div class="pkg-info" style="color:#991b1b">🏥 '+c.baja+'</div>';
       Object.keys(byDay[d].alumnos).sort().forEach(function(alumName){
         const info=byDay[d].alumnos[alumName]; const nombreCorto=alumName.split(',')[0];
         let detalle=ABBREVIATIONS[info.estado]||info.estado.charAt(0).toUpperCase();
@@ -1301,7 +1376,7 @@ function cargarRegistrosEditar(y,m){
     if(r.horaUnica)detalles+=(detalles?', ':'')+'Hora: '+r.horaUnica;
     if(r.horaSalida&&r.horaLlegada)detalles+=(detalles?', ':'')+r.horaSalida+'-'+r.horaLlegada;
     if(r.justificada)detalles+=' (Justificada)';
-    tb.innerHTML+='<tr><td>'+pad(r.d)+'/'+pad(r.m)+'/'+r.y+'</td><td>'+r.alumno+'</td><td class="r">'+estadoText+'</td><td>'+(detalles||'-')+'</td><td><button class="btn b2 action-btn" onclick="editarRegistro('+i+')">✏️ Editar</button> <button class="btn b3 action-btn" onclick="eliminarRegistro('+i+')">️ Eliminar</button></td></tr>';
+    tb.innerHTML+='<tr><td>'+pad(r.d)+'/'+pad(r.m)+'/'+r.y+'</td><td>'+r.alumno+'</td><td class="r">'+estadoText+'</td><td>'+(detalles||'-')+'</td><td><button class="btn b2 action-btn" onclick="editarRegistro('+i+')">✏️ Editar</button> <button class="btn b3 action-btn" onclick="eliminarRegistro('+i+')">🗑️ Eliminar</button></td></tr>';
   });
 }
 
@@ -1315,7 +1390,7 @@ function editarRegistro(idx){
   const parts=periodoVal.split('-'); const y=parseInt(parts[0]); const m=parseInt(parts[1]);
   const R=[...historicalRecords,...userRecords].filter(function(r){return r.y===y&&r.m===m;}).sort(function(a,b){return a.d-b.d;});
   const r=R[idx];
-  showModal('️ Editar registro','Modifica el registro del '+pad(r.d)+'/'+pad(r.m)+'/'+r.y+' ('+r.alumno+')','edit',{estado:r.estado,causa:r.causa,justificada:r.justificada,horaSalida:r.horaSalida,horaLlegada:r.horaLlegada,horaUnica:r.horaUnica},function(data){
+  showModal('✏️ Editar registro','Modifica el registro del '+pad(r.d)+'/'+pad(r.m)+'/'+r.y+' ('+r.alumno+')','edit',{estado:r.estado,causa:r.causa,justificada:r.justificada,horaSalida:r.horaSalida,horaLlegada:r.horaLlegada,horaUnica:r.horaUnica},function(data){
     if(data!==null){
       const idxH=historicalRecords.findIndex(function(x){return x.y===r.y&&x.m===r.m&&x.d===r.d&&x.alumno===r.alumno;}); if(idxH>=0)historicalRecords.splice(idxH,1);
       const idxU=userRecords.findIndex(function(x){return x.y===r.y&&x.m===r.m&&x.d===r.d&&x.alumno===r.alumno;}); if(idxU>=0)userRecords.splice(idxU,1);
@@ -1330,7 +1405,7 @@ function eliminarRegistro(idx){
   const parts=periodoVal.split('-'); const y=parseInt(parts[0]); const m=parseInt(parts[1]);
   const R=[...historicalRecords,...userRecords].filter(function(r){return r.y===y&&r.m===m;}).sort(function(a,b){return a.d-b.d;});
   const r=R[idx];
-  showModal('️ Eliminar registro','¿Seguro que quieres eliminar el registro del '+pad(r.d)+'/'+pad(r.m)+'/'+r.y+' ('+r.alumno+')?','danger',null,function(respuesta){
+  showModal('🗑️ Eliminar registro','¿Seguro que quieres eliminar el registro del '+pad(r.d)+'/'+pad(r.m)+'/'+r.y+' ('+r.alumno+')?','danger',null,function(respuesta){
     if(respuesta===true){
       const idxH=historicalRecords.findIndex(function(x){return x.y===r.y&&x.m===r.m&&x.d===r.d&&x.alumno===r.alumno;}); if(idxH>=0)historicalRecords.splice(idxH,1);
       const idxU=userRecords.findIndex(function(x){return x.y===r.y&&x.m===r.m&&x.d===r.d&&x.alumno===r.alumno;}); if(idxU>=0)userRecords.splice(idxU,1);
