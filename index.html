@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Control de Alumnos</title>
 <script src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;background:#f0f2f5;color:#1f2937;padding:16px}
@@ -29,12 +30,15 @@ h1{text-align:center;color:#1e3a8a;font-size:28px;margin-bottom:4px}
 .b4{background:#6b7280}.b4:hover{background:#4b5563}
 .b5{background:#059669}.b5:hover{background:#047857}
 .b6{background:#7c3aed}.b6:hover{background:#6d28d9}
+.b7{background:#ea580c}.b7:hover{background:#c2410c}
 table{width:100%;border-collapse:collapse;margin-top:8px}
 th{background:#f9fafb;text-align:left;padding:8px 10px;font-size:11px;text-transform:uppercase;color:#6b7280;font-weight:600}
 th.r,td.r{text-align:center}
 td{padding:8px 10px;border-bottom:1px solid #f3f4f6;font-size:13px}
 tr.tot{background:#f3f4f6;font-weight:700}
 tr:hover{background:#f9fafb}
+.alumno-link{color:#2563eb;cursor:pointer;text-decoration:none;font-weight:500}
+.alumno-link:hover{text-decoration:underline;color:#1d4ed8}
 .sel{padding:9px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;margin-right:8px}
 .box{background:#f9fafb;padding:14px;border-radius:8px;margin-top:16px;font-size:14px}
 .calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:15px}
@@ -71,6 +75,7 @@ tr:hover{background:#f9fafb}
 .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:1000}
 .modal-overlay.show{display:flex}
 .modal{background:#fff;border-radius:12px;padding:24px;max-width:700px;width:90%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3);animation:modalIn .2s ease}
+.modal-grande{max-width:900px}
 @keyframes modalIn{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
 .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid #e5e7eb}
 .modal-header h3{color:#1f2937;font-size:20px}
@@ -86,7 +91,7 @@ tr:hover{background:#f9fafb}
 .campos-hora input[type="time"]{padding:6px 10px;border:1px solid #d1d5db;border-radius:4px;font-size:13px;flex:1;max-width:140px}
 .campos-hora.hora-unica{flex-direction:row;flex-wrap:wrap}
 .campos-hora.hora-unica label{min-width:90px}
-.modal-footer{margin-top:20px;padding-top:16px;border-top:2px solid #e5e7eb;display:flex;justify-content:flex-end;gap:12px}
+.modal-footer{margin-top:20px;padding-top:16px;border-top:2px solid #e5e7eb;display:flex;justify-content:flex-end;gap:12px;flex-wrap:wrap}
 .day-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
 .day-detail-item{padding:8px 12px;background:#f9fafb;border-radius:6px;font-size:13px}
 .day-detail-item .nombre{font-weight:600;color:#1f2937}
@@ -114,8 +119,6 @@ tr:hover{background:#f9fafb}
 .info-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:16px;margin-bottom:20px}
 .info-box h4{color:#1e40af;margin-bottom:8px;font-size:15px}
 .info-box p{color:#1e40af;font-size:13px;line-height:1.6}
-
-/* ✅ ESTILOS DE CONFIGURACIÓN */
 .config-section{margin-bottom:30px;padding:20px;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb}
 .config-section h3{margin-bottom:16px;color:#1e3a8a;font-size:18px}
 .config-form{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-bottom:16px}
@@ -145,6 +148,18 @@ tr:hover{background:#f9fafb}
 .stat-item.total .stat-value{color:#1e3a8a}
 .stat-item.consumidos .stat-value{color:#059669}
 .stat-item.pendientes .stat-value{color:#dc2626}
+
+/* ✅ ESTILOS PARA DETALLE DE ALUMNO */
+.detalle-alumno{padding:10px}
+.detalle-alumno h4{color:#1e3a8a;margin:16px 0 8px 0;font-size:15px;border-bottom:2px solid #e5e7eb;padding-bottom:6px}
+.detalle-alumno h4:first-child{margin-top:0}
+.detalle-alumno table{width:100%;border-collapse:collapse;margin-bottom:10px}
+.detalle-alumno table th{background:#f3f4f6;padding:8px;font-size:12px;text-align:left}
+.detalle-alumno table td{padding:8px;font-size:13px;border-bottom:1px solid #f3f4f6}
+.detalle-alumno .sin-registros{color:#6b7280;font-style:italic;padding:12px;background:#f9fafb;border-radius:6px;text-align:center}
+.detalle-alumno .total-seccion{background:#f3f4f6;font-weight:700}
+.detalle-alumno .hora-detalle{color:#6b7280;font-size:12px}
+.detalle-alumno .causa-detalle{color:#92400e;font-size:12px;font-style:italic}
 
 @media print{body *{visibility:hidden}.print-area,.print-area *{visibility:visible}.print-area{position:absolute;left:0;top:0;display:block;width:100%}.no-print{display:none!important}}
 @media(max-width:768px){.cards{grid-template-columns:1fr}.calendar{grid-template-columns:repeat(7,1fr);gap:2px}.cal-day{min-height:50px;padding:3px}.alumno-row{grid-template-columns:1fr;gap:8px}.modal{width:95%;padding:16px}.alert-container{left:20px;right:20px;max-width:none}.stats-config{grid-template-columns:1fr}.config-form{flex-direction:column}.rango-fechas{flex-direction:column}.rango-box .rango-inputs{flex-direction:column}}
@@ -202,12 +217,20 @@ tr:hover{background:#f9fafb}
 </div>
 
 <div id="p2" class="pnl">
-<h2>👤 Total por Alumno <button class="btn b4" style="float:right" onclick="imprimir('maquinas')">🖨️ Imprimir</button></h2>
+<h2>👤 Total por Alumno</h2>
+<div style="display:flex;gap:8px;float:right;margin-top:-40px">
+<button class="btn b4" onclick="imprimir('maquinas')">🖨️ Imprimir</button>
+<button class="btn b7" onclick="crearPDF('maquinas')">📄 Crear PDF</button>
+</div>
 <table id="tablaMaquinasTbl"><thead><tr><th>Alumno</th><th class="r">Presentes</th><th class="r">Ausencias</th><th class="r">Entradas tarde</th><th class="r">Salidas pronto</th><th class="r">Citas médicas</th><th class="r">Conciliaciones</th><th class="r">Bajas</th></tr></thead><tbody id="t2"></tbody></table>
 </div>
 
 <div id="p3" class="pnl">
-<h2>📊 Resumen por Periodo <button class="btn b4" style="float:right" onclick="imprimir('tiempo')">🖨️ Imprimir</button></h2>
+<h2>📊 Resumen por Periodo</h2>
+<div style="display:flex;gap:8px;float:right;margin-top:-40px">
+<button class="btn b4" onclick="imprimir('tiempo')">🖨️ Imprimir</button>
+<button class="btn b7" onclick="crearPDF('tiempo')"> Crear PDF</button>
+</div>
 <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap">
 <div class="filter-group"><label>Periodo</label><select id="fPeriodo" onchange="renderTiempo()" class="sel"><option value="ALL">Todo el curso</option></select></div>
 <div class="filter-group"><label>Alumno</label><select id="fMaq" onchange="renderTiempo()" class="sel"><option value="TODOS">Todos los alumnos</option></select></div>
@@ -236,7 +259,7 @@ tr:hover{background:#f9fafb}
 </div>
 
 <div id="p5" class="pnl">
-<h2>✏️ Editar Registros</h2>
+<h2>️ Editar Registros</h2>
 <div style="margin-bottom:12px"><select class="sel" id="editPeriodo" onchange="cargarRegistrosEditarDesdePeriodo()"></select></div>
 <table><thead><tr><th>Fecha</th><th>Alumno</th><th class="r">Estado</th><th>Detalles</th><th>Acciones</th></tr></thead><tbody id="tEdit"></tbody></table>
 </div>
@@ -261,11 +284,8 @@ tr:hover{background:#f9fafb}
 </div>
 </div>
 
-<!-- ✅ PESTAÑA DE CONFIGURACIÓN COMPLETA -->
 <div id="p8" class="pnl">
-<h2>⚙️ Configuración</h2>
-
-<!-- Panel de estadísticas -->
+<h2>️ Configuración</h2>
 <div class="stats-config" id="statsConfig">
 <div class="stats-group vacaciones">
 <h4>🏖️ Vacaciones</h4>
@@ -284,39 +304,25 @@ tr:hover{background:#f9fafb}
 </div>
 </div>
 </div>
-
-<!-- Gestión de Alumnos -->
 <div class="config-section">
 <h3>👥 Gestión de Alumnos</h3>
 <div class="config-form">
-<div class="filter-group">
-<label>Nombre del alumno</label>
-<input type="text" id="nuevoAlumno" placeholder="Ej: GARCÍA LÓPEZ, JUAN">
-</div>
+<div class="filter-group"><label>Nombre del alumno</label><input type="text" id="nuevoAlumno" placeholder="Ej: GARCÍA LÓPEZ, JUAN"></div>
 <button class="btn b2" onclick="agregarAlumno()">➕ Añadir Alumno</button>
 </div>
 <div class="config-list" id="listaAlumnos"></div>
 </div>
-
-<!-- Gestión de Festivos -->
 <div class="config-section">
 <h3>🎉 Gestión de Festivos</h3>
 <div class="config-form">
 <div class="filter-group"><label>Día</label><input type="number" id="nuevoFestivoDia" min="1" max="31" placeholder="Día"></div>
-<div class="filter-group"><label>Mes</label><select id="nuevoFestivoMes">
-<option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option>
-<option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
-<option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option>
-<option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
-</select></div>
+<div class="filter-group"><label>Mes</label><select id="nuevoFestivoMes"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
 <div class="filter-group"><label>Año</label><select id="nuevoFestivoAnio"><option value="2026">2026</option><option value="2027">2027</option></select></div>
 <div class="filter-group"><label>Nombre del festivo</label><input type="text" id="nuevoFestivoNombre" placeholder="Ej: Día del Trabajo"></div>
 <button class="btn b2" onclick="agregarFestivo()">➕ Añadir Festivo</button>
 </div>
 <div class="config-list" id="listaFestivos"></div>
 </div>
-
-<!-- Gestión de Vacaciones -->
 <div class="config-section">
 <h3>🏖️ Gestión de Vacaciones (por rangos)</h3>
 <p style="color:#6b7280;font-size:13px;margin-bottom:12px">Introduce la fecha de inicio y la fecha final (ambas inclusive). <strong>Se añadirán automáticamente solo los días lectivos</strong> (se excluyen sábados, domingos y festivos).</p>
@@ -325,25 +331,15 @@ tr:hover{background:#f9fafb}
 <h4>📅 Fecha de inicio</h4>
 <div class="rango-inputs">
 <div class="filter-group"><label>Día</label><input type="number" id="nuevaVacacionDiaIni" min="1" max="31" placeholder="Día"></div>
-<div class="filter-group"><label>Mes</label><select id="nuevaVacacionMesIni">
-<option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option>
-<option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
-<option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option>
-<option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
-</select></div>
+<div class="filter-group"><label>Mes</label><select id="nuevaVacacionMesIni"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
 <div class="filter-group"><label>Año</label><select id="nuevaVacacionAnioIni"><option value="2026">2026</option><option value="2027">2027</option></select></div>
 </div>
 </div>
 <div class="rango-box">
-<h4> Fecha final (inclusive)</h4>
+<h4>📅 Fecha final (inclusive)</h4>
 <div class="rango-inputs">
 <div class="filter-group"><label>Día</label><input type="number" id="nuevaVacacionDiaFin" min="1" max="31" placeholder="Día"></div>
-<div class="filter-group"><label>Mes</label><select id="nuevaVacacionMesFin">
-<option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option>
-<option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
-<option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option>
-<option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
-</select></div>
+<div class="filter-group"><label>Mes</label><select id="nuevaVacacionMesFin"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
 <div class="filter-group"><label>Año</label><select id="nuevaVacacionAnioFin"><option value="2026">2026</option><option value="2027">2027</option></select></div>
 </div>
 </div>
@@ -351,7 +347,6 @@ tr:hover{background:#f9fafb}
 <button class="btn b2" onclick="agregarVacacion()">➕ Añadir Rango de Vacaciones</button>
 <div class="config-list" id="listaVacaciones"></div>
 </div>
-
 <div style="margin-top:20px;padding:16px;background:#fef3c7;border-radius:8px;border:1px solid #fcd34d">
 <p style="color:#92400e;font-size:13px"><strong>⚠️ Importante:</strong> Después de hacer cambios en la configuración, pulsa <strong>"💾 Guardar"</strong> en la pestaña "Datos" para que los cambios se guarden permanentemente en la nube.</p>
 </div>
@@ -360,6 +355,7 @@ tr:hover{background:#f9fafb}
 </div>
 </div>
 
+<!-- Modal de asistencia -->
 <div class="modal-overlay" id="modalAsistencia">
 <div class="modal">
 <div class="modal-header">
@@ -374,6 +370,7 @@ tr:hover{background:#f9fafb}
 </div>
 </div>
 
+<!-- Modal de detalle del día -->
 <div class="modal-overlay" id="modalDetalle">
 <div class="modal">
 <div class="modal-header">
@@ -388,7 +385,23 @@ tr:hover{background:#f9fafb}
 </div>
 </div>
 
-<!-- Modal de confirmación genérico -->
+<!-- ✅ NUEVO: Modal de detalle de alumno -->
+<div class="modal-overlay" id="modalDetalleAlumno">
+<div class="modal modal-grande">
+<div class="modal-header">
+<h3 id="modalDetalleAlumnoTitulo">Detalle del alumno</h3>
+<button class="modal-close" onclick="cerrarModalDetalleAlumno()">×</button>
+</div>
+<div id="modalDetalleAlumnoContenido" class="detalle-alumno"></div>
+<div class="modal-footer">
+<button class="btn b4" onclick="imprimirDetalleAlumno()">🖨️ Imprimir</button>
+<button class="btn b7" onclick="crearPDFDetalleAlumno()">📄 Crear PDF</button>
+<button class="btn b1" onclick="cerrarModalDetalleAlumno()">Cerrar</button>
+</div>
+</div>
+</div>
+
+<!-- Modal de confirmación -->
 <div class="modal-overlay" id="modalConfirmacion">
 <div class="modal" style="max-width:500px">
 <div class="modal-header">
@@ -457,6 +470,7 @@ setTimeout(() => {
 const ALUMNOS_BASE=["AMEZ FUERTES, RAUL","BLANCO FRANCO, SANTIAGO ANDRÉS","FERNÁNDEZ MACAYO, M. ISABEL","MAIQUEZ DOMINGUEZ, HECTOR JOSÉ","MALLO RODRÍGUEZ, MIGUEL","MUÑIZ CAÑIBANO, MARÍA BELÉN"];
 const DIAS=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
 const MESES_NOMBRES=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+const DIAS_SEMANA=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
 const INICIO_CURSO={y:2026,m:3,d:1};
 const FIN_CURSO={y:2027,m:2,d:28};
 let FESTIVOS=[];
@@ -474,6 +488,7 @@ let anioSeleccionado=null;
 let diaDetalleSeleccionado=null;
 let confirmacionCallback=null;
 let indiceAlumnoEditar=null;
+let alumnoDetalleActual=null;
 
 function getPeriodoLabel(year, month){return MESES_NOMBRES[month-1]+" "+year;}
 function getDayType(year, month, day){
@@ -499,8 +514,6 @@ function generarPeriodos(){
   }
   return periodos;
 }
-
-// ✅ SISTEMA DE ALERTAS PERSONALIZADAS
 function mostrarAlerta(tipo,mensaje,duracion=5000){
   const cont=document.getElementById('alertContainer');
   const iconos={info:'ℹ️',error:'❌',success:'✅',warning:'⚠️'};
@@ -517,7 +530,6 @@ function mostrarAlerta(tipo,mensaje,duracion=5000){
     },duracion);
   }
 }
-
 async function cargarDatosFirebase() {
   document.getElementById('loader').classList.remove('hidden');
   try {
@@ -568,7 +580,6 @@ async function guardarDatosFirebase() {
     mostrarAlerta('error', 'Error al guardar en Firebase');
   }
 }
-
 function inicializarApp(){
   document.getElementById('todayDate').textContent=new Date().toLocaleDateString('es-ES');
   const periodos=generarPeriodos();
@@ -593,11 +604,9 @@ function inicializarApp(){
   renderAll();
   generarCalendarioEntrada();
 }
-
 function getAll(){return[...historicalRecords,...userRecords];}
 function saveUser(){localStorage.setItem('ca_cache',JSON.stringify({alumnos:ALUMNOS,registros:[...historicalRecords,...userRecords],festivos:FESTIVOS,vacaciones:VACACIONES}));}
 function pad(n){return n<10?'0'+n:''+n;}
-
 function showTab(id){
   document.querySelectorAll('.pnl').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.tb').forEach(t=>t.classList.remove('on'));
@@ -610,7 +619,6 @@ function showTab(id){
   if(id==='p8')setTimeout(renderConfiguracion,100);
 }
 document.querySelectorAll('.tb').forEach(b=>b.addEventListener('click',function(){showTab(this.getAttribute('data-t'));}));
-
 function renderAll(){
   const R=getAll();
   const totalPresentes=R.filter(r=>r.estado==='presente').length;
@@ -632,7 +640,8 @@ function renderMaquinas(){
     totales.presente+=s.presente; totales.ausente+=s.ausente; totales.entrada_tarde+=s.entrada_tarde;
     totales.salida_pronto+=s.salida_pronto; totales.cita_medica+=s.cita_medica; totales.conciliacion+=s.conciliacion;
     totales.baja+=s.baja;
-    tb.innerHTML+='<tr><td>'+m+'</td><td class="r">'+s.presente+'</td><td class="r">'+s.ausente+'</td><td class="r">'+s.entrada_tarde+'</td><td class="r">'+s.salida_pronto+'</td><td class="r">'+s.cita_medica+'</td><td class="r">'+s.conciliacion+'</td><td class="r">'+s.baja+'</td></tr>';
+    // ✅ Nombre clickeable
+    tb.innerHTML+='<tr><td><a class="alumno-link" onclick="abrirDetalleAlumno(\''+m.replace(/'/g,"\\'")+'\')">'+m+'</a></td><td class="r">'+s.presente+'</td><td class="r">'+s.ausente+'</td><td class="r">'+s.entrada_tarde+'</td><td class="r">'+s.salida_pronto+'</td><td class="r">'+s.cita_medica+'</td><td class="r">'+s.conciliacion+'</td><td class="r">'+s.baja+'</td></tr>';
   });
   tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.cita_medica+'</td><td class="r">'+totales.conciliacion+'</td><td class="r">'+totales.baja+'</td></tr>';
 }
@@ -651,6 +660,144 @@ function renderTiempo(){
     ks.forEach(k=>{ totales.presente+=ag[k].presente; totales.ausente+=ag[k].ausente; totales.entrada_tarde+=ag[k].entrada_tarde; totales.salida_pronto+=ag[k].salida_pronto; totales.baja+=ag[k].baja; tb.innerHTML+='<tr><td>'+k+'</td><td class="r">'+ag[k].presente+'</td><td class="r">'+ag[k].ausente+'</td><td class="r">'+ag[k].entrada_tarde+'</td><td class="r">'+ag[k].salida_pronto+'</td><td class="r">'+ag[k].baja+'</td></tr>'; });
     tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.baja+'</td></tr>';
   }
+}
+
+// ✅ NUEVA FUNCIÓN: Abrir detalle de alumno
+function abrirDetalleAlumno(alumno){
+  alumnoDetalleActual=alumno;
+  const registros=getAll().filter(r=>r.alumno===alumno).sort((a,b)=>{
+    if(a.y!==b.y) return a.y-b.y;
+    if(a.m!==b.m) return a.m-b.m;
+    return a.d-b.d;
+  });
+  
+  document.getElementById('modalDetalleAlumnoTitulo').textContent=' Detalle de: '+alumno;
+  
+  // Agrupar por tipo de incidencia (excluir presentes)
+  const ausencias=registros.filter(r=>r.estado==='ausente');
+  const entradasTarde=registros.filter(r=>r.estado==='entrada_tarde');
+  const salidasPronto=registros.filter(r=>r.estado==='salida_pronto');
+  const citasMedicas=registros.filter(r=>r.estado==='cita_medica');
+  const conciliaciones=registros.filter(r=>r.estado==='conciliacion');
+  const bajas=registros.filter(r=>r.estado==='baja');
+  
+  let html='';
+  
+  // Resumen
+  html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:20px">';
+  html+='<div style="padding:12px;background:#fee2e2;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#991b1b">'+ausencias.length+'</div><div style="font-size:12px;color:#991b1b">Ausencias</div></div>';
+  html+='<div style="padding:12px;background:#fef3c7;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#92400e">'+entradasTarde.length+'</div><div style="font-size:12px;color:#92400e">Entradas tarde</div></div>';
+  html+='<div style="padding:12px;background:#fce7f3;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#9d174d">'+salidasPronto.length+'</div><div style="font-size:12px;color:#9d174d">Salidas pronto</div></div>';
+  html+='<div style="padding:12px;background:#dbeafe;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#1e40af">'+citasMedicas.length+'</div><div style="font-size:12px;color:#1e40af">Citas médicas</div></div>';
+  html+='<div style="padding:12px;background:#e0e7ff;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#3730a3">'+conciliaciones.length+'</div><div style="font-size:12px;color:#3730a3">Conciliaciones</div></div>';
+  html+='<div style="padding:12px;background:#fecaca;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#991b1b">'+bajas.length+'</div><div style="font-size:12px;color:#991b1b">Bajas</div></div>';
+  html+='</div>';
+  
+  // Función auxiliar para generar tabla
+  function generarTabla(registros, titulo, icono){
+    if(registros.length===0) return '';
+    let t='<h4>'+icono+' '+titulo+' ('+registros.length+')</h4>';
+    t+='<table><thead><tr><th>Fecha</th><th>Día</th><th>Horario</th><th>Detalles</th></tr></thead><tbody>';
+    registros.forEach(r=>{
+      const fecha=pad(r.d)+'/'+pad(r.m)+'/'+r.y;
+      const fechaObj=new Date(r.y,r.m-1,r.d);
+      const diaSemana=DIAS_SEMANA[fechaObj.getDay()];
+      let horario='-';
+      if(r.horaUnica) horario='🕐 '+r.horaUnica;
+      else if(r.horaSalida&&r.horaLlegada) horario='🕐 '+r.horaSalida+' - '+r.horaLlegada;
+      let detalles='';
+      if(r.causa) detalles='<span class="causa-detalle">📝 '+r.causa+'</span>';
+      if(r.justificada) detalles+=' <span style="color:#166534">✓ Justificada</span>';
+      t+='<tr><td><strong>'+fecha+'</strong></td><td>'+diaSemana+'</td><td class="hora-detalle">'+horario+'</td><td>'+(detalles||'-')+'</td></tr>';
+    });
+    t+='</tbody></table>';
+    return t;
+  }
+  
+  html+=generarTabla(ausencias,'Ausencias','');
+  html+=generarTabla(entradasTarde,'Entradas tarde','⏰');
+  html+=generarTabla(salidasPronto,'Salidas pronto','📤');
+  html+=generarTabla(citasMedicas,'Citas médicas','🏥');
+  html+=generarTabla(conciliaciones,'Conciliaciones','👨‍👩‍');
+  html+=generarTabla(bajas,'Bajas','🤒');
+  
+  if(registros.filter(r=>r.estado!=='presente').length===0){
+    html='<div style="padding:40px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px">✅</p><p style="font-size:16px">Este alumno no tiene incidencias registradas</p><p style="margin-top:8px;font-size:13px">Todos sus registros son de asistencia presente.</p></div>';
+  }
+  
+  document.getElementById('modalDetalleAlumnoContenido').innerHTML=html;
+  document.getElementById('modalDetalleAlumno').classList.add('show');
+}
+
+function cerrarModalDetalleAlumno(){
+  document.getElementById('modalDetalleAlumno').classList.remove('show');
+  alumnoDetalleActual=null;
+}
+
+// ✅ IMPRIMIR DETALLE DE ALUMNO
+function imprimirDetalleAlumno(){
+  if(!alumnoDetalleActual) return;
+  const contenido=document.getElementById('modalDetalleAlumnoContenido').innerHTML;
+  const area=document.getElementById('printArea');
+  area.innerHTML='<div style="padding:20px"><h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Detalle de: '+alumnoDetalleActual+'</h2>'+contenido+'</div>';
+  window.print();
+  setTimeout(()=>{area.innerHTML='';},1000);
+}
+
+// ✅ CREAR PDF DETALLE DE ALUMNO
+function crearPDFDetalleAlumno(){
+  if(!alumnoDetalleActual) return;
+  mostrarAlerta('info','Generando PDF...');
+  const contenido=document.getElementById('modalDetalleAlumnoContenido').innerHTML;
+  const element=document.createElement('div');
+  element.innerHTML='<div style="padding:20px;font-family:Arial,sans-serif"><h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Detalle de: '+alumnoDetalleActual+'</h2><p style="color:#6b7280;margin-bottom:20px">Curso 2026/2027 - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>'+contenido+'</div>';
+  document.body.appendChild(element);
+  const opt={
+    margin:10,
+    filename:'detalle_'+alumnoDetalleActual.replace(/[^a-zA-Z0-9]/g,'_')+'.pdf',
+    image:{type:'jpeg',quality:0.98},
+    html2canvas:{scale:2},
+    jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}
+  };
+  html2pdf().set(opt).from(element).save().then(()=>{
+    document.body.removeChild(element);
+    mostrarAlerta('success','PDF generado correctamente');
+  }).catch(err=>{
+    document.body.removeChild(element);
+    mostrarAlerta('error','Error al generar PDF: '+err.message);
+  });
+}
+
+// ✅ CREAR PDF genérico para tablas
+function crearPDF(tipo){
+  mostrarAlerta('info','Generando PDF...');
+  let contenido='',titulo='',filename='';
+  if(tipo==='maquinas'){
+    titulo='Total por Alumno';
+    contenido='<h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">'+titulo+'</h2><p style="color:#6b7280;margin-bottom:20px">Curso 2026/2027 - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>'+document.getElementById('tablaMaquinasTbl').outerHTML;
+    filename='total_por_alumno.pdf';
+  }else if(tipo==='tiempo'){
+    titulo='Resumen por Periodo';
+    contenido='<h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">'+titulo+'</h2><p style="color:#6b7280;margin-bottom:20px">Curso 2026/2027 - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>'+document.getElementById('tablaTiempoTbl').outerHTML;
+    filename='resumen_por_periodo.pdf';
+  }
+  const element=document.createElement('div');
+  element.innerHTML='<div style="padding:20px;font-family:Arial,sans-serif">'+contenido+'</div>';
+  document.body.appendChild(element);
+  const opt={
+    margin:10,
+    filename:filename,
+    image:{type:'jpeg',quality:0.98},
+    html2canvas:{scale:2},
+    jsPDF:{unit:'mm',format:'a4',orientation:'landscape'}
+  };
+  html2pdf().set(opt).from(element).save().then(()=>{
+    document.body.removeChild(element);
+    mostrarAlerta('success','PDF generado correctamente');
+  }).catch(err=>{
+    document.body.removeChild(element);
+    mostrarAlerta('error','Error al generar PDF: '+err.message);
+  });
 }
 
 function generarCalendarioEntrada(){
@@ -827,7 +974,7 @@ function actualizarCalendario(y,m){
       if(counts.entrada_tarde>0) stats.push('⏰'+counts.entrada_tarde);
       if(counts.salida_pronto>0) stats.push('📤'+counts.salida_pronto);
       if(counts.cita_medica>0) stats.push('🏥'+counts.cita_medica);
-      if(counts.conciliacion>0) stats.push('👨‍‍👧'+counts.conciliacion);
+      if(counts.conciliacion>0) stats.push('👨‍👩‍👧'+counts.conciliacion);
       if(counts.baja>0) stats.push('🤒'+counts.baja);
       html+='<div class="day-stats">'+stats.join(' ')+'</div>';
       html+='<div class="day-info">'+totalRegistros+'/'+ALUMNOS.length+' alumnos</div>';
@@ -850,7 +997,7 @@ function abrirModalDetalle(y,m,d){
   let html='';
   if(registros.length===0){
     html='<div style="padding:20px;text-align:center;color:#6b7280">';
-    html+='<p style="font-size:48px;margin-bottom:12px">📭</p>';
+    html+='<p style="font-size:48px;margin-bottom:12px"></p>';
     html+='<p>No hay registros para este día</p>';
     html+='<p style="margin-top:12px"><button class="btn b2" onclick="cerrarModalDetalle();abrirModalAsistenciaDesdeDetalle('+d+')">➕ Añadir registros</button></p>';
     html+='</div>';
@@ -921,7 +1068,6 @@ function cargarRegistrosEditar(y,m){
   });
 }
 
-// ✅ Eliminar registro con modal propio (sin confirm())
 function confirmarEliminarRegistro(idx){
   const periodoVal=document.getElementById('editPeriodo').value;
   const parts=periodoVal.split('-'); const y=parseInt(parts[0]); const m=parseInt(parts[1]);
@@ -941,19 +1087,20 @@ function confirmarEliminarRegistro(idx){
 
 function imprimir(tipo){
   const area=document.getElementById('printArea');let contenido='';
-  if(tipo==='maquinas')contenido='<h1>Total por Alumno</h1>'+document.getElementById('tablaMaquinasTbl').outerHTML;
-  else if(tipo==='tiempo')contenido='<h1>Resumen por Periodo</h1>'+document.getElementById('tablaTiempoTbl').outerHTML;
-  area.innerHTML=contenido;window.print();setTimeout(()=>{area.innerHTML='';},1000);
+  if(tipo==='maquinas')contenido='<h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Total por Alumno</h2><p style="color:#6b7280;margin-bottom:20px">Curso 2026/2027 - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>'+document.getElementById('tablaMaquinasTbl').outerHTML;
+  else if(tipo==='tiempo')contenido='<h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Resumen por Periodo</h2><p style="color:#6b7280;margin-bottom:20px">Curso 2026/2027 - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>'+document.getElementById('tablaTiempoTbl').outerHTML;
+  area.innerHTML='<div style="padding:20px">'+contenido+'</div>';
+  window.print();
+  setTimeout(()=>{area.innerHTML='';},1000);
 }
 
-// ✅ SISTEMA DE DOBLE CONFIRMACIÓN PARA RESETEAR
 function confirmarResetear(){
   abrirModalConfirmacion(
     'Primera confirmación',
     '¿Estás seguro de que quieres resetear TODOS los datos? Esta acción eliminará:\n\n• Todos los alumnos\n• Todos los registros de asistencia\n• Festivos y vacaciones configurados\n\nEsta acción NO se puede deshacer.',
     function(){
       abrirModalConfirmacion(
-        '️ ÚLTIMA CONFIRMACIÓN',
+        '⚠️ ÚLTIMA CONFIRMACIÓN',
         '¿REALMENTE ESTÁS SEGURO?\n\nSe borrarán TODOS los datos permanentemente.\n\nSi continúas, perderás toda la información.',
         function(){
           localStorage.removeItem('ca_cache');
@@ -990,52 +1137,38 @@ function cerrarModalConfirmacion(){
 }
 
 // ============================================
-// ✅ FUNCIONES DE CONFIGURACIÓN
+// FUNCIONES DE CONFIGURACIÓN
 // ============================================
-
 function renderConfiguracion(){
   renderEstadisticasConfig();
   renderListaAlumnos();
   renderListaFestivos();
   renderListaVacaciones();
 }
-
 function renderEstadisticasConfig(){
   const hoy=new Date();
   hoy.setHours(0,0,0,0);
   const vacTotal=VACACIONES.length;
   let vacConsumidas=0, vacPendientes=0;
-  VACACIONES.forEach(v=>{
-    const fechaVac=new Date(v.y,v.m-1,v.d);
-    if(fechaVac<hoy) vacConsumidas++; else vacPendientes++;
-  });
+  VACACIONES.forEach(v=>{ const fechaVac=new Date(v.y,v.m-1,v.d); if(fechaVac<hoy) vacConsumidas++; else vacPendientes++; });
   document.getElementById('statVacTotal').textContent=vacTotal;
   document.getElementById('statVacConsumidas').textContent=vacConsumidas;
   document.getElementById('statVacPendientes').textContent=vacPendientes;
   const festTotal=FESTIVOS.length;
   let festConsumidos=0, festPendientes=0;
-  FESTIVOS.forEach(f=>{
-    const fechaFest=new Date(f.y,f.m-1,f.d);
-    if(fechaFest<hoy) festConsumidos++; else festPendientes++;
-  });
+  FESTIVOS.forEach(f=>{ const fechaFest=new Date(f.y,f.m-1,f.d); if(fechaFest<hoy) festConsumidos++; else festPendientes++; });
   document.getElementById('statFestTotal').textContent=festTotal;
   document.getElementById('statFestConsumidos').textContent=festConsumidos;
   document.getElementById('statFestPendientes').textContent=festPendientes;
 }
-
-// --- ALUMNOS ---
 function renderListaAlumnos(){
   const lista=document.getElementById('listaAlumnos');
   lista.innerHTML='';
-  if(ALUMNOS.length===0){
-    lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay alumnos configurados</p>';
-    return;
-  }
+  if(ALUMNOS.length===0){ lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay alumnos configurados</p>'; return; }
   ALUMNOS.forEach(function(alumno,idx){
     lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+alumno+'</strong></div><div class="config-item-actions"><button class="btn b1 action-btn" onclick="abrirEditarAlumno('+idx+')">✏️ Editar</button><button class="btn b3 action-btn" onclick="confirmarEliminarAlumno('+idx+')">🗑️ Eliminar</button></div></div>';
   });
 }
-
 function agregarAlumno(){
   const nombre=document.getElementById('nuevoAlumno').value.trim();
   if(!nombre){mostrarAlerta('warning','Introduce un nombre de alumno');return;}
@@ -1047,18 +1180,12 @@ function agregarAlumno(){
   renderAll();
   mostrarAlerta('success','Alumno añadido correctamente');
 }
-
 function abrirEditarAlumno(idx){
   indiceAlumnoEditar=idx;
   document.getElementById('inputNuevoNombreAlumno').value=ALUMNOS[idx];
   document.getElementById('modalEditarAlumno').classList.add('show');
 }
-
-function cerrarModalEditarAlumno(){
-  document.getElementById('modalEditarAlumno').classList.remove('show');
-  indiceAlumnoEditar=null;
-}
-
+function cerrarModalEditarAlumno(){ document.getElementById('modalEditarAlumno').classList.remove('show'); indiceAlumnoEditar=null; }
 function confirmarEdicionAlumno(){
   const nuevoNombre=document.getElementById('inputNuevoNombreAlumno').value.trim();
   if(!nuevoNombre){mostrarAlerta('warning','El nombre no puede estar vacío');return;}
@@ -1066,17 +1193,13 @@ function confirmarEdicionAlumno(){
   if(ALUMNOS.includes(nuevoNombre)){mostrarAlerta('error','Ya existe un alumno con ese nombre');return;}
   const nombreAnterior=ALUMNOS[indiceAlumnoEditar];
   ALUMNOS[indiceAlumnoEditar]=nuevoNombre;
-  // Actualizar registros con el nuevo nombre
-  [...historicalRecords,...userRecords].forEach(r=>{
-    if(r.alumno===nombreAnterior) r.alumno=nuevoNombre;
-  });
+  [...historicalRecords,...userRecords].forEach(r=>{ if(r.alumno===nombreAnterior) r.alumno=nuevoNombre; });
   cerrarModalEditarAlumno();
   renderListaAlumnos();
   actualizarSelectoresAlumnos();
   renderAll();
   mostrarAlerta('success','Nombre del alumno actualizado');
 }
-
 function confirmarEliminarAlumno(idx){
   const alumno=ALUMNOS[idx];
   abrirModalConfirmacion(
@@ -1084,7 +1207,6 @@ function confirmarEliminarAlumno(idx){
     '¿Seguro que quieres eliminar a <strong>'+alumno+'</strong>?\n\nSe perderán todos sus registros de asistencia.\n\nEsta acción no se puede deshacer.',
     function(){
       ALUMNOS.splice(idx,1);
-      // Eliminar registros de este alumno
       historicalRecords=historicalRecords.filter(r=>r.alumno!==alumno);
       userRecords=userRecords.filter(r=>r.alumno!==alumno);
       renderListaAlumnos();
@@ -1095,42 +1217,28 @@ function confirmarEliminarAlumno(idx){
     }
   );
 }
-
 function actualizarSelectoresAlumnos(){
-  // Actualizar selector de filtro en "Por Mes/Año"
   const fMaq=document.getElementById('fMaq');
   const valorActual=fMaq.value;
   fMaq.innerHTML='<option value="TODOS">Todos los alumnos</option>';
   ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;fMaq.appendChild(o);});
   if(ALUMNOS.includes(valorActual)) fMaq.value=valorActual;
-  
-  // Actualizar selector de filtro en Calendario
   const calFiltroAlumno=document.getElementById('calFiltroAlumno');
   const valorCal=calFiltroAlumno.value;
   calFiltroAlumno.innerHTML='<option value="TODOS">Todos los alumnos</option>';
   ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;calFiltroAlumno.appendChild(o);});
   if(ALUMNOS.includes(valorCal)) calFiltroAlumno.value=valorCal;
 }
-
-// --- FESTIVOS ---
 function renderListaFestivos(){
   const lista=document.getElementById('listaFestivos');
   lista.innerHTML='';
-  if(FESTIVOS.length===0){
-    lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay festivos configurados</p>';
-    return;
-  }
-  FESTIVOS.sort((a,b)=>{
-    if(a.y!==b.y)return a.y-b.y;
-    if(a.m!==b.m)return a.m-b.m;
-    return a.d-b.d;
-  });
+  if(FESTIVOS.length===0){ lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay festivos configurados</p>'; return; }
+  FESTIVOS.sort((a,b)=>{ if(a.y!==b.y)return a.y-b.y; if(a.m!==b.m)return a.m-b.m; return a.d-b.d; });
   FESTIVOS.forEach(function(festivo,idx){
     const fecha=pad(festivo.d)+'/'+pad(festivo.m)+'/'+festivo.y;
-    lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+fecha+'</strong> - '+festivo.nombre+'</div><div class="config-item-actions"><button class="btn b3 action-btn" onclick="confirmarEliminarFestivo('+idx+')">🗑️ Eliminar</button></div></div>';
+    lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+fecha+'</strong> - '+festivo.nombre+'</div><div class="config-item-actions"><button class="btn b3 action-btn" onclick="confirmarEliminarFestivo('+idx+')">️ Eliminar</button></div></div>';
   });
 }
-
 function agregarFestivo(){
   const dia=parseInt(document.getElementById('nuevoFestivoDia').value);
   const mes=parseInt(document.getElementById('nuevoFestivoMes').value);
@@ -1147,7 +1255,6 @@ function agregarFestivo(){
   generarCalendarioEntrada();
   mostrarAlerta('success','Festivo añadido correctamente');
 }
-
 function confirmarEliminarFestivo(idx){
   const festivo=FESTIVOS[idx];
   const fecha=pad(festivo.d)+'/'+pad(festivo.m)+'/'+festivo.y;
@@ -1163,26 +1270,16 @@ function confirmarEliminarFestivo(idx){
     }
   );
 }
-
-// --- VACACIONES ---
 function renderListaVacaciones(){
   const lista=document.getElementById('listaVacaciones');
   lista.innerHTML='';
-  if(VACACIONES.length===0){
-    lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay vacaciones configuradas</p>';
-    return;
-  }
-  VACACIONES.sort((a,b)=>{
-    if(a.y!==b.y)return a.y-b.y;
-    if(a.m!==b.m)return a.m-b.m;
-    return a.d-b.d;
-  });
+  if(VACACIONES.length===0){ lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay vacaciones configuradas</p>'; return; }
+  VACACIONES.sort((a,b)=>{ if(a.y!==b.y)return a.y-b.y; if(a.m!==b.m)return a.m-b.m; return a.d-b.d; });
   VACACIONES.forEach(function(vacacion,idx){
     const fecha=pad(vacacion.d)+'/'+pad(vacacion.m)+'/'+vacacion.y;
-    lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+fecha+'</strong></div><div class="config-item-actions"><button class="btn b3 action-btn" onclick="confirmarEliminarVacacion('+idx+')">️ Eliminar</button></div></div>';
+    lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+fecha+'</strong></div><div class="config-item-actions"><button class="btn b3 action-btn" onclick="confirmarEliminarVacacion('+idx+')">🗑️ Eliminar</button></div></div>';
   });
 }
-
 function agregarVacacion(){
   const diaIni=parseInt(document.getElementById('nuevaVacacionDiaIni').value);
   const mesIni=parseInt(document.getElementById('nuevaVacacionMesIni').value);
@@ -1190,30 +1287,16 @@ function agregarVacacion(){
   const diaFin=parseInt(document.getElementById('nuevaVacacionDiaFin').value);
   const mesFin=parseInt(document.getElementById('nuevaVacacionMesFin').value);
   const anioFin=parseInt(document.getElementById('nuevaVacacionAnioFin').value);
-  if(!diaIni||!mesIni||!anioIni||!diaFin||!mesFin||!anioFin){
-    mostrarAlerta('warning','Completa todos los campos (inicio y final)');
-    return;
-  }
+  if(!diaIni||!mesIni||!anioIni||!diaFin||!mesFin||!anioFin){ mostrarAlerta('warning','Completa todos los campos (inicio y final)'); return; }
   const fechaIni=new Date(anioIni,mesIni-1,diaIni);
   const fechaFin=new Date(anioFin,mesFin-1,diaFin);
-  if(fechaIni.getDate()!==diaIni||fechaIni.getMonth()!==mesIni-1){
-    mostrarAlerta('error','La fecha de inicio no es válida');
-    return;
-  }
-  if(fechaFin.getDate()!==diaFin||fechaFin.getMonth()!==mesFin-1){
-    mostrarAlerta('error','La fecha final no es válida');
-    return;
-  }
-  if(fechaFin<fechaIni){
-    mostrarAlerta('error','La fecha final debe ser posterior o igual a la inicial');
-    return;
-  }
+  if(fechaIni.getDate()!==diaIni||fechaIni.getMonth()!==mesIni-1){ mostrarAlerta('error','La fecha de inicio no es válida'); return; }
+  if(fechaFin.getDate()!==diaFin||fechaFin.getMonth()!==mesFin-1){ mostrarAlerta('error','La fecha final no es válida'); return; }
+  if(fechaFin<fechaIni){ mostrarAlerta('error','La fecha final debe ser posterior o igual a la inicial'); return; }
   let diasAñadidos=0, diasDuplicados=0, diasFinde=0, diasFestivos=0;
   const fechaActual=new Date(fechaIni);
   while(fechaActual<=fechaFin){
-    const y=fechaActual.getFullYear();
-    const m=fechaActual.getMonth()+1;
-    const d=fechaActual.getDate();
+    const y=fechaActual.getFullYear(); const m=fechaActual.getMonth()+1; const d=fechaActual.getDate();
     const diaSemana=fechaActual.getDay();
     if(diaSemana===0||diaSemana===6){ diasFinde++; fechaActual.setDate(fechaActual.getDate()+1); continue; }
     const esFestivo=FESTIVOS.find(f=>f.y===y&&f.m===m&&f.d===d);
@@ -1245,7 +1328,6 @@ function agregarVacacion(){
     mostrarAlerta('info',msg);
   }
 }
-
 function confirmarEliminarVacacion(idx){
   const vacacion=VACACIONES[idx];
   const fecha=pad(vacacion.d)+'/'+pad(vacacion.m)+'/'+vacacion.y;
