@@ -74,17 +74,19 @@ tr:hover{background:#f9fafb}
 .modal-header h3{color:#1f2937;font-size:20px}
 .modal-close{background:none;border:none;font-size:28px;cursor:pointer;color:#6b7280;padding:0 8px}
 .modal-close:hover{color:#1f2937}
-.alumno-row{display:grid;grid-template-columns:1fr 220px;gap:12px;align-items:center;padding:12px;background:#f9fafb;border-radius:6px;margin-bottom:8px}
+.alumno-row{display:grid;grid-template-columns:1fr 280px;gap:12px;align-items:start;padding:12px;background:#f9fafb;border-radius:6px;margin-bottom:8px}
 .alumno-row:hover{background:#f3f4f6}
-.alumno-name{font-weight:600;color:#1f2937}
+.alumno-name{font-weight:600;color:#1f2937;padding-top:8px}
 .alumno-select{padding:8px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;width:100%}
+.campos-hora{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.campos-hora input[type="time"]{padding:6px;border:1px solid #d1d5db;border-radius:4px;font-size:13px}
+.campos-hora label{font-size:12px;color:#6b7280;min-width:60px}
 .modal-footer{margin-top:20px;padding-top:16px;border-top:2px solid #e5e7eb;display:flex;justify-content:flex-end;gap:12px}
-.day-detail{background:#fff;border-radius:8px;padding:16px;margin-top:16px;border:1px solid #e5e7eb}
-.day-detail h4{color:#1e3a8a;margin-bottom:12px;font-size:16px}
 .day-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
 .day-detail-item{padding:8px 12px;background:#f9fafb;border-radius:6px;font-size:13px}
 .day-detail-item .nombre{font-weight:600;color:#1f2937}
 .day-detail-item .estado{font-size:12px;margin-top:2px}
+.day-detail-item .hora{font-size:11px;color:#6b7280;margin-top:2px}
 .estado-presente{color:#166534}
 .estado-ausente{color:#991b1b}
 .estado-entrada_tarde{color:#92400e}
@@ -244,7 +246,7 @@ tr:hover{background:#f9fafb}
 <div id="modalContenido"></div>
 <div class="modal-footer">
 <button class="btn b4" onclick="cerrarModalAsistencia()">Cancelar</button>
-<button class="btn b2" onclick="guardarAsistenciaDia()">💾 Guardar Todos</button>
+<button class="btn b2" onclick="guardarAsistenciaDia()"> Guardar Todos</button>
 </div>
 </div>
 </div>
@@ -257,7 +259,7 @@ tr:hover{background:#f9fafb}
 </div>
 <div id="modalDetalleContenido"></div>
 <div class="modal-footer">
-<button class="btn b1" onclick="editarDiaDesdeDetalle()">️ Editar registros</button>
+<button class="btn b1" onclick="editarDiaDesdeDetalle()">✏️ Editar registros</button>
 <button class="btn b4" onclick="cerrarModalDetalle()">Cerrar</button>
 </div>
 </div>
@@ -381,7 +383,7 @@ async function cargarDatosFirebase() {
   }
 }
 async function guardarDatosFirebase() {
-  mostrarAlerta('info', ' Guardando en Firebase...');
+  mostrarAlerta('info', '💾 Guardando en Firebase...');
   try {
     const payload = { alumnos: ALUMNOS, registros: [...historicalRecords, ...userRecords], festivos: FESTIVOS, vacaciones: VACACIONES };
     const db = window.firebaseDB;
@@ -508,49 +510,139 @@ function generarCalendarioEntrada(){
     cont.appendChild(e);
   }
 }
+
+// ✅ FUNCIÓN ACTUALIZADA CON CAMPOS DE HORA
 function abrirModalAsistencia(dia){
   diaSeleccionado=dia;
   const registrosDia=getAll().filter(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===dia);
+  
   document.getElementById('modalTitulo').textContent='📝 Asistencia del '+pad(dia)+'/'+pad(mesSeleccionado)+'/'+anioSeleccionado;
+  
   let html='<div style="margin-bottom:16px;padding:12px;background:#f0f9ff;border-radius:6px;border-left:4px solid #2563eb">';
   html+='<strong>'+registrosDia.length+'</strong> de <strong>'+ALUMNOS.length+'</strong> alumnos registrados';
   html+='</div>';
+  
   ALUMNOS.forEach(alumno=>{
     const registro=registrosDia.find(r=>r.alumno===alumno);
     const estadoActual=registro?registro.estado:'';
-    html+='<div class="alumno-row">';
+    const horaUnica=registro?registro.horaUnica||'':'';
+    const horaSalida=registro?registro.horaSalida||'':'';
+    const horaLlegada=registro?registro.horaLlegada||'':'';
+    
+    html+='<div class="alumno-row" data-alumno="'+alumno+'">';
     html+='<div class="alumno-name">'+alumno+'</div>';
-    html+='<select class="alumno-select" data-alumno="'+alumno+'">';
-    Object.keys(LABELS_ESTADOS).forEach(key=>{ html+='<option value="'+key+'" '+(estadoActual===key?'selected':'')+'>'+LABELS_ESTADOS[key]+'</option>'; });
+    html+='<div style="display:flex;flex-direction:column;gap:6px">';
+    html+='<select class="alumno-select" data-alumno="'+alumno+'" onchange="toggleCamposHora(this)">';
+    Object.keys(LABELS_ESTADOS).forEach(key=>{
+      html+='<option value="'+key+'" '+(estadoActual===key?'selected':'')+'>'+LABELS_ESTADOS[key]+'</option>';
+    });
     html+='</select>';
+    
+    // Campo para entrada tarde / salida pronto (una sola hora)
+    html+='<div class="campos-hora hora-unica" data-alumno="'+alumno+'" style="display:'+(estadoActual==='entrada_tarde'||estadoActual==='salida_pronto'?'flex':'none')+';gap:6px;align-items:center">';
+    html+='<label>'+(estadoActual==='entrada_tarde'?'Hora entrada:':'Hora salida:')+'</label>';
+    html+='<input type="time" class="hora-unica-input" value="'+horaUnica+'">';
+    html+='</div>';
+    
+    // Campos para cita médica / conciliación (salida y llegada)
+    html+='<div class="campos-hora hora-rango" data-alumno="'+alumno+'" style="display:'+(estadoActual==='cita_medica'||estadoActual==='conciliacion'?'flex':'none')+';gap:6px;align-items:center;flex-wrap:wrap">';
+    html+='<label>Salida:</label>';
+    html+='<input type="time" class="hora-salida-input" value="'+horaSalida+'">';
+    html+='<label>Llegada:</label>';
+    html+='<input type="time" class="hora-llegada-input" value="'+horaLlegada+'">';
+    html+='</div>';
+    
+    html+='</div>';
     html+='</div>';
   });
+  
   document.getElementById('modalContenido').innerHTML=html;
   document.getElementById('modalAsistencia').classList.add('show');
 }
+
+// ✅ NUEVA FUNCIÓN: Mostrar/ocultar campos de hora según el estado
+function toggleCamposHora(select){
+  const alumno=select.getAttribute('data-alumno');
+  const estado=select.value;
+  const fila=select.closest('.alumno-row');
+  
+  const horaUnica=fila.querySelector('.hora-unica');
+  const horaRango=fila.querySelector('.hora-rango');
+  const labelHoraUnica=fila.querySelector('.hora-unica label');
+  
+  // Ocultar todos los campos de hora primero
+  horaUnica.style.display='none';
+  horaRango.style.display='none';
+  
+  // Mostrar los campos según el estado
+  if(estado==='entrada_tarde'){
+    horaUnica.style.display='flex';
+    labelHoraUnica.textContent='Hora entrada:';
+  }else if(estado==='salida_pronto'){
+    horaUnica.style.display='flex';
+    labelHoraUnica.textContent='Hora salida:';
+  }else if(estado==='cita_medica'||estado==='conciliacion'){
+    horaRango.style.display='flex';
+  }
+}
+
 function cerrarModalAsistencia(){ document.getElementById('modalAsistencia').classList.remove('show'); diaSeleccionado=null; }
+
+// ✅ FUNCIÓN ACTUALIZADA: Guardar también las horas
 function guardarAsistenciaDia(){
-  if(!diaSeleccionado){ mostrarAlerta('warning','No hay día seleccionado'); return; }
-  const selects=document.querySelectorAll('.alumno-select');
+  if(!diaSeleccionado){
+    mostrarAlerta('warning','No hay día seleccionado');
+    return;
+  }
+  
+  const filas=document.querySelectorAll('.alumno-row');
   let guardados=0;
-  selects.forEach(select=>{
+  
+  filas.forEach(fila=>{
+    const select=fila.querySelector('.alumno-select');
     const alumno=select.getAttribute('data-alumno');
     const estado=select.value;
+    
+    // Recoger valores de hora según el estado
+    let horaUnica='', horaSalida='', horaLlegada='';
+    
+    if(estado==='entrada_tarde'||estado==='salida_pronto'){
+      const inputHoraUnica=fila.querySelector('.hora-unica-input');
+      if(inputHoraUnica) horaUnica=inputHoraUnica.value;
+    }else if(estado==='cita_medica'||estado==='conciliacion'){
+      const inputSalida=fila.querySelector('.hora-salida-input');
+      const inputLlegada=fila.querySelector('.hora-llegada-input');
+      if(inputSalida) horaSalida=inputSalida.value;
+      if(inputLlegada) horaLlegada=inputLlegada.value;
+    }
+    
+    // Eliminar registro existente si lo hay
     const idx=userRecords.findIndex(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===diaSeleccionado&&r.alumno===alumno);
     if(idx>=0)userRecords.splice(idx,1);
     const idxH=historicalRecords.findIndex(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===diaSeleccionado&&r.alumno===alumno);
     if(idxH>=0)historicalRecords.splice(idxH,1);
+    
+    // Añadir nuevo registro si tiene estado
     if(estado){
-      userRecords.push({ y:anioSeleccionado,m:mesSeleccionado,d:diaSeleccionado, alumno:alumno,estado:estado, causa:'',justificada:false, horaSalida:'',horaLlegada:'',horaUnica:'', hist:false });
+      userRecords.push({
+        y:anioSeleccionado,m:mesSeleccionado,d:diaSeleccionado,
+        alumno:alumno,estado:estado,
+        causa:'',justificada:false,
+        horaSalida:horaSalida,horaLlegada:horaLlegada,horaUnica:horaUnica,
+        hist:false
+      });
       guardados++;
     }
   });
+  
   saveUser();
   renderAll();
   generarCalendarioEntrada();
   cerrarModalAsistencia();
+  
   mostrarAlerta('success','✅ Guardados '+guardados+' registros del día '+pad(diaSeleccionado)+'/'+pad(mesSeleccionado)+'/'+anioSeleccionado);
 }
+
 function actualizarCalendarioDesdePeriodo(){
   const periodoVal=document.getElementById('calPeriodo').value;
   const parts=periodoVal.split('-');
@@ -572,7 +664,7 @@ function actualizarCalendario(y,m){
   R.forEach(r=>{
     if(!byDay[r.d])byDay[r.d]={counts:{presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0},alumnos:{}};
     byDay[r.d].counts[r.estado]++;
-    byDay[r.d].alumnos[r.alumno]={estado:r.estado};
+    byDay[r.d].alumnos[r.alumno]={estado:r.estado,horaUnica:r.horaUnica,horaSalida:r.horaSalida,horaLlegada:r.horaLlegada};
   });
   for(let d=1;d<=last.getDate();d++){
     const dayInfo=getDayType(y,m,d);
@@ -600,9 +692,9 @@ function actualizarCalendario(y,m){
       if(counts.ausente>0) stats.push('✗'+counts.ausente);
       if(counts.entrada_tarde>0) stats.push('⏰'+counts.entrada_tarde);
       if(counts.salida_pronto>0) stats.push('📤'+counts.salida_pronto);
-      if(counts.cita_medica>0) stats.push(''+counts.cita_medica);
-      if(counts.conciliacion>0) stats.push('👨‍👩‍'+counts.conciliacion);
-      if(counts.baja>0) stats.push('🤒'+counts.baja);
+      if(counts.cita_medica>0) stats.push('🏥'+counts.cita_medica);
+      if(counts.conciliacion>0) stats.push('‍👩‍👧'+counts.conciliacion);
+      if(counts.baja>0) stats.push(''+counts.baja);
       html+='<div class="day-stats">'+stats.join(' ')+'</div>';
       html+='<div class="day-info">'+totalRegistros+'/'+ALUMNOS.length+' alumnos</div>';
     }else{
@@ -623,7 +715,7 @@ function abrirModalDetalle(y,m,d){
   let html='';
   if(registros.length===0){
     html='<div style="padding:20px;text-align:center;color:#6b7280">';
-    html+='<p style="font-size:48px;margin-bottom:12px"></p>';
+    html+='<p style="font-size:48px;margin-bottom:12px">📭</p>';
     html+='<p>No hay registros para este día</p>';
     html+='<p style="margin-top:12px"><button class="btn b2" onclick="cerrarModalDetalle();abrirModalAsistenciaDesdeDetalle('+d+')">➕ Añadir registros</button></p>';
     html+='</div>';
@@ -645,9 +737,10 @@ function abrirModalDetalle(y,m,d){
         html+='<div class="day-detail-item">';
         html+='<div class="nombre">'+alumno+'</div>';
         html+='<div class="estado estado-'+reg.estado+'">'+(LABELS_ESTADOS[reg.estado]||reg.estado)+'</div>';
-        if(reg.causa) html+='<div style="font-size:11px;color:#6b7280;margin-top:4px">📝 '+reg.causa+'</div>';
-        if(reg.horaUnica) html+='<div style="font-size:11px;color:#6b7280">🕐 '+reg.horaUnica+'</div>';
-        if(reg.horaSalida&&reg.horaLlegada) html+='<div style="font-size:11px;color:#6b7280"> '+reg.horaSalida+' - '+reg.horaLlegada+'</div>';
+        // ✅ Mostrar horas si existen
+        if(reg.horaUnica) html+='<div class="hora">🕐 '+reg.horaUnica+'</div>';
+        if(reg.horaSalida&&reg.horaLlegada) html+='<div class="hora">🕐 '+reg.horaSalida+' - '+reg.horaLlegada+'</div>';
+        if(reg.causa) html+='<div class="hora">📝 '+reg.causa+'</div>';
         html+='</div>';
       }else{
         html+='<div class="day-detail-item" style="opacity:0.5">';
@@ -685,7 +778,11 @@ function cargarRegistrosEditar(y,m){
   const R=[...historicalRecords,...userRecords].filter(r=>r.y===y&&r.m===m).sort((a,b)=>a.d-b.d);
   if(R.length===0){tb.innerHTML='<tr><td colspan="5" style="text-align:center">Sin registros</td></tr>';return;}
   R.forEach((r,i)=>{
-    tb.innerHTML+='<tr><td>'+pad(r.d)+'/'+pad(r.m)+'/'+r.y+'</td><td>'+r.alumno+'</td><td class="r" style="color:'+COLORES_ESTADO[r.estado]+'">'+(LABELS_ESTADOS[r.estado]||r.estado)+'</td><td>'+(r.causa||'-')+'</td><td><button class="btn b3 action-btn" onclick="eliminarRegistro('+i+')">🗑️</button></td></tr>';
+    let detalles='';
+    if(r.horaUnica) detalles+='🕐 '+r.horaUnica+' ';
+    if(r.horaSalida&&r.horaLlegada) detalles+='🕐 '+r.horaSalida+'-'+r.horaLlegada+' ';
+    if(r.causa) detalles+='📝 '+r.causa;
+    tb.innerHTML+='<tr><td>'+pad(r.d)+'/'+pad(r.m)+'/'+r.y+'</td><td>'+r.alumno+'</td><td class="r" style="color:'+COLORES_ESTADO[r.estado]+'">'+(LABELS_ESTADOS[r.estado]||r.estado)+'</td><td>'+(detalles||'-')+'</td><td><button class="btn b3 action-btn" onclick="eliminarRegistro('+i+')">🗑️</button></td></tr>';
   });
 }
 function eliminarRegistro(idx){
