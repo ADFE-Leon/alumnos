@@ -46,16 +46,14 @@ tr:hover{background:#f9fafb}
 .cal-day .day-num{font-weight:700;font-size:14px;margin-bottom:4px;color:#1f2937}
 .cal-day .day-info{font-size:10px;color:#6b7280;margin-top:2px}
 .cal-day .day-stats{font-size:10px;margin-top:4px;line-height:1.4}
-
-/* Colores de estado del calendario */
 .cal-day.status-all-present{background:#dcfce7;border-color:#86efac}
 .cal-day.status-absent{background:#fee2e2;border-color:#fca5a5}
 .cal-day.status-late{background:#fef3c7;border-color:#fcd34d}
 .cal-day.status-mixed{background:#dbeafe;border-color:#93c5fd}
 .cal-day.status-holiday{background:#faf5ff;border-color:#d8b4fe;opacity:0.8}
 .cal-day.status-vacation{background:#fff7ed;border-color:#fdba74;opacity:0.8}
-.cal-day.status-weekend{background:#f9fafb;border-color:#e5e7eb;opacity:0.6}
-
+.cal-day.status-weekend{background:#f9fafb;border-color:#e5e7eb;opacity:0.6;cursor:default}
+.cal-day.status-weekend:hover{transform:none;box-shadow:none}
 .action-btn{padding:4px 8px;font-size:11px;margin:2px}
 .print-area{display:none}
 .status-bar{background:#e0f2fe;color:#0369a1;padding:8px 12px;border-radius:6px;font-size:12px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
@@ -65,12 +63,9 @@ tr:hover{background:#f9fafb}
 .alert-success{background:#dcfce7;color:#166534;border:1px solid #86efac}
 .alert-warning{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
 @keyframes slideIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
-
 .leyenda{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;font-size:11px}
 .leyenda-item{display:flex;align-items:center;gap:6px}
 .leyenda-color{width:16px;height:16px;border-radius:3px;border:1px solid #d1d5db}
-
-/* Modal de asistencia */
 .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:1000}
 .modal-overlay.show{display:flex}
 .modal{background:#fff;border-radius:12px;padding:24px;max-width:700px;width:90%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3);animation:modalIn .2s ease}
@@ -84,8 +79,6 @@ tr:hover{background:#f9fafb}
 .alumno-name{font-weight:600;color:#1f2937}
 .alumno-select{padding:8px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;width:100%}
 .modal-footer{margin-top:20px;padding-top:16px;border-top:2px solid #e5e7eb;display:flex;justify-content:flex-end;gap:12px}
-
-/* Panel de detalle del día */
 .day-detail{background:#fff;border-radius:8px;padding:16px;margin-top:16px;border:1px solid #e5e7eb}
 .day-detail h4{color:#1e3a8a;margin-bottom:12px;font-size:16px}
 .day-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
@@ -99,22 +92,17 @@ tr:hover{background:#f9fafb}
 .estado-cita_medica{color:#1e40af}
 .estado-conciliacion{color:#3730a3}
 .estado-baja{color:#991b1b}
-
-/* Filtros del calendario */
 .cal-filtros{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;padding:12px;background:#f9fafb;border-radius:8px}
 .cal-filtros .filter-group{display:flex;flex-direction:column;gap:4px}
 .cal-filtros label{font-size:12px;font-weight:600;color:#374151}
 .cal-filtros select{padding:8px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;min-width:150px}
-
 #loader{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.95);z-index:3000;display:flex;justify-content:center;align-items:center;font-size:20px;color:#2563eb;font-weight:bold;flex-direction:column;gap:15px}
 #loader.hidden{display:none}
 .spinner{border:4px solid #f3f3f3;border-top:4px solid #2563eb;border-radius:50%;width:40px;height:40px;animation:spin 1s linear infinite}
 @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-
 .botones-datos{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:12px}
 .filter-group{display:flex;flex-direction:column;gap:4px}
 .filter-group label{font-size:12px;font-weight:600;color:#374151}
-
 @media print{body *{visibility:hidden}.print-area,.print-area *{visibility:visible}.print-area{position:absolute;left:0;top:0;display:block;width:100%}.no-print{display:none!important}}
 @media(max-width:768px){.cards{grid-template-columns:1fr}.calendar{grid-template-columns:repeat(7,1fr);gap:2px}.cal-day{min-height:50px;padding:3px}.alumno-row{grid-template-columns:1fr;gap:8px}.modal{width:95%;padding:16px}}
 </style>
@@ -138,16 +126,15 @@ tr:hover{background:#f9fafb}
 <div class="card"><small>Alumnos Activos</small><div class="n c3" id="sC">0</div></div>
 </div>
 <div class="tabs">
-<button class="tb on" data-t="p7"> Entrada por Días</button>
-<button class="tb" data-t="p2"> Por Alumno</button>
+<button class="tb on" data-t="p7">📝 Entrada por Días</button>
+<button class="tb" data-t="p2">👤 Por Alumno</button>
 <button class="tb" data-t="p3"> Por Mes/Año</button>
-<button class="tb" data-t="p4"> Calendario</button>
+<button class="tb" data-t="p4">📅 Calendario</button>
 <button class="tb" data-t="p5">✏️ Editar</button>
 <button class="tb" data-t="p6">💾 Datos</button>
-<button class="tb" data-t="p8">️ Configuración</button>
+<button class="tb" data-t="p8">⚙️ Configuración</button>
 </div>
 
-<!-- PESTAÑA: ENTRADA POR DÍAS -->
 <div id="p7" class="pnl on">
 <h2>📝 Entrada por Días</h2>
 <p style="color:#6b7280;margin-bottom:16px;font-size:13px">Selecciona mes y año. Haz clic en un día para registrar la asistencia de todos los alumnos.</p>
@@ -169,13 +156,11 @@ tr:hover{background:#f9fafb}
 <div id="calendarioEntrada" class="calendar"></div>
 </div>
 
-<!-- PESTAÑA: POR ALUMNO -->
 <div id="p2" class="pnl">
 <h2>👤 Total por Alumno <button class="btn b4" style="float:right" onclick="imprimir('maquinas')">🖨️ Imprimir</button></h2>
 <table id="tablaMaquinasTbl"><thead><tr><th>Alumno</th><th class="r">Presentes</th><th class="r">Ausencias</th><th class="r">Entradas tarde</th><th class="r">Salidas pronto</th><th class="r">Citas médicas</th><th class="r">Conciliaciones</th><th class="r">Bajas</th></tr></thead><tbody id="t2"></tbody></table>
 </div>
 
-<!-- PESTAÑA: POR MES/AÑO -->
 <div id="p3" class="pnl">
 <h2>📊 Resumen por Periodo <button class="btn b4" style="float:right" onclick="imprimir('tiempo')">🖨️ Imprimir</button></h2>
 <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap">
@@ -185,11 +170,9 @@ tr:hover{background:#f9fafb}
 <table id="tablaTiempoTbl"><thead><tr><th>Periodo</th><th class="r">Presentes</th><th class="r">Ausencias</th><th class="r">Entradas tarde</th><th class="r">Salidas pronto</th><th class="r">Bajas</th></tr></thead><tbody id="t3"></tbody></table>
 </div>
 
-<!-- PESTAÑA: CALENDARIO (NUEVA FUNCIONALIDAD) -->
 <div id="p4" class="pnl">
 <h2>📅 Calendario de Asistencias</h2>
 <p style="color:#6b7280;margin-bottom:16px;font-size:13px">Visualiza rápidamente el estado de cada día. Haz clic en un día para ver el detalle completo.</p>
-
 <div class="cal-filtros">
 <div class="filter-group">
 <label>Periodo</label>
@@ -214,7 +197,6 @@ tr:hover{background:#f9fafb}
 </select>
 </div>
 </div>
-
 <div class="leyenda">
 <div class="leyenda-item"><div class="leyenda-color" style="background:#dcfce7"></div>Todos presentes</div>
 <div class="leyenda-item"><div class="leyenda-color" style="background:#fee2e2"></div>Hay ausencias</div>
@@ -224,24 +206,15 @@ tr:hover{background:#f9fafb}
 <div class="leyenda-item"><div class="leyenda-color" style="background:#fff7ed"></div>Vacaciones</div>
 <div class="leyenda-item"><div class="leyenda-color" style="background:#f9fafb"></div>Fin de semana</div>
 </div>
-
 <div id="calendar" class="calendar"></div>
-
-<!-- Panel de detalle del día seleccionado -->
-<div id="dayDetailPanel" class="day-detail" style="display:none">
-<h4 id="dayDetailTitle">📋 Detalle del día</h4>
-<div id="dayDetailContent"></div>
-</div>
 </div>
 
-<!-- PESTAÑA: EDITAR -->
 <div id="p5" class="pnl">
 <h2>✏️ Editar Registros</h2>
 <div style="margin-bottom:12px"><select class="sel" id="editPeriodo" onchange="cargarRegistrosEditarDesdePeriodo()"></select></div>
 <table><thead><tr><th>Fecha</th><th>Alumno</th><th class="r">Estado</th><th>Detalles</th><th>Acciones</th></tr></thead><tbody id="tEdit"></tbody></table>
 </div>
 
-<!-- PESTAÑA: DATOS -->
 <div id="p6" class="pnl">
 <h2>💾 Gestión de Datos</h2>
 <div class="box">
@@ -250,13 +223,10 @@ tr:hover{background:#f9fafb}
 <button class="btn b5" onclick="guardarDatosFirebase()">💾 Guardar en Firebase</button>
 <button class="btn b3" onclick="resetearTodo()">🗑️ Resetear todo</button>
 </div>
-<p style="margin-top:16px;color:#6b7280;font-size:13px;text-align:center">
- <strong>Consejo:</strong> Trabaja todo lo que necesites y cuando termines, pulsa "💾 Guardar en Firebase" para subir todos los cambios a la nube.
-</p>
+<p style="margin-top:16px;color:#6b7280;font-size:13px;text-align:center"><strong>Consejo:</strong> Trabaja todo lo que necesites y cuando termines, pulsa "💾 Guardar en Firebase" para subir todos los cambios a la nube.</p>
 </div>
 </div>
 
-<!-- PESTAÑA: CONFIGURACIÓN -->
 <div id="p8" class="pnl">
 <h2>⚙️ Configuración</h2>
 <p style="color:#6b7280">Configuración de festivos, vacaciones y alumnos disponible próximamente.</p>
@@ -265,7 +235,6 @@ tr:hover{background:#f9fafb}
 </div>
 </div>
 
-<!-- Modal de entrada de asistencia -->
 <div class="modal-overlay" id="modalAsistencia">
 <div class="modal">
 <div class="modal-header">
@@ -280,7 +249,6 @@ tr:hover{background:#f9fafb}
 </div>
 </div>
 
-<!-- Modal de detalle del día (calendario) -->
 <div class="modal-overlay" id="modalDetalle">
 <div class="modal">
 <div class="modal-header">
@@ -331,49 +299,23 @@ setTimeout(() => {
 const ALUMNOS_BASE=["AMEZ FUERTES, RAUL","BLANCO FRANCO, SANTIAGO ANDRÉS","FERNÁNDEZ MACAYO, M. ISABEL","MAIQUEZ DOMINGUEZ, HECTOR JOSÉ","MALLO RODRÍGUEZ, MIGUEL","MUÑIZ CAÑIBANO, MARÍA BELÉN"];
 const DIAS=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
 const MESES_NOMBRES=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
-
 const INICIO_CURSO={y:2026,m:3,d:1};
 const FIN_CURSO={y:2027,m:2,d:28};
-
 let FESTIVOS=[];
 let VACACIONES=[];
-
-const LABELS_ESTADOS={
-  '':'-- Sin registrar --',
-  presente:'Presente',
-  ausente:'Ausente',
-  entrada_tarde:'Entrada tarde',
-  salida_pronto:'Salida pronto',
-  cita_medica:'Cita médica',
-  conciliacion:'Conciliación',
-  baja:'Baja'
-};
-
-const COLORES_ESTADO={
-  presente:'#166534',
-  ausente:'#991b1b',
-  entrada_tarde:'#92400e',
-  salida_pronto:'#9d174d',
-  cita_medica:'#1e40af',
-  conciliacion:'#3730a3',
-  baja:'#991b1b'
-};
-
+const LABELS_ESTADOS={'':'-- Sin registrar --',presente:'Presente',ausente:'Ausente',entrada_tarde:'Entrada tarde',salida_pronto:'Salida pronto',cita_medica:'Cita médica',conciliacion:'Conciliación',baja:'Baja'};
+const COLORES_ESTADO={presente:'#166534',ausente:'#991b1b',entrada_tarde:'#92400e',salida_pronto:'#9d174d',cita_medica:'#1e40af',conciliacion:'#3730a3',baja:'#991b1b'};
 let ALUMNOS=[...ALUMNOS_BASE];
 let historicalRecords=[];
 let userRecords=[];
 let dataSourceMsg="Cargando...";
 let alertTimeout=null;
-
 let diaSeleccionado=null;
 let mesSeleccionado=null;
 let anioSeleccionado=null;
 let diaDetalleSeleccionado=null;
 
-function getPeriodoLabel(year, month){
-  return MESES_NOMBRES[month-1]+" "+year;
-}
-
+function getPeriodoLabel(year, month){return MESES_NOMBRES[month-1]+" "+year;}
 function getDayType(year, month, day){
   const fecha=new Date(year,month-1,day);
   const diaSemana=fecha.getDay();
@@ -387,7 +329,6 @@ function getDayType(year, month, day){
   for(const v of VACACIONES){ if(v.y===year&&v.m===month&&v.d===day) return {type:'vacation',label:'Vacaciones'}; }
   return {type:'lectivo',label:'Día lectivo'};
 }
-
 function generarPeriodos(){
   const periodos=[];
   let year=INICIO_CURSO.y, month=INICIO_CURSO.m;
@@ -398,7 +339,6 @@ function generarPeriodos(){
   }
   return periodos;
 }
-
 function mostrarAlerta(tipo,mensaje){
   const cont=document.getElementById('alertContainer');
   const iconos={info:'ℹ️',error:'❌',success:'✅',warning:'⚠️'};
@@ -406,31 +346,21 @@ function mostrarAlerta(tipo,mensaje){
   if(alertTimeout)clearTimeout(alertTimeout);
   alertTimeout=setTimeout(function(){if(cont)cont.innerHTML='';},5000);
 }
-
-// 🔥 CARGAR DATOS
 async function cargarDatosFirebase() {
   document.getElementById('loader').classList.remove('hidden');
   try {
     const db = window.firebaseDB;
     const dbRef = window.firebaseRef(db);
     const snapshot = await window.firebaseGet(window.firebaseChild(dbRef, 'datos'));
-    
     if (snapshot.exists()) {
       const datos = snapshot.val();
-      
       if (datos.alumnos && datos.alumnos.length > 0) ALUMNOS = datos.alumnos;
-      
       if (datos.registros && datos.registros.length > 0) {
         historicalRecords = datos.registros.filter(r => r.hist === true);
         userRecords = datos.registros.filter(r => r.hist !== true);
-      } else {
-        historicalRecords = [];
-        userRecords = [];
-      }
-      
+      } else { historicalRecords = []; userRecords = []; }
       if (datos.festivos) FESTIVOS = datos.festivos.map(f => ({y: parseInt(f.y), m: parseInt(f.m), d: parseInt(f.d), nombre: f.nombre}));
       if (datos.vacaciones) VACACIONES = datos.vacaciones.map(v => ({y: parseInt(v.y), m: parseInt(v.m), d: parseInt(v.d)}));
-      
       dataSourceMsg = "☁️ Firebase (Nube)";
       document.getElementById('dataSource').textContent = dataSourceMsg;
       saveUser();
@@ -450,74 +380,46 @@ async function cargarDatosFirebase() {
     document.getElementById('loader').classList.add('hidden');
   }
 }
-
-// 🔥 GUARDAR DATOS
 async function guardarDatosFirebase() {
-  mostrarAlerta('info', '💾 Guardando en Firebase...');
+  mostrarAlerta('info', ' Guardando en Firebase...');
   try {
-    const payload = {
-      alumnos: ALUMNOS,
-      registros: [...historicalRecords, ...userRecords],
-      festivos: FESTIVOS,
-      vacaciones: VACACIONES
-    };
-    
+    const payload = { alumnos: ALUMNOS, registros: [...historicalRecords, ...userRecords], festivos: FESTIVOS, vacaciones: VACACIONES };
     const db = window.firebaseDB;
     const dbRef = window.firebaseRef(db, 'datos');
     await window.firebaseSet(dbRef, payload);
-    
     mostrarAlerta('success', '✅ Datos guardados: ' + (historicalRecords.length + userRecords.length) + ' registros');
   } catch (e) {
     console.error('Error:', e);
     mostrarAlerta('error', '❌ Error al guardar');
   }
 }
-
 function inicializarApp(){
   document.getElementById('todayDate').textContent=new Date().toLocaleDateString('es-ES');
-  
   const periodos=generarPeriodos();
   const erMes=document.getElementById('erMes');erMes.innerHTML='';
-  periodos.forEach(function(p){
-    const o=document.createElement('option'); o.value=p.y+'-'+p.m; o.textContent=p.label; erMes.appendChild(o);
-  });
+  periodos.forEach(function(p){ const o=document.createElement('option'); o.value=p.y+'-'+p.m; o.textContent=p.label; erMes.appendChild(o); });
   const fechaActual=new Date();
   const periodoActual=periodos.find(p => fechaActual.getFullYear()===p.y && fechaActual.getMonth()+1===p.m);
   if(periodoActual) erMes.value=periodoActual.y+'-'+periodoActual.m;
-
   const erAnio=document.getElementById('erAnio');erAnio.innerHTML='<option value="2026">2026</option><option value="2027">2027</option>';
   erAnio.value=fechaActual.getFullYear()===2026?'2026':'2027';
-
   const fPeriodo=document.getElementById('fPeriodo'); fPeriodo.innerHTML='<option value="ALL">Todo el curso</option>';
-  periodos.forEach(function(p){
-    const o=document.createElement('option'); o.value=p.y+'-'+p.m; o.textContent=p.label; fPeriodo.appendChild(o);
-  });
-
+  periodos.forEach(function(p){ const o=document.createElement('option'); o.value=p.y+'-'+p.m; o.textContent=p.label; fPeriodo.appendChild(o); });
   const fMaq=document.getElementById('fMaq'); fMaq.innerHTML='<option value="TODOS">Todos los alumnos</option>';
   ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;fMaq.appendChild(o);});
-
   const calPeriodo=document.getElementById('calPeriodo'); calPeriodo.innerHTML='';
-  periodos.forEach(function(p){
-    const o=document.createElement('option'); o.value=p.y+'-'+p.m; o.textContent=p.label; calPeriodo.appendChild(o);
-  });
-
+  periodos.forEach(function(p){ const o=document.createElement('option'); o.value=p.y+'-'+p.m; o.textContent=p.label; calPeriodo.appendChild(o); });
   const calFiltroAlumno=document.getElementById('calFiltroAlumno');
   calFiltroAlumno.innerHTML='<option value="TODOS">Todos los alumnos</option>';
   ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;calFiltroAlumno.appendChild(o);});
-
   const editPeriodo=document.getElementById('editPeriodo'); editPeriodo.innerHTML='';
-  periodos.forEach(function(p){
-    const o=document.createElement('option'); o.value=p.y+'-'+p.m; o.textContent=p.label; editPeriodo.appendChild(o);
-  });
-
+  periodos.forEach(function(p){ const o=document.createElement('option'); o.value=p.y+'-'+p.m; o.textContent=p.label; editPeriodo.appendChild(o); });
   renderAll();
   generarCalendarioEntrada();
 }
-
 function getAll(){return[...historicalRecords,...userRecords];}
 function saveUser(){localStorage.setItem('ca_cache',JSON.stringify({alumnos:ALUMNOS,registros:[...historicalRecords,...userRecords],festivos:FESTIVOS,vacaciones:VACACIONES}));}
 function pad(n){return n<10?'0'+n:''+n;}
-
 function showTab(id){
   document.querySelectorAll('.pnl').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.tb').forEach(t=>t.classList.remove('on'));
@@ -529,7 +431,6 @@ function showTab(id){
   if(id==='p5')setTimeout(cargarRegistrosEditarDesdePeriodo,100);
 }
 document.querySelectorAll('.tb').forEach(b=>b.addEventListener('click',function(){showTab(this.getAttribute('data-t'));}));
-
 function renderAll(){
   const R=getAll();
   const totalPresentes=R.filter(r=>r.estado==='presente').length;
@@ -541,7 +442,6 @@ function renderAll(){
   document.getElementById('sC').textContent=alumnosActivos;
   renderMaquinas();renderTiempo();
 }
-
 function renderMaquinas(){
   const R=getAll(); const tb=document.getElementById('t2'); tb.innerHTML='';
   const sm={}; ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
@@ -556,67 +456,42 @@ function renderMaquinas(){
   });
   tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.cita_medica+'</td><td class="r">'+totales.conciliacion+'</td><td class="r">'+totales.baja+'</td></tr>';
 }
-
 function renderTiempo(){
   const R=getAll(); const fPeriodo=document.getElementById('fPeriodo').value; const falumno=document.getElementById('fMaq').value;
   const tb=document.getElementById('t3'); tb.innerHTML='';
   let filt=R;
-  if(fPeriodo!=='ALL'){
-    const parts=fPeriodo.split('-'); filt=filt.filter(r=>r.y===parseInt(parts[0])&&r.m===parseInt(parts[1]));
-  }
+  if(fPeriodo!=='ALL'){ const parts=fPeriodo.split('-'); filt=filt.filter(r=>r.y===parseInt(parts[0])&&r.m===parseInt(parts[1])); }
   if(falumno!=='TODOS')filt=filt.filter(r=>r.alumno===falumno);
   const ag={};
-  filt.forEach(r=>{
-    const k=getPeriodoLabel(r.y,r.m);
-    if(!ag[k])ag[k]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};
-    if(ag[k][r.estado]!==undefined)ag[k][r.estado]++;
-  });
-  const ks=Object.keys(ag).sort((a,b)=>{
-    const partsA=a.split(' '), monthA=MESES_NOMBRES.indexOf(partsA[0]), yearA=parseInt(partsA[1]);
-    const partsB=b.split(' '), monthB=MESES_NOMBRES.indexOf(partsB[0]), yearB=parseInt(partsB[1]);
-    if(yearA!==yearB)return yearA-yearB; return monthA-monthB;
-  });
+  filt.forEach(r=>{ const k=getPeriodoLabel(r.y,r.m); if(!ag[k])ag[k]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0}; if(ag[k][r.estado]!==undefined)ag[k][r.estado]++; });
+  const ks=Object.keys(ag).sort((a,b)=>{ const partsA=a.split(' '), monthA=MESES_NOMBRES.indexOf(partsA[0]), yearA=parseInt(partsA[1]); const partsB=b.split(' '), monthB=MESES_NOMBRES.indexOf(partsB[0]), yearB=parseInt(partsB[1]); if(yearA!==yearB)return yearA-yearB; return monthA-monthB; });
   let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};
   if(ks.length===0){ tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:#9ca3af">Sin registros</td></tr>'; }
   else {
-    ks.forEach(k=>{
-      totales.presente+=ag[k].presente; totales.ausente+=ag[k].ausente; totales.entrada_tarde+=ag[k].entrada_tarde; totales.salida_pronto+=ag[k].salida_pronto;
-      totales.baja+=ag[k].baja;
-      tb.innerHTML+='<tr><td>'+k+'</td><td class="r">'+ag[k].presente+'</td><td class="r">'+ag[k].ausente+'</td><td class="r">'+ag[k].entrada_tarde+'</td><td class="r">'+ag[k].salida_pronto+'</td><td class="r">'+ag[k].baja+'</td></tr>';
-    });
+    ks.forEach(k=>{ totales.presente+=ag[k].presente; totales.ausente+=ag[k].ausente; totales.entrada_tarde+=ag[k].entrada_tarde; totales.salida_pronto+=ag[k].salida_pronto; totales.baja+=ag[k].baja; tb.innerHTML+='<tr><td>'+k+'</td><td class="r">'+ag[k].presente+'</td><td class="r">'+ag[k].ausente+'</td><td class="r">'+ag[k].entrada_tarde+'</td><td class="r">'+ag[k].salida_pronto+'</td><td class="r">'+ag[k].baja+'</td></tr>'; });
     tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.baja+'</td></tr>';
   }
 }
-
-// 📅 CALENDARIO DE ENTRADA POR DÍAS
 function generarCalendarioEntrada(){
   const periodoVal=document.getElementById('erMes').value;
   const parts=periodoVal.split('-'); mesSeleccionado=parseInt(parts[1]); anioSeleccionado=parseInt(parts[0]);
   const cont=document.getElementById('calendarioEntrada'); cont.innerHTML='';
-  
   DIAS.forEach(d=>{const h=document.createElement('div');h.className='cal-header';h.textContent=d;cont.appendChild(h);});
-  
   const first=new Date(anioSeleccionado,mesSeleccionado-1,1);
   const last=new Date(anioSeleccionado,mesSeleccionado,0);
   const start=first.getDay()||7;
-  
   for(let i=1;i<start;i++){const e=document.createElement('div');e.className='cal-day empty';cont.appendChild(e);}
-  
   for(let d=1;d<=last.getDate();d++){
     const fecha=new Date(anioSeleccionado,mesSeleccionado-1,d);
     const diaSemana=fecha.getDay();
     const esFinde=(diaSemana===0||diaSemana===6);
     const dayInfo=getDayType(anioSeleccionado,mesSeleccionado,d);
-    
     const e=document.createElement('div');
     e.className='cal-day';
-    
     if(dayInfo.type==='holiday')e.classList.add('status-holiday');
     else if(dayInfo.type==='vacation')e.classList.add('status-vacation');
     else if(esFinde)e.classList.add('status-weekend');
-    
     const registrosDia=getAll().filter(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===d);
-    
     let html='<div class="day-num">'+d+'</div>';
     if(dayInfo.type==='holiday'||dayInfo.type==='vacation'){
       html+='<div class="day-info">'+dayInfo.label+'</div>';
@@ -627,212 +502,143 @@ function generarCalendarioEntrada(){
       html+='<div class="day-info">'+registrosDia.length+'/'+ALUMNOS.length+(completado?' ✅':'')+'</div>';
     }
     e.innerHTML=html;
-    
     if(!esFinde&&dayInfo.type==='lectivo'){
       e.onclick=()=>abrirModalAsistencia(d);
     }
-    
     cont.appendChild(e);
   }
 }
-
-// 📝 MODAL DE ASISTENCIA
 function abrirModalAsistencia(dia){
   diaSeleccionado=dia;
   const registrosDia=getAll().filter(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===dia);
-  
   document.getElementById('modalTitulo').textContent='📝 Asistencia del '+pad(dia)+'/'+pad(mesSeleccionado)+'/'+anioSeleccionado;
-  
   let html='<div style="margin-bottom:16px;padding:12px;background:#f0f9ff;border-radius:6px;border-left:4px solid #2563eb">';
   html+='<strong>'+registrosDia.length+'</strong> de <strong>'+ALUMNOS.length+'</strong> alumnos registrados';
   html+='</div>';
-  
   ALUMNOS.forEach(alumno=>{
     const registro=registrosDia.find(r=>r.alumno===alumno);
     const estadoActual=registro?registro.estado:'';
-    
     html+='<div class="alumno-row">';
     html+='<div class="alumno-name">'+alumno+'</div>';
     html+='<select class="alumno-select" data-alumno="'+alumno+'">';
-    Object.keys(LABELS_ESTADOS).forEach(key=>{
-      html+='<option value="'+key+'" '+(estadoActual===key?'selected':'')+'>'+LABELS_ESTADOS[key]+'</option>';
-    });
+    Object.keys(LABELS_ESTADOS).forEach(key=>{ html+='<option value="'+key+'" '+(estadoActual===key?'selected':'')+'>'+LABELS_ESTADOS[key]+'</option>'; });
     html+='</select>';
     html+='</div>';
   });
-  
   document.getElementById('modalContenido').innerHTML=html;
   document.getElementById('modalAsistencia').classList.add('show');
 }
-
-function cerrarModalAsistencia(){
-  document.getElementById('modalAsistencia').classList.remove('show');
-  diaSeleccionado=null;
-}
-
+function cerrarModalAsistencia(){ document.getElementById('modalAsistencia').classList.remove('show'); diaSeleccionado=null; }
 function guardarAsistenciaDia(){
-  if(!diaSeleccionado){
-    mostrarAlerta('warning','No hay día seleccionado');
-    return;
-  }
-  
+  if(!diaSeleccionado){ mostrarAlerta('warning','No hay día seleccionado'); return; }
   const selects=document.querySelectorAll('.alumno-select');
   let guardados=0;
-  
   selects.forEach(select=>{
     const alumno=select.getAttribute('data-alumno');
     const estado=select.value;
-    
     const idx=userRecords.findIndex(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===diaSeleccionado&&r.alumno===alumno);
     if(idx>=0)userRecords.splice(idx,1);
     const idxH=historicalRecords.findIndex(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===diaSeleccionado&&r.alumno===alumno);
     if(idxH>=0)historicalRecords.splice(idxH,1);
-    
     if(estado){
-      userRecords.push({
-        y:anioSeleccionado,m:mesSeleccionado,d:diaSeleccionado,
-        alumno:alumno,estado:estado,
-        causa:'',justificada:false,
-        horaSalida:'',horaLlegada:'',horaUnica:'',
-        hist:false
-      });
+      userRecords.push({ y:anioSeleccionado,m:mesSeleccionado,d:diaSeleccionado, alumno:alumno,estado:estado, causa:'',justificada:false, horaSalida:'',horaLlegada:'',horaUnica:'', hist:false });
       guardados++;
     }
   });
-  
   saveUser();
   renderAll();
   generarCalendarioEntrada();
   cerrarModalAsistencia();
-  
   mostrarAlerta('success','✅ Guardados '+guardados+' registros del día '+pad(diaSeleccionado)+'/'+pad(mesSeleccionado)+'/'+anioSeleccionado);
 }
-
-// 📅 CALENDARIO DE VISUALIZACIÓN (NUEVA FUNCIONALIDAD)
 function actualizarCalendarioDesdePeriodo(){
   const periodoVal=document.getElementById('calPeriodo').value;
-  const parts=periodoVal.split('-'); 
-  const y=parseInt(parts[0]);
-  const m=parseInt(parts[1]);
-  actualizarCalendario(y,m);
+  const parts=periodoVal.split('-');
+  actualizarCalendario(parseInt(parts[0]),parseInt(parts[1]));
 }
-
 function actualizarCalendario(y,m){
   const cal=document.getElementById('calendar');cal.innerHTML='';
   DIAS.forEach(d=>{const h=document.createElement('div');h.className='cal-header';h.textContent=d;cal.appendChild(h);});
-  
   const first=new Date(y,m-1,1);
   const last=new Date(y,m,0);
   const start=first.getDay()||7;
-  
   for(let i=1;i<start;i++){const e=document.createElement('div');e.className='cal-day empty';cal.appendChild(e);}
-  
-  // Obtener filtros
   const filtroAlumno=document.getElementById('calFiltroAlumno').value;
   const filtroEstado=document.getElementById('calFiltroEstado').value;
-  
   let R=getAll().filter(r=>r.y===y&&r.m===m);
   if(filtroAlumno!=='TODOS')R=R.filter(r=>r.alumno===filtroAlumno);
   if(filtroEstado!=='TODOS')R=R.filter(r=>r.estado===filtroEstado);
-  
   const byDay={};
   R.forEach(r=>{
     if(!byDay[r.d])byDay[r.d]={counts:{presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0},alumnos:{}};
     byDay[r.d].counts[r.estado]++;
     byDay[r.d].alumnos[r.alumno]={estado:r.estado};
   });
-  
   for(let d=1;d<=last.getDate();d++){
     const dayInfo=getDayType(y,m,d);
     const e=document.createElement('div');
     e.className='cal-day';
-    
     const counts=byDay[d]?byDay[d].counts:null;
     const totalRegistros=counts?Object.values(counts).reduce((a,b)=>a+b,0):0;
-    
-    // Determinar clase de color según el estado del día
-    if(dayInfo.type==='holiday'){
-      e.classList.add('status-holiday');
-    }else if(dayInfo.type==='vacation'){
-      e.classList.add('status-vacation');
-    }else if(dayInfo.type==='weekend'){
-      e.classList.add('status-weekend');
-    }else if(counts){
+    if(dayInfo.type==='holiday'){ e.classList.add('status-holiday'); }
+    else if(dayInfo.type==='vacation'){ e.classList.add('status-vacation'); }
+    else if(dayInfo.type==='weekend'){ e.classList.add('status-weekend'); }
+    else if(counts){
       if(counts.ausente>0) e.classList.add('status-absent');
       else if(counts.entrada_tarde>0||counts.salida_pronto>0) e.classList.add('status-late');
       else if(counts.cita_medica>0||counts.conciliacion>0||counts.baja>0) e.classList.add('status-mixed');
       else if(counts.presente>0) e.classList.add('status-all-present');
     }
-    
     let html='<div class="day-num">'+d+'</div>';
-    
     if(dayInfo.type==='holiday'||dayInfo.type==='vacation'){
       html+='<div class="day-info">'+dayInfo.label+'</div>';
     }else if(dayInfo.type==='weekend'){
       html+='<div class="day-info">Fin de semana</div>';
     }else if(counts){
-      // Mostrar estadísticas resumidas
       const stats=[];
       if(counts.presente>0) stats.push('✓'+counts.presente);
       if(counts.ausente>0) stats.push('✗'+counts.ausente);
-      if(counts.entrada_tarde>0) stats.push(''+counts.entrada_tarde);
+      if(counts.entrada_tarde>0) stats.push('⏰'+counts.entrada_tarde);
       if(counts.salida_pronto>0) stats.push('📤'+counts.salida_pronto);
-      if(counts.cita_medica>0) stats.push('🏥'+counts.cita_medica);
-      if(counts.conciliacion>0) stats.push('👨‍👩‍👧'+counts.conciliacion);
+      if(counts.cita_medica>0) stats.push(''+counts.cita_medica);
+      if(counts.conciliacion>0) stats.push('👨‍👩‍'+counts.conciliacion);
       if(counts.baja>0) stats.push('🤒'+counts.baja);
-      
       html+='<div class="day-stats">'+stats.join(' ')+'</div>';
       html+='<div class="day-info">'+totalRegistros+'/'+ALUMNOS.length+' alumnos</div>';
     }else{
       html+='<div class="day-info">Sin registros</div>';
     }
-    
     e.innerHTML=html;
-    
-    // Hacer clickeable solo si es día lectivo
-    if(!dayInfo.type==='weekend'&&dayInfo.type!=='holiday'&&dayInfo.type!=='vacation'&&dayInfo.type!=='before-course'&&dayInfo.type!=='after-course'){
-      e.onclick=()=>abrirModalDetalle(y,m,d);
+    if(dayInfo.type==='lectivo'){
+      e.style.cursor='pointer';
+      e.onclick=(function(dia){ return function(){ abrirModalDetalle(y,m,dia); }; })(d);
     }
-    
     cal.appendChild(e);
   }
-  
-  // Ocultar panel de detalle al cambiar de mes
-  document.getElementById('dayDetailPanel').style.display='none';
 }
-
-// 📋 MODAL DE DETALLE DEL DÍA
 function abrirModalDetalle(y,m,d){
   diaDetalleSeleccionado={y,m,d};
   const registros=getAll().filter(r=>r.y===y&&r.m===m&&r.d===d);
-  
-  document.getElementById('modalDetalleTitulo').textContent=' Detalle del '+pad(d)+'/'+pad(m)+'/'+y;
-  
+  document.getElementById('modalDetalleTitulo').textContent='📋 Detalle del '+pad(d)+'/'+pad(m)+'/'+y;
   let html='';
-  
   if(registros.length===0){
     html='<div style="padding:20px;text-align:center;color:#6b7280">';
-    html+='<p style="font-size:48px;margin-bottom:12px">📭</p>';
+    html+='<p style="font-size:48px;margin-bottom:12px"></p>';
     html+='<p>No hay registros para este día</p>';
     html+='<p style="margin-top:12px"><button class="btn b2" onclick="cerrarModalDetalle();abrirModalAsistenciaDesdeDetalle('+d+')">➕ Añadir registros</button></p>';
     html+='</div>';
   }else{
-    // Resumen
     const counts={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
     registros.forEach(r=>{if(counts[r.estado]!==undefined)counts[r.estado]++;});
     const porcentajeAsistencia=Math.round((counts.presente/ALUMNOS.length)*100);
-    
     html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:20px">';
     html+='<div style="padding:12px;background:#dcfce7;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#166534">'+counts.presente+'</div><div style="font-size:12px;color:#166534">Presentes</div></div>';
     html+='<div style="padding:12px;background:#fee2e2;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#991b1b">'+counts.ausente+'</div><div style="font-size:12px;color:#991b1b">Ausentes</div></div>';
     html+='<div style="padding:12px;background:#fef3c7;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#92400e">'+counts.entrada_tarde+'</div><div style="font-size:12px;color:#92400e">Tarde</div></div>';
     html+='<div style="padding:12px;background:#dbeafe;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#1e40af">'+porcentajeAsistencia+'%</div><div style="font-size:12px;color:#1e40af">Asistencia</div></div>';
     html+='</div>';
-    
-    // Lista detallada
     html+='<h4 style="margin-bottom:12px;color:#1f2937">Detalle por alumno:</h4>';
     html+='<div class="day-detail-grid">';
-    
     ALUMNOS.forEach(alumno=>{
       const reg=registros.find(r=>r.alumno===alumno);
       if(reg){
@@ -850,42 +656,30 @@ function abrirModalDetalle(y,m,d){
         html+='</div>';
       }
     });
-    
     html+='</div>';
   }
-  
   document.getElementById('modalDetalleContenido').innerHTML=html;
   document.getElementById('modalDetalle').classList.add('show');
 }
-
-function cerrarModalDetalle(){
-  document.getElementById('modalDetalle').classList.remove('show');
-  diaDetalleSeleccionado=null;
-}
-
+function cerrarModalDetalle(){ document.getElementById('modalDetalle').classList.remove('show'); diaDetalleSeleccionado=null; }
 function abrirModalAsistenciaDesdeDetalle(d){
   const periodoVal=document.getElementById('calPeriodo').value;
   const parts=periodoVal.split('-');
   mesSeleccionado=parseInt(parts[1]);
   anioSeleccionado=parseInt(parts[0]);
-  
-  // Cambiar a la pestaña de entrada
   showTab('p7');
   setTimeout(()=>abrirModalAsistencia(d),200);
 }
-
 function editarDiaDesdeDetalle(){
   if(diaDetalleSeleccionado){
     abrirModalAsistenciaDesdeDetalle(diaDetalleSeleccionado.d);
     cerrarModalDetalle();
   }
 }
-
 function cargarRegistrosEditarDesdePeriodo(){
   const periodoVal=document.getElementById('editPeriodo').value;
   const parts=periodoVal.split('-'); cargarRegistrosEditar(parseInt(parts[0]),parseInt(parts[1]));
 }
-
 function cargarRegistrosEditar(y,m){
   const tb=document.getElementById('tEdit');tb.innerHTML='';
   const R=[...historicalRecords,...userRecords].filter(r=>r.y===y&&r.m===m).sort((a,b)=>a.d-b.d);
@@ -894,7 +688,6 @@ function cargarRegistrosEditar(y,m){
     tb.innerHTML+='<tr><td>'+pad(r.d)+'/'+pad(r.m)+'/'+r.y+'</td><td>'+r.alumno+'</td><td class="r" style="color:'+COLORES_ESTADO[r.estado]+'">'+(LABELS_ESTADOS[r.estado]||r.estado)+'</td><td>'+(r.causa||'-')+'</td><td><button class="btn b3 action-btn" onclick="eliminarRegistro('+i+')">🗑️</button></td></tr>';
   });
 }
-
 function eliminarRegistro(idx){
   const periodoVal=document.getElementById('editPeriodo').value;
   const parts=periodoVal.split('-'); const y=parseInt(parts[0]); const m=parseInt(parts[1]);
@@ -907,21 +700,15 @@ function eliminarRegistro(idx){
     mostrarAlerta('success','Registro eliminado');
   }
 }
-
 function imprimir(tipo){
   const area=document.getElementById('printArea');let contenido='';
   if(tipo==='maquinas')contenido='<h1>Total por Alumno</h1>'+document.getElementById('tablaMaquinasTbl').outerHTML;
   else if(tipo==='tiempo')contenido='<h1>Resumen por Periodo</h1>'+document.getElementById('tablaTiempoTbl').outerHTML;
   area.innerHTML=contenido;window.print();setTimeout(()=>{area.innerHTML='';},1000);
 }
-
 function resetearTodo(){
-  if(confirm('¿Seguro? Se borrarán TODOS los datos.')){
-    localStorage.removeItem('ca_cache');
-    location.reload();
-  }
+  if(confirm('¿Seguro? Se borrarán TODOS los datos.')){ localStorage.removeItem('ca_cache'); location.reload(); }
 }
-
 document.getElementById('fPeriodo').addEventListener('change',renderTiempo);
 document.getElementById('todayDate').textContent = new Date().toLocaleDateString('es-ES');
 inicializarApp();
