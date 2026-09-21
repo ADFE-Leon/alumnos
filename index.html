@@ -57,12 +57,17 @@ tr:hover{background:#f9fafb}
 .action-btn{padding:4px 8px;font-size:11px;margin:2px}
 .print-area{display:none}
 .status-bar{background:#e0f2fe;color:#0369a1;padding:8px 12px;border-radius:6px;font-size:12px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
-.alert{padding:12px;border-radius:6px;margin-bottom:16px;font-size:13px;display:flex;align-items:center;gap:8px;animation:slideIn .3s ease}
-.alert-info{background:#dbeafe;color:#1e40af;border:1px solid #93c5fd}
-.alert-error{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
-.alert-success{background:#dcfce7;color:#166534;border:1px solid #86efac}
-.alert-warning{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
-@keyframes slideIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ✅ ALERTAS PERSONALIZADAS */
+.alert-container{position:fixed;top:20px;right:20px;z-index:10000;max-width:400px}
+.alert{padding:16px 20px;border-radius:8px;margin-bottom:12px;font-size:14px;display:flex;align-items:center;gap:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);animation:slideInRight 0.3s ease;cursor:pointer;transition:all 0.3s}
+.alert:hover{transform:translateX(-5px)}
+.alert-info{background:#dbeafe;color:#1e40af;border-left:4px solid #3b82f6}
+.alert-error{background:#fee2e2;color:#991b1b;border-left:4px solid #ef4444}
+.alert-success{background:#dcfce7;color:#166534;border-left:4px solid #22c55e}
+.alert-warning{background:#fef3c7;color:#92400e;border-left:4px solid #f59e0b}
+@keyframes slideInRight{from{opacity:0;transform:translateX(100%)}to{opacity:1;transform:translateX(0)}}
+
 .leyenda{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;font-size:11px}
 .leyenda-item{display:flex;align-items:center;gap:6px}
 .leyenda-color{width:16px;height:16px;border-radius:3px;border:1px solid #d1d5db}
@@ -78,15 +83,12 @@ tr:hover{background:#f9fafb}
 .alumno-row:hover{background:#f3f4f6}
 .alumno-name{font-weight:600;color:#1f2937;padding-top:8px}
 .alumno-select{padding:8px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;width:100%}
-
-/* ✅ CAMPOS DE HORA - DISEÑO CORREGIDO */
 .campos-hora{display:flex;flex-direction:column;gap:6px;margin-top:6px}
 .campos-hora .hora-fila{display:flex;align-items:center;gap:8px}
 .campos-hora label{font-size:12px;color:#6b7280;min-width:65px;font-weight:500}
 .campos-hora input[type="time"]{padding:6px 10px;border:1px solid #d1d5db;border-radius:4px;font-size:13px;flex:1;max-width:140px}
 .campos-hora.hora-unica{flex-direction:row;flex-wrap:wrap}
 .campos-hora.hora-unica label{min-width:90px}
-
 .modal-footer{margin-top:20px;padding-top:16px;border-top:2px solid #e5e7eb;display:flex;justify-content:flex-end;gap:12px}
 .day-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
 .day-detail-item{padding:8px 12px;background:#f9fafb;border-radius:6px;font-size:13px}
@@ -109,10 +111,14 @@ tr:hover{background:#f9fafb}
 .spinner{border:4px solid #f3f3f3;border-top:4px solid #2563eb;border-radius:50%;width:40px;height:40px;animation:spin 1s linear infinite}
 @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 .botones-datos{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:12px}
+.botones-seguridad{margin-top:24px;padding-top:24px;border-top:2px solid #e5e7eb}
 .filter-group{display:flex;flex-direction:column;gap:4px}
 .filter-group label{font-size:12px;font-weight:600;color:#374151}
+.info-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:16px;margin-bottom:20px}
+.info-box h4{color:#1e40af;margin-bottom:8px;font-size:15px}
+.info-box p{color:#1e40af;font-size:13px;line-height:1.6}
 @media print{body *{visibility:hidden}.print-area,.print-area *{visibility:visible}.print-area{position:absolute;left:0;top:0;display:block;width:100%}.no-print{display:none!important}}
-@media(max-width:768px){.cards{grid-template-columns:1fr}.calendar{grid-template-columns:repeat(7,1fr);gap:2px}.cal-day{min-height:50px;padding:3px}.alumno-row{grid-template-columns:1fr;gap:8px}.modal{width:95%;padding:16px}}
+@media(max-width:768px){.cards{grid-template-columns:1fr}.calendar{grid-template-columns:repeat(7,1fr);gap:2px}.cal-day{min-height:50px;padding:3px}.alumno-row{grid-template-columns:1fr;gap:8px}.modal{width:95%;padding:16px}.alert-container{left:20px;right:20px;max-width:none}}
 </style>
 </head>
 <body>
@@ -124,10 +130,13 @@ tr:hover{background:#f9fafb}
 <p class="sub">Seguimiento de asistencias - Curso 2026/2027 (1/03/2026 - 28/02/2027)</p>
 <div id="mainApp">
 <div class="status-bar">
-<span>📂 Origen: <strong id="dataSource">Cargando...</strong></span>
-<span>📅 Hoy: <strong id="todayDate">-</strong></span>
+<span> Origen: <strong id="dataSource">Cargando...</strong></span>
+<span> Hoy: <strong id="todayDate">-</strong></span>
 </div>
-<div id="alertContainer"></div>
+
+<!-- ✅ CONTENEDOR DE ALERTAS PERSONALIZADAS -->
+<div id="alertContainer" class="alert-container"></div>
+
 <div class="cards">
 <div class="card"><small>Total Asistencias</small><div class="n c1" id="sP">0</div></div>
 <div class="card"><small>Total Ausencias</small><div class="n c2" id="sH">0</div></div>
@@ -135,7 +144,7 @@ tr:hover{background:#f9fafb}
 </div>
 <div class="tabs">
 <button class="tb on" data-t="p7">📝 Entrada por Días</button>
-<button class="tb" data-t="p2">👤 Por Alumno</button>
+<button class="tb" data-t="p2"> Por Alumno</button>
 <button class="tb" data-t="p3"> Por Mes/Año</button>
 <button class="tb" data-t="p4">📅 Calendario</button>
 <button class="tb" data-t="p5">✏️ Editar</button>
@@ -225,18 +234,31 @@ tr:hover{background:#f9fafb}
 
 <div id="p6" class="pnl">
 <h2>💾 Gestión de Datos</h2>
+
+<!-- ✅ CAJA DE INFORMACIÓN SOBRE CARGAR/GUARDAR -->
+<div class="info-box">
+<h4>📡 Sincronización con la nube</h4>
+<p><strong>Cargar:</strong> Descarga los datos desde Firebase (nube) para trabajar offline. Útil cuando cambias de dispositivo o quieres recuperar los últimos cambios guardados.</p>
+<p style="margin-top:8px"><strong>Guardar:</strong> Sube todos los cambios realizados localmente a Firebase (nube) para que estén disponibles en todos tus dispositivos.</p>
+</div>
+
 <div class="box">
 <div class="botones-datos">
-<button class="btn b1" onclick="cargarDatosFirebase()">☁️ Cargar desde Firebase</button>
-<button class="btn b5" onclick="guardarDatosFirebase()">💾 Guardar en Firebase</button>
-<button class="btn b3" onclick="resetearTodo()">🗑️ Resetear todo</button>
+<button class="btn b1" onclick="cargarDatosFirebase()">️ Cargar</button>
+<button class="btn b5" onclick="guardarDatosFirebase()">💾 Guardar</button>
 </div>
-<p style="margin-top:16px;color:#6b7280;font-size:13px;text-align:center"><strong>Consejo:</strong> Trabaja todo lo que necesites y cuando termines, pulsa "💾 Guardar en Firebase" para subir todos los cambios a la nube.</p>
+
+<!-- ✅ BOTÓN DE RESETEAR APARTADO CON DOBLE CONFIRMACIÓN -->
+<div class="botones-seguridad">
+<h3 style="color:#dc2626;font-size:16px;margin-bottom:12px">⚠️ Zona de peligro</h3>
+<p style="color:#6b7280;font-size:13px;margin-bottom:12px">Estas acciones son irreversibles. Asegúrate de haber guardado tus datos antes de continuar.</p>
+<button class="btn b3" onclick="confirmarResetear()" style="padding:12px 24px;font-size:14px">🗑️ Resetear todo</button>
+</div>
 </div>
 </div>
 
 <div id="p8" class="pnl">
-<h2>⚙️ Configuración</h2>
+<h2>️ Configuración</h2>
 <p style="color:#6b7280">Configuración de festivos, vacaciones y alumnos disponible próximamente.</p>
 </div>
 
@@ -265,8 +287,23 @@ tr:hover{background:#f9fafb}
 </div>
 <div id="modalDetalleContenido"></div>
 <div class="modal-footer">
-<button class="btn b1" onclick="editarDiaDesdeDetalle()">✏️ Editar registros</button>
+<button class="btn b1" onclick="editarDiaDesdeDetalle()">️ Editar registros</button>
 <button class="btn b4" onclick="cerrarModalDetalle()">Cerrar</button>
+</div>
+</div>
+</div>
+
+<!-- ✅ MODAL DE CONFIRMACIÓN DOBLE PARA RESETEAR -->
+<div class="modal-overlay" id="modalConfirmacion">
+<div class="modal" style="max-width:500px">
+<div class="modal-header">
+<h3 id="modalConfirmacionTitulo">Confirmar acción</h3>
+<button class="modal-close" onclick="cerrarModalConfirmacion()">×</button>
+</div>
+<div id="modalConfirmacionContenido"></div>
+<div class="modal-footer">
+<button class="btn b4" onclick="cerrarModalConfirmacion()">Cancelar</button>
+<button class="btn b3" id="btnConfirmarAccion">Confirmar</button>
 </div>
 </div>
 </div>
@@ -322,6 +359,7 @@ let diaSeleccionado=null;
 let mesSeleccionado=null;
 let anioSeleccionado=null;
 let diaDetalleSeleccionado=null;
+let confirmacionCallback=null;
 
 function getPeriodoLabel(year, month){return MESES_NOMBRES[month-1]+" "+year;}
 function getDayType(year, month, day){
@@ -347,13 +385,25 @@ function generarPeriodos(){
   }
   return periodos;
 }
-function mostrarAlerta(tipo,mensaje){
+
+// ✅ SISTEMA DE ALERTAS PERSONALIZADAS
+function mostrarAlerta(tipo,mensaje,duracion=5000){
   const cont=document.getElementById('alertContainer');
-  const iconos={info:'ℹ️',error:'',success:'✅',warning:'⚠️'};
-  cont.innerHTML='<div class="alert alert-'+tipo+'"><span>'+(iconos[tipo]||'')+'</span><span>'+mensaje+'</span></div>';
-  if(alertTimeout)clearTimeout(alertTimeout);
-  alertTimeout=setTimeout(function(){if(cont)cont.innerHTML='';},5000);
+  const iconos={info:'️',error:'❌',success:'✅',warning:'⚠️'};
+  const alertDiv=document.createElement('div');
+  alertDiv.className='alert alert-'+tipo;
+  alertDiv.innerHTML='<span style="font-size:20px">'+(iconos[tipo]||'')+'</span><span>'+mensaje+'</span>';
+  alertDiv.onclick=function(){this.remove();};
+  cont.appendChild(alertDiv);
+  if(duracion>0){
+    setTimeout(function(){
+      alertDiv.style.opacity='0';
+      alertDiv.style.transform='translateX(100%)';
+      setTimeout(function(){alertDiv.remove();},300);
+    },duracion);
+  }
 }
+
 async function cargarDatosFirebase() {
   document.getElementById('loader').classList.remove('hidden');
   try {
@@ -369,36 +419,37 @@ async function cargarDatosFirebase() {
       } else { historicalRecords = []; userRecords = []; }
       if (datos.festivos) FESTIVOS = datos.festivos.map(f => ({y: parseInt(f.y), m: parseInt(f.m), d: parseInt(f.d), nombre: f.nombre}));
       if (datos.vacaciones) VACACIONES = datos.vacaciones.map(v => ({y: parseInt(v.y), m: parseInt(v.m), d: parseInt(v.d)}));
-      dataSourceMsg = "️ Firebase (Nube)";
+      dataSourceMsg = "☁️ Firebase (Nube)";
       document.getElementById('dataSource').textContent = dataSourceMsg;
       saveUser();
       inicializarApp();
       renderAll();
-      mostrarAlerta('success', '✅ Datos cargados: ' + ALUMNOS.length + ' alumnos, ' + (historicalRecords.length + userRecords.length) + ' registros');
+      mostrarAlerta('success', 'Datos cargados correctamente: ' + ALUMNOS.length + ' alumnos, ' + (historicalRecords.length + userRecords.length) + ' registros');
     } else {
       dataSourceMsg = "Local (Sin datos)";
       document.getElementById('dataSource').textContent = dataSourceMsg;
       inicializarApp();
       renderAll();
+      mostrarAlerta('info', 'No hay datos en la nube. Comienza a registrar asistencias.');
     }
   } catch (e) {
     console.error('Error:', e);
-    mostrarAlerta('error', '❌ Error al conectar con Firebase');
+    mostrarAlerta('error', 'Error al conectar con Firebase: ' + e.message);
   } finally {
     document.getElementById('loader').classList.add('hidden');
   }
 }
 async function guardarDatosFirebase() {
-  mostrarAlerta('info', '💾 Guardando en Firebase...');
+  mostrarAlerta('info', 'Guardando en Firebase...');
   try {
     const payload = { alumnos: ALUMNOS, registros: [...historicalRecords, ...userRecords], festivos: FESTIVOS, vacaciones: VACACIONES };
     const db = window.firebaseDB;
     const dbRef = window.firebaseRef(db, 'datos');
     await window.firebaseSet(dbRef, payload);
-    mostrarAlerta('success', '✅ Datos guardados: ' + (historicalRecords.length + userRecords.length) + ' registros');
+    mostrarAlerta('success', 'Datos guardados correctamente: ' + (historicalRecords.length + userRecords.length) + ' registros sincronizados');
   } catch (e) {
     console.error('Error:', e);
-    mostrarAlerta('error', '❌ Error al guardar');
+    mostrarAlerta('error', 'Error al guardar en Firebase');
   }
 }
 function inicializarApp(){
@@ -646,7 +697,7 @@ function guardarAsistenciaDia(){
   generarCalendarioEntrada();
   cerrarModalAsistencia();
   
-  mostrarAlerta('success','✅ Guardados '+guardados+' registros del día '+pad(diaSeleccionado)+'/'+pad(mesSeleccionado)+'/'+anioSeleccionado);
+  mostrarAlerta('success','Guardados '+guardados+' registros del día '+pad(diaSeleccionado)+'/'+pad(mesSeleccionado)+'/'+anioSeleccionado);
 }
 
 function actualizarCalendarioDesdePeriodo(){
@@ -787,7 +838,7 @@ function cargarRegistrosEditar(y,m){
     if(r.horaUnica) detalles+=' '+r.horaUnica+' ';
     if(r.horaSalida&&r.horaLlegada) detalles+='🕐 '+r.horaSalida+'-'+r.horaLlegada+' ';
     if(r.causa) detalles+='📝 '+r.causa;
-    tb.innerHTML+='<tr><td>'+pad(r.d)+'/'+pad(r.m)+'/'+r.y+'</td><td>'+r.alumno+'</td><td class="r" style="color:'+COLORES_ESTADO[r.estado]+'">'+(LABELS_ESTADOS[r.estado]||r.estado)+'</td><td>'+(detalles||'-')+'</td><td><button class="btn b3 action-btn" onclick="eliminarRegistro('+i+')">️</button></td></tr>';
+    tb.innerHTML+='<tr><td>'+pad(r.d)+'/'+pad(r.m)+'/'+r.y+'</td><td>'+r.alumno+'</td><td class="r" style="color:'+COLORES_ESTADO[r.estado]+'">'+(LABELS_ESTADOS[r.estado]||r.estado)+'</td><td>'+(detalles||'-')+'</td><td><button class="btn b3 action-btn" onclick="eliminarRegistro('+i+')">🗑️</button></td></tr>';
   });
 }
 function eliminarRegistro(idx){
@@ -808,9 +859,59 @@ function imprimir(tipo){
   else if(tipo==='tiempo')contenido='<h1>Resumen por Periodo</h1>'+document.getElementById('tablaTiempoTbl').outerHTML;
   area.innerHTML=contenido;window.print();setTimeout(()=>{area.innerHTML='';},1000);
 }
-function resetearTodo(){
-  if(confirm('¿Seguro? Se borrarán TODOS los datos.')){ localStorage.removeItem('ca_cache'); location.reload(); }
+
+// ✅ SISTEMA DE DOBLE CONFIRMACIÓN PARA RESETEAR
+function confirmarResetear(){
+  // Primera confirmación
+  abrirModalConfirmacion(
+    'Primera confirmación',
+    '¿Estás seguro de que quieres resetear TODOS los datos? Esta acción eliminará:\n\n• Todos los alumnos\n• Todos los registros de asistencia\n• Festivos y vacaciones configurados\n\nEsta acción NO se puede deshacer.',
+    function(){
+      // Segunda confirmación
+      abrirModalConfirmacion(
+        '️ ÚLTIMA CONFIRMACIÓN',
+        '⚠️ ¿REALMENTE ESTÁS SEGURO?\n\nSe borrarán TODOS los datos permanentemente.\n\nSi continúas, perderás toda la información.',
+        function(){
+          // Ejecutar reset
+          localStorage.removeItem('ca_cache');
+          localStorage.removeItem('ca_user');
+          
+          // Limpiar Firebase
+          const db = window.firebaseDB;
+          const dbRef = window.firebaseRef(db, 'datos');
+          window.firebaseSet(dbRef, null).then(()=>{
+            mostrarAlerta('success','Todos los datos han sido eliminados');
+            setTimeout(()=>{location.reload();},1500);
+          }).catch(err=>{
+            console.error('Error:',err);
+            mostrarAlerta('error','Error al resetear: '+err.message);
+          });
+        }
+      );
+    }
+  );
 }
+
+function abrirModalConfirmacion(titulo,contenido,callback){
+  confirmacionCallback=callback;
+  document.getElementById('modalConfirmacionTitulo').textContent=titulo;
+  document.getElementById('modalConfirmacionContenido').innerHTML='<div style="padding:20px;background:#fef3c7;border-radius:8px;border-left:4px solid #f59e0b;margin-bottom:16px"><p style="white-space:pre-line;color:#92400e;line-height:1.6">'+contenido+'</p></div>';
+  document.getElementById('btnConfirmarAccion').onclick=function(){
+    if(confirmacionCallback) confirmacionCallback();
+    cerrarModalConfirmacion();
+  };
+  document.getElementById('modalConfirmacion').classList.add('show');
+}
+
+function cerrarModalConfirmacion(){
+  document.getElementById('modalConfirmacion').classList.remove('show');
+  confirmacionCallback=null;
+}
+
+function resetearTodo(){
+  // Esta función ya no se usa directamente, se usa confirmarResetear()
+}
+
 document.getElementById('fPeriodo').addEventListener('change',renderTiempo);
 document.getElementById('todayDate').textContent = new Date().toLocaleDateString('es-ES');
 inicializarApp();
