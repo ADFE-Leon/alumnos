@@ -11,68 +11,60 @@
 body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f5f7fa 0%,#e4e8ec 100%);color:#1f2937;padding:16px;min-height:100vh}
 .wrap{max-width:1280px;margin:0 auto}
 
-/* HEADER MEJORADO */
-.header{text-align:center;margin-bottom:24px;padding:20px;background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 100%);border-radius:16px;color:#fff;box-shadow:0 8px 24px rgba(30,58,138,0.2)}
-.header h1{font-size:32px;margin-bottom:6px;font-weight:700;letter-spacing:-0.5px}
-.header .sub{font-size:14px;opacity:0.9}
+/* HEADER COMPACTO */
+.header{background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 100%);border-radius:14px;padding:16px 24px;color:#fff;box-shadow:0 6px 20px rgba(30,58,138,0.25);display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.header-left h1{font-size:26px;font-weight:700;letter-spacing:-0.3px}
+.header-left .sub{font-size:13px;opacity:0.85;margin-top:2px}
+.curso-mini{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:10px;padding:10px 16px;text-align:right;border:1px solid rgba(255,255,255,0.2)}
+.curso-mini .label{font-size:11px;opacity:0.9;display:flex;align-items:center;justify-content:flex-end;gap:6px}
+.curso-mini .fechas{font-size:14px;font-weight:600;margin-top:2px}
 
-/* CAJA CURSO ACTUAL MEJORADA */
-.curso-info-box{background:linear-gradient(135deg,#10b981 0%,#059669 100%);border-radius:16px;padding:24px;margin-bottom:24px;text-align:center;color:#fff;box-shadow:0 8px 24px rgba(16,185,129,0.3);position:relative;overflow:hidden}
-.curso-info-box::before{content:'';position:absolute;top:-50%;right:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(255,255,255,0.1) 0%,transparent 70%);pointer-events:none}
-.curso-info-box h4{font-size:22px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:10px;position:relative}
-.curso-info-box p{font-size:20px;font-weight:600;position:relative}
+/* FECHA CENTRADA Y GRANDE */
+.fecha-bar{background:#fff;border-radius:12px;padding:12px 20px;margin-bottom:18px;display:flex;justify-content:center;align-items:center;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border:1px solid #e5e7eb}
+.fecha-bar .origen{color:#6b7280;font-size:13px;display:flex;align-items:center;gap:6px}
+.fecha-bar .origen strong{color:#2563eb}
+.fecha-bar .fecha-hoy{background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:10px 20px;border-radius:10px;font-weight:700;font-size:18px;box-shadow:0 4px 12px rgba(59,130,246,0.3)}
 
-/* STATUS BAR MEJORADA */
-.status-bar{background:#fff;border-radius:12px;padding:14px 20px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);border:1px solid #e5e7eb}
-.status-bar .origen{display:flex;align-items:center;gap:8px;color:#6b7280;font-size:14px}
-.status-bar .origen strong{color:#2563eb}
-.status-bar .fecha-hoy{background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:8px 16px;border-radius:8px;font-weight:700;font-size:15px;box-shadow:0 4px 12px rgba(59,130,246,0.3)}
-
-/* CARDS DE ESTADÍSTICAS MEJORADAS */
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
-.card{background:#fff;padding:24px;border-radius:14px;box-shadow:0 4px 12px rgba(0,0,0,0.06);text-align:center;transition:all 0.3s;border:1px solid #e5e7eb;position:relative;overflow:hidden}
-.card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.12)}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+/* CARDS PEQUEÑAS */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
+.card{background:#fff;padding:14px 16px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.05);text-align:center;border:1px solid #e5e7eb;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
 .card:nth-child(1)::before{background:linear-gradient(90deg,#3b82f6,#60a5fa)}
 .card:nth-child(2)::before{background:linear-gradient(90deg,#ef4444,#f87171)}
 .card:nth-child(3)::before{background:linear-gradient(90deg,#8b5cf6,#a78bfa)}
-.card small{color:#6b7280;font-size:12px;display:block;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px;font-weight:600}
-.card .n{font-size:36px;font-weight:700}
+.card small{color:#6b7280;font-size:11px;display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px;font-weight:600}
+.card .n{font-size:26px;font-weight:700}
 .card:nth-child(1) .n{color:#2563eb}
 .card:nth-child(2) .n{color:#dc2626}
 .card:nth-child(3) .n{color:#9333ea}
-.card .icono-card{font-size:28px;margin-bottom:8px}
 
-/* WIDGETS DEL DASHBOARD */
-.dashboard-widgets{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:24px}
-.widget{background:#fff;border-radius:14px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,0.06);border:1px solid #e5e7eb;transition:all 0.3s}
-.widget:hover{box-shadow:0 8px 24px rgba(0,0,0,0.1)}
-.widget-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid #f3f4f6}
-.widget-header .icono{font-size:24px}
-.widget-header h3{font-size:15px;color:#1f2937;font-weight:600}
-.widget-content{font-size:14px;color:#4b5563;line-height:1.6}
-.widget-content .dato-principal{font-size:24px;font-weight:700;color:#1e3a8a;margin:8px 0}
-.widget-content .detalle{font-size:13px;color:#6b7280}
+/* WIDGETS COMPACTOS */
+.dashboard-widgets{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:18px}
+.widget{background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 6px rgba(0,0,0,0.05);border:1px solid #e5e7eb}
+.widget-header{display:flex;align-items:center;gap:8px;margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid #f3f4f6}
+.widget-header .icono{font-size:18px}
+.widget-header h3{font-size:13px;color:#1f2937;font-weight:600}
+.widget-content{font-size:13px;color:#4b5563;line-height:1.5}
+.widget-content .dato-principal{font-size:18px;font-weight:700;color:#1e3a8a;margin:4px 0}
+.widget-content .detalle{font-size:12px;color:#6b7280}
+.progress-container{margin-top:8px}
+.progress-bar{background:#e5e7eb;border-radius:8px;height:8px;overflow:hidden;margin-top:4px}
+.progress-fill{height:100%;background:linear-gradient(90deg,#10b981,#059669);border-radius:8px;transition:width 0.5s ease}
+.progress-label{display:flex;justify-content:space-between;font-size:11px;color:#6b7280;margin-top:3px}
 
-/* BARRA DE PROGRESO */
-.progress-container{margin-top:12px}
-.progress-bar{background:#e5e7eb;border-radius:10px;height:12px;overflow:hidden;margin-top:6px}
-.progress-fill{height:100%;background:linear-gradient(90deg,#10b981,#059669);border-radius:10px;transition:width 0.5s ease}
-.progress-label{display:flex;justify-content:space-between;font-size:12px;color:#6b7280;margin-top:4px}
-
-/* PESTAÑAS MEJORADAS */
-.tabs{display:flex;gap:4px;margin-bottom:0;background:#fff;padding:6px;border-radius:12px 12px 0 0;box-shadow:0 -2px 8px rgba(0,0,0,0.04);border:1px solid #e5e7eb;border-bottom:none}
-.tb{padding:12px 20px;border:none;cursor:pointer;font-size:14px;font-weight:600;border-radius:8px;background:transparent;color:#6b7280;transition:all 0.3s;display:flex;align-items:center;gap:6px}
-.tb:hover{background:#f3f4f6;color:#1f2937}
+/* PESTAÑAS GRANDES */
+.tabs{display:flex;gap:4px;margin-bottom:0}
+.tb{padding:14px 28px;border:none;cursor:pointer;font-size:16px;font-weight:600;border-radius:10px 10px 0 0;background:#e5e7eb;color:#6b7280;transition:all 0.3s;display:flex;align-items:center;gap:8px}
+.tb:hover{background:#d1d5db;color:#1f2937}
 .tb.on{background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;box-shadow:0 4px 12px rgba(59,130,246,0.3)}
 
-.pnl{background:#fff;padding:28px;border-radius:0 0 12px 12px;box-shadow:0 4px 12px rgba(0,0,0,0.06);display:none;border:1px solid #e5e7eb;border-top:none;animation:fadeIn 0.3s ease}
+.pnl{background:#fff;padding:24px;border-radius:0 0 12px 12px;box-shadow:0 4px 12px rgba(0,0,0,0.06);display:none;border:1px solid #e5e7eb;border-top:none;animation:fadeIn 0.3s ease}
 .pnl.on{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.pnl h2{margin-bottom:20px;font-size:22px;color:#1f2937;display:flex;align-items:center;gap:10px}
+.pnl h2{margin-bottom:18px;font-size:20px;color:#1f2937;display:flex;align-items:center;gap:10px}
 
-/* BOTONES MEJORADOS */
-.btn{padding:10px 20px;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:600;color:#fff;margin-right:6px;margin-bottom:6px;transition:all 0.2s;display:inline-flex;align-items:center;gap:6px}
+/* BOTONES */
+.btn{padding:9px 18px;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;color:#fff;margin-right:5px;margin-bottom:5px;transition:all 0.2s;display:inline-flex;align-items:center;gap:6px}
 .btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.15)}
 .b1{background:linear-gradient(135deg,#3b82f6,#1d4ed8)}
 .b2{background:linear-gradient(135deg,#10b981,#059669)}
@@ -82,27 +74,27 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:linear
 .b6{background:linear-gradient(135deg,#8b5cf6,#7c3aed)}
 .b7{background:linear-gradient(135deg,#f97316,#ea580c)}
 
-/* TABLAS MEJORADAS */
+/* TABLAS */
 table{width:100%;border-collapse:collapse;margin-top:12px;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
-th{background:linear-gradient(135deg,#f9fafb,#f3f4f6);text-align:left;padding:12px 14px;font-size:11px;text-transform:uppercase;color:#6b7280;font-weight:700;letter-spacing:0.5px;border-bottom:2px solid #e5e7eb}
+th{background:linear-gradient(135deg,#f9fafb,#f3f4f6);text-align:left;padding:10px 12px;font-size:11px;text-transform:uppercase;color:#6b7280;font-weight:700;letter-spacing:0.5px;border-bottom:2px solid #e5e7eb}
 th.r,td.r{text-align:center}
-td{padding:12px 14px;border-bottom:1px solid #f3f4f6;font-size:13px}
+td{padding:10px 12px;border-bottom:1px solid #f3f4f6;font-size:13px}
 tr:hover{background:#f9fafb}
 tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 
 .alumno-link{color:#3b82f6;cursor:pointer;text-decoration:none;font-weight:600;transition:color 0.2s}
 .alumno-link:hover{color:#1d4ed8;text-decoration:underline}
 
-/* CALENDARIO MEJORADO */
-.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:20px}
-.cal-header{background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:10px;text-align:center;font-weight:700;font-size:12px;border-radius:8px}
-.cal-day{background:#fff;border:2px solid #e5e7eb;padding:8px;min-height:90px;cursor:pointer;border-radius:8px;position:relative;transition:all 0.2s}
-.cal-day:hover{transform:scale(1.05);box-shadow:0 4px 12px rgba(0,0,0,0.1);z-index:10;border-color:#3b82f6}
+/* CALENDARIO */
+.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:16px}
+.cal-header{background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:8px;text-align:center;font-weight:700;font-size:11px;border-radius:6px}
+.cal-day{background:#fff;border:2px solid #e5e7eb;padding:6px;min-height:75px;cursor:pointer;border-radius:6px;position:relative;transition:all 0.2s}
+.cal-day:hover{transform:scale(1.04);box-shadow:0 4px 12px rgba(0,0,0,0.1);z-index:10;border-color:#3b82f6}
 .cal-day.empty{background:#f9fafb;border-color:#f3f4f6;cursor:default}
 .cal-day.empty:hover{transform:none;box-shadow:none;border-color:#f3f4f6}
-.cal-day .day-num{font-weight:700;font-size:15px;margin-bottom:4px;color:#1f2937}
-.cal-day .day-info{font-size:10px;color:#6b7280;margin-top:2px}
-.cal-day .day-stats{font-size:10px;margin-top:4px;line-height:1.4}
+.cal-day .day-num{font-weight:700;font-size:13px;margin-bottom:3px;color:#1f2937}
+.cal-day .day-info{font-size:9px;color:#6b7280;margin-top:2px}
+.cal-day .day-stats{font-size:9px;margin-top:3px;line-height:1.3}
 .cal-day.status-all-present{background:linear-gradient(135deg,#dcfce7,#bbf7d0);border-color:#86efac}
 .cal-day.status-absent{background:linear-gradient(135deg,#fee2e2,#fecaca);border-color:#fca5a5}
 .cal-day.status-late{background:linear-gradient(135deg,#fef3c7,#fde68a);border-color:#fcd34d}
@@ -112,88 +104,94 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 .cal-day.status-weekend{background:#f9fafb;border-color:#e5e7eb;opacity:0.6;cursor:default}
 .cal-day.status-weekend:hover{transform:none;box-shadow:none;border-color:#e5e7eb}
 
-/* SUB-PESTAÑAS DE CONSULTAS */
-.subtabs-container{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);padding:20px;border-radius:14px;margin-bottom:24px;box-shadow:0 8px 24px rgba(102,126,234,0.3)}
-.subtabs{display:flex;gap:10px;flex-wrap:wrap}
-.subtb{padding:14px 28px;border:none;cursor:pointer;font-size:15px;font-weight:600;border-radius:10px;background:rgba(255,255,255,0.2);color:#fff;transition:all 0.3s;display:flex;align-items:center;gap:8px}
+/* SUB-PESTAÑAS */
+.subtabs-container{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);padding:14px;border-radius:10px;margin-bottom:18px;box-shadow:0 6px 18px rgba(102,126,234,0.25)}
+.subtabs{display:flex;gap:8px;flex-wrap:wrap}
+.subtb{padding:10px 20px;border:none;cursor:pointer;font-size:14px;font-weight:600;border-radius:8px;background:rgba(255,255,255,0.2);color:#fff;transition:all 0.3s;display:flex;align-items:center;gap:6px}
 .subtb:hover{background:rgba(255,255,255,0.3);transform:translateY(-2px)}
 .subtb.on{background:#fff;color:#667eea;box-shadow:0 4px 12px rgba(0,0,0,0.2)}
 
-/* SECCIÓN RESET */
-.reset-section{margin-top:40px;padding:28px;background:linear-gradient(135deg,#fef2f2,#fee2e2);border:2px solid #fca5a5;border-radius:14px;text-align:center;box-shadow:0 4px 12px rgba(239,68,68,0.1)}
-.reset-section h3{color:#dc2626;font-size:20px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:8px}
-.reset-section p{color:#6b7280;font-size:14px;margin-bottom:20px}
-.reset-section .btn{padding:14px 32px;font-size:16px}
+/* CONTENEDOR DE INFORMES */
+.informe-container{background:#fff;border-radius:10px;padding:20px;border:1px solid #e5e7eb;box-shadow:0 2px 8px rgba(0,0,0,0.04);margin-top:16px}
+.informe-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid #f3f4f6}
+.informe-header h2{margin:0;font-size:18px}
+.informe-botones{display:flex;gap:8px}
 
-/* CONFIG SECTIONS */
-.config-section{margin-bottom:28px;padding:24px;background:#f9fafb;border-radius:12px;border:1px solid #e5e7eb}
-.config-section h3{margin-bottom:16px;color:#1e3a8a;font-size:18px;display:flex;align-items:center;gap:8px}
-.config-form{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-bottom:16px}
-.config-form .filter-group{flex:1;min-width:150px}
-.config-form input,.config-form select{width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:14px;transition:border-color 0.2s}
+/* RESET */
+.reset-section{margin-top:32px;padding:24px;background:linear-gradient(135deg,#fef2f2,#fee2e2);border:2px solid #fca5a5;border-radius:12px;text-align:center;box-shadow:0 4px 12px rgba(239,68,68,0.1)}
+.reset-section h3{color:#dc2626;font-size:18px;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:8px}
+.reset-section p{color:#6b7280;font-size:13px;margin-bottom:16px}
+.reset-section .btn{padding:12px 28px;font-size:15px}
+
+/* CONFIG */
+.config-section{margin-bottom:24px;padding:20px;background:#f9fafb;border-radius:10px;border:1px solid #e5e7eb}
+.config-section h3{margin-bottom:14px;color:#1e3a8a;font-size:17px;display:flex;align-items:center;gap:8px}
+.config-form{display:flex;gap:10px;flex-wrap:wrap;align-items:end;margin-bottom:14px}
+.config-form .filter-group{flex:1;min-width:140px}
+.config-form input,.config-form select{width:100%;padding:9px 11px;border:1px solid #d1d5db;border-radius:7px;font-size:13px;transition:border-color 0.2s}
 .config-form input:focus,.config-form select:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,0.1)}
-.config-list{margin-top:16px}
-.config-item{display:flex;justify-content:space-between;align-items:center;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;margin-bottom:8px;transition:all 0.2s}
+.config-list{margin-top:14px}
+.config-item{display:flex;justify-content:space-between;align-items:center;padding:10px;background:#fff;border:1px solid #e5e7eb;border-radius:7px;margin-bottom:6px;transition:all 0.2s}
 .config-item:hover{box-shadow:0 2px 8px rgba(0,0,0,0.06);border-color:#3b82f6}
 .config-item-info{flex:1}
-.config-item-actions{display:flex;gap:8px}
-.action-btn{padding:6px 12px;font-size:12px;border-radius:6px}
+.config-item-actions{display:flex;gap:6px}
+.action-btn{padding:5px 10px;font-size:11px;border-radius:5px}
 
-.rango-fechas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px}
-.rango-box{flex:1;min-width:280px;padding:16px;background:#fff;border-radius:10px;border:2px solid #fdba74}
-.rango-box h4{color:#9a3412;margin-bottom:12px;font-size:15px;display:flex;align-items:center;gap:6px}
-.rango-box .rango-inputs{display:flex;gap:10px}
+.rango-fechas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.rango-box{flex:1;min-width:260px;padding:14px;background:#fff;border-radius:9px;border:2px solid #fdba74}
+.rango-box h4{color:#9a3412;margin-bottom:10px;font-size:14px;display:flex;align-items:center;gap:6px}
+.rango-box .rango-inputs{display:flex;gap:8px}
 .rango-box .rango-inputs .filter-group{flex:1;min-width:0}
-.rango-box .rango-inputs input,.rango-box .rango-inputs select{width:100%;padding:8px;border:1px solid #d1d5db;border-radius:6px;font-size:14px}
+.rango-box .rango-inputs input,.rango-box .rango-inputs select{width:100%;padding:7px;border:1px solid #d1d5db;border-radius:6px;font-size:13px}
 
-.stats-config{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:24px}
-.stats-group{background:#fff;padding:20px;border-radius:12px;border:2px solid #e5e7eb;transition:all 0.3s}
+.stats-config{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:20px}
+.stats-group{background:#fff;padding:16px;border-radius:10px;border:2px solid #e5e7eb;transition:all 0.3s}
 .stats-group:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
-.stats-group h4{font-size:14px;color:#6b7280;margin-bottom:14px;text-transform:uppercase;font-weight:700;letter-spacing:0.5px}
+.stats-group h4{font-size:13px;color:#6b7280;margin-bottom:12px;text-transform:uppercase;font-weight:700;letter-spacing:0.5px}
 .stats-group.vacaciones{border-color:#fdba74;background:linear-gradient(135deg,#fff7ed,#ffedd5)}
 .stats-group.vacaciones h4{color:#9a3412}
 .stats-group.festivos{border-color:#a5b4fc;background:linear-gradient(135deg,#e0e7ff,#dbeafe)}
 .stats-group.festivos h4{color:#3730a3}
-.stats-items{display:flex;flex-direction:column;gap:10px}
-.stat-item{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#fff;border-radius:8px}
-.stat-item .stat-label{font-size:13px;color:#4b5563;font-weight:500}
-.stat-item .stat-value{font-size:22px;font-weight:700}
+.stats-items{display:flex;flex-direction:column;gap:8px}
+.stat-item{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#fff;border-radius:7px}
+.stat-item .stat-label{font-size:12px;color:#4b5563;font-weight:500}
+.stat-item .stat-value{font-size:20px;font-weight:700}
 .stat-item.total .stat-value{color:#1e3a8a}
 .stat-item.consumidos .stat-value{color:#059669}
 .stat-item.pendientes .stat-value{color:#dc2626}
 
-/* MODAL MEJORADO */
+/* MODAL */
 .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(4px)}
 .modal-overlay.show{display:flex}
-.modal{background:#fff;border-radius:16px;padding:28px;max-width:700px;width:90%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3);animation:modalIn 0.3s ease}
+.modal{background:#fff;border-radius:14px;padding:24px;max-width:700px;width:90%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3);animation:modalIn 0.3s ease}
 .modal-grande{max-width:900px}
 @keyframes modalIn{from{opacity:0;transform:scale(0.9) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid #e5e7eb}
-.modal-header h3{color:#1f2937;font-size:20px}
-.modal-close{background:none;border:none;font-size:28px;cursor:pointer;color:#9ca3af;padding:0 8px;transition:color 0.2s}
+.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid #e5e7eb}
+.modal-header h3{color:#1f2937;font-size:18px}
+.modal-close{background:none;border:none;font-size:26px;cursor:pointer;color:#9ca3af;padding:0 8px;transition:color 0.2s}
 .modal-close:hover{color:#1f2937}
 
-.alumno-row{display:grid;grid-template-columns:1fr 280px;gap:12px;align-items:start;padding:14px;background:#f9fafb;border-radius:10px;margin-bottom:10px;transition:background 0.2s}
+.alumno-row{display:grid;grid-template-columns:1fr 260px;gap:10px;align-items:start;padding:12px;background:#f9fafb;border-radius:8px;margin-bottom:8px;transition:background 0.2s}
 .alumno-row:hover{background:#f3f4f6}
-.alumno-name{font-weight:600;color:#1f2937;padding-top:8px}
-.alumno-select{padding:10px;border:1px solid #d1d5db;border-radius:8px;font-size:14px;width:100%;transition:border-color 0.2s}
+.alumno-name{font-weight:600;color:#1f2937;padding-top:6px;font-size:13px}
+.alumno-select{padding:8px;border:1px solid #d1d5db;border-radius:7px;font-size:13px;width:100%;transition:border-color 0.2s}
 .alumno-select:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,0.1)}
 
-.campos-hora{display:flex;flex-direction:column;gap:6px;margin-top:6px}
-.campos-hora .hora-fila{display:flex;align-items:center;gap:8px}
-.campos-hora label{font-size:12px;color:#6b7280;min-width:65px;font-weight:500}
-.campos-hora input[type="time"]{padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;font-size:13px;flex:1;max-width:140px}
+.campos-hora{display:flex;flex-direction:column;gap:5px;margin-top:5px}
+.campos-hora .hora-fila{display:flex;align-items:center;gap:6px}
+.campos-hora label{font-size:11px;color:#6b7280;min-width:60px;font-weight:500}
+.campos-hora input[type="time"]{padding:6px 8px;border:1px solid #d1d5db;border-radius:5px;font-size:12px;flex:1;max-width:130px}
 .campos-hora.hora-unica{flex-direction:row;flex-wrap:wrap}
-.campos-hora.hora-unica label{min-width:90px}
+.campos-hora.hora-unica label{min-width:85px}
 
-.modal-footer{margin-top:24px;padding-top:18px;border-top:2px solid #e5e7eb;display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+.modal-footer{margin-top:20px;padding-top:14px;border-top:2px solid #e5e7eb;display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap}
 
-.day-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
-.day-detail-item{padding:12px;background:#f9fafb;border-radius:8px;font-size:13px;transition:all 0.2s}
+.day-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.day-detail-item{padding:10px;background:#f9fafb;border-radius:7px;font-size:12px;transition:all 0.2s}
 .day-detail-item:hover{box-shadow:0 2px 8px rgba(0,0,0,0.06)}
 .day-detail-item .nombre{font-weight:600;color:#1f2937}
-.day-detail-item .estado{font-size:12px;margin-top:4px}
-.day-detail-item .hora{font-size:11px;color:#6b7280;margin-top:4px}
+.day-detail-item .estado{font-size:11px;margin-top:3px}
+.day-detail-item .hora{font-size:10px;color:#6b7280;margin-top:3px}
 
 .estado-presente{color:#166534}
 .estado-ausente{color:#991b1b}
@@ -203,26 +201,26 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 .estado-conciliacion{color:#3730a3}
 .estado-baja{color:#991b1b}
 
-.cal-filtros{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;padding:16px;background:#f9fafb;border-radius:10px}
-.cal-filtros .filter-group{display:flex;flex-direction:column;gap:4px}
-.cal-filtros label{font-size:12px;font-weight:600;color:#374151}
-.cal-filtros select{padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:14px;min-width:150px}
+.cal-filtros{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;padding:12px;background:#f9fafb;border-radius:8px}
+.cal-filtros .filter-group{display:flex;flex-direction:column;gap:3px}
+.cal-filtros label{font-size:11px;font-weight:600;color:#374151}
+.cal-filtros select{padding:8px 10px;border:1px solid #d1d5db;border-radius:7px;font-size:13px;min-width:140px}
 
-#loader{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.95);z-index:3000;display:flex;justify-content:center;align-items:center;font-size:20px;color:#2563eb;font-weight:bold;flex-direction:column;gap:15px;backdrop-filter:blur(4px)}
+#loader{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.95);z-index:3000;display:flex;justify-content:center;align-items:center;font-size:18px;color:#2563eb;font-weight:bold;flex-direction:column;gap:12px;backdrop-filter:blur(4px)}
 #loader.hidden{display:none}
-.spinner{border:4px solid #f3f3f3;border-top:4px solid #3b82f6;border-radius:50%;width:48px;height:48px;animation:spin 1s linear infinite}
+.spinner{border:4px solid #f3f3f3;border-top:4px solid #3b82f6;border-radius:50%;width:44px;height:44px;animation:spin 1s linear infinite}
 @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 
-.filter-group{display:flex;flex-direction:column;gap:4px}
-.filter-group label{font-size:12px;font-weight:600;color:#374151}
-.sel{padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:14px}
+.filter-group{display:flex;flex-direction:column;gap:3px}
+.filter-group label{font-size:11px;font-weight:600;color:#374151}
+.sel{padding:8px 10px;border:1px solid #d1d5db;border-radius:7px;font-size:13px}
 
-.leyenda{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px;font-size:12px;padding:12px;background:#f9fafb;border-radius:8px}
-.leyenda-item{display:flex;align-items:center;gap:6px}
-.leyenda-color{width:18px;height:18px;border-radius:4px;border:1px solid #d1d5db}
+.leyenda{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px;font-size:11px;padding:10px;background:#f9fafb;border-radius:7px}
+.leyenda-item{display:flex;align-items:center;gap:5px}
+.leyenda-color{width:16px;height:16px;border-radius:3px;border:1px solid #d1d5db}
 
-.alert-container{position:fixed;top:20px;right:20px;z-index:10000;max-width:400px}
-.alert{padding:16px 20px;border-radius:10px;margin-bottom:10px;font-size:14px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,0.15);animation:slideInRight 0.3s ease;cursor:pointer;transition:all 0.3s}
+.alert-container{position:fixed;top:20px;right:20px;z-index:10000;max-width:380px}
+.alert{padding:14px 18px;border-radius:8px;margin-bottom:8px;font-size:13px;display:flex;align-items:center;gap:10px;box-shadow:0 6px 20px rgba(0,0,0,0.15);animation:slideInRight 0.3s ease;cursor:pointer;transition:all 0.3s}
 .alert:hover{transform:translateX(-5px)}
 .alert-info{background:#dbeafe;color:#1e40af;border-left:4px solid #3b82f6}
 .alert-error{background:#fee2e2;color:#991b1b;border-left:4px solid #ef4444}
@@ -233,19 +231,20 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 .print-area{display:none}
 
 .detalle-alumno{padding:10px}
-.detalle-alumno h4{color:#1e3a8a;margin:18px 0 10px 0;font-size:16px;border-bottom:2px solid #e5e7eb;padding-bottom:8px}
+.detalle-alumno h4{color:#1e3a8a;margin:16px 0 8px 0;font-size:14px;border-bottom:2px solid #e5e7eb;padding-bottom:6px}
 .detalle-alumno h4:first-child{margin-top:0}
-.detalle-alumno table{width:100%;border-collapse:collapse;margin-bottom:12px}
-.detalle-alumno table th{background:#f3f4f6;padding:10px;font-size:12px;text-align:left}
-.detalle-alumno table td{padding:10px;font-size:13px;border-bottom:1px solid #f3f4f6}
-.detalle-alumno .hora-detalle{color:#6b7280;font-size:12px}
-.detalle-alumno .causa-detalle{color:#92400e;font-size:12px;font-style:italic}
+.detalle-alumno table{width:100%;border-collapse:collapse;margin-bottom:10px}
+.detalle-alumno table th{background:#f3f4f6;padding:8px;font-size:11px;text-align:left}
+.detalle-alumno table td{padding:8px;font-size:12px;border-bottom:1px solid #f3f4f6}
+.detalle-alumno .hora-detalle{color:#6b7280;font-size:11px}
+.detalle-alumno .causa-detalle{color:#92400e;font-size:11px;font-style:italic}
 
 @media print{body *{visibility:hidden}.print-area,.print-area *{visibility:visible}.print-area{position:absolute;left:0;top:0;display:block;width:100%}.no-print{display:none!important}}
 @media(max-width:768px){
   .cards{grid-template-columns:1fr}
+  .dashboard-widgets{grid-template-columns:1fr}
   .calendar{grid-template-columns:repeat(7,1fr);gap:3px}
-  .cal-day{min-height:60px;padding:4px}
+  .cal-day{min-height:55px;padding:4px}
   .alumno-row{grid-template-columns:1fr;gap:8px}
   .modal{width:95%;padding:16px}
   .alert-container{left:20px;right:20px;max-width:none}
@@ -253,11 +252,12 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
   .config-form{flex-direction:column}
   .rango-fechas{flex-direction:column}
   .rango-box .rango-inputs{flex-direction:column}
-  .status-bar{flex-direction:column;gap:10px;text-align:center}
+  .header{flex-direction:column;gap:10px;text-align:center}
+  .curso-mini{text-align:center}
   .subtabs{flex-direction:column}
   .subtb{width:100%}
-  .dashboard-widgets{grid-template-columns:1fr}
-  .header h1{font-size:24px}
+  .tabs{flex-wrap:wrap}
+  .tb{font-size:14px;padding:10px 16px}
 }
 </style>
 </head>
@@ -266,46 +266,44 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 <div id="loader"><div class="spinner"></div>Cargando datos desde la nube...</div>
 
 <div class="wrap">
-<!-- HEADER MEJORADO -->
+
+<!-- HEADER COMPACTO CON CURSO A LA DERECHA -->
 <div class="header">
+<div class="header-left">
 <h1>📚 Control de Alumnos</h1>
 <p class="sub">Seguimiento de asistencias</p>
 </div>
-
-<!-- CURSO ACTUAL MEJORADO -->
-<div class="curso-info-box">
-<h4>📅 Curso actual</h4>
-<p id="cursoInfoTextoGlobal">Del 01/03/2026 al 28/02/2027</p>
+<div class="curso-mini">
+<div class="label">📅 Curso actual</div>
+<div class="fechas" id="cursoInfoTextoGlobal">01/03/2026 - 28/02/2027</div>
+</div>
 </div>
 
-<!-- STATUS BAR -->
-<div class="status-bar">
+<!-- FECHA CENTRADA Y GRANDE -->
+<div class="fecha-bar">
 <span class="origen">📂 Origen: <strong id="dataSource">Cargando...</strong></span>
-<span class="fecha-hoy">📅 Hoy: <strong id="todayDate">-</strong></span>
+<span class="fecha-hoy" id="todayDate">-</span>
 </div>
 
 <div id="alertContainer" class="alert-container"></div>
 
-<!-- CARDS DE ESTADÍSTICAS -->
+<!-- CARDS PEQUEÑAS -->
 <div class="cards">
 <div class="card">
-<div class="icono-card">✅</div>
 <small>Total Asistencias</small>
 <div class="n" id="sP">0</div>
 </div>
 <div class="card">
-<div class="icono-card">❌</div>
 <small>Total Ausencias</small>
 <div class="n" id="sH">0</div>
 </div>
 <div class="card">
-<div class="icono-card">👥</div>
 <small>Alumnos Activos</small>
 <div class="n" id="sC">0</div>
 </div>
 </div>
 
-<!-- ✅ WIDGETS DEL DASHBOARD (solo visibles en Entrada por Días) -->
+<!-- WIDGETS COMPACTOS -->
 <div id="dashboardWidgets" class="dashboard-widgets">
 <div class="widget">
 <div class="widget-header">
@@ -356,10 +354,10 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 </div>
 </div>
 
-<!-- PESTAÑAS -->
+<!-- PESTAÑAS GRANDES -->
 <div class="tabs">
 <button class="tb on" data-t="p7">✏️ Entrada por Días</button>
-<button class="tb" data-t="p9">🔍 Consultas</button>
+<button class="tb" data-t="p9"> Consultas</button>
 <button class="tb" data-t="p8">⚙️ Configuración</button>
 </div>
 
@@ -373,31 +371,40 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 </div>
 </div>
 
-<div id="p2" class="pnl on" style="box-shadow:none;border-radius:0;padding:0;border:none">
+<div id="p2" class="pnl on" style="box-shadow:none;border:none;padding:0">
+<div class="informe-container">
+<div class="informe-header">
 <h2>👤 Total por Alumno</h2>
-<div style="display:flex;gap:8px;float:right;margin-top:-40px">
+<div class="informe-botones">
 <button class="btn b4" onclick="imprimir('maquinas')">🖨️ Imprimir</button>
 <button class="btn b7" onclick="crearPDF('maquinas')">📄 Crear PDF</button>
 </div>
+</div>
 <table id="tablaMaquinasTbl"><thead><tr><th>Alumno</th><th class="r">Presentes</th><th class="r">Ausencias</th><th class="r">Entradas tarde</th><th class="r">Salidas pronto</th><th class="r">Citas médicas</th><th class="r">Conciliaciones</th><th class="r">Bajas</th></tr></thead><tbody id="t2"></tbody></table>
 </div>
+</div>
 
-<div id="p3" class="pnl" style="box-shadow:none;border-radius:0;padding:0;border:none">
+<div id="p3" class="pnl" style="box-shadow:none;border:none;padding:0">
+<div class="informe-container">
+<div class="informe-header">
 <h2>📊 Resumen por Periodo</h2>
-<div style="display:flex;gap:8px;float:right;margin-top:-40px">
+<div class="informe-botones">
 <button class="btn b4" onclick="imprimir('tiempo')">🖨️ Imprimir</button>
 <button class="btn b7" onclick="crearPDF('tiempo')">📄 Crear PDF</button>
 </div>
-<div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap">
+</div>
+<div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap">
 <div class="filter-group"><label>Periodo</label><select id="fPeriodo" onchange="renderTiempo()" class="sel"><option value="ALL">Todo el curso</option></select></div>
 <div class="filter-group"><label>Alumno</label><select id="fMaq" onchange="renderTiempo()" class="sel"><option value="TODOS">Todos los alumnos</option></select></div>
 </div>
 <table id="tablaTiempoTbl"><thead><tr><th>Periodo</th><th class="r">Presentes</th><th class="r">Ausencias</th><th class="r">Entradas tarde</th><th class="r">Salidas pronto</th><th class="r">Bajas</th></tr></thead><tbody id="t3"></tbody></table>
 </div>
+</div>
 
-<div id="p4" class="pnl" style="box-shadow:none;border-radius:0;padding:0;border:none">
+<div id="p4" class="pnl" style="box-shadow:none;border:none;padding:0">
+<div class="informe-container">
 <h2>🗓️ Calendario de Asistencias</h2>
-<p style="color:#6b7280;margin-bottom:16px;font-size:13px">Visualiza rápidamente el estado de cada día. Haz clic en un día para ver el detalle completo.</p>
+<p style="color:#6b7280;margin-bottom:14px;font-size:12px">Visualiza rápidamente el estado de cada día. Haz clic en un día para ver el detalle completo.</p>
 <div class="cal-filtros">
 <div class="filter-group"><label>Periodo</label><select id="calPeriodo" onchange="actualizarCalendarioDesdePeriodo()" class="sel"></select></div>
 <div class="filter-group"><label>Filtrar por alumno</label><select id="calFiltroAlumno" onchange="actualizarCalendarioDesdePeriodo()" class="sel"><option value="TODOS">Todos los alumnos</option></select></div>
@@ -415,14 +422,15 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 <div id="calendar" class="calendar"></div>
 </div>
 </div>
+</div>
 
 <!-- ENTRADA POR DÍAS -->
 <div id="p7" class="pnl">
 <h2>✏️ Entrada por Días</h2>
-<p style="color:#6b7280;margin-bottom:16px;font-size:13px">Selecciona el mes. El año se asigna automáticamente según las fechas del curso. Haz clic en un día para registrar la asistencia de todos los alumnos.</p>
+<p style="color:#6b7280;margin-bottom:14px;font-size:13px">Selecciona el mes. El año se asigna automáticamente según las fechas del curso. Haz clic en un día para registrar la asistencia de todos los alumnos.</p>
 
-<div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;align-items:end">
-<div class="filter-group" style="min-width:200px">
+<div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:end">
+<div class="filter-group" style="min-width:180px">
 <label>Mes</label>
 <select id="erMes" onchange="onMesSeleccionado()" class="sel"></select>
 </div>
@@ -448,10 +456,10 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 
 <div class="config-section" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-color:#86efac">
 <h3>📅 Fechas del Curso</h3>
-<p style="color:#166534;font-size:13px;margin-bottom:12px">Define el periodo del curso escolar. Los calendarios se ajustarán automáticamente a estas fechas.</p>
+<p style="color:#166534;font-size:12px;margin-bottom:10px">Define el periodo del curso escolar. Los calendarios se ajustarán automáticamente a estas fechas.</p>
 <div class="rango-fechas">
 <div class="rango-box" style="background:#dcfce7;border-color:#86efac">
-<h4 style="color:#166534">📅 Fecha de inicio del curso</h4>
+<h4 style="color:#166534"> Fecha de inicio del curso</h4>
 <div class="rango-inputs">
 <div class="filter-group"><label>Día</label><select id="cursoInicioDia"></select></div>
 <div class="filter-group"><label>Mes</label><select id="cursoInicioMes">
@@ -477,8 +485,8 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 </div>
 </div>
 </div>
-<button class="btn b2" onclick="guardarFechasCurso()" style="padding:12px 24px">💾 Guardar fechas del curso</button>
-<div id="cursoActualInfo" style="margin-top:12px;padding:12px;background:#fff;border-radius:6px;font-size:13px;color:#166534"></div>
+<button class="btn b2" onclick="guardarFechasCurso()" style="padding:10px 22px">💾 Guardar fechas del curso</button>
+<div id="cursoActualInfo" style="margin-top:10px;padding:10px;background:#fff;border-radius:6px;font-size:12px;color:#166534"></div>
 </div>
 
 <div class="stats-config" id="statsConfig">
@@ -504,7 +512,7 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 <h3>👥 Gestión de Alumnos</h3>
 <div class="config-form">
 <div class="filter-group"><label>Nombre del alumno</label><input type="text" id="nuevoAlumno" placeholder="Ej: GARCÍA LÓPEZ, JUAN"></div>
-<button class="btn b2" onclick="agregarAlumno()"> Añadir Alumno</button>
+<button class="btn b2" onclick="agregarAlumno()">➕ Añadir Alumno</button>
 </div>
 <div class="config-list" id="listaAlumnos"></div>
 </div>
@@ -527,8 +535,8 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 </div>
 
 <div class="config-section">
-<h3>️ Gestión de Vacaciones (por rangos)</h3>
-<p style="color:#6b7280;font-size:13px;margin-bottom:12px">Introduce la fecha de inicio y la fecha final (ambas inclusive). <strong>Se añadirán automáticamente solo los días lectivos</strong> (se excluyen sábados, domingos y festivos).</p>
+<h3>🏖️ Gestión de Vacaciones (por rangos)</h3>
+<p style="color:#6b7280;font-size:12px;margin-bottom:10px">Introduce la fecha de inicio y la fecha final (ambas inclusive). <strong>Se añadirán automáticamente solo los días lectivos</strong> (se excluyen sábados, domingos y festivos).</p>
 <div class="rango-fechas">
 <div class="rango-box">
 <h4>📅 Fecha de inicio</h4>
@@ -544,7 +552,7 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 </div>
 </div>
 <div class="rango-box">
-<h4> Fecha final (inclusive)</h4>
+<h4>📅 Fecha final (inclusive)</h4>
 <div class="rango-inputs">
 <div class="filter-group"><label>Día</label><select id="nuevaVacacionDiaFin"></select></div>
 <div class="filter-group"><label>Mes</label><select id="nuevaVacacionMesFin">
@@ -557,13 +565,13 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 </div>
 </div>
 </div>
-<button class="btn b2" onclick="agregarVacacion()">➕ Añadir Rango de Vacaciones</button>
+<button class="btn b2" onclick="agregarVacacion()"> Añadir Rango de Vacaciones</button>
 <div class="config-list" id="listaVacaciones"></div>
 </div>
 
 <!-- SECCIÓN RESET -->
 <div class="reset-section">
-<h3>️ Zona de peligro</h3>
+<h3>⚠️ Zona de peligro</h3>
 <p>Estas acciones son irreversibles. Asegúrate de haber guardado tus datos antes de continuar.</p>
 <button class="btn b3" onclick="confirmarResetear()">🗑️ Resetear todo</button>
 </div>
@@ -572,7 +580,7 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 </div>
 </div>
 
-<!-- MODALES (igual que antes) -->
+<!-- MODALES -->
 <div class="modal-overlay" id="modalAsistencia">
 <div class="modal">
 <div class="modal-header">
@@ -637,8 +645,8 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 <button class="modal-close" onclick="cerrarModalEditarAlumno()">×</button>
 </div>
 <div style="padding:10px 0">
-<label style="display:block;margin-bottom:8px;font-size:14px;font-weight:600;color:#374151">Nuevo nombre:</label>
-<input type="text" id="inputNuevoNombreAlumno" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;font-size:14px">
+<label style="display:block;margin-bottom:8px;font-size:13px;font-weight:600;color:#374151">Nuevo nombre:</label>
+<input type="text" id="inputNuevoNombreAlumno" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:6px;font-size:13px">
 </div>
 <div class="modal-footer">
 <button class="btn b4" onclick="cerrarModalEditarAlumno()">Cancelar</button>
@@ -773,7 +781,7 @@ function mostrarAlerta(tipo,mensaje,duracion=5000){
   const iconos={info:'ℹ️',error:'❌',success:'✅',warning:'⚠️'};
   const alertDiv=document.createElement('div');
   alertDiv.className='alert alert-'+tipo;
-  alertDiv.innerHTML='<span style="font-size:20px">'+(iconos[tipo]||'')+'</span><span>'+mensaje+'</span>';
+  alertDiv.innerHTML='<span style="font-size:18px">'+(iconos[tipo]||'')+'</span><span>'+mensaje+'</span>';
   alertDiv.onclick=function(){this.remove();};
   cont.appendChild(alertDiv);
   if(duracion>0){
@@ -852,12 +860,10 @@ async function cargarDatosNube() {
 function actualizarInfoCurso(){
   const inicioStr=pad(INICIO_CURSO.d)+'/'+pad(INICIO_CURSO.m)+'/'+INICIO_CURSO.y;
   const finStr=pad(FIN_CURSO.d)+'/'+pad(FIN_CURSO.m)+'/'+FIN_CURSO.y;
-  document.getElementById('cursoInfoTextoGlobal').textContent='Del '+inicioStr+' al '+finStr;
+  document.getElementById('cursoInfoTextoGlobal').textContent=inicioStr+' - '+finStr;
 }
 
-// ✅ ACTUALIZAR WIDGETS DEL DASHBOARD
 function actualizarWidgets(){
-  // 1. Progreso del curso
   const fechaInicio=new Date(INICIO_CURSO.y,INICIO_CURSO.m-1,INICIO_CURSO.d);
   const fechaFin=new Date(FIN_CURSO.y,FIN_CURSO.m-1,FIN_CURSO.d);
   const hoy=new Date();
@@ -868,12 +874,11 @@ function actualizarWidgets(){
   const porcentaje=Math.min(100,Math.max(0,Math.round((diasTranscurridos/totalDias)*100)));
   
   document.getElementById('widgetProgreso').textContent=porcentaje+'%';
-  document.getElementById('widgetProgresoDetalle').textContent=diasTranscurridos+' de '+totalDias+' días transcurridos';
+  document.getElementById('widgetProgresoDetalle').textContent=diasTranscurridos+' de '+totalDias+' días';
   document.getElementById('widgetProgresoBarra').style.width=porcentaje+'%';
   document.getElementById('widgetDiasTranscurridos').textContent=diasTranscurridos+' días';
   document.getElementById('widgetDiasTotales').textContent=totalDias+' días';
   
-  // 2. Próximo festivo
   const festivosFuturos=FESTIVOS.filter(f=>{
     const fechaFest=new Date(f.y,f.m-1,f.d);
     return fechaFest>=hoy;
@@ -894,7 +899,6 @@ function actualizarWidgets(){
     document.getElementById('widgetProxFestivoDetalle').textContent='No hay festivos programados';
   }
   
-  // 3. Vacaciones pendientes
   const vacacionesFuturas=VACACIONES.filter(v=>{
     const fechaVac=new Date(v.y,v.m-1,v.d);
     return fechaVac>=hoy;
@@ -902,7 +906,6 @@ function actualizarWidgets(){
   document.getElementById('widgetVacPendientes').textContent=vacacionesFuturas.length+' días';
   document.getElementById('widgetVacDetalle').textContent=vacacionesFuturas.length>0?'Próxima: '+pad(vacacionesFuturas[0].d)+'/'+pad(vacacionesFuturas[0].m)+'/'+vacacionesFuturas[0].y:'Sin vacaciones programadas';
   
-  // 4. Resumen de hoy
   const registrosHoy=getAll().filter(r=>r.y===ANIO_HOY&&r.m===MES_HOY&&r.d===DIA_HOY);
   if(registrosHoy.length>0){
     const presentes=registrosHoy.filter(r=>r.estado==='presente').length;
@@ -916,7 +919,7 @@ function actualizarWidgets(){
 }
 
 function inicializarApp(){
-  document.getElementById('todayDate').textContent=DIA_HOY+'/'+pad(MES_HOY)+'/'+ANIO_HOY;
+  document.getElementById('todayDate').textContent='📅 Hoy: '+DIA_HOY+'/'+pad(MES_HOY)+'/'+ANIO_HOY;
   const periodos=generarPeriodos();
   const erMes=document.getElementById('erMes');erMes.innerHTML='';
   periodos.forEach(function(p){
@@ -973,7 +976,6 @@ function showTab(id){
   const btn=document.querySelector('[data-t="'+id+'"]');
   if(btn)btn.classList.add('on');
   
-  // Mostrar/ocultar widgets del dashboard
   document.getElementById('dashboardWidgets').style.display=(id==='p7')?'grid':'none';
   
   if(id==='p7'){setTimeout(generarCalendarioEntrada,100);actualizarWidgets();}
@@ -1057,13 +1059,13 @@ function abrirDetalleAlumno(alumno){
   const conciliaciones=registros.filter(r=>r.estado==='conciliacion');
   const bajas=registros.filter(r=>r.estado==='baja');
   let html='';
-  html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:20px">';
-  html+='<div style="padding:12px;background:#fee2e2;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#991b1b">'+ausencias.length+'</div><div style="font-size:12px;color:#991b1b">Ausencias</div></div>';
-  html+='<div style="padding:12px;background:#fef3c7;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#92400e">'+entradasTarde.length+'</div><div style="font-size:12px;color:#92400e">Entradas tarde</div></div>';
-  html+='<div style="padding:12px;background:#fce7f3;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#9d174d">'+salidasPronto.length+'</div><div style="font-size:12px;color:#9d174d">Salidas pronto</div></div>';
-  html+='<div style="padding:12px;background:#dbeafe;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#1e40af">'+citasMedicas.length+'</div><div style="font-size:12px;color:#1e40af">Citas médicas</div></div>';
-  html+='<div style="padding:12px;background:#e0e7ff;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#3730a3">'+conciliaciones.length+'</div><div style="font-size:12px;color:#3730a3">Conciliaciones</div></div>';
-  html+='<div style="padding:12px;background:#fecaca;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#991b1b">'+bajas.length+'</div><div style="font-size:12px;color:#991b1b">Bajas</div></div>';
+  html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:18px">';
+  html+='<div style="padding:10px;background:#fee2e2;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#991b1b">'+ausencias.length+'</div><div style="font-size:11px;color:#991b1b">Ausencias</div></div>';
+  html+='<div style="padding:10px;background:#fef3c7;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#92400e">'+entradasTarde.length+'</div><div style="font-size:11px;color:#92400e">Entradas tarde</div></div>';
+  html+='<div style="padding:10px;background:#fce7f3;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#9d174d">'+salidasPronto.length+'</div><div style="font-size:11px;color:#9d174d">Salidas pronto</div></div>';
+  html+='<div style="padding:10px;background:#dbeafe;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#1e40af">'+citasMedicas.length+'</div><div style="font-size:11px;color:#1e40af">Citas médicas</div></div>';
+  html+='<div style="padding:10px;background:#e0e7ff;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#3730a3">'+conciliaciones.length+'</div><div style="font-size:11px;color:#3730a3">Conciliaciones</div></div>';
+  html+='<div style="padding:10px;background:#fecaca;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#991b1b">'+bajas.length+'</div><div style="font-size:11px;color:#991b1b">Bajas</div></div>';
   html+='</div>';
   function generarTabla(registros, titulo, icono){
     if(registros.length===0) return '';
@@ -1184,7 +1186,7 @@ function generarCalendarioEntrada(){
 function abrirModalAsistencia(dia){
   diaSeleccionado=dia;
   const registrosDia=getAll().filter(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===dia);
-  document.getElementById('modalTitulo').textContent='️ Asistencia del '+pad(dia)+'/'+pad(mesSeleccionado)+'/'+anioSeleccionado;
+  document.getElementById('modalTitulo').textContent='✏️ Asistencia del '+pad(dia)+'/'+pad(mesSeleccionado)+'/'+anioSeleccionado;
   let html='<div style="margin-bottom:16px;padding:12px;background:#f0f9ff;border-radius:6px;border-left:4px solid #2563eb">';
   html+='<strong>'+registrosDia.length+'</strong> de <strong>'+ALUMNOS.length+'</strong> alumnos registrados';
   html+='</div>';
@@ -1319,8 +1321,8 @@ function actualizarCalendario(y,m){
       if(counts.ausente>0) stats.push('✗'+counts.ausente);
       if(counts.entrada_tarde>0) stats.push('⏰'+counts.entrada_tarde);
       if(counts.salida_pronto>0) stats.push('📤'+counts.salida_pronto);
-      if(counts.cita_medica>0) stats.push(''+counts.cita_medica);
-      if(counts.conciliacion>0) stats.push('👨‍👩‍'+counts.conciliacion);
+      if(counts.cita_medica>0) stats.push('🏥'+counts.cita_medica);
+      if(counts.conciliacion>0) stats.push('👨‍👩‍👧'+counts.conciliacion);
       if(counts.baja>0) stats.push('🤒'+counts.baja);
       html+='<div class="day-stats">'+stats.join(' ')+'</div>';
       html+='<div class="day-info">'+totalRegistros+'/'+ALUMNOS.length+' alumnos</div>';
@@ -1347,21 +1349,21 @@ function abrirModalDetalle(y,m,d){
     const counts={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
     registros.forEach(r=>{if(counts[r.estado]!==undefined)counts[r.estado]++;});
     const porcentajeAsistencia=Math.round((counts.presente/ALUMNOS.length)*100);
-    html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:20px">';
-    html+='<div style="padding:12px;background:#dcfce7;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#166534">'+counts.presente+'</div><div style="font-size:12px;color:#166534">Presentes</div></div>';
-    html+='<div style="padding:12px;background:#fee2e2;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#991b1b">'+counts.ausente+'</div><div style="font-size:12px;color:#991b1b">Ausentes</div></div>';
-    html+='<div style="padding:12px;background:#fef3c7;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#92400e">'+counts.entrada_tarde+'</div><div style="font-size:12px;color:#92400e">Tarde</div></div>';
-    html+='<div style="padding:12px;background:#dbeafe;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#1e40af">'+porcentajeAsistencia+'%</div><div style="font-size:12px;color:#1e40af">Asistencia</div></div>';
+    html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:18px">';
+    html+='<div style="padding:10px;background:#dcfce7;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#166534">'+counts.presente+'</div><div style="font-size:11px;color:#166534">Presentes</div></div>';
+    html+='<div style="padding:10px;background:#fee2e2;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#991b1b">'+counts.ausente+'</div><div style="font-size:11px;color:#991b1b">Ausentes</div></div>';
+    html+='<div style="padding:10px;background:#fef3c7;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#92400e">'+counts.entrada_tarde+'</div><div style="font-size:11px;color:#92400e">Tarde</div></div>';
+    html+='<div style="padding:10px;background:#dbeafe;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#1e40af">'+porcentajeAsistencia+'%</div><div style="font-size:11px;color:#1e40af">Asistencia</div></div>';
     html+='</div>';
-    html+='<h4 style="margin-bottom:12px;color:#1f2937">Detalle por alumno:</h4>';
+    html+='<h4 style="margin-bottom:10px;color:#1f2937">Detalle por alumno:</h4>';
     html+='<div class="day-detail-grid">';
     ALUMNOS.forEach(alumno=>{
       const reg=registros.find(r=>r.alumno===alumno);
       if(reg){
         html+='<div class="day-detail-item"><div class="nombre">'+alumno+'</div><div class="estado estado-'+reg.estado+'">'+(LABELS_ESTADOS[reg.estado]||reg.estado)+'</div>';
         if(reg.horaUnica) html+='<div class="hora"> '+reg.horaUnica+'</div>';
-        if(reg.horaSalida&&reg.horaLlegada) html+='<div class="hora"> '+reg.horaSalida+' - '+reg.horaLlegada+'</div>';
-        if(reg.causa) html+='<div class="hora"> '+reg.causa+'</div>';
+        if(reg.horaSalida&&reg.horaLlegada) html+='<div class="hora">🕐 '+reg.horaSalida+' - '+reg.horaLlegada+'</div>';
+        if(reg.causa) html+='<div class="hora">📝 '+reg.causa+'</div>';
         html+='</div>';
       }else{
         html+='<div class="day-detail-item" style="opacity:0.5"><div class="nombre">'+alumno+'</div><div class="estado" style="color:#9ca3af">Sin registrar</div></div>';
@@ -1396,7 +1398,7 @@ function imprimir(tipo){
 
 function confirmarResetear(){
   abrirModalConfirmacion('Primera confirmación','¿Estás seguro de que quieres resetear TODOS los datos? Esta acción eliminará:\n\n• Todos los alumnos\n• Todos los registros de asistencia\n• Festivos y vacaciones configurados\n• Fechas del curso\n\nEsta acción NO se puede deshacer.',function(){
-    abrirModalConfirmacion('️ ÚLTIMA CONFIRMACIÓN','¿REALMENTE ESTÁS SEGURO?\n\nSe borrarán TODOS los datos permanentemente.\n\nSi continúas, perderás toda la información.',function(){
+    abrirModalConfirmacion('⚠️ ÚLTIMA CONFIRMACIÓN','¿REALMENTE ESTÁS SEGURO?\n\nSe borrarán TODOS los datos permanentemente.\n\nSi continúas, perderás toda la información.',function(){
       localStorage.removeItem('ca_cache');
       localStorage.removeItem('ca_user');
       const db = window.firebaseDB;
@@ -1683,7 +1685,7 @@ function confirmarEliminarVacacion(idx){
 }
 
 document.getElementById('fPeriodo').addEventListener('change',renderTiempo);
-document.getElementById('todayDate').textContent = DIA_HOY+'/'+pad(MES_HOY)+'/'+ANIO_HOY;
+document.getElementById('todayDate').textContent = ' Hoy: '+DIA_HOY+'/'+pad(MES_HOY)+'/'+ANIO_HOY;
 inicializarApp();
 </script>
 </body>
