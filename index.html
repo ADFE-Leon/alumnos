@@ -178,7 +178,7 @@ tr:hover{background:#f9fafb}
 <p class="sub" id="subtituloCurso">Seguimiento de asistencias - Curso 2026/2027</p>
 <div id="mainApp">
 <div class="status-bar">
-<span>📂 Origen: <strong id="dataSource">Cargando...</strong></span>
+<span> Origen: <strong id="dataSource">Cargando...</strong></span>
 <span>📅 Hoy: <strong id="todayDate">-</strong></span>
 </div>
 
@@ -191,20 +191,18 @@ tr:hover{background:#f9fafb}
 </div>
 <div class="tabs">
 <button class="tb on" data-t="p7">📝 Entrada por Días</button>
-<button class="tb" data-t="p2">👤 Por Alumno</button>
+<button class="tb" data-t="p2"> Por Alumno</button>
 <button class="tb" data-t="p3">📊 Por Mes/Año</button>
-<button class="tb" data-t="p4"> Calendario</button>
+<button class="tb" data-t="p4">📅 Calendario</button>
 <button class="tb" data-t="p5">✏️ Editar</button>
 <button class="tb" data-t="p6">💾 Datos</button>
 <button class="tb" data-t="p8">⚙️ Configuración</button>
 </div>
 
-<!-- ✅ ENTRADA POR DÍAS: SOLO SELECTOR DE MES (AÑO AUTOMÁTICO) -->
 <div id="p7" class="pnl on">
-<h2>📝 Entrada por Días</h2>
+<h2> Entrada por Días</h2>
 <p style="color:#6b7280;margin-bottom:16px;font-size:13px">Selecciona el mes. El año se asigna automáticamente según las fechas del curso. Haz clic en un día para registrar la asistencia de todos los alumnos.</p>
 
-<!-- Caja informativa del curso actual -->
 <div class="curso-info-box" id="cursoInfoBox">
 <h4>📅 Curso actual</h4>
 <p id="cursoInfoTexto">Del 01/03/2026 al 28/02/2027</p>
@@ -247,7 +245,7 @@ tr:hover{background:#f9fafb}
 <div id="p3" class="pnl">
 <h2> Resumen por Periodo</h2>
 <div style="display:flex;gap:8px;float:right;margin-top:-40px">
-<button class="btn b4" onclick="imprimir('tiempo')">🖨️ Imprimir</button>
+<button class="btn b4" onclick="imprimir('tiempo')">️ Imprimir</button>
 <button class="btn b7" onclick="crearPDF('tiempo')">📄 Crear PDF</button>
 </div>
 <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap">
@@ -291,50 +289,49 @@ tr:hover{background:#f9fafb}
 </div>
 <div class="box">
 <div class="botones-datos">
-<button class="btn b5" onclick="guardarDatosNube()" style="padding:14px 32px;font-size:16px;box-shadow:0 4px 12px rgba(5,150,105,0.4)">💾 Guardar</button>
+<button class="btn b5" onclick="guardarDatosNube()" style="padding:14px 32px;font-size:16px;box-shadow:0 4px 12px rgba(5,150,105,0.4)"> Guardar</button>
 <button class="btn b1 btn-cargar" onclick="cargarDatosNube()">📥 Cargar</button>
 </div>
 <div class="botones-seguridad">
-<h3 style="color:#dc2626;font-size:16px;margin-bottom:12px">️ Zona de peligro</h3>
+<h3 style="color:#dc2626;font-size:16px;margin-bottom:12px">⚠️ Zona de peligro</h3>
 <p style="color:#6b7280;font-size:13px;margin-bottom:16px">Estas acciones son irreversibles. Asegúrate de haber guardado tus datos antes de continuar.</p>
 <button class="btn b3" onclick="confirmarResetear()" style="padding:12px 24px;font-size:14px">️ Resetear todo</button>
 </div>
 </div>
 </div>
 
-<!-- ✅ CONFIGURACIÓN CON FECHAS DEL CURSO -->
 <div id="p8" class="pnl">
 <h2>⚙️ Configuración</h2>
 
-<!-- NUEVA SECCIÓN: Fechas del curso -->
+<!-- ✅ SECCIÓN FECHAS DEL CURSO CON DESPLEGABLES COMPLETOS -->
 <div class="config-section" style="background:#f0fdf4;border-color:#86efac">
 <h3>📅 Fechas del Curso</h3>
-<p style="color:#166534;font-size:13px;margin-bottom:12px">Define el periodo del curso escolar. Los calendarios se ajustarán automáticamente a estas fechas.</p>
+<p style="color:#166534;font-size:13px;margin-bottom:12px">Define el periodo del curso escolar. Los calendarios se ajustarán automáticamente a estas fechas. Todos los campos son editables mediante desplegables.</p>
 <div class="rango-fechas">
 <div class="rango-box" style="background:#dcfce7;border-color:#86efac">
-<h4 style="color:#166534"> Fecha de inicio del curso</h4>
+<h4 style="color:#166534">📅 Fecha de inicio del curso</h4>
 <div class="rango-inputs">
-<div class="filter-group"><label>Día</label><input type="number" id="cursoInicioDia" min="1" max="31" placeholder="Día"></div>
+<div class="filter-group"><label>Día</label><select id="cursoInicioDia"></select></div>
 <div class="filter-group"><label>Mes</label><select id="cursoInicioMes">
 <option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option>
 <option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
 <option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option>
 <option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
 </select></div>
-<div class="filter-group"><label>Año</label><input type="number" id="cursoInicioAnio" min="2020" max="2040" placeholder="Año"></div>
+<div class="filter-group"><label>Año</label><select id="cursoInicioAnio"></select></div>
 </div>
 </div>
 <div class="rango-box" style="background:#dcfce7;border-color:#86efac">
 <h4 style="color:#166534">📅 Fecha de fin del curso</h4>
 <div class="rango-inputs">
-<div class="filter-group"><label>Día</label><input type="number" id="cursoFinDia" min="1" max="31" placeholder="Día"></div>
+<div class="filter-group"><label>Día</label><select id="cursoFinDia"></select></div>
 <div class="filter-group"><label>Mes</label><select id="cursoFinMes">
 <option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option>
 <option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
 <option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option>
 <option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
 </select></div>
-<div class="filter-group"><label>Año</label><input type="number" id="cursoFinAnio" min="2020" max="2040" placeholder="Año"></div>
+<div class="filter-group"><label>Año</label><select id="cursoFinAnio"></select></div>
 </div>
 </div>
 </div>
@@ -344,7 +341,7 @@ tr:hover{background:#f9fafb}
 
 <div class="stats-config" id="statsConfig">
 <div class="stats-group vacaciones">
-<h4>🏖️ Vacaciones</h4>
+<h4>️ Vacaciones</h4>
 <div class="stats-items">
 <div class="stat-item total"><span class="stat-label">Solicitadas</span><span class="stat-value" id="statVacTotal">0</span></div>
 <div class="stat-item consumidos"><span class="stat-label">Disfrutadas</span><span class="stat-value" id="statVacConsumidas">0</span></div>
@@ -362,20 +359,20 @@ tr:hover{background:#f9fafb}
 </div>
 
 <div class="config-section">
-<h3>👥 Gestión de Alumnos</h3>
+<h3> Gestión de Alumnos</h3>
 <div class="config-form">
 <div class="filter-group"><label>Nombre del alumno</label><input type="text" id="nuevoAlumno" placeholder="Ej: GARCÍA LÓPEZ, JUAN"></div>
-<button class="btn b2" onclick="agregarAlumno()"> Añadir Alumno</button>
+<button class="btn b2" onclick="agregarAlumno()">➕ Añadir Alumno</button>
 </div>
 <div class="config-list" id="listaAlumnos"></div>
 </div>
 
 <div class="config-section">
-<h3>🎉 Gestión de Festivos</h3>
+<h3> Gestión de Festivos</h3>
 <div class="config-form">
 <div class="filter-group"><label>Día</label><input type="number" id="nuevoFestivoDia" min="1" max="31" placeholder="Día"></div>
 <div class="filter-group"><label>Mes</label><select id="nuevoFestivoMes"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
-<div class="filter-group"><label>Año</label><select id="nuevoFestivoAnio"><option value="2026">2026</option><option value="2027">2027</option></select></div>
+<div class="filter-group"><label>Año</label><select id="nuevoFestivoAnio"></select></div>
 <div class="filter-group"><label>Nombre del festivo</label><input type="text" id="nuevoFestivoNombre" placeholder="Ej: Día del Trabajo"></div>
 <button class="btn b2" onclick="agregarFestivo()">➕ Añadir Festivo</button>
 </div>
@@ -391,15 +388,15 @@ tr:hover{background:#f9fafb}
 <div class="rango-inputs">
 <div class="filter-group"><label>Día</label><input type="number" id="nuevaVacacionDiaIni" min="1" max="31" placeholder="Día"></div>
 <div class="filter-group"><label>Mes</label><select id="nuevaVacacionMesIni"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
-<div class="filter-group"><label>Año</label><select id="nuevaVacacionAnioIni"><option value="2026">2026</option><option value="2027">2027</option></select></div>
+<div class="filter-group"><label>Año</label><select id="nuevaVacacionAnioIni"></select></div>
 </div>
 </div>
 <div class="rango-box">
-<h4>📅 Fecha final (inclusive)</h4>
+<h4> Fecha final (inclusive)</h4>
 <div class="rango-inputs">
 <div class="filter-group"><label>Día</label><input type="number" id="nuevaVacacionDiaFin" min="1" max="31" placeholder="Día"></div>
 <div class="filter-group"><label>Mes</label><select id="nuevaVacacionMesFin"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
-<div class="filter-group"><label>Año</label><select id="nuevaVacacionAnioFin"><option value="2026">2026</option><option value="2027">2027</option></select></div>
+<div class="filter-group"><label>Año</label><select id="nuevaVacacionAnioFin"></select></div>
 </div>
 </div>
 </div>
@@ -408,7 +405,7 @@ tr:hover{background:#f9fafb}
 </div>
 
 <div style="margin-top:20px;padding:16px;background:#fef3c7;border-radius:8px;border:1px solid #fcd34d">
-<p style="color:#92400e;font-size:13px"><strong>️ Importante:</strong> Después de hacer cambios en la configuración, pulsa <strong>"💾 Guardar"</strong> en la pestaña "Datos" para que los cambios se guarden permanentemente en la nube.</p>
+<p style="color:#92400e;font-size:13px"><strong>⚠️ Importante:</strong> Después de hacer cambios en la configuración, pulsa <strong>"💾 Guardar"</strong> en la pestaña "Datos" para que los cambios se guarden permanentemente en la nube.</p>
 </div>
 </div>
 
@@ -527,7 +524,10 @@ const DIAS=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
 const MESES_NOMBRES=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 const DIAS_SEMANA=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
 
-// ✅ FECHAS DEL CURSO CONFIGURABLES (valores por defecto)
+// ✅ AÑO MÍNIMO Y MÁXIMO PARA LOS DESPLEGABLES
+const ANIO_MIN_DESPLEGABLE = 2020;
+const ANIO_MAX_DESPLEGABLE = 2035;
+
 let INICIO_CURSO={y:2026,m:3,d:1};
 let FIN_CURSO={y:2027,m:2,d:28};
 
@@ -563,7 +563,6 @@ function getDayType(year, month, day){
   return {type:'lectivo',label:'Día lectivo'};
 }
 
-// ✅ GENERAR PERIODOS BASADO EN FECHAS DEL CURSO
 function generarPeriodos(){
   const periodos=[];
   let year=INICIO_CURSO.y, month=INICIO_CURSO.m;
@@ -575,14 +574,37 @@ function generarPeriodos(){
   return periodos;
 }
 
-// ✅ CALCULAR AÑO AUTOMÁTICO SEGÚN EL MES Y LAS FECHAS DEL CURSO
 function calcularAnioParaMes(mes){
-  // Si el mes es >= mes de inicio del curso, el año es el de inicio
-  // Si el mes es < mes de inicio, el año es el de inicio + 1
   if(mes >= INICIO_CURSO.m){
     return INICIO_CURSO.y;
   }else{
     return INICIO_CURSO.y + 1;
+  }
+}
+
+// ✅ FUNCIÓN AUXILIAR: LLENAR SELECT DE DÍAS (1-31)
+function llenarSelectDias(selectId, valorSeleccionado){
+  const select=document.getElementById(selectId);
+  select.innerHTML='';
+  for(let d=1;d<=31;d++){
+    const o=document.createElement('option');
+    o.value=d;
+    o.textContent=d;
+    if(d===valorSeleccionado) o.selected=true;
+    select.appendChild(o);
+  }
+}
+
+// ✅ FUNCIÓN AUXILIAR: LLENAR SELECT DE AÑOS (2020-2035)
+function llenarSelectAnios(selectId, valorSeleccionado){
+  const select=document.getElementById(selectId);
+  select.innerHTML='';
+  for(let y=ANIO_MIN_DESPLEGABLE;y<=ANIO_MAX_DESPLEGABLE;y++){
+    const o=document.createElement('option');
+    o.value=y;
+    o.textContent=y;
+    if(y===valorSeleccionado) o.selected=true;
+    select.appendChild(o);
   }
 }
 
@@ -618,7 +640,6 @@ async function cargarDatosNube() {
       } else { historicalRecords = []; userRecords = []; }
       if (datos.festivos) FESTIVOS = datos.festivos.map(f => ({y: parseInt(f.y), m: parseInt(f.m), d: parseInt(f.d), nombre: f.nombre}));
       if (datos.vacaciones) VACACIONES = datos.vacaciones.map(v => ({y: parseInt(v.y), m: parseInt(v.m), d: parseInt(v.d)}));
-      // ✅ Cargar fechas del curso si existen
       if (datos.inicioCurso) INICIO_CURSO = {y: parseInt(datos.inicioCurso.y), m: parseInt(datos.inicioCurso.m), d: parseInt(datos.inicioCurso.d)};
       if (datos.finCurso) FIN_CURSO = {y: parseInt(datos.finCurso.y), m: parseInt(datos.finCurso.m), d: parseInt(datos.finCurso.d)};
       dataSourceMsg = "☁️ Nube";
@@ -667,7 +688,6 @@ async function guardarDatosNube() {
   }
 }
 
-// ✅ ACTUALIZAR INFORMACIÓN DEL CURSO EN UI
 function actualizarInfoCurso(){
   const inicioStr=pad(INICIO_CURSO.d)+'/'+pad(INICIO_CURSO.m)+'/'+INICIO_CURSO.y;
   const finStr=pad(FIN_CURSO.d)+'/'+pad(FIN_CURSO.m)+'/'+FIN_CURSO.y;
@@ -678,8 +698,6 @@ function actualizarInfoCurso(){
 
 function inicializarApp(){
   document.getElementById('todayDate').textContent=new Date().toLocaleDateString('es-ES');
-  
-  // ✅ Selector de mes (sin año)
   const periodos=generarPeriodos();
   const erMes=document.getElementById('erMes');erMes.innerHTML='';
   periodos.forEach(function(p){
@@ -689,8 +707,6 @@ function inicializarApp(){
     o.dataset.anio=p.y;
     erMes.appendChild(o);
   });
-  
-  // Seleccionar mes actual si está dentro del curso
   const fechaActual=new Date();
   const mesActual=fechaActual.getMonth()+1;
   const anioActual=fechaActual.getFullYear();
@@ -698,35 +714,24 @@ function inicializarApp(){
   if(periodoActual){
     erMes.value=periodoActual.m;
   }else{
-    // Si no hay mes actual en el curso, seleccionar el primero
     erMes.value=periodos[0].m;
   }
-  
-  // ✅ Actualizar año automático
   onMesSeleccionado();
-  
-  // Selectores de periodos (para otras pestañas)
   const fPeriodo=document.getElementById('fPeriodo'); fPeriodo.innerHTML='<option value="ALL">Todo el curso</option>';
   periodos.forEach(function(p){ const o=document.createElement('option'); o.value=p.y+'-'+p.m; o.textContent=p.label; fPeriodo.appendChild(o); });
-  
   const fMaq=document.getElementById('fMaq'); fMaq.innerHTML='<option value="TODOS">Todos los alumnos</option>';
   ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;fMaq.appendChild(o);});
-  
   const calPeriodo=document.getElementById('calPeriodo'); calPeriodo.innerHTML='';
   periodos.forEach(function(p){ const o=document.createElement('option'); o.value=p.y+'-'+p.m; o.textContent=p.label; calPeriodo.appendChild(o); });
-  
   const calFiltroAlumno=document.getElementById('calFiltroAlumno');
   calFiltroAlumno.innerHTML='<option value="TODOS">Todos los alumnos</option>';
   ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;calFiltroAlumno.appendChild(o);});
-  
   const editPeriodo=document.getElementById('editPeriodo'); editPeriodo.innerHTML='';
   periodos.forEach(function(p){ const o=document.createElement('option'); o.value=p.y+'-'+p.m; o.textContent=p.label; editPeriodo.appendChild(o); });
-  
   renderAll();
   generarCalendarioEntrada();
 }
 
-// ✅ MANEJO DEL CAMBIO DE MES (AÑO AUTOMÁTICO)
 function onMesSeleccionado(){
   const mes=parseInt(document.getElementById('erMes').value);
   const anio=calcularAnioParaMes(mes);
@@ -802,7 +807,7 @@ function abrirDetalleAlumno(alumno){
     if(a.m!==b.m) return a.m-b.m;
     return a.d-b.d;
   });
-  document.getElementById('modalDetalleAlumnoTitulo').textContent=' Detalle de: '+alumno;
+  document.getElementById('modalDetalleAlumnoTitulo').textContent='📋 Detalle de: '+alumno;
   const ausencias=registros.filter(r=>r.estado==='ausente');
   const entradasTarde=registros.filter(r=>r.estado==='entrada_tarde');
   const salidasPronto=registros.filter(r=>r.estado==='salida_pronto');
@@ -838,10 +843,10 @@ function abrirDetalleAlumno(alumno){
     return t;
   }
   html+=generarTabla(ausencias,'Ausencias','❌');
-  html+=generarTabla(entradasTarde,'Entradas tarde','');
-  html+=generarTabla(salidasPronto,'Salidas pronto','📤');
+  html+=generarTabla(entradasTarde,'Entradas tarde','⏰');
+  html+=generarTabla(salidasPronto,'Salidas pronto','');
   html+=generarTabla(citasMedicas,'Citas médicas','🏥');
-  html+=generarTabla(conciliaciones,'Conciliaciones','👨‍👩‍');
+  html+=generarTabla(conciliaciones,'Conciliaciones','👨‍👩‍👧');
   html+=generarTabla(bajas,'Bajas','🤒');
   if(registros.filter(r=>r.estado!=='presente').length===0){
     html='<div style="padding:40px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px">✅</p><p style="font-size:16px">Este alumno no tiene incidencias registradas</p><p style="margin-top:8px;font-size:13px">Todos sus registros son de asistencia presente.</p></div>';
@@ -895,11 +900,9 @@ function crearPDF(tipo){
 }
 
 function generarCalendarioEntrada(){
-  // ✅ Obtener mes y año (año automático)
   mesSeleccionado=parseInt(document.getElementById('erMes').value);
   anioSeleccionado=calcularAnioParaMes(mesSeleccionado);
   document.getElementById('erAnioAuto').value=anioSeleccionado;
-  
   const cont=document.getElementById('calendarioEntrada'); cont.innerHTML='';
   DIAS.forEach(d=>{const h=document.createElement('div');h.className='cal-header';h.textContent=d;cont.appendChild(h);});
   const first=new Date(anioSeleccionado,mesSeleccionado-1,1);
@@ -1074,7 +1077,7 @@ function actualizarCalendario(y,m){
       if(counts.entrada_tarde>0) stats.push('⏰'+counts.entrada_tarde);
       if(counts.salida_pronto>0) stats.push('📤'+counts.salida_pronto);
       if(counts.cita_medica>0) stats.push('🏥'+counts.cita_medica);
-      if(counts.conciliacion>0) stats.push('‍👩‍👧'+counts.conciliacion);
+      if(counts.conciliacion>0) stats.push('👨‍👩‍👧'+counts.conciliacion);
       if(counts.baja>0) stats.push('🤒'+counts.baja);
       html+='<div class="day-stats">'+stats.join(' ')+'</div>';
       html+='<div class="day-info">'+totalRegistros+'/'+ALUMNOS.length+' alumnos</div>';
@@ -1096,7 +1099,7 @@ function abrirModalDetalle(y,m,d){
   document.getElementById('modalDetalleTitulo').textContent='📋 Detalle del '+pad(d)+'/'+pad(m)+'/'+y;
   let html='';
   if(registros.length===0){
-    html='<div style="padding:20px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px"></p><p>No hay registros para este día</p><p style="margin-top:12px"><button class="btn b2" onclick="cerrarModalDetalle();abrirModalAsistenciaDesdeDetalle('+d+')">➕ Añadir registros</button></p></div>';
+    html='<div style="padding:20px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px">📭</p><p>No hay registros para este día</p><p style="margin-top:12px"><button class="btn b2" onclick="cerrarModalDetalle();abrirModalAsistenciaDesdeDetalle('+d+')">➕ Añadir registros</button></p></div>';
   }else{
     const counts={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
     registros.forEach(r=>{if(counts[r.estado]!==undefined)counts[r.estado]++;});
@@ -1203,8 +1206,9 @@ function abrirModalConfirmacion(titulo,contenido,callback){
 function cerrarModalConfirmacion(){document.getElementById('modalConfirmacion').classList.remove('show');confirmacionCallback=null;}
 
 // ============================================
-// ✅ NUEVA FUNCIÓN: GUARDAR FECHAS DEL CURSO
+// ✅ FUNCIONES DE CONFIGURACIÓN CON DESPLEGABLES COMPLETOS
 // ============================================
+
 function guardarFechasCurso(){
   const diaIni=parseInt(document.getElementById('cursoInicioDia').value);
   const mesIni=parseInt(document.getElementById('cursoInicioMes').value);
@@ -1234,17 +1238,16 @@ function guardarFechasCurso(){
     return;
   }
   
-  // Verificar que el curso no sea demasiado largo (máximo 24 meses)
   const diffMeses=(anioFin-anioIni)*12+(mesFin-mesIni);
   if(diffMeses>24){
-    mostrarAlerta('warning','El curso es muy largo ('+diffMeses+' meses). ¿Seguro que las fechas son correctas?');
-    return;
+    if(!confirm('El curso es muy largo ('+diffMeses+' meses). ¿Seguro que las fechas son correctas?')){
+      return;
+    }
   }
   
   INICIO_CURSO={y:anioIni,m:mesIni,d:diaIni};
   FIN_CURSO={y:anioFin,m:mesFin,d:diaFin};
   
-  // Actualizar UI
   actualizarInfoCurso();
   inicializarApp();
   renderConfiguracion();
@@ -1252,19 +1255,17 @@ function guardarFechasCurso(){
   mostrarAlerta('success','✅ Fechas del curso actualizadas: '+pad(diaIni)+'/'+pad(mesIni)+'/'+anioIni+' → '+pad(diaFin)+'/'+pad(mesFin)+'/'+anioFin);
 }
 
-// ============================================
-// FUNCIONES DE CONFIGURACIÓN
-// ============================================
 function renderConfiguracion(){
-  // ✅ Cargar valores actuales en los campos del curso
-  document.getElementById('cursoInicioDia').value=INICIO_CURSO.d;
+  // ✅ Llenar todos los desplegables de días y años
+  llenarSelectDias('cursoInicioDia', INICIO_CURSO.d);
+  llenarSelectAnios('cursoInicioAnio', INICIO_CURSO.y);
   document.getElementById('cursoInicioMes').value=INICIO_CURSO.m;
-  document.getElementById('cursoInicioAnio').value=INICIO_CURSO.y;
-  document.getElementById('cursoFinDia').value=FIN_CURSO.d;
-  document.getElementById('cursoFinMes').value=FIN_CURSO.m;
-  document.getElementById('cursoFinAnio').value=FIN_CURSO.y;
   
-  // Actualizar selectores de año de festivos y vacaciones según el curso
+  llenarSelectDias('cursoFinDia', FIN_CURSO.d);
+  llenarSelectAnios('cursoFinAnio', FIN_CURSO.y);
+  document.getElementById('cursoFinMes').value=FIN_CURSO.m;
+  
+  // ✅ Actualizar selectores de año de festivos y vacaciones según el curso
   actualizarSelectoresAnioCurso();
   
   renderEstadisticasConfig();
@@ -1275,7 +1276,6 @@ function renderConfiguracion(){
 }
 
 function actualizarSelectoresAnioCurso(){
-  // Los años posibles son desde el año de inicio hasta el año de fin
   const anioMin=INICIO_CURSO.y;
   const anioMax=FIN_CURSO.y;
   
@@ -1285,14 +1285,16 @@ function actualizarSelectoresAnioCurso(){
     if(!select) return;
     const valorActual=select.value;
     select.innerHTML='';
-    for(let y=anioMin;y<=anioMax;y++){
+    for(let y=ANIO_MIN_DESPLEGABLE;y<=ANIO_MAX_DESPLEGABLE;y++){
       const o=document.createElement('option');
       o.value=y;
       o.textContent=y;
       select.appendChild(o);
     }
-    if(valorActual>=anioMin && valorActual<=anioMax){
+    if(valorActual>=ANIO_MIN_DESPLEGABLE && valorActual<=ANIO_MAX_DESPLEGABLE){
       select.value=valorActual;
+    }else{
+      select.value=anioMin;
     }
   });
 }
