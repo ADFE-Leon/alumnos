@@ -178,7 +178,6 @@ tr:hover{background:#f9fafb}
 <h1>Control de Alumnos</h1>
 <p class="sub">Seguimiento de asistencias</p>
 
-<!-- ✅ CAJA DE CURSO ACTUAL - FUERA DE LAS PESTAÑAS, CENTRADA Y DESTACADA -->
 <div class="curso-info-box" id="cursoInfoBoxGlobal" style="max-width:600px;margin:0 auto 20px auto">
 <h4>📅 Curso actual</h4>
 <p id="cursoInfoTextoGlobal">Del 01/03/2026 al 28/02/2027</p>
@@ -186,7 +185,7 @@ tr:hover{background:#f9fafb}
 
 <div class="status-bar">
 <span>📂 Origen: <strong id="dataSource">Cargando...</strong></span>
-<span class="fecha-hoy"> Hoy: <strong id="todayDate">-</strong></span>
+<span class="fecha-hoy">📅 Hoy: <strong id="todayDate">-</strong></span>
 </div>
 
 <div id="alertContainer" class="alert-container"></div>
@@ -198,16 +197,16 @@ tr:hover{background:#f9fafb}
 </div>
 
 <div class="tabs">
-<button class="tb on" data-t="p7"> Entrada por Días</button>
+<button class="tb on" data-t="p7">✏️ Entrada por Días</button>
 <button class="tb" data-t="p2">👤 Por Alumno</button>
 <button class="tb" data-t="p3">📊 Por Mes/Año</button>
-<button class="tb" data-t="p4">📅 Calendario</button>
+<button class="tb" data-t="p4">🗓️ Calendario</button>
 <button class="tb" data-t="p6">💾 Datos</button>
 <button class="tb" data-t="p8">⚙️ Configuración</button>
 </div>
 
 <div id="p7" class="pnl on">
-<h2>📝 Entrada por Días</h2>
+<h2>✏️ Entrada por Días</h2>
 <p style="color:#6b7280;margin-bottom:16px;font-size:13px">Selecciona el mes. El año se asigna automáticamente según las fechas del curso. Haz clic en un día para registrar la asistencia de todos los alumnos.</p>
 
 <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;align-items:end">
@@ -235,7 +234,7 @@ tr:hover{background:#f9fafb}
 <h2>👤 Total por Alumno</h2>
 <div style="display:flex;gap:8px;float:right;margin-top:-40px">
 <button class="btn b4" onclick="imprimir('maquinas')">🖨️ Imprimir</button>
-<button class="btn b7" onclick="crearPDF('maquinas')">📄 Crear PDF</button>
+<button class="btn b7" onclick="crearPDF('maquinas')"> Crear PDF</button>
 </div>
 <table id="tablaMaquinasTbl"><thead><tr><th>Alumno</th><th class="r">Presentes</th><th class="r">Ausencias</th><th class="r">Entradas tarde</th><th class="r">Salidas pronto</th><th class="r">Citas médicas</th><th class="r">Conciliaciones</th><th class="r">Bajas</th></tr></thead><tbody id="t2"></tbody></table>
 </div>
@@ -244,7 +243,7 @@ tr:hover{background:#f9fafb}
 <h2>📊 Resumen por Periodo</h2>
 <div style="display:flex;gap:8px;float:right;margin-top:-40px">
 <button class="btn b4" onclick="imprimir('tiempo')">🖨️ Imprimir</button>
-<button class="btn b7" onclick="crearPDF('tiempo')">📄 Crear PDF</button>
+<button class="btn b7" onclick="crearPDF('tiempo')"> Crear PDF</button>
 </div>
 <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap">
 <div class="filter-group"><label>Periodo</label><select id="fPeriodo" onchange="renderTiempo()" class="sel"><option value="ALL">Todo el curso</option></select></div>
@@ -254,7 +253,7 @@ tr:hover{background:#f9fafb}
 </div>
 
 <div id="p4" class="pnl">
-<h2>📅 Calendario de Asistencias</h2>
+<h2>️ Calendario de Asistencias</h2>
 <p style="color:#6b7280;margin-bottom:16px;font-size:13px">Visualiza rápidamente el estado de cada día. Haz clic en un día para ver el detalle completo.</p>
 <div class="cal-filtros">
 <div class="filter-group"><label>Periodo</label><select id="calPeriodo" onchange="actualizarCalendarioDesdePeriodo()" class="sel"></select></div>
@@ -285,7 +284,7 @@ tr:hover{background:#f9fafb}
 <button class="btn b1 btn-cargar" onclick="cargarDatosNube()">📥 Cargar</button>
 </div>
 <div class="botones-seguridad">
-<h3 style="color:#dc2626;font-size:16px;margin-bottom:12px">️ Zona de peligro</h3>
+<h3 style="color:#dc2626;font-size:16px;margin-bottom:12px">⚠️ Zona de peligro</h3>
 <p style="color:#6b7280;font-size:13px;margin-bottom:16px">Estas acciones son irreversibles. Asegúrate de haber guardado tus datos antes de continuar.</p>
 <button class="btn b3" onclick="confirmarResetear()" style="padding:12px 24px;font-size:14px">🗑️ Resetear todo</button>
 </div>
@@ -332,7 +331,7 @@ tr:hover{background:#f9fafb}
 
 <div class="stats-config" id="statsConfig">
 <div class="stats-group vacaciones">
-<h4>️ Vacaciones</h4>
+<h4>🏖️ Vacaciones</h4>
 <div class="stats-items">
 <div class="stat-item total"><span class="stat-label">Solicitadas</span><span class="stat-value" id="statVacTotal">0</span></div>
 <div class="stat-item consumidos"><span class="stat-label">Disfrutadas</span><span class="stat-value" id="statVacConsumidas">0</span></div>
@@ -350,10 +349,10 @@ tr:hover{background:#f9fafb}
 </div>
 
 <div class="config-section">
-<h3> Gestión de Alumnos</h3>
+<h3>👥 Gestión de Alumnos</h3>
 <div class="config-form">
 <div class="filter-group"><label>Nombre del alumno</label><input type="text" id="nuevoAlumno" placeholder="Ej: GARCÍA LÓPEZ, JUAN"></div>
-<button class="btn b2" onclick="agregarAlumno()">➕ Añadir Alumno</button>
+<button class="btn b2" onclick="agregarAlumno()"> Añadir Alumno</button>
 </div>
 <div class="config-list" id="listaAlumnos"></div>
 </div>
@@ -361,8 +360,13 @@ tr:hover{background:#f9fafb}
 <div class="config-section">
 <h3>🎉 Gestión de Festivos</h3>
 <div class="config-form">
-<div class="filter-group"><label>Día</label><input type="number" id="nuevoFestivoDia" min="1" max="31" placeholder="Día"></div>
-<div class="filter-group"><label>Mes</label><select id="nuevoFestivoMes"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
+<div class="filter-group"><label>Día</label><select id="nuevoFestivoDia"></select></div>
+<div class="filter-group"><label>Mes</label><select id="nuevoFestivoMes">
+<option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option>
+<option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
+<option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option>
+<option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
+</select></div>
 <div class="filter-group"><label>Año</label><select id="nuevoFestivoAnio"></select></div>
 <div class="filter-group"><label>Nombre del festivo</label><input type="text" id="nuevoFestivoNombre" placeholder="Ej: Día del Trabajo"></div>
 <button class="btn b2" onclick="agregarFestivo()">➕ Añadir Festivo</button>
@@ -375,18 +379,28 @@ tr:hover{background:#f9fafb}
 <p style="color:#6b7280;font-size:13px;margin-bottom:12px">Introduce la fecha de inicio y la fecha final (ambas inclusive). <strong>Se añadirán automáticamente solo los días lectivos</strong> (se excluyen sábados, domingos y festivos).</p>
 <div class="rango-fechas">
 <div class="rango-box">
-<h4> Fecha de inicio</h4>
+<h4>📅 Fecha de inicio</h4>
 <div class="rango-inputs">
-<div class="filter-group"><label>Día</label><input type="number" id="nuevaVacacionDiaIni" min="1" max="31" placeholder="Día"></div>
-<div class="filter-group"><label>Mes</label><select id="nuevaVacacionMesIni"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
+<div class="filter-group"><label>Día</label><select id="nuevaVacacionDiaIni"></select></div>
+<div class="filter-group"><label>Mes</label><select id="nuevaVacacionMesIni">
+<option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option>
+<option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
+<option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option>
+<option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
+</select></div>
 <div class="filter-group"><label>Año</label><select id="nuevaVacacionAnioIni"></select></div>
 </div>
 </div>
 <div class="rango-box">
-<h4>📅 Fecha final (inclusive)</h4>
+<h4> Fecha final (inclusive)</h4>
 <div class="rango-inputs">
-<div class="filter-group"><label>Día</label><input type="number" id="nuevaVacacionDiaFin" min="1" max="31" placeholder="Día"></div>
-<div class="filter-group"><label>Mes</label><select id="nuevaVacacionMesFin"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
+<div class="filter-group"><label>Día</label><select id="nuevaVacacionDiaFin"></select></div>
+<div class="filter-group"><label>Mes</label><select id="nuevaVacacionMesFin">
+<option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option>
+<option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
+<option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option>
+<option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
+</select></div>
 <div class="filter-group"><label>Año</label><select id="nuevaVacacionAnioFin"></select></div>
 </div>
 </div>
@@ -396,7 +410,7 @@ tr:hover{background:#f9fafb}
 </div>
 
 <div style="margin-top:20px;padding:16px;background:#fef3c7;border-radius:8px;border:1px solid #fcd34d">
-<p style="color:#92400e;font-size:13px"><strong>⚠️ Importante:</strong> Después de hacer cambios en la configuración, pulsa <strong>"💾 Guardar"</strong> en la pestaña "Datos" para que los cambios se guarden permanentemente en la nube.</p>
+<p style="color:#92400e;font-size:13px"><strong>️ Importante:</strong> Después de hacer cambios en la configuración, pulsa <strong>"💾 Guardar"</strong> en la pestaña "Datos" para que los cambios se guarden permanentemente en la nube.</p>
 </div>
 </div>
 
@@ -440,7 +454,7 @@ tr:hover{background:#f9fafb}
 <div id="modalDetalleAlumnoContenido" class="detalle-alumno"></div>
 <div class="modal-footer">
 <button class="btn b4" onclick="imprimirDetalleAlumno()">🖨️ Imprimir</button>
-<button class="btn b7" onclick="crearPDFDetalleAlumno()"> Crear PDF</button>
+<button class="btn b7" onclick="crearPDFDetalleAlumno()">📄 Crear PDF</button>
 <button class="btn b1" onclick="cerrarModalDetalleAlumno()">Cerrar</button>
 </div>
 </div>
@@ -463,7 +477,7 @@ tr:hover{background:#f9fafb}
 <div class="modal-overlay" id="modalEditarAlumno">
 <div class="modal" style="max-width:500px">
 <div class="modal-header">
-<h3>️ Editar nombre del alumno</h3>
+<h3>✏️ Editar nombre del alumno</h3>
 <button class="modal-close" onclick="cerrarModalEditarAlumno()">×</button>
 </div>
 <div style="padding:10px 0">
@@ -537,6 +551,12 @@ let diaDetalleSeleccionado=null;
 let confirmacionCallback=null;
 let indiceAlumnoEditar=null;
 let alumnoDetalleActual=null;
+
+// ✅ FECHA ACTUAL (se calcula una sola vez)
+const FECHA_HOY = new Date();
+const DIA_HOY = FECHA_HOY.getDate();
+const MES_HOY = FECHA_HOY.getMonth() + 1;
+const ANIO_HOY = FECHA_HOY.getFullYear();
 
 function getPeriodoLabel(year, month){return MESES_NOMBRES[month-1]+" "+year;}
 function getDayType(year, month, day){
@@ -683,7 +703,7 @@ function actualizarInfoCurso(){
 }
 
 function inicializarApp(){
-  document.getElementById('todayDate').textContent=new Date().toLocaleDateString('es-ES',{day:'numeric',month:'numeric',year:'numeric'});
+  document.getElementById('todayDate').textContent=DIA_HOY+'/'+pad(MES_HOY)+'/'+ANIO_HOY;
   const periodos=generarPeriodos();
   const erMes=document.getElementById('erMes');erMes.innerHTML='';
   periodos.forEach(function(p){
@@ -692,13 +712,21 @@ function inicializarApp(){
     o.textContent=p.label;
     erMes.appendChild(o);
   });
-  const fechaActual=new Date();
-  const mesActual=fechaActual.getMonth()+1;
-  const periodoActual=periodos.find(p => p.y===fechaActual.getFullYear() && p.m===mesActual);
+  
+  // ✅ Seleccionar mes actual si está dentro del curso, si no el más cercano
+  const periodoActual=periodos.find(p => p.y===ANIO_HOY && p.m===MES_HOY);
   if(periodoActual){
     erMes.value=periodoActual.m;
   }else{
-    erMes.value=periodos[0].m;
+    // Buscar el periodo más cercano a la fecha actual
+    let mejorPeriodo=periodos[0];
+    let mejorDiff=Infinity;
+    periodos.forEach(p=>{
+      const fechaPeriodo=new Date(p.y,p.m-1,1);
+      const diff=Math.abs(fechaPeriodo-FECHA_HOY);
+      if(diff<mejorDiff){mejorDiff=diff;mejorPeriodo=p;}
+    });
+    erMes.value=mejorPeriodo.m;
   }
   onMesSeleccionado();
   const fPeriodo=document.getElementById('fPeriodo'); fPeriodo.innerHTML='<option value="ALL">Todo el curso</option>';
@@ -826,7 +854,7 @@ function abrirDetalleAlumno(alumno){
   html+=generarTabla(entradasTarde,'Entradas tarde','⏰');
   html+=generarTabla(salidasPronto,'Salidas pronto','📤');
   html+=generarTabla(citasMedicas,'Citas médicas','🏥');
-  html+=generarTabla(conciliaciones,'Conciliaciones','‍👩‍👧');
+  html+=generarTabla(conciliaciones,'Conciliaciones','👨‍👩‍👧');
   html+=generarTabla(bajas,'Bajas','🤒');
   if(registros.filter(r=>r.estado!=='presente').length===0){
     html='<div style="padding:40px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px">✅</p><p style="font-size:16px">Este alumno no tiene incidencias registradas</p><p style="margin-top:8px;font-size:13px">Todos sus registros son de asistencia presente.</p></div>';
@@ -922,7 +950,7 @@ function generarCalendarioEntrada(){
 function abrirModalAsistencia(dia){
   diaSeleccionado=dia;
   const registrosDia=getAll().filter(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===dia);
-  document.getElementById('modalTitulo').textContent='📝 Asistencia del '+pad(dia)+'/'+pad(mesSeleccionado)+'/'+anioSeleccionado;
+  document.getElementById('modalTitulo').textContent='✏️ Asistencia del '+pad(dia)+'/'+pad(mesSeleccionado)+'/'+anioSeleccionado;
   let html='<div style="margin-bottom:16px;padding:12px;background:#f0f9ff;border-radius:6px;border-left:4px solid #2563eb">';
   html+='<strong>'+registrosDia.length+'</strong> de <strong>'+ALUMNOS.length+'</strong> alumnos registrados';
   html+='</div>';
@@ -1095,7 +1123,7 @@ function abrirModalDetalle(y,m,d){
       const reg=registros.find(r=>r.alumno===alumno);
       if(reg){
         html+='<div class="day-detail-item"><div class="nombre">'+alumno+'</div><div class="estado estado-'+reg.estado+'">'+(LABELS_ESTADOS[reg.estado]||reg.estado)+'</div>';
-        if(reg.horaUnica) html+='<div class="hora"> '+reg.horaUnica+'</div>';
+        if(reg.horaUnica) html+='<div class="hora">🕐 '+reg.horaUnica+'</div>';
         if(reg.horaSalida&&reg.horaLlegada) html+='<div class="hora">🕐 '+reg.horaSalida+' - '+reg.horaLlegada+'</div>';
         if(reg.causa) html+='<div class="hora">📝 '+reg.causa+'</div>';
         html+='</div>';
@@ -1231,16 +1259,38 @@ function guardarFechasCurso(){
 }
 
 function renderConfiguracion(){
-  llenarSelectDias('cursoInicioDia', INICIO_CURSO.d);
-  llenarSelectAnios('cursoInicioAnio', INICIO_CURSO.y);
-  document.getElementById('cursoInicioMes').value=INICIO_CURSO.m;
+  // ✅ Fechas del curso: por defecto fecha actual si no hay valores guardados
+  const inicioDia = INICIO_CURSO.d || DIA_HOY;
+  const inicioMes = INICIO_CURSO.m || MES_HOY;
+  const inicioAnio = INICIO_CURSO.y || ANIO_HOY;
+  const finDia = FIN_CURSO.d || DIA_HOY;
+  const finMes = FIN_CURSO.m || MES_HOY;
+  const finAnio = FIN_CURSO.y || ANIO_HOY;
   
-  llenarSelectDias('cursoFinDia', FIN_CURSO.d);
-  llenarSelectAnios('cursoFinAnio', FIN_CURSO.y);
-  document.getElementById('cursoFinMes').value=FIN_CURSO.m;
+  llenarSelectDias('cursoInicioDia', inicioDia);
+  llenarSelectAnios('cursoInicioAnio', inicioAnio);
+  document.getElementById('cursoInicioMes').value=inicioMes;
+  
+  llenarSelectDias('cursoFinDia', finDia);
+  llenarSelectAnios('cursoFinAnio', finAnio);
+  document.getElementById('cursoFinMes').value=finMes;
+  
+  // ✅ Festivos: por defecto fecha actual
+  llenarSelectDias('nuevoFestivoDia', DIA_HOY);
+  llenarSelectAnios('nuevoFestivoAnio', ANIO_HOY);
+  document.getElementById('nuevoFestivoMes').value=MES_HOY;
+  
+  // ✅ Vacaciones inicio: por defecto fecha actual
+  llenarSelectDias('nuevaVacacionDiaIni', DIA_HOY);
+  llenarSelectAnios('nuevaVacacionAnioIni', ANIO_HOY);
+  document.getElementById('nuevaVacacionMesIni').value=MES_HOY;
+  
+  // ✅ Vacaciones fin: por defecto fecha actual
+  llenarSelectDias('nuevaVacacionDiaFin', DIA_HOY);
+  llenarSelectAnios('nuevaVacacionAnioFin', ANIO_HOY);
+  document.getElementById('nuevaVacacionMesFin').value=MES_HOY;
   
   actualizarSelectoresAnioCurso();
-  
   renderEstadisticasConfig();
   renderListaAlumnos();
   renderListaFestivos();
@@ -1267,7 +1317,7 @@ function actualizarSelectoresAnioCurso(){
     if(valorActual>=ANIO_MIN_DESPLEGABLE && valorActual<=ANIO_MAX_DESPLEGABLE){
       select.value=valorActual;
     }else{
-      select.value=anioMin;
+      select.value=ANIO_HOY>=ANIO_MIN_DESPLEGABLE && ANIO_HOY<=ANIO_MAX_DESPLEGABLE ? ANIO_HOY : anioMin;
     }
   });
 }
@@ -1345,7 +1395,7 @@ function renderListaFestivos(){
   FESTIVOS.sort((a,b)=>{ if(a.y!==b.y)return a.y-b.y; if(a.m!==b.m)return a.m-b.m; return a.d-b.d; });
   FESTIVOS.forEach(function(festivo,idx){
     const fecha=pad(festivo.d)+'/'+pad(festivo.m)+'/'+festivo.y;
-    lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+fecha+'</strong> - '+festivo.nombre+'</div><div class="config-item-actions"><button class="btn b3 action-btn" onclick="confirmarEliminarFestivo('+idx+')">️ Eliminar</button></div></div>';
+    lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+fecha+'</strong> - '+festivo.nombre+'</div><div class="config-item-actions"><button class="btn b3 action-btn" onclick="confirmarEliminarFestivo('+idx+')">🗑️ Eliminar</button></div></div>';
   });
 }
 function agregarFestivo(){
@@ -1430,7 +1480,7 @@ function confirmarEliminarVacacion(idx){
 }
 
 document.getElementById('fPeriodo').addEventListener('change',renderTiempo);
-document.getElementById('todayDate').textContent = new Date().toLocaleDateString('es-ES');
+document.getElementById('todayDate').textContent = DIA_HOY+'/'+pad(MES_HOY)+'/'+ANIO_HOY;
 inicializarApp();
 </script>
 </body>
