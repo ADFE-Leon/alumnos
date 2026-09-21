@@ -112,13 +112,17 @@ tr:hover{background:#f9fafb}
 #loader.hidden{display:none}
 .spinner{border:4px solid #f3f3f3;border-top:4px solid #2563eb;border-radius:50%;width:40px;height:40px;animation:spin 1s linear infinite}
 @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-.botones-datos{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:12px}
-.botones-seguridad{margin-top:24px;padding-top:24px;border-top:2px solid #e5e7eb}
+.botones-datos{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;margin-top:12px;position:relative;min-height:60px}
+.botones-datos .btn-cargar{position:absolute;right:0;top:50%;transform:translateY(-50%);padding:7px 16px;font-size:13px}
+.botones-seguridad{margin-top:30px;padding-top:24px;border-top:2px solid #e5e7eb;text-align:center}
+.botones-seguridad h3{display:inline-block}
+.botones-seguridad p{max-width:500px;margin:0 auto 16px auto}
+.botones-seguridad .btn{margin:0 auto}
 .filter-group{display:flex;flex-direction:column;gap:4px}
 .filter-group label{font-size:12px;font-weight:600;color:#374151}
-.info-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:16px;margin-bottom:20px}
-.info-box h4{color:#1e40af;margin-bottom:8px;font-size:15px}
-.info-box p{color:#1e40af;font-size:13px;line-height:1.6}
+.info-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:20px;margin-bottom:20px}
+.info-box h4{color:#1e40af;margin-bottom:12px;font-size:18px;text-align:center}
+.info-box p{color:#1e40af;font-size:14px;line-height:1.8;text-align:center}
 .config-section{margin-bottom:30px;padding:20px;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb}
 .config-section h3{margin-bottom:16px;color:#1e3a8a;font-size:18px}
 .config-form{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-bottom:16px}
@@ -148,8 +152,6 @@ tr:hover{background:#f9fafb}
 .stat-item.total .stat-value{color:#1e3a8a}
 .stat-item.consumidos .stat-value{color:#059669}
 .stat-item.pendientes .stat-value{color:#dc2626}
-
-/* ✅ ESTILOS PARA DETALLE DE ALUMNO */
 .detalle-alumno{padding:10px}
 .detalle-alumno h4{color:#1e3a8a;margin:16px 0 8px 0;font-size:15px;border-bottom:2px solid #e5e7eb;padding-bottom:6px}
 .detalle-alumno h4:first-child{margin-top:0}
@@ -160,22 +162,21 @@ tr:hover{background:#f9fafb}
 .detalle-alumno .total-seccion{background:#f3f4f6;font-weight:700}
 .detalle-alumno .hora-detalle{color:#6b7280;font-size:12px}
 .detalle-alumno .causa-detalle{color:#92400e;font-size:12px;font-style:italic}
-
 @media print{body *{visibility:hidden}.print-area,.print-area *{visibility:visible}.print-area{position:absolute;left:0;top:0;display:block;width:100%}.no-print{display:none!important}}
-@media(max-width:768px){.cards{grid-template-columns:1fr}.calendar{grid-template-columns:repeat(7,1fr);gap:2px}.cal-day{min-height:50px;padding:3px}.alumno-row{grid-template-columns:1fr;gap:8px}.modal{width:95%;padding:16px}.alert-container{left:20px;right:20px;max-width:none}.stats-config{grid-template-columns:1fr}.config-form{flex-direction:column}.rango-fechas{flex-direction:column}.rango-box .rango-inputs{flex-direction:column}}
+@media(max-width:768px){.cards{grid-template-columns:1fr}.calendar{grid-template-columns:repeat(7,1fr);gap:2px}.cal-day{min-height:50px;padding:3px}.alumno-row{grid-template-columns:1fr;gap:8px}.modal{width:95%;padding:16px}.alert-container{left:20px;right:20px;max-width:none}.stats-config{grid-template-columns:1fr}.config-form{flex-direction:column}.rango-fechas{flex-direction:column}.rango-box .rango-inputs{flex-direction:column}.botones-datos .btn-cargar{position:static;transform:none}}
 </style>
 </head>
 <body>
 
-<div id="loader"><div class="spinner"></div>Cargando datos desde Firebase...</div>
+<div id="loader"><div class="spinner"></div>Cargando datos desde la nube...</div>
 
 <div class="wrap">
 <h1>Control de Alumnos</h1>
 <p class="sub">Seguimiento de asistencias - Curso 2026/2027 (1/03/2026 - 28/02/2027)</p>
 <div id="mainApp">
 <div class="status-bar">
-<span>📂 Origen: <strong id="dataSource">Cargando...</strong></span>
-<span>📅 Hoy: <strong id="todayDate">-</strong></span>
+<span> Origen: <strong id="dataSource">Cargando...</strong></span>
+<span> Hoy: <strong id="todayDate">-</strong></span>
 </div>
 
 <div id="alertContainer" class="alert-container"></div>
@@ -191,12 +192,12 @@ tr:hover{background:#f9fafb}
 <button class="tb" data-t="p3">📊 Por Mes/Año</button>
 <button class="tb" data-t="p4">📅 Calendario</button>
 <button class="tb" data-t="p5">✏️ Editar</button>
-<button class="tb" data-t="p6">💾 Datos</button>
-<button class="tb" data-t="p8">️ Configuración</button>
+<button class="tb" data-t="p6"> Datos</button>
+<button class="tb" data-t="p8">⚙️ Configuración</button>
 </div>
 
 <div id="p7" class="pnl on">
-<h2>📝 Entrada por Días</h2>
+<h2> Entrada por Días</h2>
 <p style="color:#6b7280;margin-bottom:16px;font-size:13px">Selecciona mes y año. Haz clic en un día para registrar la asistencia de todos los alumnos.</p>
 <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap">
 <div class="filter-group"><label>Mes</label><select id="erMes" onchange="generarCalendarioEntrada()" class="sel"></select></div>
@@ -220,7 +221,7 @@ tr:hover{background:#f9fafb}
 <h2>👤 Total por Alumno</h2>
 <div style="display:flex;gap:8px;float:right;margin-top:-40px">
 <button class="btn b4" onclick="imprimir('maquinas')">🖨️ Imprimir</button>
-<button class="btn b7" onclick="crearPDF('maquinas')">📄 Crear PDF</button>
+<button class="btn b7" onclick="crearPDF('maquinas')"> Crear PDF</button>
 </div>
 <table id="tablaMaquinasTbl"><thead><tr><th>Alumno</th><th class="r">Presentes</th><th class="r">Ausencias</th><th class="r">Entradas tarde</th><th class="r">Salidas pronto</th><th class="r">Citas médicas</th><th class="r">Conciliaciones</th><th class="r">Bajas</th></tr></thead><tbody id="t2"></tbody></table>
 </div>
@@ -229,7 +230,7 @@ tr:hover{background:#f9fafb}
 <h2>📊 Resumen por Periodo</h2>
 <div style="display:flex;gap:8px;float:right;margin-top:-40px">
 <button class="btn b4" onclick="imprimir('tiempo')">🖨️ Imprimir</button>
-<button class="btn b7" onclick="crearPDF('tiempo')"> Crear PDF</button>
+<button class="btn b7" onclick="crearPDF('tiempo')">📄 Crear PDF</button>
 </div>
 <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap">
 <div class="filter-group"><label>Periodo</label><select id="fPeriodo" onchange="renderTiempo()" class="sel"><option value="ALL">Todo el curso</option></select></div>
@@ -264,28 +265,34 @@ tr:hover{background:#f9fafb}
 <table><thead><tr><th>Fecha</th><th>Alumno</th><th class="r">Estado</th><th>Detalles</th><th>Acciones</th></tr></thead><tbody id="tEdit"></tbody></table>
 </div>
 
+<!-- ✅ PESTAÑA DATOS REORGANIZADA -->
 <div id="p6" class="pnl">
 <h2>💾 Gestión de Datos</h2>
+
 <div class="info-box">
 <h4>📡 Sincronización con la nube</h4>
-<p><strong>Cargar:</strong> Descarga los datos desde Firebase (nube) para trabajar offline. Útil cuando cambias de dispositivo o quieres recuperar los últimos cambios guardados.</p>
-<p style="margin-top:8px"><strong>Guardar:</strong> Sube todos los cambios realizados localmente a Firebase (nube) para que estén disponibles en todos tus dispositivos.</p>
+<p>
+<strong>Guardar:</strong> Subir los datos a la nube<br>
+<strong>Cargar:</strong> Bajar los datos desde la nube
+</p>
 </div>
+
 <div class="box">
 <div class="botones-datos">
-<button class="btn b1" onclick="cargarDatosFirebase()">📥 Cargar</button>
-<button class="btn b5" onclick="guardarDatosFirebase()">💾 Guardar</button>
+<button class="btn b5" onclick="guardarDatosNube()" style="padding:14px 32px;font-size:16px;box-shadow:0 4px 12px rgba(5,150,105,0.4)">💾 Guardar</button>
+<button class="btn b1 btn-cargar" onclick="cargarDatosNube()">📥 Cargar</button>
 </div>
+
 <div class="botones-seguridad">
 <h3 style="color:#dc2626;font-size:16px;margin-bottom:12px">️ Zona de peligro</h3>
-<p style="color:#6b7280;font-size:13px;margin-bottom:12px">Estas acciones son irreversibles. Asegúrate de haber guardado tus datos antes de continuar.</p>
+<p style="color:#6b7280;font-size:13px;margin-bottom:16px">Estas acciones son irreversibles. Asegúrate de haber guardado tus datos antes de continuar.</p>
 <button class="btn b3" onclick="confirmarResetear()" style="padding:12px 24px;font-size:14px">🗑️ Resetear todo</button>
 </div>
 </div>
 </div>
 
 <div id="p8" class="pnl">
-<h2>️ Configuración</h2>
+<h2>⚙️ Configuración</h2>
 <div class="stats-config" id="statsConfig">
 <div class="stats-group vacaciones">
 <h4>🏖️ Vacaciones</h4>
@@ -305,7 +312,7 @@ tr:hover{background:#f9fafb}
 </div>
 </div>
 <div class="config-section">
-<h3>👥 Gestión de Alumnos</h3>
+<h3> Gestión de Alumnos</h3>
 <div class="config-form">
 <div class="filter-group"><label>Nombre del alumno</label><input type="text" id="nuevoAlumno" placeholder="Ej: GARCÍA LÓPEZ, JUAN"></div>
 <button class="btn b2" onclick="agregarAlumno()">➕ Añadir Alumno</button>
@@ -313,7 +320,7 @@ tr:hover{background:#f9fafb}
 <div class="config-list" id="listaAlumnos"></div>
 </div>
 <div class="config-section">
-<h3>🎉 Gestión de Festivos</h3>
+<h3> Gestión de Festivos</h3>
 <div class="config-form">
 <div class="filter-group"><label>Día</label><input type="number" id="nuevoFestivoDia" min="1" max="31" placeholder="Día"></div>
 <div class="filter-group"><label>Mes</label><select id="nuevoFestivoMes"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
@@ -328,7 +335,7 @@ tr:hover{background:#f9fafb}
 <p style="color:#6b7280;font-size:13px;margin-bottom:12px">Introduce la fecha de inicio y la fecha final (ambas inclusive). <strong>Se añadirán automáticamente solo los días lectivos</strong> (se excluyen sábados, domingos y festivos).</p>
 <div class="rango-fechas">
 <div class="rango-box">
-<h4>📅 Fecha de inicio</h4>
+<h4> Fecha de inicio</h4>
 <div class="rango-inputs">
 <div class="filter-group"><label>Día</label><input type="number" id="nuevaVacacionDiaIni" min="1" max="31" placeholder="Día"></div>
 <div class="filter-group"><label>Mes</label><select id="nuevaVacacionMesIni"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
@@ -355,7 +362,6 @@ tr:hover{background:#f9fafb}
 </div>
 </div>
 
-<!-- Modal de asistencia -->
 <div class="modal-overlay" id="modalAsistencia">
 <div class="modal">
 <div class="modal-header">
@@ -370,7 +376,6 @@ tr:hover{background:#f9fafb}
 </div>
 </div>
 
-<!-- Modal de detalle del día -->
 <div class="modal-overlay" id="modalDetalle">
 <div class="modal">
 <div class="modal-header">
@@ -385,7 +390,6 @@ tr:hover{background:#f9fafb}
 </div>
 </div>
 
-<!-- ✅ NUEVO: Modal de detalle de alumno -->
 <div class="modal-overlay" id="modalDetalleAlumno">
 <div class="modal modal-grande">
 <div class="modal-header">
@@ -401,7 +405,6 @@ tr:hover{background:#f9fafb}
 </div>
 </div>
 
-<!-- Modal de confirmación -->
 <div class="modal-overlay" id="modalConfirmacion">
 <div class="modal" style="max-width:500px">
 <div class="modal-header">
@@ -416,7 +419,6 @@ tr:hover{background:#f9fafb}
 </div>
 </div>
 
-<!-- Modal para editar nombre de alumno -->
 <div class="modal-overlay" id="modalEditarAlumno">
 <div class="modal" style="max-width:500px">
 <div class="modal-header">
@@ -462,7 +464,7 @@ window.firebaseChild = child;
 console.log('✅ Firebase inicializado');
 
 setTimeout(() => {
-  if (window.cargarDatosFirebase) window.cargarDatosFirebase();
+  if (window.cargarDatosNube) window.cargarDatosNube();
 }, 100);
 </script>
 
@@ -530,7 +532,9 @@ function mostrarAlerta(tipo,mensaje,duracion=5000){
     },duracion);
   }
 }
-async function cargarDatosFirebase() {
+
+// ✅ CARGAR DATOS DESDE LA NUBE
+async function cargarDatosNube() {
   document.getElementById('loader').classList.remove('hidden');
   try {
     const db = window.firebaseDB;
@@ -545,13 +549,13 @@ async function cargarDatosFirebase() {
       } else { historicalRecords = []; userRecords = []; }
       if (datos.festivos) FESTIVOS = datos.festivos.map(f => ({y: parseInt(f.y), m: parseInt(f.m), d: parseInt(f.d), nombre: f.nombre}));
       if (datos.vacaciones) VACACIONES = datos.vacaciones.map(v => ({y: parseInt(v.y), m: parseInt(v.m), d: parseInt(v.d)}));
-      dataSourceMsg = "☁️ Firebase (Nube)";
+      dataSourceMsg = "☁️ Nube";
       document.getElementById('dataSource').textContent = dataSourceMsg;
       saveUser();
       inicializarApp();
       renderAll();
       renderConfiguracion();
-      mostrarAlerta('success', 'Datos cargados correctamente: ' + ALUMNOS.length + ' alumnos, ' + (historicalRecords.length + userRecords.length) + ' registros, ' + FESTIVOS.length + ' festivos, ' + VACACIONES.length + ' vacaciones');
+      mostrarAlerta('success', 'Datos cargados desde la nube: ' + ALUMNOS.length + ' alumnos, ' + (historicalRecords.length + userRecords.length) + ' registros, ' + FESTIVOS.length + ' festivos, ' + VACACIONES.length + ' vacaciones');
     } else {
       dataSourceMsg = "Local (Sin datos)";
       document.getElementById('dataSource').textContent = dataSourceMsg;
@@ -562,24 +566,27 @@ async function cargarDatosFirebase() {
     }
   } catch (e) {
     console.error('Error:', e);
-    mostrarAlerta('error', 'Error al conectar con Firebase: ' + e.message);
+    mostrarAlerta('error', 'Error al conectar con la nube: ' + e.message);
   } finally {
     document.getElementById('loader').classList.add('hidden');
   }
 }
-async function guardarDatosFirebase() {
-  mostrarAlerta('info', 'Guardando en Firebase...');
+
+// ✅ GUARDAR DATOS EN LA NUBE
+async function guardarDatosNube() {
+  mostrarAlerta('info', 'Guardando en la nube...');
   try {
     const payload = { alumnos: ALUMNOS, registros: [...historicalRecords, ...userRecords], festivos: FESTIVOS, vacaciones: VACACIONES };
     const db = window.firebaseDB;
     const dbRef = window.firebaseRef(db, 'datos');
     await window.firebaseSet(dbRef, payload);
-    mostrarAlerta('success', 'Datos guardados correctamente: ' + (historicalRecords.length + userRecords.length) + ' registros sincronizados');
+    mostrarAlerta('success', 'Datos subidos a la nube: ' + (historicalRecords.length + userRecords.length) + ' registros sincronizados');
   } catch (e) {
     console.error('Error:', e);
-    mostrarAlerta('error', 'Error al guardar en Firebase');
+    mostrarAlerta('error', 'Error al guardar en la nube');
   }
 }
+
 function inicializarApp(){
   document.getElementById('todayDate').textContent=new Date().toLocaleDateString('es-ES');
   const periodos=generarPeriodos();
@@ -640,7 +647,6 @@ function renderMaquinas(){
     totales.presente+=s.presente; totales.ausente+=s.ausente; totales.entrada_tarde+=s.entrada_tarde;
     totales.salida_pronto+=s.salida_pronto; totales.cita_medica+=s.cita_medica; totales.conciliacion+=s.conciliacion;
     totales.baja+=s.baja;
-    // ✅ Nombre clickeable
     tb.innerHTML+='<tr><td><a class="alumno-link" onclick="abrirDetalleAlumno(\''+m.replace(/'/g,"\\'")+'\')">'+m+'</a></td><td class="r">'+s.presente+'</td><td class="r">'+s.ausente+'</td><td class="r">'+s.entrada_tarde+'</td><td class="r">'+s.salida_pronto+'</td><td class="r">'+s.cita_medica+'</td><td class="r">'+s.conciliacion+'</td><td class="r">'+s.baja+'</td></tr>';
   });
   tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.cita_medica+'</td><td class="r">'+totales.conciliacion+'</td><td class="r">'+totales.baja+'</td></tr>';
@@ -662,7 +668,6 @@ function renderTiempo(){
   }
 }
 
-// ✅ NUEVA FUNCIÓN: Abrir detalle de alumno
 function abrirDetalleAlumno(alumno){
   alumnoDetalleActual=alumno;
   const registros=getAll().filter(r=>r.alumno===alumno).sort((a,b)=>{
@@ -670,20 +675,14 @@ function abrirDetalleAlumno(alumno){
     if(a.m!==b.m) return a.m-b.m;
     return a.d-b.d;
   });
-  
-  document.getElementById('modalDetalleAlumnoTitulo').textContent=' Detalle de: '+alumno;
-  
-  // Agrupar por tipo de incidencia (excluir presentes)
+  document.getElementById('modalDetalleAlumnoTitulo').textContent='📋 Detalle de: '+alumno;
   const ausencias=registros.filter(r=>r.estado==='ausente');
   const entradasTarde=registros.filter(r=>r.estado==='entrada_tarde');
   const salidasPronto=registros.filter(r=>r.estado==='salida_pronto');
   const citasMedicas=registros.filter(r=>r.estado==='cita_medica');
   const conciliaciones=registros.filter(r=>r.estado==='conciliacion');
   const bajas=registros.filter(r=>r.estado==='baja');
-  
   let html='';
-  
-  // Resumen
   html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:20px">';
   html+='<div style="padding:12px;background:#fee2e2;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#991b1b">'+ausencias.length+'</div><div style="font-size:12px;color:#991b1b">Ausencias</div></div>';
   html+='<div style="padding:12px;background:#fef3c7;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#92400e">'+entradasTarde.length+'</div><div style="font-size:12px;color:#92400e">Entradas tarde</div></div>';
@@ -692,8 +691,6 @@ function abrirDetalleAlumno(alumno){
   html+='<div style="padding:12px;background:#e0e7ff;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#3730a3">'+conciliaciones.length+'</div><div style="font-size:12px;color:#3730a3">Conciliaciones</div></div>';
   html+='<div style="padding:12px;background:#fecaca;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#991b1b">'+bajas.length+'</div><div style="font-size:12px;color:#991b1b">Bajas</div></div>';
   html+='</div>';
-  
-  // Función auxiliar para generar tabla
   function generarTabla(registros, titulo, icono){
     if(registros.length===0) return '';
     let t='<h4>'+icono+' '+titulo+' ('+registros.length+')</h4>';
@@ -703,7 +700,7 @@ function abrirDetalleAlumno(alumno){
       const fechaObj=new Date(r.y,r.m-1,r.d);
       const diaSemana=DIAS_SEMANA[fechaObj.getDay()];
       let horario='-';
-      if(r.horaUnica) horario='🕐 '+r.horaUnica;
+      if(r.horaUnica) horario=' '+r.horaUnica;
       else if(r.horaSalida&&r.horaLlegada) horario='🕐 '+r.horaSalida+' - '+r.horaLlegada;
       let detalles='';
       if(r.causa) detalles='<span class="causa-detalle">📝 '+r.causa+'</span>';
@@ -713,18 +710,15 @@ function abrirDetalleAlumno(alumno){
     t+='</tbody></table>';
     return t;
   }
-  
-  html+=generarTabla(ausencias,'Ausencias','');
-  html+=generarTabla(entradasTarde,'Entradas tarde','⏰');
+  html+=generarTabla(ausencias,'Ausencias','❌');
+  html+=generarTabla(entradasTarde,'Entradas tarde','');
   html+=generarTabla(salidasPronto,'Salidas pronto','📤');
   html+=generarTabla(citasMedicas,'Citas médicas','🏥');
   html+=generarTabla(conciliaciones,'Conciliaciones','👨‍👩‍');
   html+=generarTabla(bajas,'Bajas','🤒');
-  
   if(registros.filter(r=>r.estado!=='presente').length===0){
     html='<div style="padding:40px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px">✅</p><p style="font-size:16px">Este alumno no tiene incidencias registradas</p><p style="margin-top:8px;font-size:13px">Todos sus registros son de asistencia presente.</p></div>';
   }
-  
   document.getElementById('modalDetalleAlumnoContenido').innerHTML=html;
   document.getElementById('modalDetalleAlumno').classList.add('show');
 }
@@ -734,17 +728,15 @@ function cerrarModalDetalleAlumno(){
   alumnoDetalleActual=null;
 }
 
-// ✅ IMPRIMIR DETALLE DE ALUMNO
 function imprimirDetalleAlumno(){
   if(!alumnoDetalleActual) return;
   const contenido=document.getElementById('modalDetalleAlumnoContenido').innerHTML;
   const area=document.getElementById('printArea');
-  area.innerHTML='<div style="padding:20px"><h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Detalle de: '+alumnoDetalleActual+'</h2>'+contenido+'</div>';
+  area.innerHTML='<div style="padding:20px"><h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Detalle de: '+alumnoDetalleActual+'</h2><p style="color:#6b7280;margin-bottom:20px">Curso 2026/2027 - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>'+contenido+'</div>';
   window.print();
   setTimeout(()=>{area.innerHTML='';},1000);
 }
 
-// ✅ CREAR PDF DETALLE DE ALUMNO
 function crearPDFDetalleAlumno(){
   if(!alumnoDetalleActual) return;
   mostrarAlerta('info','Generando PDF...');
@@ -768,7 +760,6 @@ function crearPDFDetalleAlumno(){
   });
 }
 
-// ✅ CREAR PDF genérico para tablas
 function crearPDF(tipo){
   mostrarAlerta('info','Generando PDF...');
   let contenido='',titulo='',filename='';
@@ -997,7 +988,7 @@ function abrirModalDetalle(y,m,d){
   let html='';
   if(registros.length===0){
     html='<div style="padding:20px;text-align:center;color:#6b7280">';
-    html+='<p style="font-size:48px;margin-bottom:12px"></p>';
+    html+='<p style="font-size:48px;margin-bottom:12px">📭</p>';
     html+='<p>No hay registros para este día</p>';
     html+='<p style="margin-top:12px"><button class="btn b2" onclick="cerrarModalDetalle();abrirModalAsistenciaDesdeDetalle('+d+')">➕ Añadir registros</button></p>';
     html+='</div>';
@@ -1020,7 +1011,7 @@ function abrirModalDetalle(y,m,d){
         html+='<div class="nombre">'+alumno+'</div>';
         html+='<div class="estado estado-'+reg.estado+'">'+(LABELS_ESTADOS[reg.estado]||reg.estado)+'</div>';
         if(reg.horaUnica) html+='<div class="hora">🕐 '+reg.horaUnica+'</div>';
-        if(reg.horaSalida&&reg.horaLlegada) html+='<div class="hora">🕐 '+reg.horaSalida+' - '+reg.horaLlegada+'</div>';
+        if(reg.horaSalida&&reg.horaLlegada) html+='<div class="hora"> '+reg.horaSalida+' - '+reg.horaLlegada+'</div>';
         if(reg.causa) html+='<div class="hora">📝 '+reg.causa+'</div>';
         html+='</div>';
       }else{
@@ -1061,10 +1052,10 @@ function cargarRegistrosEditar(y,m){
   if(R.length===0){tb.innerHTML='<tr><td colspan="5" style="text-align:center">Sin registros</td></tr>';return;}
   R.forEach((r,i)=>{
     let detalles='';
-    if(r.horaUnica) detalles+='🕐 '+r.horaUnica+' ';
+    if(r.horaUnica) detalles+=' '+r.horaUnica+' ';
     if(r.horaSalida&&r.horaLlegada) detalles+='🕐 '+r.horaSalida+'-'+r.horaLlegada+' ';
-    if(r.causa) detalles+='📝 '+r.causa;
-    tb.innerHTML+='<tr><td>'+pad(r.d)+'/'+pad(r.m)+'/'+r.y+'</td><td>'+r.alumno+'</td><td class="r" style="color:'+COLORES_ESTADO[r.estado]+'">'+(LABELS_ESTADOS[r.estado]||r.estado)+'</td><td>'+(detalles||'-')+'</td><td><button class="btn b3 action-btn" onclick="confirmarEliminarRegistro('+i+')">🗑️</button></td></tr>';
+    if(r.causa) detalles+=' '+r.causa;
+    tb.innerHTML+='<tr><td>'+pad(r.d)+'/'+pad(r.m)+'/'+r.y+'</td><td>'+r.alumno+'</td><td class="r" style="color:'+COLORES_ESTADO[r.estado]+'">'+(LABELS_ESTADOS[r.estado]||r.estado)+'</td><td>'+(detalles||'-')+'</td><td><button class="btn b3 action-btn" onclick="confirmarEliminarRegistro('+i+')">️</button></td></tr>';
   });
 }
 
@@ -1136,9 +1127,6 @@ function cerrarModalConfirmacion(){
   confirmacionCallback=null;
 }
 
-// ============================================
-// FUNCIONES DE CONFIGURACIÓN
-// ============================================
 function renderConfiguracion(){
   renderEstadisticasConfig();
   renderListaAlumnos();
@@ -1236,7 +1224,7 @@ function renderListaFestivos(){
   FESTIVOS.sort((a,b)=>{ if(a.y!==b.y)return a.y-b.y; if(a.m!==b.m)return a.m-b.m; return a.d-b.d; });
   FESTIVOS.forEach(function(festivo,idx){
     const fecha=pad(festivo.d)+'/'+pad(festivo.m)+'/'+festivo.y;
-    lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+fecha+'</strong> - '+festivo.nombre+'</div><div class="config-item-actions"><button class="btn b3 action-btn" onclick="confirmarEliminarFestivo('+idx+')">️ Eliminar</button></div></div>';
+    lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+fecha+'</strong> - '+festivo.nombre+'</div><div class="config-item-actions"><button class="btn b3 action-btn" onclick="confirmarEliminarFestivo('+idx+')">🗑️ Eliminar</button></div></div>';
   });
 }
 function agregarFestivo(){
