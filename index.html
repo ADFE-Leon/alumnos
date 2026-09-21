@@ -78,9 +78,15 @@ tr:hover{background:#f9fafb}
 .alumno-row:hover{background:#f3f4f6}
 .alumno-name{font-weight:600;color:#1f2937;padding-top:8px}
 .alumno-select{padding:8px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;width:100%}
-.campos-hora{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-.campos-hora input[type="time"]{padding:6px;border:1px solid #d1d5db;border-radius:4px;font-size:13px}
-.campos-hora label{font-size:12px;color:#6b7280;min-width:60px}
+
+/* ✅ CAMPOS DE HORA - DISEÑO CORREGIDO */
+.campos-hora{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.campos-hora .hora-fila{display:flex;align-items:center;gap:8px}
+.campos-hora label{font-size:12px;color:#6b7280;min-width:65px;font-weight:500}
+.campos-hora input[type="time"]{padding:6px 10px;border:1px solid #d1d5db;border-radius:4px;font-size:13px;flex:1;max-width:140px}
+.campos-hora.hora-unica{flex-direction:row;flex-wrap:wrap}
+.campos-hora.hora-unica label{min-width:90px}
+
 .modal-footer{margin-top:20px;padding-top:16px;border-top:2px solid #e5e7eb;display:flex;justify-content:flex-end;gap:12px}
 .day-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
 .day-detail-item{padding:8px 12px;background:#f9fafb;border-radius:6px;font-size:13px}
@@ -246,7 +252,7 @@ tr:hover{background:#f9fafb}
 <div id="modalContenido"></div>
 <div class="modal-footer">
 <button class="btn b4" onclick="cerrarModalAsistencia()">Cancelar</button>
-<button class="btn b2" onclick="guardarAsistenciaDia()"> Guardar Todos</button>
+<button class="btn b2" onclick="guardarAsistenciaDia()">💾 Guardar Todos</button>
 </div>
 </div>
 </div>
@@ -343,7 +349,7 @@ function generarPeriodos(){
 }
 function mostrarAlerta(tipo,mensaje){
   const cont=document.getElementById('alertContainer');
-  const iconos={info:'ℹ️',error:'❌',success:'✅',warning:'⚠️'};
+  const iconos={info:'ℹ️',error:'',success:'✅',warning:'⚠️'};
   cont.innerHTML='<div class="alert alert-'+tipo+'"><span>'+(iconos[tipo]||'')+'</span><span>'+mensaje+'</span></div>';
   if(alertTimeout)clearTimeout(alertTimeout);
   alertTimeout=setTimeout(function(){if(cont)cont.innerHTML='';},5000);
@@ -363,7 +369,7 @@ async function cargarDatosFirebase() {
       } else { historicalRecords = []; userRecords = []; }
       if (datos.festivos) FESTIVOS = datos.festivos.map(f => ({y: parseInt(f.y), m: parseInt(f.m), d: parseInt(f.d), nombre: f.nombre}));
       if (datos.vacaciones) VACACIONES = datos.vacaciones.map(v => ({y: parseInt(v.y), m: parseInt(v.m), d: parseInt(v.d)}));
-      dataSourceMsg = "☁️ Firebase (Nube)";
+      dataSourceMsg = "️ Firebase (Nube)";
       document.getElementById('dataSource').textContent = dataSourceMsg;
       saveUser();
       inicializarApp();
@@ -511,7 +517,7 @@ function generarCalendarioEntrada(){
   }
 }
 
-// ✅ FUNCIÓN ACTUALIZADA CON CAMPOS DE HORA
+// ✅ FUNCIÓN ACTUALIZADA CON CAMPOS DE HORA CORREGIDOS
 function abrirModalAsistencia(dia){
   diaSeleccionado=dia;
   const registrosDia=getAll().filter(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===dia);
@@ -538,18 +544,18 @@ function abrirModalAsistencia(dia){
     });
     html+='</select>';
     
-    // Campo para entrada tarde / salida pronto (una sola hora)
-    html+='<div class="campos-hora hora-unica" data-alumno="'+alumno+'" style="display:'+(estadoActual==='entrada_tarde'||estadoActual==='salida_pronto'?'flex':'none')+';gap:6px;align-items:center">';
+    // ✅ Campo para entrada tarde / salida pronto (una sola hora en una fila)
+    html+='<div class="campos-hora hora-unica" data-alumno="'+alumno+'" style="display:'+(estadoActual==='entrada_tarde'||estadoActual==='salida_pronto'?'flex':'none')+'">';
+    html+='<div class="hora-fila">';
     html+='<label>'+(estadoActual==='entrada_tarde'?'Hora entrada:':'Hora salida:')+'</label>';
     html+='<input type="time" class="hora-unica-input" value="'+horaUnica+'">';
     html+='</div>';
+    html+='</div>';
     
-    // Campos para cita médica / conciliación (salida y llegada)
-    html+='<div class="campos-hora hora-rango" data-alumno="'+alumno+'" style="display:'+(estadoActual==='cita_medica'||estadoActual==='conciliacion'?'flex':'none')+';gap:6px;align-items:center;flex-wrap:wrap">';
-    html+='<label>Salida:</label>';
-    html+='<input type="time" class="hora-salida-input" value="'+horaSalida+'">';
-    html+='<label>Llegada:</label>';
-    html+='<input type="time" class="hora-llegada-input" value="'+horaLlegada+'">';
+    // ✅ Campos para cita médica / conciliación (cada uno en su propia fila)
+    html+='<div class="campos-hora hora-rango" data-alumno="'+alumno+'" style="display:'+(estadoActual==='cita_medica'||estadoActual==='conciliacion'?'flex':'none')+'">';
+    html+='<div class="hora-fila"><label>Salida:</label><input type="time" class="hora-salida-input" value="'+horaSalida+'"></div>';
+    html+='<div class="hora-fila"><label>Llegada:</label><input type="time" class="hora-llegada-input" value="'+horaLlegada+'"></div>';
     html+='</div>';
     
     html+='</div>';
@@ -560,7 +566,7 @@ function abrirModalAsistencia(dia){
   document.getElementById('modalAsistencia').classList.add('show');
 }
 
-// ✅ NUEVA FUNCIÓN: Mostrar/ocultar campos de hora según el estado
+// ✅ FUNCIÓN: Mostrar/ocultar campos de hora según el estado
 function toggleCamposHora(select){
   const alumno=select.getAttribute('data-alumno');
   const estado=select.value;
@@ -691,9 +697,9 @@ function actualizarCalendario(y,m){
       if(counts.presente>0) stats.push('✓'+counts.presente);
       if(counts.ausente>0) stats.push('✗'+counts.ausente);
       if(counts.entrada_tarde>0) stats.push('⏰'+counts.entrada_tarde);
-      if(counts.salida_pronto>0) stats.push('📤'+counts.salida_pronto);
+      if(counts.salida_pronto>0) stats.push(''+counts.salida_pronto);
       if(counts.cita_medica>0) stats.push('🏥'+counts.cita_medica);
-      if(counts.conciliacion>0) stats.push('‍👩‍👧'+counts.conciliacion);
+      if(counts.conciliacion>0) stats.push('👨‍👩‍'+counts.conciliacion);
       if(counts.baja>0) stats.push(''+counts.baja);
       html+='<div class="day-stats">'+stats.join(' ')+'</div>';
       html+='<div class="day-info">'+totalRegistros+'/'+ALUMNOS.length+' alumnos</div>';
@@ -737,7 +743,6 @@ function abrirModalDetalle(y,m,d){
         html+='<div class="day-detail-item">';
         html+='<div class="nombre">'+alumno+'</div>';
         html+='<div class="estado estado-'+reg.estado+'">'+(LABELS_ESTADOS[reg.estado]||reg.estado)+'</div>';
-        // ✅ Mostrar horas si existen
         if(reg.horaUnica) html+='<div class="hora">🕐 '+reg.horaUnica+'</div>';
         if(reg.horaSalida&&reg.horaLlegada) html+='<div class="hora">🕐 '+reg.horaSalida+' - '+reg.horaLlegada+'</div>';
         if(reg.causa) html+='<div class="hora">📝 '+reg.causa+'</div>';
@@ -779,10 +784,10 @@ function cargarRegistrosEditar(y,m){
   if(R.length===0){tb.innerHTML='<tr><td colspan="5" style="text-align:center">Sin registros</td></tr>';return;}
   R.forEach((r,i)=>{
     let detalles='';
-    if(r.horaUnica) detalles+='🕐 '+r.horaUnica+' ';
+    if(r.horaUnica) detalles+=' '+r.horaUnica+' ';
     if(r.horaSalida&&r.horaLlegada) detalles+='🕐 '+r.horaSalida+'-'+r.horaLlegada+' ';
     if(r.causa) detalles+='📝 '+r.causa;
-    tb.innerHTML+='<tr><td>'+pad(r.d)+'/'+pad(r.m)+'/'+r.y+'</td><td>'+r.alumno+'</td><td class="r" style="color:'+COLORES_ESTADO[r.estado]+'">'+(LABELS_ESTADOS[r.estado]||r.estado)+'</td><td>'+(detalles||'-')+'</td><td><button class="btn b3 action-btn" onclick="eliminarRegistro('+i+')">🗑️</button></td></tr>';
+    tb.innerHTML+='<tr><td>'+pad(r.d)+'/'+pad(r.m)+'/'+r.y+'</td><td>'+r.alumno+'</td><td class="r" style="color:'+COLORES_ESTADO[r.estado]+'">'+(LABELS_ESTADOS[r.estado]||r.estado)+'</td><td>'+(detalles||'-')+'</td><td><button class="btn b3 action-btn" onclick="eliminarRegistro('+i+')">️</button></td></tr>';
   });
 }
 function eliminarRegistro(idx){
