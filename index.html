@@ -22,9 +22,6 @@ h1{text-align:center;color:#1e3a8a;font-size:28px;margin-bottom:4px}
 .pnl{background:#fff;padding:24px;border-radius:0 10px 10px 10px;box-shadow:0 1px 3px rgba(0,0,0,.08);display:none}
 .pnl.on{display:block}
 .pnl h2{margin-bottom:16px;font-size:20px;color:#1f2937}
-.fr{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;align-items:end}
-.fr label{font-size:12px;font-weight:600;display:block;margin-bottom:4px;color:#374151}
-.fr input,.fr select{width:100%;padding:9px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:14px}
 .btn{padding:9px 22px;border:none;border-radius:6px;cursor:pointer;font-size:14px;font-weight:600;color:#fff;margin-right:5px;margin-bottom:5px}
 .b1{background:#2563eb}.b1:hover{background:#1d4ed8}
 .b2{background:#16a34a}.b2:hover{background:#15803d}
@@ -42,18 +39,23 @@ tr:hover{background:#f9fafb}
 .box{background:#f9fafb;padding:14px;border-radius:8px;margin-top:16px;font-size:14px}
 .calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:15px}
 .cal-header{background:#2563eb;color:#fff;padding:8px;text-align:center;font-weight:600;font-size:12px;border-radius:4px}
-.cal-day{background:#fff;border:1px solid #e5e7eb;padding:6px;min-height:100px;cursor:pointer;border-radius:4px;position:relative}
-.cal-day:hover{background:#f0f9ff;border-color:#3b82f6}
+.cal-day{background:#fff;border:1px solid #e5e7eb;padding:6px;min-height:80px;cursor:pointer;border-radius:4px;position:relative;transition:all 0.2s}
+.cal-day:hover{transform:scale(1.03);box-shadow:0 2px 8px rgba(0,0,0,0.15);z-index:10}
 .cal-day.empty{background:#f9fafb;border-color:#f3f4f6;cursor:default}
-.cal-day.present{background:#dcfce7;border-color:#86efac}
-.cal-day.absent{background:#fee2e2;border-color:#fca5a5}
-.cal-day.late{background:#fef3c7;border-color:#fcd34d}
-.cal-day.early{background:#fce7f3;border-color:#f9a8d4}
-.cal-day.medical{background:#dbeafe;border-color:#93c5fd}
-.cal-day.conciliation{background:#e0e7ff;border-color:#a5b4fc}
-.cal-day.sick-leave{background:#fecaca;border-color:#f87171}
-.cal-day .day-num{font-weight:700;font-size:12px;margin-bottom:4px;color:#1f2937}
-.cal-day .pkg-info{font-size:10px;color:#1e40af;background:#fff;padding:2px 4px;border-radius:3px;margin:1px 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cal-day.empty:hover{transform:none;box-shadow:none}
+.cal-day .day-num{font-weight:700;font-size:14px;margin-bottom:4px;color:#1f2937}
+.cal-day .day-info{font-size:10px;color:#6b7280;margin-top:2px}
+.cal-day .day-stats{font-size:10px;margin-top:4px;line-height:1.4}
+
+/* Colores de estado del calendario */
+.cal-day.status-all-present{background:#dcfce7;border-color:#86efac}
+.cal-day.status-absent{background:#fee2e2;border-color:#fca5a5}
+.cal-day.status-late{background:#fef3c7;border-color:#fcd34d}
+.cal-day.status-mixed{background:#dbeafe;border-color:#93c5fd}
+.cal-day.status-holiday{background:#faf5ff;border-color:#d8b4fe;opacity:0.8}
+.cal-day.status-vacation{background:#fff7ed;border-color:#fdba74;opacity:0.8}
+.cal-day.status-weekend{background:#f9fafb;border-color:#e5e7eb;opacity:0.6}
+
 .action-btn{padding:4px 8px;font-size:11px;margin:2px}
 .print-area{display:none}
 .status-bar{background:#e0f2fe;color:#0369a1;padding:8px 12px;border-radius:6px;font-size:12px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
@@ -63,101 +65,63 @@ tr:hover{background:#f9fafb}
 .alert-success{background:#dcfce7;color:#166534;border:1px solid #86efac}
 .alert-warning{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
 @keyframes slideIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
-.filters{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;align-items:end}
-.filter-group{display:flex;flex-direction:column;gap:4px}
-.filter-group label{font-size:12px;font-weight:600;color:#374151}
-.filter-group select{padding:9px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;min-width:150px}
-.entrada-config{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-bottom:20px;padding:16px;background:#f0f9ff;border-radius:8px}
-.entrada-config .filter-group{flex:1;min-width:150px}
-.calendario-input{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:15px}
-.cal-input-header{background:#2563eb;color:#fff;padding:8px;text-align:center;font-weight:600;font-size:12px;border-radius:4px}
-.cal-input-day{background:#fff;border:1px solid #e5e7eb;padding:6px;min-height:140px;border-radius:4px;display:flex;flex-direction:column}
-.cal-input-day.empty{background:#f9fafb;border-color:#f3f4f6;opacity:0.5}
-.cal-input-day .day-label{font-weight:700;font-size:12px;margin-bottom:4px;color:#1f2937}
-.cal-input-day .day-label.weekend{color:#dc2626}
-.cal-input-day .day-label.holiday{color:#9333ea}
-.cal-input-day .day-label.vacation{color:#ea580c}
-.cal-input-day select{width:100%;padding:4px;border:1px solid #d1d5db;border-radius:4px;font-size:11px;margin-bottom:4px}
-.cal-input-day input[type="text"],.cal-input-day input[type="time"]{width:100%;padding:4px;border:1px solid #d1d5db;border-radius:4px;font-size:11px;margin-bottom:4px}
-.cal-input-day .checkbox-label{display:flex;align-items:center;gap:4px;font-size:11px;margin-bottom:4px}
-.cal-input-day.holiday{background:#faf5ff;border-color:#d8b4fe;opacity:0.7}
-.cal-input-day.vacation{background:#fff7ed;border-color:#fdba74;opacity:0.7}
-.cal-input-day.present{background:#dcfce7;border-color:#86efac}
-.cal-input-day.absent{background:#fee2e2;border-color:#fca5a5}
-.cal-input-day.late{background:#fef3c7;border-color:#fcd34d}
-.cal-input-day.early{background:#fce7f3;border-color:#f9a8d4}
-.cal-input-day.medical{background:#dbeafe;border-color:#93c5fd}
-.cal-input-day.conciliation{background:#e0e7ff;border-color:#a5b4fc}
-.cal-input-day.sick-leave{background:#fecaca;border-color:#f87171}
-.resumen-entrada{background:#f0fdf4;border:1px solid #86efac;padding:14px;border-radius:8px;margin-top:16px;font-size:14px}
-.resumen-entrada h4{color:#166534;margin-bottom:8px}
-.resumen-entrada ul{margin-left:20px;color:#166534}
-.resumen-entrada li{margin-bottom:4px}
+
 .leyenda{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;font-size:11px}
 .leyenda-item{display:flex;align-items:center;gap:6px}
 .leyenda-color{width:16px;height:16px;border-radius:3px;border:1px solid #d1d5db}
+
+/* Modal de asistencia */
 .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:1000}
 .modal-overlay.show{display:flex}
-.modal{background:#fff;border-radius:12px;padding:24px;max-width:500px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.3);animation:modalIn .2s ease}
+.modal{background:#fff;border-radius:12px;padding:24px;max-width:700px;width:90%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3);animation:modalIn .2s ease}
 @keyframes modalIn{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
-.modal h3{margin-bottom:12px;color:#1f2937;font-size:18px}
-.modal p{margin-bottom:16px;color:#4b5563;line-height:1.5}
-.modal input[type="text"],.modal input[type="number"],.modal input[type="time"],.modal select{width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;margin-bottom:12px}
-.modal .form-row{display:flex;gap:12px}
-.modal .form-row>div{flex:1}
-.modal .checkbox-label{display:flex;align-items:center;gap:8px;margin-bottom:12px;font-size:14px}
-.modal-buttons{display:flex;gap:8px;justify-content:flex-end}
-.modal-buttons button{padding:8px 16px;border:none;border-radius:6px;cursor:pointer;font-size:14px;font-weight:600}
-.modal-btn-cancel{background:#e5e7eb;color:#374151}
-.modal-btn-ok{background:#2563eb;color:#fff}
-.modal-btn-danger{background:#dc2626;color:#fff}
+.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid #e5e7eb}
+.modal-header h3{color:#1f2937;font-size:20px}
+.modal-close{background:none;border:none;font-size:28px;cursor:pointer;color:#6b7280;padding:0 8px}
+.modal-close:hover{color:#1f2937}
+.alumno-row{display:grid;grid-template-columns:1fr 220px;gap:12px;align-items:center;padding:12px;background:#f9fafb;border-radius:6px;margin-bottom:8px}
+.alumno-row:hover{background:#f3f4f6}
+.alumno-name{font-weight:600;color:#1f2937}
+.alumno-select{padding:8px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;width:100%}
+.modal-footer{margin-top:20px;padding-top:16px;border-top:2px solid #e5e7eb;display:flex;justify-content:flex-end;gap:12px}
+
+/* Panel de detalle del día */
+.day-detail{background:#fff;border-radius:8px;padding:16px;margin-top:16px;border:1px solid #e5e7eb}
+.day-detail h4{color:#1e3a8a;margin-bottom:12px;font-size:16px}
+.day-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.day-detail-item{padding:8px 12px;background:#f9fafb;border-radius:6px;font-size:13px}
+.day-detail-item .nombre{font-weight:600;color:#1f2937}
+.day-detail-item .estado{font-size:12px;margin-top:2px}
+.estado-presente{color:#166534}
+.estado-ausente{color:#991b1b}
+.estado-entrada_tarde{color:#92400e}
+.estado-salida_pronto{color:#9d174d}
+.estado-cita_medica{color:#1e40af}
+.estado-conciliacion{color:#3730a3}
+.estado-baja{color:#991b1b}
+
+/* Filtros del calendario */
+.cal-filtros{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;padding:12px;background:#f9fafb;border-radius:8px}
+.cal-filtros .filter-group{display:flex;flex-direction:column;gap:4px}
+.cal-filtros label{font-size:12px;font-weight:600;color:#374151}
+.cal-filtros select{padding:8px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;min-width:150px}
+
+#loader{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.95);z-index:3000;display:flex;justify-content:center;align-items:center;font-size:20px;color:#2563eb;font-weight:bold;flex-direction:column;gap:15px}
+#loader.hidden{display:none}
+.spinner{border:4px solid #f3f3f3;border-top:4px solid #2563eb;border-radius:50%;width:40px;height:40px;animation:spin 1s linear infinite}
+@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+
 .botones-datos{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:12px}
-
-#loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); z-index: 3000; display: flex; justify-content: center; align-items: center; font-size: 20px; color: #2563eb; font-weight: bold; flex-direction: column; gap: 15px; }
-#loader.hidden { display: none; }
-.spinner { border: 4px solid #f3f3f3; border-top: 4px solid #2563eb; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-.config-section{margin-bottom:30px;padding:20px;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb}
-.config-section h3{margin-bottom:16px;color:#1e3a8a;font-size:18px}
-.config-form{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-bottom:16px}
-.config-form .filter-group{flex:1;min-width:150px}
-.config-list{margin-top:16px}
-.config-item{display:flex;justify-content:space-between;align-items:center;padding:10px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;margin-bottom:8px}
-.config-item-info{flex:1}
-.config-item-actions{display:flex;gap:8px}
-.rango-fechas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px}
-.rango-box{flex:1;min-width:280px;padding:12px;background:#fff7ed;border-radius:6px;border:1px solid #fdba74}
-.rango-box h4{color:#9a3412;margin-bottom:10px;font-size:14px}
-.rango-box .rango-inputs{display:flex;gap:8px}
-.rango-box .rango-inputs .filter-group{flex:1;min-width:0}
-
-.stats-config{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:24px}
-.stats-group{background:#fff;padding:16px;border-radius:8px;border:2px solid #e5e7eb}
-.stats-group h4{font-size:14px;color:#6b7280;margin-bottom:12px;text-transform:uppercase;font-weight:600}
-.stats-group.vacaciones{border-color:#fdba74;background:#fff7ed}
-.stats-group.vacaciones h4{color:#9a3412}
-.stats-group.festivos{border-color:#a5b4fc;background:#e0e7ff}
-.stats-group.festivos h4{color:#3730a3}
-.stats-items{display:flex;flex-direction:column;gap:8px}
-.stat-item{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#f9fafb;border-radius:6px}
-.stat-item .stat-label{font-size:13px;color:#4b5563;font-weight:500}
-.stat-item .stat-value{font-size:20px;font-weight:700}
-.stat-item.total .stat-value{color:#1e3a8a}
-.stat-item.consumidos .stat-value{color:#059669}
-.stat-item.pendientes .stat-value{color:#dc2626}
-
-.leyenda-calendario{background:#f9fafb;padding:12px;border-radius:6px;margin-top:16px;display:flex;flex-wrap:wrap;gap:12px;font-size:12px}
-.leyenda-calendario-item{display:flex;align-items:center;gap:6px}
-.leyenda-calendario-color{width:20px;height:20px;border-radius:3px;border:1px solid #d1d5db;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px}
+.filter-group{display:flex;flex-direction:column;gap:4px}
+.filter-group label{font-size:12px;font-weight:600;color:#374151}
 
 @media print{body *{visibility:hidden}.print-area,.print-area *{visibility:visible}.print-area{position:absolute;left:0;top:0;display:block;width:100%}.no-print{display:none!important}}
-@media(max-width:768px){.cards,.fr{grid-template-columns:1fr}.calendar,.calendario-input{grid-template-columns:repeat(7,1fr);gap:2px}.cal-day,.cal-input-day{min-height:60px;padding:3px}.filters,.entrada-config{flex-direction:column}.botones-datos{flex-direction:column}.modal .form-row{flex-direction:column}.config-form{flex-direction:column}.rango-fechas{flex-direction:column}.rango-box .rango-inputs{flex-direction:column}.stats-config{grid-template-columns:1fr}}
+@media(max-width:768px){.cards{grid-template-columns:1fr}.calendar{grid-template-columns:repeat(7,1fr);gap:2px}.cal-day{min-height:50px;padding:3px}.alumno-row{grid-template-columns:1fr;gap:8px}.modal{width:95%;padding:16px}}
 </style>
 </head>
 <body>
 
-<div id="loader"><div class="spinner"></div> Cargando datos desde la nube...</div>
+<div id="loader"><div class="spinner"></div>Cargando datos desde Firebase...</div>
 
 <div class="wrap">
 <h1>Control de Alumnos</h1>
@@ -174,22 +138,22 @@ tr:hover{background:#f9fafb}
 <div class="card"><small>Alumnos Activos</small><div class="n c3" id="sC">0</div></div>
 </div>
 <div class="tabs">
-<button class="tb on" data-t="p7">Entrada por Meses</button>
-<button class="tb" data-t="p2">Por Alumno</button>
-<button class="tb" data-t="p3">Por Mes/Año</button>
-<button class="tb" data-t="p4">Calendario</button>
-<button class="tb" data-t="p5">Editar</button>
-<button class="tb" data-t="p6">Datos</button>
-<button class="tb" data-t="p8">⚙️ Configuración</button>
+<button class="tb on" data-t="p7"> Entrada por Días</button>
+<button class="tb" data-t="p2"> Por Alumno</button>
+<button class="tb" data-t="p3"> Por Mes/Año</button>
+<button class="tb" data-t="p4"> Calendario</button>
+<button class="tb" data-t="p5">✏️ Editar</button>
+<button class="tb" data-t="p6">💾 Datos</button>
+<button class="tb" data-t="p8">️ Configuración</button>
 </div>
 
+<!-- PESTAÑA: ENTRADA POR DÍAS -->
 <div id="p7" class="pnl on">
-<h2> Entrada por Meses</h2>
-<p style="color:#6b7280;margin-bottom:16px;font-size:13px">Selecciona alumno, mes y año. Marca cada día con el tipo de asistencia correspondiente.</p>
-<div class="entrada-config">
-<div class="filter-group"><label>Alumno</label><select id="erMaquina" onchange="generarCalendarioEntrada()"></select></div>
-<div class="filter-group"><label>Mes</label><select id="erMes" onchange="generarCalendarioEntrada()"></select></div>
-<div class="filter-group"><label>Año</label><select id="erAnio" onchange="generarCalendarioEntrada()"></select></div>
+<h2>📝 Entrada por Días</h2>
+<p style="color:#6b7280;margin-bottom:16px;font-size:13px">Selecciona mes y año. Haz clic en un día para registrar la asistencia de todos los alumnos.</p>
+<div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap">
+<div class="filter-group"><label>Mes</label><select id="erMes" onchange="generarCalendarioEntrada()" class="sel"></select></div>
+<div class="filter-group"><label>Año</label><select id="erAnio" onchange="generarCalendarioEntrada()" class="sel"></select></div>
 </div>
 <div class="leyenda">
 <div class="leyenda-item"><div class="leyenda-color" style="background:#dcfce7"></div>Presente</div>
@@ -200,249 +164,173 @@ tr:hover{background:#f9fafb}
 <div class="leyenda-item"><div class="leyenda-color" style="background:#e0e7ff"></div>Conciliación</div>
 <div class="leyenda-item"><div class="leyenda-color" style="background:#fecaca"></div>Baja</div>
 <div class="leyenda-item"><div class="leyenda-color" style="background:#faf5ff"></div>Festivo</div>
-<div class="leyenda-item"><div class="leyenda-color" style="background:#f9fafb;opacity:0.5"></div>Fin de semana</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#f9fafb"></div>Fin de semana</div>
 </div>
-<div id="calendarioEntrada" style="display:none">
-<div id="calendarioInput" class="calendario-input"></div>
-<div class="resumen-entrada" id="resumenEntrada" style="display:none">
-<h4>📊 Resumen de lo que se guardará:</h4>
-<ul id="listaResumen"></ul>
-<p style="margin-top:8px;font-weight:600" id="totalResumen"></p>
-</div>
-<div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
-<button class="btn b2" onclick="guardarEntradaRapida()">💾 Guardar todos los registros</button>
-<button class="btn b4" onclick="limpiarCalendarioEntrada()"> Limpiar todo</button>
-</div>
-</div>
+<div id="calendarioEntrada" class="calendar"></div>
 </div>
 
+<!-- PESTAÑA: POR ALUMNO -->
 <div id="p2" class="pnl">
-<h2>Total por Alumno <button class="btn b4" style="float:right" onclick="imprimir('maquinas')">🖨️ Imprimir</button></h2>
+<h2>👤 Total por Alumno <button class="btn b4" style="float:right" onclick="imprimir('maquinas')">🖨️ Imprimir</button></h2>
 <table id="tablaMaquinasTbl"><thead><tr><th>Alumno</th><th class="r">Presentes</th><th class="r">Ausencias</th><th class="r">Entradas tarde</th><th class="r">Salidas pronto</th><th class="r">Citas médicas</th><th class="r">Conciliaciones</th><th class="r">Bajas</th></tr></thead><tbody id="t2"></tbody></table>
 </div>
 
+<!-- PESTAÑA: POR MES/AÑO -->
 <div id="p3" class="pnl">
-<h2>Resumen por Periodo <button class="btn b4" style="float:right" onclick="imprimir('tiempo')">🖨️ Imprimir</button></h2>
-<div class="filters">
-<div class="filter-group">
-<label>Periodo del curso</label>
-<select id="fPeriodo" onchange="renderTiempo()">
-<option value="ALL">Todo el curso</option>
-</select>
-</div>
-<div class="filter-group">
-<label>Alumno</label>
-<select id="fMaq" onchange="renderTiempo()">
-<option value="TODOS">Todos los alumnos</option>
-</select>
-</div>
+<h2>📊 Resumen por Periodo <button class="btn b4" style="float:right" onclick="imprimir('tiempo')">🖨️ Imprimir</button></h2>
+<div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap">
+<div class="filter-group"><label>Periodo</label><select id="fPeriodo" onchange="renderTiempo()" class="sel"><option value="ALL">Todo el curso</option></select></div>
+<div class="filter-group"><label>Alumno</label><select id="fMaq" onchange="renderTiempo()" class="sel"><option value="TODOS">Todos los alumnos</option></select></div>
 </div>
 <table id="tablaTiempoTbl"><thead><tr><th>Periodo</th><th class="r">Presentes</th><th class="r">Ausencias</th><th class="r">Entradas tarde</th><th class="r">Salidas pronto</th><th class="r">Bajas</th></tr></thead><tbody id="t3"></tbody></table>
 </div>
 
+<!-- PESTAÑA: CALENDARIO (NUEVA FUNCIONALIDAD) -->
 <div id="p4" class="pnl">
-<h2>Calendario de Asistencias</h2>
-<div style="margin-bottom:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:end">
+<h2>📅 Calendario de Asistencias</h2>
+<p style="color:#6b7280;margin-bottom:16px;font-size:13px">Visualiza rápidamente el estado de cada día. Haz clic en un día para ver el detalle completo.</p>
+
+<div class="cal-filtros">
 <div class="filter-group">
 <label>Periodo</label>
-<select class="sel" id="calPeriodo" onchange="actualizarCalendarioDesdePeriodo()"></select>
+<select id="calPeriodo" onchange="actualizarCalendarioDesdePeriodo()" class="sel"></select>
 </div>
+<div class="filter-group">
+<label>Filtrar por alumno</label>
+<select id="calFiltroAlumno" onchange="actualizarCalendarioDesdePeriodo()" class="sel">
+<option value="TODOS">Todos los alumnos</option>
+</select>
 </div>
-<div id="calendar" class="calendar"></div>
-<div id="calDetalle" class="box" style="display:none"></div>
-<div class="leyenda-calendario">
-<div class="leyenda-calendario-item"><div class="leyenda-calendario-color" style="background:#dcfce7;color:#166534">P</div>Presente</div>
-<div class="leyenda-calendario-item"><div class="leyenda-calendario-color" style="background:#fee2e2;color:#991b1b">A</div>Ausente</div>
-<div class="leyenda-calendario-item"><div class="leyenda-calendario-color" style="background:#fef3c7;color:#92400e">T</div>Entrada tarde</div>
-<div class="leyenda-calendario-item"><div class="leyenda-calendario-color" style="background:#fce7f3;color:#9d174d">S</div>Salida pronto</div>
-<div class="leyenda-calendario-item"><div class="leyenda-calendario-color" style="background:#dbeafe;color:#1e40af">C</div>Cita médica</div>
-<div class="leyenda-calendario-item"><div class="leyenda-calendario-color" style="background:#e0e7ff;color:#3730a3">O</div>Conciliación</div>
-<div class="leyenda-calendario-item"><div class="leyenda-calendario-color" style="background:#fecaca;color:#991b1b">B</div>Baja</div>
+<div class="filter-group">
+<label>Filtrar por estado</label>
+<select id="calFiltroEstado" onchange="actualizarCalendarioDesdePeriodo()" class="sel">
+<option value="TODOS">Todos los estados</option>
+<option value="ausente">Solo ausencias</option>
+<option value="entrada_tarde">Solo entradas tarde</option>
+<option value="salida_pronto">Solo salidas pronto</option>
+<option value="cita_medica">Solo citas médicas</option>
+<option value="conciliacion">Solo conciliaciones</option>
+<option value="baja">Solo bajas</option>
+</select>
 </div>
 </div>
 
-<div id="p5" class="pnl">
-<h2>Editar Registros</h2>
-<div style="margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap">
-<select class="sel" id="editPeriodo" onchange="cargarRegistrosEditarDesdePeriodo()"></select>
+<div class="leyenda">
+<div class="leyenda-item"><div class="leyenda-color" style="background:#dcfce7"></div>Todos presentes</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#fee2e2"></div>Hay ausencias</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#fef3c7"></div>Entradas tarde</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#dbeafe"></div>Mixto</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#faf5ff"></div>Festivo</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#fff7ed"></div>Vacaciones</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#f9fafb"></div>Fin de semana</div>
 </div>
+
+<div id="calendar" class="calendar"></div>
+
+<!-- Panel de detalle del día seleccionado -->
+<div id="dayDetailPanel" class="day-detail" style="display:none">
+<h4 id="dayDetailTitle">📋 Detalle del día</h4>
+<div id="dayDetailContent"></div>
+</div>
+</div>
+
+<!-- PESTAÑA: EDITAR -->
+<div id="p5" class="pnl">
+<h2>✏️ Editar Registros</h2>
+<div style="margin-bottom:12px"><select class="sel" id="editPeriodo" onchange="cargarRegistrosEditarDesdePeriodo()"></select></div>
 <table><thead><tr><th>Fecha</th><th>Alumno</th><th class="r">Estado</th><th>Detalles</th><th>Acciones</th></tr></thead><tbody id="tEdit"></tbody></table>
 </div>
 
+<!-- PESTAÑA: DATOS -->
 <div id="p6" class="pnl">
-<h2>Gestión de Datos</h2>
+<h2>💾 Gestión de Datos</h2>
 <div class="box">
 <div class="botones-datos">
-<button class="btn b1" onclick="cargarDatosNube()">☁️ Cargar desde la Nube</button>
-<button class="btn b5" onclick="guardarDatosNube()">💾 Guardar en la Nube</button>
-<button class="btn b6" onclick="exportarDatos()">📥 Exportar Backup (JSON)</button>
-<button class="btn b2" onclick="document.getElementById('importFile').click()">📤 Importar desde JSON</button>
+<button class="btn b1" onclick="cargarDatosFirebase()">☁️ Cargar desde Firebase</button>
+<button class="btn b5" onclick="guardarDatosFirebase()">💾 Guardar en Firebase</button>
 <button class="btn b3" onclick="resetearTodo()">🗑️ Resetear todo</button>
-<input type="file" id="importFile" accept=".json" style="display:none" onchange="importarDatos(event)">
 </div>
+<p style="margin-top:16px;color:#6b7280;font-size:13px;text-align:center">
+ <strong>Consejo:</strong> Trabaja todo lo que necesites y cuando termines, pulsa "💾 Guardar en Firebase" para subir todos los cambios a la nube.
+</p>
 </div>
 </div>
 
+<!-- PESTAÑA: CONFIGURACIÓN -->
 <div id="p8" class="pnl">
 <h2>⚙️ Configuración</h2>
-
-<div class="stats-config" id="statsConfig">
-<div class="stats-group vacaciones">
-<h4>🏖️ Vacaciones</h4>
-<div class="stats-items">
-<div class="stat-item total">
-<span class="stat-label">Solicitadas</span>
-<span class="stat-value" id="statVacTotal">0</span>
-</div>
-<div class="stat-item consumidos">
-<span class="stat-label">Disfrutadas</span>
-<span class="stat-value" id="statVacConsumidas">0</span>
-</div>
-<div class="stat-item pendientes">
-<span class="stat-label">Pendientes</span>
-<span class="stat-value" id="statVacPendientes">0</span>
-</div>
-</div>
-</div>
-<div class="stats-group festivos">
-<h4> Festivos</h4>
-<div class="stats-items">
-<div class="stat-item total">
-<span class="stat-label">Otorgados</span>
-<span class="stat-value" id="statFestTotal">0</span>
-</div>
-<div class="stat-item consumidos">
-<span class="stat-label">Consumidos</span>
-<span class="stat-value" id="statFestConsumidos">0</span>
-</div>
-<div class="stat-item pendientes">
-<span class="stat-label">Pendientes</span>
-<span class="stat-value" id="statFestPendientes">0</span>
-</div>
-</div>
-</div>
-</div>
-
-<div class="config-section">
-<h3>👥 Gestión de Alumnos</h3>
-<div class="config-form">
-<div class="filter-group">
-<label>Nombre del alumno</label>
-<input type="text" id="nuevoAlumno" placeholder="Ej: GARCÍA LÓPEZ, JUAN">
-</div>
-<button class="btn b2" onclick="agregarAlumno()">➕ Añadir Alumno</button>
-</div>
-<div class="config-list" id="listaAlumnos"></div>
-</div>
-
-<div class="config-section">
-<h3>🎉 Gestión de Festivos</h3>
-<div class="config-form">
-<div class="filter-group">
-<label>Día</label>
-<input type="number" id="nuevoFestivoDia" min="1" max="31" placeholder="Día">
-</div>
-<div class="filter-group">
-<label>Mes</label>
-<select id="nuevoFestivoMes">
-<option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option>
-<option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
-<option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option>
-<option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
-</select>
-</div>
-<div class="filter-group">
-<label>Año</label>
-<select id="nuevoFestivoAnio">
-<option value="2026">2026</option>
-<option value="2027">2027</option>
-</select>
-</div>
-<div class="filter-group">
-<label>Nombre del festivo</label>
-<input type="text" id="nuevoFestivoNombre" placeholder="Ej: Día del Trabajo">
-</div>
-<button class="btn b2" onclick="agregarFestivo()">➕ Añadir Festivo</button>
-</div>
-<div class="config-list" id="listaFestivos"></div>
-</div>
-
-<div class="config-section">
-<h3>🏖️ Gestión de Vacaciones (por rangos)</h3>
-<p style="color:#6b7280;font-size:13px;margin-bottom:12px">Introduce la fecha de inicio y la fecha final (ambas inclusive). <strong>Se añadirán automáticamente solo los días lectivos</strong> (se excluyen sábados, domingos y festivos).</p>
-<div class="rango-fechas">
-<div class="rango-box">
-<h4>📅 Fecha de inicio</h4>
-<div class="rango-inputs">
-<div class="filter-group"><label>Día</label><input type="number" id="nuevaVacacionDiaIni" min="1" max="31" placeholder="Día"></div>
-<div class="filter-group"><label>Mes</label>
-<select id="nuevaVacacionMesIni">
-<option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option>
-<option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
-<option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option>
-<option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
-</select>
-</div>
-<div class="filter-group"><label>Año</label>
-<select id="nuevaVacacionAnioIni">
-<option value="2026">2026</option>
-<option value="2027">2027</option>
-</select>
-</div>
-</div>
-</div>
-<div class="rango-box">
-<h4>📅 Fecha final (inclusive)</h4>
-<div class="rango-inputs">
-<div class="filter-group"><label>Día</label><input type="number" id="nuevaVacacionDiaFin" min="1" max="31" placeholder="Día"></div>
-<div class="filter-group"><label>Mes</label>
-<select id="nuevaVacacionMesFin">
-<option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option>
-<option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
-<option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option>
-<option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
-</select>
-</div>
-<div class="filter-group"><label>Año</label>
-<select id="nuevaVacacionAnioFin">
-<option value="2026">2026</option>
-<option value="2027">2027</option>
-</select>
-</div>
-</div>
-</div>
-</div>
-<button class="btn b2" onclick="agregarVacacion()">➕ Añadir Rango de Vacaciones</button>
-<div class="config-list" id="listaVacaciones"></div>
-</div>
-
-<div style="margin-top:20px;padding:16px;background:#fef3c7;border-radius:8px;border:1px solid #fcd34d">
-<p style="color:#92400e;font-size:13px"><strong>⚠️ Importante:</strong> Después de hacer cambios en la configuración, pulsa <strong>"💾 Guardar en la Nube"</strong> en la pestaña "Datos" para que los cambios se guarden permanentemente.</p>
-</div>
+<p style="color:#6b7280">Configuración de festivos, vacaciones y alumnos disponible próximamente.</p>
 </div>
 
 </div>
 </div>
-<div class="modal-overlay" id="modalOverlay">
+
+<!-- Modal de entrada de asistencia -->
+<div class="modal-overlay" id="modalAsistencia">
 <div class="modal">
-<h3 id="modalTitle">Confirmar</h3>
-<p id="modalMessage">¿Estás seguro?</p>
-<div id="modalContent"></div>
-<div class="modal-buttons">
-<button class="modal-btn-cancel" id="modalCancel">Cancelar</button>
-<button class="modal-btn-ok" id="modalOk">Aceptar</button>
+<div class="modal-header">
+<h3 id="modalTitulo">Registrar Asistencia</h3>
+<button class="modal-close" onclick="cerrarModalAsistencia()">×</button>
+</div>
+<div id="modalContenido"></div>
+<div class="modal-footer">
+<button class="btn b4" onclick="cerrarModalAsistencia()">Cancelar</button>
+<button class="btn b2" onclick="guardarAsistenciaDia()">💾 Guardar Todos</button>
 </div>
 </div>
 </div>
+
+<!-- Modal de detalle del día (calendario) -->
+<div class="modal-overlay" id="modalDetalle">
+<div class="modal">
+<div class="modal-header">
+<h3 id="modalDetalleTitulo">Detalle del día</h3>
+<button class="modal-close" onclick="cerrarModalDetalle()">×</button>
+</div>
+<div id="modalDetalleContenido"></div>
+<div class="modal-footer">
+<button class="btn b1" onclick="editarDiaDesdeDetalle()">️ Editar registros</button>
+<button class="btn b4" onclick="cerrarModalDetalle()">Cerrar</button>
+</div>
+</div>
+</div>
+
 <div id="printArea" class="print-area"></div>
 
-<script>
-// ⚠️ URL DE TU APLICACIÓN WEB DE GOOGLE APPS SCRIPT
-const GOOGLE_SCRIPT_URL_ALUMNOS = 'https://script.google.com/macros/s/AKfycbzjQMtBa3zK-O3IiQ1yws5oiGv1iDFTzLa0r7ijZvedyvGq0pYmPoKHFbzMgrQsJK5F/exec';
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyA1L8umeuKcx8sWbLtnI40tszJps55t8s",
+  authDomain: "control-de-alumnos-e70f1.firebaseapp.com",
+  databaseURL: "https://control-de-alumnos-e70f1-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "control-de-alumnos-e70f1",
+  storageBucket: "control-de-alumnos-e70f1.appspot.com",
+  messagingSenderId: "316224417401",
+  appId: "1:316224417401:web:9b6f2dd7789c0718edaea8"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+window.firebaseDB = db;
+window.firebaseRef = ref;
+window.firebaseSet = set;
+window.firebaseGet = get;
+window.firebaseChild = child;
+
+console.log('✅ Firebase inicializado');
+
+setTimeout(() => {
+  if (window.cargarDatosFirebase) window.cargarDatosFirebase();
+}, 100);
+</script>
+
+<script>
 const ALUMNOS_BASE=["AMEZ FUERTES, RAUL","BLANCO FRANCO, SANTIAGO ANDRÉS","FERNÁNDEZ MACAYO, M. ISABEL","MAIQUEZ DOMINGUEZ, HECTOR JOSÉ","MALLO RODRÍGUEZ, MIGUEL","MUÑIZ CAÑIBANO, MARÍA BELÉN"];
-const MESES=["Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre","Enero","Febrero"];
 const DIAS=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
+const MESES_NOMBRES=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 
 const INICIO_CURSO={y:2026,m:3,d:1};
 const FIN_CURSO={y:2027,m:2,d:28};
@@ -451,20 +339,39 @@ let FESTIVOS=[];
 let VACACIONES=[];
 
 const LABELS_ESTADOS={
-  presente:'Presente', ausente:'Ausente', entrada_tarde:'Entrada tarde',
-  salida_pronto:'Salida pronto', cita_medica:'Cita médica', conciliacion:'Conciliación',
+  '':'-- Sin registrar --',
+  presente:'Presente',
+  ausente:'Ausente',
+  entrada_tarde:'Entrada tarde',
+  salida_pronto:'Salida pronto',
+  cita_medica:'Cita médica',
+  conciliacion:'Conciliación',
   baja:'Baja'
 };
 
-const ABBREVIATIONS={
-  presente:'P', ausente:'A', entrada_tarde:'T',
-  salida_pronto:'S', cita_medica:'C', conciliacion:'O',
-  baja:'B'
+const COLORES_ESTADO={
+  presente:'#166534',
+  ausente:'#991b1b',
+  entrada_tarde:'#92400e',
+  salida_pronto:'#9d174d',
+  cita_medica:'#1e40af',
+  conciliacion:'#3730a3',
+  baja:'#991b1b'
 };
 
+let ALUMNOS=[...ALUMNOS_BASE];
+let historicalRecords=[];
+let userRecords=[];
+let dataSourceMsg="Cargando...";
+let alertTimeout=null;
+
+let diaSeleccionado=null;
+let mesSeleccionado=null;
+let anioSeleccionado=null;
+let diaDetalleSeleccionado=null;
+
 function getPeriodoLabel(year, month){
-  const monthNames=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
-  return monthNames[month-1]+" "+year;
+  return MESES_NOMBRES[month-1]+" "+year;
 }
 
 function getDayType(year, month, day){
@@ -481,13 +388,6 @@ function getDayType(year, month, day){
   return {type:'lectivo',label:'Día lectivo'};
 }
 
-let ALUMNOS=[...ALUMNOS_BASE];
-let historicalRecords=[];
-let userRecords=[];
-let dataSourceMsg="Cargando...";
-let modalCallback=null;
-let alertTimeout=null;
-
 function generarPeriodos(){
   const periodos=[];
   let year=INICIO_CURSO.y, month=INICIO_CURSO.m;
@@ -499,90 +399,6 @@ function generarPeriodos(){
   return periodos;
 }
 
-function showModal(titulo,mensaje,tipo,data,callback){
-  tipo=tipo||'confirm'; data=data||{}; callback=callback||null;
-  document.getElementById('modalTitle').textContent=titulo;
-  document.getElementById('modalMessage').textContent=mensaje;
-  const modalContent=document.getElementById('modalContent');
-  const okBtn=document.getElementById('modalOk');
-  const cancelBtn=document.getElementById('modalCancel');
-
-  if(tipo==='edit'){
-    modalContent.innerHTML=`
-      <select id="modalEstado" onchange="toggleModalFields()">
-        <option value="presente" ${data.estado==='presente'?'selected':''}>Presente</option>
-        <option value="ausente" ${data.estado==='ausente'?'selected':''}>Ausente</option>
-        <option value="entrada_tarde" ${data.estado==='entrada_tarde'?'selected':''}>Entrada tarde</option>
-        <option value="salida_pronto" ${data.estado==='salida_pronto'?'selected':''}>Salida pronto</option>
-        <option value="cita_medica" ${data.estado==='cita_medica'?'selected':''}>Cita médica</option>
-        <option value="conciliacion" ${data.estado==='conciliacion'?'selected':''}>Conciliación</option>
-        <option value="baja" ${data.estado==='baja'?'selected':''}>Baja</option>
-      </select>
-      <input type="text" id="modalCausa" placeholder="Causa/Razón" value="${data.causa||''}" style="display:${data.estado!=='presente'?'block':'none'}">
-      <div class="form-row" id="timeFields" style="display:${data.estado==='cita_medica'||data.estado==='conciliacion'?'flex':'none'}">
-        <div><label>Hora salida</label><input type="time" id="modalHoraSalida" value="${data.horaSalida||''}"></div>
-        <div><label>Hora llegada</label><input type="time" id="modalHoraLlegada" value="${data.horaLlegada||''}"></div>
-      </div>
-      <div id="horaUnicaField" style="display:${data.estado==='entrada_tarde'||data.estado==='salida_pronto'?'block':'none'}">
-        <label>Hora</label><input type="time" id="modalHoraUnica" value="${data.horaUnica||''}">
-      </div>
-      <label class="checkbox-label" style="display:${data.estado==='ausente'?'flex':'none'}">
-        <input type="checkbox" id="modalJustificada" ${data.justificada?'checked':''}> Justificada
-      </label>`;
-    okBtn.textContent='Guardar'; okBtn.className='modal-btn-ok'; cancelBtn.style.display='inline-block';
-  } else if(tipo==='edit-alumno'){
-    modalContent.innerHTML=`<input type="text" id="modalNombreAlumno" value="${data.nombreActual||''}" placeholder="Nuevo nombre">`;
-    okBtn.textContent='Guardar'; okBtn.className='modal-btn-ok'; cancelBtn.style.display='inline-block';
-  } else if(tipo==='danger'){
-    modalContent.innerHTML=''; okBtn.textContent='Sí, eliminar'; okBtn.className='modal-btn-danger'; cancelBtn.style.display='inline-block';
-  } else {
-    modalContent.innerHTML=''; okBtn.textContent='Aceptar'; okBtn.className='modal-btn-ok'; cancelBtn.style.display='none';
-  }
-  modalCallback=callback;
-  document.getElementById('modalOverlay').classList.add('show');
-}
-
-window.toggleModalFields=function(){
-  const estado=document.getElementById('modalEstado').value;
-  document.getElementById('modalCausa').style.display=estado!=='presente'?'block':'none';
-  document.getElementById('timeFields').style.display=(estado==='cita_medica'||estado==='conciliacion')?'flex':'none';
-  document.getElementById('horaUnicaField').style.display=(estado==='entrada_tarde'||estado==='salida_pronto')?'block':'none';
-  document.getElementById('modalJustificada').parentElement.style.display=estado==='ausente'?'flex':'none';
-};
-
-document.getElementById('modalOk').addEventListener('click',function(){
-  const modalContent=document.getElementById('modalContent');
-  const tieneSelect=modalContent.querySelector('select#modalEstado');
-  const tieneInputAlumno=modalContent.querySelector('input#modalNombreAlumno');
-  
-  let data=null;
-  if(tieneSelect){
-    data={
-      estado:document.getElementById('modalEstado').value,
-      causa:document.getElementById('modalCausa').value,
-      justificada:document.getElementById('modalJustificada').checked,
-      horaSalida:document.getElementById('modalHoraSalida').value,
-      horaLlegada:document.getElementById('modalHoraLlegada').value,
-      horaUnica:document.getElementById('modalHoraUnica').value
-    };
-  } else if(tieneInputAlumno){
-    data=document.getElementById('modalNombreAlumno').value;
-  } else {
-    data=true;
-  }
-  
-  document.getElementById('modalOverlay').classList.remove('show');
-  if(modalCallback)modalCallback(data);
-});
-
-document.getElementById('modalCancel').addEventListener('click',function(){
-  document.getElementById('modalOverlay').classList.remove('show');
-  if(modalCallback)modalCallback(null);
-});
-document.getElementById('modalOverlay').addEventListener('click',function(e){
-  if(e.target===this){this.classList.remove('show');if(modalCallback)modalCallback(null);}
-});
-
 function mostrarAlerta(tipo,mensaje){
   const cont=document.getElementById('alertContainer');
   const iconos={info:'ℹ️',error:'❌',success:'✅',warning:'⚠️'};
@@ -591,349 +407,53 @@ function mostrarAlerta(tipo,mensaje){
   alertTimeout=setTimeout(function(){if(cont)cont.innerHTML='';},5000);
 }
 
-function renderEstadisticasConfig(){
-  const hoy=new Date();
-  hoy.setHours(0,0,0,0);
-  
-  const vacTotal=VACACIONES.length;
-  let vacConsumidas=0;
-  let vacPendientes=0;
-  
-  VACACIONES.forEach(v=>{
-    const fechaVac=new Date(v.y,v.m-1,v.d);
-    if(fechaVac<hoy){
-      vacConsumidas++;
-    }else{
-      vacPendientes++;
-    }
-  });
-  
-  document.getElementById('statVacTotal').textContent=vacTotal;
-  document.getElementById('statVacConsumidas').textContent=vacConsumidas;
-  document.getElementById('statVacPendientes').textContent=vacPendientes;
-  
-  const festTotal=FESTIVOS.length;
-  let festConsumidos=0;
-  let festPendientes=0;
-  
-  FESTIVOS.forEach(f=>{
-    const fechaFest=new Date(f.y,f.m-1,f.d);
-    if(fechaFest<hoy){
-      festConsumidos++;
-    }else{
-      festPendientes++;
-    }
-  });
-  
-  document.getElementById('statFestTotal').textContent=festTotal;
-  document.getElementById('statFestConsumidos').textContent=festConsumidos;
-  document.getElementById('statFestPendientes').textContent=festPendientes;
-}
-
-function renderConfiguracion(){
-  renderEstadisticasConfig();
-  renderListaAlumnos();
-  renderListaFestivos();
-  renderListaVacaciones();
-}
-
-function renderListaAlumnos(){
-  const lista=document.getElementById('listaAlumnos');
-  lista.innerHTML='';
-  if(ALUMNOS.length===0){
-    lista.innerHTML='<p style="color:#6b7280;font-style:italic">No hay alumnos configurados</p>';
-    return;
-  }
-  ALUMNOS.forEach(function(alumno,idx){
-    lista.innerHTML+=`<div class="config-item">
-      <div class="config-item-info"><strong>${alumno}</strong></div>
-      <div class="config-item-actions">
-        <button class="btn b1 action-btn" onclick="editarAlumno(${idx})">✏️ Editar</button>
-        <button class="btn b3 action-btn" onclick="eliminarAlumno(${idx})">🗑️ Eliminar</button>
-      </div>
-    </div>`;
-  });
-}
-
-function agregarAlumno(){
-  const nombre=document.getElementById('nuevoAlumno').value.trim();
-  if(!nombre){mostrarAlerta('warning','Introduce un nombre de alumno');return;}
-  if(ALUMNOS.includes(nombre)){mostrarAlerta('error','Este alumno ya existe');return;}
-  ALUMNOS.push(nombre);
-  document.getElementById('nuevoAlumno').value='';
-  renderListaAlumnos();
-  mostrarAlerta('success','Alumno añadido correctamente');
-}
-
-function editarAlumno(idx){
-  const alumnoActual=ALUMNOS[idx];
-  showModal('✏️ Editar nombre del alumno','Introduce el nuevo nombre para: '+alumnoActual,'edit-alumno',{nombreActual:alumnoActual},function(nuevoNombre){
-    if(nuevoNombre&&typeof nuevoNombre==='string'&&nuevoNombre.trim()){
-      ALUMNOS[idx]=nuevoNombre.trim();
-      renderListaAlumnos();
-      mostrarAlerta('success','Nombre del alumno actualizado');
-    }
-  });
-}
-
-function eliminarAlumno(idx){
-  const alumno=ALUMNOS[idx];
-  showModal('🗑️ Eliminar alumno','¿Seguro que quieres eliminar a '+alumno+'? Se perderán todos sus registros.','danger',null,function(respuesta){
-    if(respuesta===true){
-      ALUMNOS.splice(idx,1);
-      renderListaAlumnos();
-      mostrarAlerta('success','Alumno eliminado');
-    }
-  });
-}
-
-function renderListaFestivos(){
-  const lista=document.getElementById('listaFestivos');
-  lista.innerHTML='';
-  if(FESTIVOS.length===0){
-    lista.innerHTML='<p style="color:#6b7280;font-style:italic">No hay festivos configurados</p>';
-    return;
-  }
-  FESTIVOS.sort((a,b)=>{
-    if(a.y!==b.y)return a.y-b.y;
-    if(a.m!==b.m)return a.m-b.m;
-    return a.d-b.d;
-  });
-  FESTIVOS.forEach(function(festivo,idx){
-    const fecha=pad(festivo.d)+'/'+pad(festivo.m)+'/'+festivo.y;
-    lista.innerHTML+=`<div class="config-item">
-      <div class="config-item-info"><strong>${fecha}</strong> - ${festivo.nombre}</div>
-      <div class="config-item-actions">
-        <button class="btn b3 action-btn" onclick="eliminarFestivo(${idx})">🗑️ Eliminar</button>
-      </div>
-    </div>`;
-  });
-}
-
-function agregarFestivo(){
-  const dia=parseInt(document.getElementById('nuevoFestivoDia').value);
-  const mes=parseInt(document.getElementById('nuevoFestivoMes').value);
-  const anio=parseInt(document.getElementById('nuevoFestivoAnio').value);
-  const nombre=document.getElementById('nuevoFestivoNombre').value.trim();
-  
-  if(!dia||!mes||!anio||!nombre){mostrarAlerta('warning','Completa todos los campos');return;}
-  
-  const existe=FESTIVOS.find(f=>f.y===anio&&f.m===mes&&f.d===dia);
-  if(existe){mostrarAlerta('error','Ya existe un festivo en esa fecha');return;}
-  
-  FESTIVOS.push({y:anio,m:mes,d:dia,nombre:nombre});
-  document.getElementById('nuevoFestivoDia').value='';
-  document.getElementById('nuevoFestivoNombre').value='';
-  renderListaFestivos();
-  renderEstadisticasConfig();
-  mostrarAlerta('success','Festivo añadido correctamente');
-}
-
-function eliminarFestivo(idx){
-  const festivo=FESTIVOS[idx];
-  const fecha=pad(festivo.d)+'/'+pad(festivo.m)+'/'+festivo.y;
-  showModal('🗑️ Eliminar festivo','¿Seguro que quieres eliminar el festivo del '+fecha+' ('+festivo.nombre+')?','danger',null,function(respuesta){
-    if(respuesta===true){
-      FESTIVOS.splice(idx,1);
-      renderListaFestivos();
-      renderEstadisticasConfig();
-      mostrarAlerta('success','Festivo eliminado');
-    }
-  });
-}
-
-function renderListaVacaciones(){
-  const lista=document.getElementById('listaVacaciones');
-  lista.innerHTML='';
-  if(VACACIONES.length===0){
-    lista.innerHTML='<p style="color:#6b7280;font-style:italic">No hay vacaciones configuradas</p>';
-    return;
-  }
-  VACACIONES.sort((a,b)=>{
-    if(a.y!==b.y)return a.y-b.y;
-    if(a.m!==b.m)return a.m-b.m;
-    return a.d-b.d;
-  });
-  VACACIONES.forEach(function(vacacion,idx){
-    const fecha=pad(vacacion.d)+'/'+pad(vacacion.m)+'/'+vacacion.y;
-    lista.innerHTML+=`<div class="config-item">
-      <div class="config-item-info"><strong>${fecha}</strong></div>
-      <div class="config-item-actions">
-        <button class="btn b3 action-btn" onclick="eliminarVacacion(${idx})">🗑️ Eliminar</button>
-      </div>
-    </div>`;
-  });
-}
-
-function agregarVacacion(){
-  const diaIni=parseInt(document.getElementById('nuevaVacacionDiaIni').value);
-  const mesIni=parseInt(document.getElementById('nuevaVacacionMesIni').value);
-  const anioIni=parseInt(document.getElementById('nuevaVacacionAnioIni').value);
-  const diaFin=parseInt(document.getElementById('nuevaVacacionDiaFin').value);
-  const mesFin=parseInt(document.getElementById('nuevaVacacionMesFin').value);
-  const anioFin=parseInt(document.getElementById('nuevaVacacionAnioFin').value);
-  
-  if(!diaIni||!mesIni||!anioIni||!diaFin||!mesFin||!anioFin){
-    mostrarAlerta('warning','Completa todos los campos (inicio y final)');
-    return;
-  }
-  
-  const fechaIni=new Date(anioIni,mesIni-1,diaIni);
-  const fechaFin=new Date(anioFin,mesFin-1,diaFin);
-  
-  if(fechaIni.getDate()!==diaIni||fechaIni.getMonth()!==mesIni-1){
-    mostrarAlerta('error','La fecha de inicio no es válida');
-    return;
-  }
-  if(fechaFin.getDate()!==diaFin||fechaFin.getMonth()!==mesFin-1){
-    mostrarAlerta('error','La fecha final no es válida');
-    return;
-  }
-  
-  if(fechaFin<fechaIni){
-    mostrarAlerta('error','La fecha final debe ser posterior o igual a la inicial');
-    return;
-  }
-  
-  let diasAñadidos=0;
-  let diasDuplicados=0;
-  let diasFinde=0;
-  let diasFestivos=0;
-  const fechaActual=new Date(fechaIni);
-  
-  while(fechaActual<=fechaFin){
-    const y=fechaActual.getFullYear();
-    const m=fechaActual.getMonth()+1;
-    const d=fechaActual.getDate();
-    const diaSemana=fechaActual.getDay();
-    
-    if(diaSemana===0||diaSemana===6){
-      diasFinde++;
-      fechaActual.setDate(fechaActual.getDate()+1);
-      continue;
-    }
-    
-    const esFestivo=FESTIVOS.find(f=>f.y===y&&f.m===m&&f.d===d);
-    if(esFestivo){
-      diasFestivos++;
-      fechaActual.setDate(fechaActual.getDate()+1);
-      continue;
-    }
-    
-    const existe=VACACIONES.find(v=>v.y===y&&v.m===m&&v.d===d);
-    if(!existe){
-      VACACIONES.push({y:y,m:m,d:d});
-      diasAñadidos++;
-    }else{
-      diasDuplicados++;
-    }
-    
-    fechaActual.setDate(fechaActual.getDate()+1);
-  }
-  
-  document.getElementById('nuevaVacacionDiaIni').value='';
-  document.getElementById('nuevaVacacionDiaFin').value='';
-  
-  renderListaVacaciones();
-  renderEstadisticasConfig();
-  
-  if(diasAñadidos>0){
-    let msg='✅ Añadidos '+diasAñadidos+' día'+(diasAñadidos>1?'s':'')+' lectivo'+(diasAñadidos>1?'s':'')+' de vacaciones';
-    const omitidos=[];
-    if(diasFinde>0) omitidos.push(diasFinde+' fin de semana');
-    if(diasFestivos>0) omitidos.push(diasFestivos+' festivo'+(diasFestivos>1?'s':''));
-    if(diasDuplicados>0) omitidos.push(diasDuplicados+' ya existía'+(diasDuplicados>1?'n':''));
-    
-    if(omitidos.length>0){
-      msg+=' (omitidos: '+omitidos.join(', ')+')';
-    }
-    mostrarAlerta('success',msg);
-  }else{
-    let msg='ℹ️ No se han añadido días lectivos de vacaciones';
-    const motivos=[];
-    if(diasFinde>0) motivos.push(diasFinde+' eran fin de semana');
-    if(diasFestivos>0) motivos.push(diasFestivos+' eran festivos');
-    if(diasDuplicados>0) motivos.push(diasDuplicados+' ya existían');
-    if(motivos.length>0) msg+=' ('+motivos.join(', ')+')';
-    mostrarAlerta('info',msg);
-  }
-}
-
-function eliminarVacacion(idx){
-  const vacacion=VACACIONES[idx];
-  const fecha=pad(vacacion.d)+'/'+pad(vacacion.m)+'/'+vacacion.y;
-  showModal('️ Eliminar día de vacaciones','¿Seguro que quieres eliminar el día '+fecha+' de vacaciones?','danger',null,function(respuesta){
-    if(respuesta===true){
-      VACACIONES.splice(idx,1);
-      renderListaVacaciones();
-      renderEstadisticasConfig();
-      mostrarAlerta('success','Día de vacaciones eliminado');
-    }
-  });
-}
-
-async function cargarDatosNube() {
+// 🔥 CARGAR DATOS
+async function cargarDatosFirebase() {
   document.getElementById('loader').classList.remove('hidden');
   try {
-    const res = await fetch(GOOGLE_SCRIPT_URL_ALUMNOS);
-    const datos = await res.json();
+    const db = window.firebaseDB;
+    const dbRef = window.firebaseRef(db);
+    const snapshot = await window.firebaseGet(window.firebaseChild(dbRef, 'datos'));
     
-    if (datos.alumnos && datos.alumnos.length > 0) {
-      ALUMNOS = datos.alumnos;
-    }
-    if (datos.registros) {
-      historicalRecords = datos.registros.filter(r => r.hist === true || r.hist === undefined);
-      userRecords = datos.registros.filter(r => r.hist === false);
-    }
-    if (datos.festivos && datos.festivos.length > 0) {
-      FESTIVOS = datos.festivos.map(f => ({
-        y: parseInt(f.y) || f.y,
-        m: parseInt(f.m) || f.m,
-        d: parseInt(f.d) || f.d,
-        nombre: f.nombre
-      }));
-    } else {
-      FESTIVOS = [];
-    }
-    if (datos.vacaciones && datos.vacaciones.length > 0) {
-      VACACIONES = datos.vacaciones.map(v => ({
-        y: parseInt(v.y) || v.y,
-        m: parseInt(v.m) || v.m,
-        d: parseInt(v.d) || v.d
-      }));
-    } else {
-      VACACIONES = [];
-    }
-    
-    dataSourceMsg = "☁️ Google Sheets (Nube)";
-    document.getElementById('dataSource').textContent = dataSourceMsg;
-    saveUser();
-    inicializarApp();
-    renderAll();
-    renderConfiguracion();
-    mostrarAlerta('success', '✅ Datos cargados: ' + FESTIVOS.length + ' festivos, ' + VACACIONES.length + ' vacaciones');
-  } catch (e) {
-    console.error('Error al cargar datos:', e);
-    mostrarAlerta('error', ' Error al conectar con la nube: ' + e.message);
-    try{
-      const cached=localStorage.getItem('ca_cache');
-      if(cached){
-        const data=JSON.parse(cached);
-        ALUMNOS=data.alumnos; historicalRecords=data.registros||[];
-        FESTIVOS=data.festivos||[]; VACACIONES=data.vacaciones||[];
-        dataSourceMsg="Caché local (Fallo de nube)";
-        document.getElementById('dataSource').textContent = dataSourceMsg;
-        inicializarApp(); renderAll(); renderConfiguracion();
+    if (snapshot.exists()) {
+      const datos = snapshot.val();
+      
+      if (datos.alumnos && datos.alumnos.length > 0) ALUMNOS = datos.alumnos;
+      
+      if (datos.registros && datos.registros.length > 0) {
+        historicalRecords = datos.registros.filter(r => r.hist === true);
+        userRecords = datos.registros.filter(r => r.hist !== true);
+      } else {
+        historicalRecords = [];
+        userRecords = [];
       }
-    }catch(err){}
+      
+      if (datos.festivos) FESTIVOS = datos.festivos.map(f => ({y: parseInt(f.y), m: parseInt(f.m), d: parseInt(f.d), nombre: f.nombre}));
+      if (datos.vacaciones) VACACIONES = datos.vacaciones.map(v => ({y: parseInt(v.y), m: parseInt(v.m), d: parseInt(v.d)}));
+      
+      dataSourceMsg = "☁️ Firebase (Nube)";
+      document.getElementById('dataSource').textContent = dataSourceMsg;
+      saveUser();
+      inicializarApp();
+      renderAll();
+      mostrarAlerta('success', '✅ Datos cargados: ' + ALUMNOS.length + ' alumnos, ' + (historicalRecords.length + userRecords.length) + ' registros');
+    } else {
+      dataSourceMsg = "Local (Sin datos)";
+      document.getElementById('dataSource').textContent = dataSourceMsg;
+      inicializarApp();
+      renderAll();
+    }
+  } catch (e) {
+    console.error('Error:', e);
+    mostrarAlerta('error', '❌ Error al conectar con Firebase');
   } finally {
     document.getElementById('loader').classList.add('hidden');
   }
 }
 
-// ✅ FUNCIÓN ACTUALIZADA CON SOLUCIÓN CORS
-async function guardarDatosNube() {
-  mostrarAlerta('info', '💾 Guardando en la nube...');
+// 🔥 GUARDAR DATOS
+async function guardarDatosFirebase() {
+  mostrarAlerta('info', '💾 Guardando en Firebase...');
   try {
     const payload = {
       alumnos: ALUMNOS,
@@ -942,42 +462,28 @@ async function guardarDatosNube() {
       vacaciones: VACACIONES
     };
     
-    console.log('📤 Enviando payload:', payload);
+    const db = window.firebaseDB;
+    const dbRef = window.firebaseRef(db, 'datos');
+    await window.firebaseSet(dbRef, payload);
     
-    // ⚠️ CLAVE: Usar 'text/plain' en lugar de 'application/json' para evitar el preflight CORS
-    const response = await fetch(GOOGLE_SCRIPT_URL_ALUMNOS, {
-      method: 'POST',
-      mode: 'no-cors',  // Importante: modo no-cors
-      headers: {
-        'Content-Type': 'text/plain;charset=utf-8'  // text/plain en lugar de application/json
-      },
-      body: JSON.stringify(payload)
-    });
-    
-    console.log('Respuesta:', response);
-    mostrarAlerta('success', '✅ Datos guardados correctamente en la nube');
+    mostrarAlerta('success', '✅ Datos guardados: ' + (historicalRecords.length + userRecords.length) + ' registros');
   } catch (e) {
-    console.error('❌ Error al guardar:', e);
-    mostrarAlerta('error', '❌ Error al guardar en la nube: ' + e.message);
+    console.error('Error:', e);
+    mostrarAlerta('error', '❌ Error al guardar');
   }
 }
 
 function inicializarApp(){
   document.getElementById('todayDate').textContent=new Date().toLocaleDateString('es-ES');
-  if(dataSourceMsg === "Cargando...") dataSourceMsg = "Local (Sin nube)";
-  document.getElementById('dataSource').textContent=dataSourceMsg;
   
-  const erMaquina=document.getElementById('erMaquina');erMaquina.innerHTML='';
-  ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;erMaquina.appendChild(o);});
-
   const periodos=generarPeriodos();
   const erMes=document.getElementById('erMes');erMes.innerHTML='';
   periodos.forEach(function(p){
     const o=document.createElement('option'); o.value=p.y+'-'+p.m; o.textContent=p.label; erMes.appendChild(o);
   });
   const fechaActual=new Date();
-  const periodoActual=periodos.find(function(p){ return (fechaActual.getFullYear()===p.y&&fechaActual.getMonth()+1===p.m); });
-  if(periodoActual){erMes.value=periodoActual.y+'-'+periodoActual.m;}
+  const periodoActual=periodos.find(p => fechaActual.getFullYear()===p.y && fechaActual.getMonth()+1===p.m);
+  if(periodoActual) erMes.value=periodoActual.y+'-'+periodoActual.m;
 
   const erAnio=document.getElementById('erAnio');erAnio.innerHTML='<option value="2026">2026</option><option value="2027">2027</option>';
   erAnio.value=fechaActual.getFullYear()===2026?'2026':'2027';
@@ -995,37 +501,40 @@ function inicializarApp(){
     const o=document.createElement('option'); o.value=p.y+'-'+p.m; o.textContent=p.label; calPeriodo.appendChild(o);
   });
 
+  const calFiltroAlumno=document.getElementById('calFiltroAlumno');
+  calFiltroAlumno.innerHTML='<option value="TODOS">Todos los alumnos</option>';
+  ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;calFiltroAlumno.appendChild(o);});
+
   const editPeriodo=document.getElementById('editPeriodo'); editPeriodo.innerHTML='';
   periodos.forEach(function(p){
     const o=document.createElement('option'); o.value=p.y+'-'+p.m; o.textContent=p.label; editPeriodo.appendChild(o);
   });
 
   renderAll();
-  setTimeout(function(){generarCalendarioEntrada();actualizarCalendarioDesdePeriodo();},200);
+  generarCalendarioEntrada();
 }
 
-function getAll(){return[...historicalRecords,...userRecords.map(function(r){return{y:r.y,m:r.m,d:r.d,alumno:r.alumno,estado:r.estado,causa:r.causa,justificada:r.justificada,horaSalida:r.horaSalida,horaLlegada:r.horaLlegada,horaUnica:r.horaUnica,hist:false};})];}
-function saveUser(){localStorage.setItem('ca_user',JSON.stringify(userRecords));localStorage.setItem('ca_cache',JSON.stringify({alumnos:ALUMNOS,registros:[...historicalRecords,...userRecords.map(function(r){return{y:r.y,m:r.m,d:r.d,alumno:r.alumno,estado:r.estado,causa:r.causa,justificada:r.justificada,horaSalida:r.horaSalida,horaLlegada:r.horaLlegada,horaUnica:r.horaUnica,hist:false};})],festivos:FESTIVOS,vacaciones:VACACIONES}));}
+function getAll(){return[...historicalRecords,...userRecords];}
+function saveUser(){localStorage.setItem('ca_cache',JSON.stringify({alumnos:ALUMNOS,registros:[...historicalRecords,...userRecords],festivos:FESTIVOS,vacaciones:VACACIONES}));}
 function pad(n){return n<10?'0'+n:''+n;}
 
 function showTab(id){
-  document.querySelectorAll('.pnl').forEach(function(p){p.classList.remove('on');});
-  document.querySelectorAll('.tb').forEach(function(t){t.classList.remove('on');});
+  document.querySelectorAll('.pnl').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tb').forEach(t=>t.classList.remove('on'));
   document.getElementById(id).classList.add('on');
   const btn=document.querySelector('[data-t="'+id+'"]');
   if(btn)btn.classList.add('on');
-  if(id==='p7')setTimeout(function(){generarCalendarioEntrada();},100);
-  if(id==='p4')setTimeout(function(){actualizarCalendarioDesdePeriodo();},100);
-  if(id==='p5')setTimeout(function(){cargarRegistrosEditarDesdePeriodo();},100);
-  if(id==='p8')setTimeout(function(){renderConfiguracion();},100);
+  if(id==='p7')setTimeout(generarCalendarioEntrada,100);
+  if(id==='p4')setTimeout(actualizarCalendarioDesdePeriodo,100);
+  if(id==='p5')setTimeout(cargarRegistrosEditarDesdePeriodo,100);
 }
-document.querySelectorAll('.tb').forEach(function(b){b.addEventListener('click',function(){showTab(this.getAttribute('data-t'));});});
+document.querySelectorAll('.tb').forEach(b=>b.addEventListener('click',function(){showTab(this.getAttribute('data-t'));}));
 
 function renderAll(){
   const R=getAll();
-  const totalPresentes=R.filter(function(r){return r.estado==='presente';}).length;
-  const totalAusentes=R.filter(function(r){return r.estado==='ausente';}).length;
-  const alumnosConRegistros=new Set(R.map(function(r){return r.alumno;})).size;
+  const totalPresentes=R.filter(r=>r.estado==='presente').length;
+  const totalAusentes=R.filter(r=>r.estado==='ausente').length;
+  const alumnosConRegistros=new Set(R.map(r=>r.alumno)).size;
   const alumnosActivos=alumnosConRegistros>0?alumnosConRegistros:ALUMNOS.length;
   document.getElementById('sP').textContent=totalPresentes;
   document.getElementById('sH').textContent=totalAusentes;
@@ -1035,10 +544,10 @@ function renderAll(){
 
 function renderMaquinas(){
   const R=getAll(); const tb=document.getElementById('t2'); tb.innerHTML='';
-  const sm={}; ALUMNOS.forEach(function(m){sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
-  R.forEach(function(r){ if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined){ sm[r.alumno][r.estado]++; } });
+  const sm={}; ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
+  R.forEach(r=>{ if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++; });
   let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
-  ALUMNOS.forEach(function(m){
+  ALUMNOS.forEach(m=>{
     const s=sm[m];
     totales.presente+=s.presente; totales.ausente+=s.ausente; totales.entrada_tarde+=s.entrada_tarde;
     totales.salida_pronto+=s.salida_pronto; totales.cita_medica+=s.cita_medica; totales.conciliacion+=s.conciliacion;
@@ -1053,25 +562,24 @@ function renderTiempo(){
   const tb=document.getElementById('t3'); tb.innerHTML='';
   let filt=R;
   if(fPeriodo!=='ALL'){
-    const parts=fPeriodo.split('-'); filt=filt.filter(function(r){return r.y===parseInt(parts[0])&&r.m===parseInt(parts[1]);});
+    const parts=fPeriodo.split('-'); filt=filt.filter(r=>r.y===parseInt(parts[0])&&r.m===parseInt(parts[1]));
   }
-  if(falumno!=='TODOS')filt=filt.filter(function(r){return r.alumno===falumno;});
+  if(falumno!=='TODOS')filt=filt.filter(r=>r.alumno===falumno);
   const ag={};
-  filt.forEach(function(r){
+  filt.forEach(r=>{
     const k=getPeriodoLabel(r.y,r.m);
-    if(!ag[k])ag[k]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0,s:new Date(r.y,r.m-1,1).getTime()};
+    if(!ag[k])ag[k]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};
     if(ag[k][r.estado]!==undefined)ag[k][r.estado]++;
   });
-  const ks=Object.keys(ag).sort(function(a,b){
-    const monthNames=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
-    const partsA=a.split(' '), monthA=monthNames.indexOf(partsA[0]), yearA=parseInt(partsA[1]);
-    const partsB=b.split(' '), monthB=monthNames.indexOf(partsB[0]), yearB=parseInt(partsB[1]);
+  const ks=Object.keys(ag).sort((a,b)=>{
+    const partsA=a.split(' '), monthA=MESES_NOMBRES.indexOf(partsA[0]), yearA=parseInt(partsA[1]);
+    const partsB=b.split(' '), monthB=MESES_NOMBRES.indexOf(partsB[0]), yearB=parseInt(partsB[1]);
     if(yearA!==yearB)return yearA-yearB; return monthA-monthB;
   });
   let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};
-  if(ks.length===0){ tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:#9ca3af">Sin registros para los filtros seleccionados</td></tr>'; }
+  if(ks.length===0){ tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:#9ca3af">Sin registros</td></tr>'; }
   else {
-    ks.forEach(function(k){
+    ks.forEach(k=>{
       totales.presente+=ag[k].presente; totales.ausente+=ag[k].ausente; totales.entrada_tarde+=ag[k].entrada_tarde; totales.salida_pronto+=ag[k].salida_pronto;
       totales.baja+=ag[k].baja;
       tb.innerHTML+='<tr><td>'+k+'</td><td class="r">'+ag[k].presente+'</td><td class="r">'+ag[k].ausente+'</td><td class="r">'+ag[k].entrada_tarde+'</td><td class="r">'+ag[k].salida_pronto+'</td><td class="r">'+ag[k].baja+'</td></tr>';
@@ -1080,224 +588,297 @@ function renderTiempo(){
   }
 }
 
+// 📅 CALENDARIO DE ENTRADA POR DÍAS
 function generarCalendarioEntrada(){
-  const alumno=document.getElementById('erMaquina').value;
   const periodoVal=document.getElementById('erMes').value;
-  const parts=periodoVal.split('-'); const mes=parseInt(parts[1]); const anio=parseInt(parts[0]);
-  const cont=document.getElementById('calendarioInput'); cont.innerHTML='';
-  DIAS.forEach(function(d){const h=document.createElement('div');h.className='cal-input-header';h.textContent=d;cont.appendChild(h);});
-  const first=new Date(anio,mes-1,1); const last=new Date(anio,mes,0); const start=first.getDay()||7;
-  for(let i=1;i<start;i++){const e=document.createElement('div');e.className='cal-input-day empty';cont.appendChild(e);}
+  const parts=periodoVal.split('-'); mesSeleccionado=parseInt(parts[1]); anioSeleccionado=parseInt(parts[0]);
+  const cont=document.getElementById('calendarioEntrada'); cont.innerHTML='';
+  
+  DIAS.forEach(d=>{const h=document.createElement('div');h.className='cal-header';h.textContent=d;cont.appendChild(h);});
+  
+  const first=new Date(anioSeleccionado,mesSeleccionado-1,1);
+  const last=new Date(anioSeleccionado,mesSeleccionado,0);
+  const start=first.getDay()||7;
+  
+  for(let i=1;i<start;i++){const e=document.createElement('div');e.className='cal-day empty';cont.appendChild(e);}
+  
   for(let d=1;d<=last.getDate();d++){
-    const fecha=new Date(anio,mes-1,d); const diaSemana=fecha.getDay(); const esFinde=(diaSemana===0||diaSemana===6);
-    const dayInfo=getDayType(anio,mes,d);
-    const e=document.createElement('div'); e.className='cal-input-day';
-    if(dayInfo.type==='holiday')e.classList.add('holiday');
-    else if(dayInfo.type==='vacation')e.classList.add('vacation');
-    else if(dayInfo.type==='course-end')e.classList.add('course-end');
-    else if(dayInfo.type==='before-course'||dayInfo.type==='after-course')e.classList.add('empty');
-    else if(esFinde)e.classList.add('empty');
-    const esEditable=!esFinde&&dayInfo.type==='lectivo';
-    const existing=getAll().find(function(r){return r.y===anio&&r.m===mes&&r.d===d&&r.alumno===alumno;});
-    const estadoInicial=existing?existing.estado:'';
-    const causaInicial=existing?existing.causa||'':'';
-    const justificadaInicial=existing?existing.justificada:false;
-    const horaSalidaInicial=existing?existing.horaSalida||'':'';
-    const horaLlegadaInicial=existing?existing.horaLlegada||'':'';
-    const horaUnicaInicial=existing?existing.horaUnica||'':'';
-    if(estadoInicial) e.classList.add(estadoInicial);
-    let html='<div class="day-label '+(esFinde?'weekend':(dayInfo.type==='holiday'?'holiday':(dayInfo.type==='vacation'?'vacation':(dayInfo.type==='course-end'?'course-end':''))))+'">'+d+'</div>';
-    if(esEditable){
-      html+='<select data-dia="'+d+'" data-field="estado" onchange="actualizarDia(this)">';
-      html+='<option value="">--</option>';
-      Object.keys(LABELS_ESTADOS).forEach(function(key){ html+='<option value="'+key+'" '+(estadoInicial===key?'selected':'')+'>'+LABELS_ESTADOS[key]+'</option>'; });
-      html+='</select>';
-      html+='<input type="text" data-dia="'+d+'" data-field="causa" placeholder="Causa/Razón" value="'+causaInicial+'" style="display:'+(estadoInicial&&estadoInicial!=='presente'?'block':'none')+'">';
-      if(estadoInicial==='cita_medica'||estadoInicial==='conciliacion'){
-        html+='<div style="display:flex;gap:4px"><input type="time" data-dia="'+d+'" data-field="horaSalida" value="'+horaSalidaInicial+'" placeholder="Salida" style="flex:1"><input type="time" data-dia="'+d+'" data-field="horaLlegada" value="'+horaLlegadaInicial+'" placeholder="Llegada" style="flex:1"></div>';
-      }else if(estadoInicial==='entrada_tarde'||estadoInicial==='salida_pronto'){
-        html+='<input type="time" data-dia="'+d+'" data-field="horaUnica" value="'+horaUnicaInicial+'">';
-      }else{
-        html+='<label class="checkbox-label" style="display:'+(estadoInicial==='ausente'?'flex':'none')+'"><input type="checkbox" data-dia="'+d+'" data-field="justificada" '+(justificadaInicial?'checked':'')+'> Justificada</label>';
-      }
+    const fecha=new Date(anioSeleccionado,mesSeleccionado-1,d);
+    const diaSemana=fecha.getDay();
+    const esFinde=(diaSemana===0||diaSemana===6);
+    const dayInfo=getDayType(anioSeleccionado,mesSeleccionado,d);
+    
+    const e=document.createElement('div');
+    e.className='cal-day';
+    
+    if(dayInfo.type==='holiday')e.classList.add('status-holiday');
+    else if(dayInfo.type==='vacation')e.classList.add('status-vacation');
+    else if(esFinde)e.classList.add('status-weekend');
+    
+    const registrosDia=getAll().filter(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===d);
+    
+    let html='<div class="day-num">'+d+'</div>';
+    if(dayInfo.type==='holiday'||dayInfo.type==='vacation'){
+      html+='<div class="day-info">'+dayInfo.label+'</div>';
+    }else if(esFinde){
+      html+='<div class="day-info">Fin de semana</div>';
     }else{
-      html+='<div style="font-size:11px;color:#6b7280;margin-top:10px">'+dayInfo.label+'</div>';
+      const completado=registrosDia.length===ALUMNOS.length;
+      html+='<div class="day-info">'+registrosDia.length+'/'+ALUMNOS.length+(completado?' ✅':'')+'</div>';
     }
-    e.innerHTML=html; cont.appendChild(e);
+    e.innerHTML=html;
+    
+    if(!esFinde&&dayInfo.type==='lectivo'){
+      e.onclick=()=>abrirModalAsistencia(d);
+    }
+    
+    cont.appendChild(e);
   }
-  document.getElementById('calendarioEntrada').style.display='block';
-  actualizarResumenEntrada();
 }
 
-window.actualizarDia=function(select){
-  const dia=select.getAttribute('data-dia'); const container=select.parentElement;
-  const causaInput=container.querySelector('[data-field="causa"]');
-  const justifLabel=container.querySelector('[data-field="justificada"]');
-  const horaSalidaInput=container.querySelector('[data-field="horaSalida"]');
-  const horaLlegadaInput=container.querySelector('[data-field="horaLlegada"]');
-  const horaUnicaInput=container.querySelector('[data-field="horaUnica"]');
-  const estado=select.value;
-  causaInput.style.display=estado&&estado!=='presente'?'block':'none';
-  if(estado==='cita_medica'||estado==='conciliacion'){
-    if(!horaSalidaInput){
-      const div=document.createElement('div'); div.style.display='flex'; div.style.gap='4px';
-      div.innerHTML='<input type="time" data-dia="'+dia+'" data-field="horaSalida" placeholder="Salida" style="flex:1"><input type="time" data-dia="'+dia+'" data-field="horaLlegada" placeholder="Llegada" style="flex:1">';
-      causaInput.parentNode.insertBefore(div,causaInput.nextSibling);
-    }
-    if(horaUnicaInput)horaUnicaInput.style.display='none'; if(justifLabel)justifLabel.style.display='none';
-  }else if(estado==='entrada_tarde'||estado==='salida_pronto'){
-    if(!horaUnicaInput){
-      const input=document.createElement('input'); input.type='time'; input.setAttribute('data-dia',dia); input.setAttribute('data-field','horaUnica');
-      input.style.cssText='width:100%;padding:4px;border:1px solid #d1d5db;border-radius:4px;font-size:11px;margin-bottom:4px';
-      causaInput.parentNode.insertBefore(input,causaInput.nextSibling);
-    }
-    if(horaSalidaInput){horaSalidaInput.style.display='none';horaLlegadaInput.style.display='none';}
-    if(justifLabel)justifLabel.style.display='none';
-  }else{
-    if(horaSalidaInput){horaSalidaInput.style.display='none';horaLlegadaInput.style.display='none';}
-    if(horaUnicaInput)horaUnicaInput.style.display='none';
-    if(justifLabel)justifLabel.style.display=estado==='ausente'?'flex':'none';
-  }
-  container.classList.remove('present','absent','late','early','medical','conciliation','sick-leave');
-  if(estado)container.classList.add(estado);
-  actualizarResumenEntrada();
-};
-
-function actualizarResumenEntrada(){
-  const selects=document.querySelectorAll('#calendarioInput select[data-field="estado"]');
-  const lista=document.getElementById('listaResumen'); const totalEl=document.getElementById('totalResumen'); const resumenDiv=document.getElementById('resumenEntrada');
-  lista.innerHTML=''; const counts={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
-  selects.forEach(function(sel){
-    if(sel.value){
-      const dia=sel.getAttribute('data-dia'); counts[sel.value]++;
-      if(sel.value!=='presente'){
-        const container=sel.parentElement; const causa=container.querySelector('[data-field="causa"]').value;
-        const li=document.createElement('li'); li.textContent='Día '+dia+': '+LABELS_ESTADOS[sel.value]+(causa?' - '+causa:'');
-        lista.appendChild(li);
-      }
-    }
+// 📝 MODAL DE ASISTENCIA
+function abrirModalAsistencia(dia){
+  diaSeleccionado=dia;
+  const registrosDia=getAll().filter(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===dia);
+  
+  document.getElementById('modalTitulo').textContent='📝 Asistencia del '+pad(dia)+'/'+pad(mesSeleccionado)+'/'+anioSeleccionado;
+  
+  let html='<div style="margin-bottom:16px;padding:12px;background:#f0f9ff;border-radius:6px;border-left:4px solid #2563eb">';
+  html+='<strong>'+registrosDia.length+'</strong> de <strong>'+ALUMNOS.length+'</strong> alumnos registrados';
+  html+='</div>';
+  
+  ALUMNOS.forEach(alumno=>{
+    const registro=registrosDia.find(r=>r.alumno===alumno);
+    const estadoActual=registro?registro.estado:'';
+    
+    html+='<div class="alumno-row">';
+    html+='<div class="alumno-name">'+alumno+'</div>';
+    html+='<select class="alumno-select" data-alumno="'+alumno+'">';
+    Object.keys(LABELS_ESTADOS).forEach(key=>{
+      html+='<option value="'+key+'" '+(estadoActual===key?'selected':'')+'>'+LABELS_ESTADOS[key]+'</option>';
+    });
+    html+='</select>';
+    html+='</div>';
   });
-  const totalDias=Object.values(counts).reduce(function(a,b){return a+b;},0);
-  if(totalDias>0){
-    resumenDiv.style.display='block';
-    const partes=[];
-    if(counts.presente>0)partes.push(counts.presente+' presente'+(counts.presente>1?'s':''));
-    if(counts.ausente>0)partes.push(counts.ausente+' ausencia'+(counts.ausente>1?'s':''));
-    if(counts.entrada_tarde>0)partes.push(counts.entrada_tarde+' entrada'+(counts.entrada_tarde>1?'s':'')+' tarde');
-    if(counts.salida_pronto>0)partes.push(counts.salida_pronto+' salida'+(counts.salida_pronto>1?'s':'')+' pronto');
-    if(counts.cita_medica>0)partes.push(counts.cita_medica+' cita'+(counts.cita_medica>1?'s':'')+' médica');
-    if(counts.conciliacion>0)partes.push(counts.conciliacion+' conciliación'+(counts.conciliacion>1?'es':''));
-    if(counts.baja>0)partes.push(counts.baja+' baja'+(counts.baja>1?'s':''));
-    totalEl.textContent='Total: '+partes.join(', ');
-  }else{ resumenDiv.style.display='none'; }
+  
+  document.getElementById('modalContenido').innerHTML=html;
+  document.getElementById('modalAsistencia').classList.add('show');
 }
 
-function limpiarCalendarioEntrada(){
-  showModal('🧹 Limpiar calendario','¿Seguro que quieres borrar todos los valores?','danger',null,function(respuesta){
-    if(respuesta===true){
-      const selects=document.querySelectorAll('#calendarioInput select[data-field="estado"]');
-      selects.forEach(function(sel){
-        sel.value=''; const container=sel.parentElement;
-        container.querySelector('[data-field="causa"]').value=''; container.querySelector('[data-field="causa"]').style.display='none';
-        const justifLabel=container.querySelector('[data-field="justificada"]');
-        if(justifLabel){ justifLabel.checked=false; justifLabel.style.display='none'; }
-        const horaSalida=container.querySelector('[data-field="horaSalida"]'); const horaLlegada=container.querySelector('[data-field="horaLlegada"]'); const horaUnica=container.querySelector('[data-field="horaUnica"]');
-        if(horaSalida){horaSalida.value='';horaSalida.style.display='none';}
-        if(horaLlegada){horaLlegada.value='';horaLlegada.style.display='none';}
-        if(horaUnica){horaUnica.value='';horaUnica.style.display='none';}
-        container.classList.remove('present','absent','late','early','medical','conciliation','sick-leave');
+function cerrarModalAsistencia(){
+  document.getElementById('modalAsistencia').classList.remove('show');
+  diaSeleccionado=null;
+}
+
+function guardarAsistenciaDia(){
+  if(!diaSeleccionado){
+    mostrarAlerta('warning','No hay día seleccionado');
+    return;
+  }
+  
+  const selects=document.querySelectorAll('.alumno-select');
+  let guardados=0;
+  
+  selects.forEach(select=>{
+    const alumno=select.getAttribute('data-alumno');
+    const estado=select.value;
+    
+    const idx=userRecords.findIndex(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===diaSeleccionado&&r.alumno===alumno);
+    if(idx>=0)userRecords.splice(idx,1);
+    const idxH=historicalRecords.findIndex(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===diaSeleccionado&&r.alumno===alumno);
+    if(idxH>=0)historicalRecords.splice(idxH,1);
+    
+    if(estado){
+      userRecords.push({
+        y:anioSeleccionado,m:mesSeleccionado,d:diaSeleccionado,
+        alumno:alumno,estado:estado,
+        causa:'',justificada:false,
+        horaSalida:'',horaLlegada:'',horaUnica:'',
+        hist:false
       });
-      actualizarResumenEntrada(); mostrarAlerta('success','Calendario limpiado');
+      guardados++;
     }
   });
+  
+  saveUser();
+  renderAll();
+  generarCalendarioEntrada();
+  cerrarModalAsistencia();
+  
+  mostrarAlerta('success','✅ Guardados '+guardados+' registros del día '+pad(diaSeleccionado)+'/'+pad(mesSeleccionado)+'/'+anioSeleccionado);
 }
 
-function guardarEntradaRapida(){
-  const alumno=document.getElementById('erMaquina').value;
-  const periodoVal=document.getElementById('erMes').value;
-  const parts=periodoVal.split('-'); const mes=parseInt(parts[1]); const anio=parseInt(parts[0]);
-  const selects=document.querySelectorAll('#calendarioInput select[data-field="estado"]');
-  const nuevos=[];
-  selects.forEach(function(sel){
-    if(sel.value){
-      const dia=parseInt(sel.getAttribute('data-dia')); const container=sel.parentElement;
-      const estado=sel.value; const causa=container.querySelector('[data-field="causa"]').value;
-      const justificada=estado==='ausente'?(container.querySelector('[data-field="justificada"]').checked):false;
-      const horaSalida=(estado==='cita_medica'||estado==='conciliacion')?(container.querySelector('[data-field="horaSalida"]').value):'';
-      const horaLlegada=(estado==='cita_medica'||estado==='conciliacion')?(container.querySelector('[data-field="horaLlegada"]').value):'';
-      const horaUnica=(estado==='entrada_tarde'||estado==='salida_pronto')?(container.querySelector('[data-field="horaUnica"]').value):'';
-      const idx=userRecords.findIndex(function(r){return r.y===anio&&r.m===mes&&r.d===dia&&r.alumno===alumno;});if(idx>=0)userRecords.splice(idx,1);
-      const idxH=historicalRecords.findIndex(function(r){return r.y===anio&&r.m===mes&&r.d===dia&&r.alumno===alumno;});if(idxH>=0)historicalRecords.splice(idxH,1);
-      userRecords.push({y:anio,m:mes,d:dia,alumno:alumno,estado:estado,causa:causa,justificada:justificada,horaSalida:horaSalida,horaLlegada:horaLlegada,horaUnica:horaUnica,hist:false});
-      nuevos.push({dia:dia,estado:estado});
-    }
-  });
-  if(nuevos.length===0){mostrarAlerta('warning','No hay ningún día registrado. Marca al menos un día.');return;}
-  saveUser(); renderAll(); generarCalendarioEntrada();
-  mostrarAlerta('success','Guardados '+nuevos.length+' registro'+(nuevos.length>1?'s':'')+' de '+alumno+' en '+getPeriodoLabel(anio,mes));
-}
-
+// 📅 CALENDARIO DE VISUALIZACIÓN (NUEVA FUNCIONALIDAD)
 function actualizarCalendarioDesdePeriodo(){
   const periodoVal=document.getElementById('calPeriodo').value;
-  const parts=periodoVal.split('-'); actualizarCalendario(parseInt(parts[0]),parseInt(parts[1]));
+  const parts=periodoVal.split('-'); 
+  const y=parseInt(parts[0]);
+  const m=parseInt(parts[1]);
+  actualizarCalendario(y,m);
 }
 
 function actualizarCalendario(y,m){
   const cal=document.getElementById('calendar');cal.innerHTML='';
-  DIAS.forEach(function(d){const h=document.createElement('div');h.className='cal-header';h.textContent=d;cal.appendChild(h);});
-  const first=new Date(y,m-1,1);const last=new Date(y,m,0);const start=first.getDay()||7;
+  DIAS.forEach(d=>{const h=document.createElement('div');h.className='cal-header';h.textContent=d;cal.appendChild(h);});
+  
+  const first=new Date(y,m-1,1);
+  const last=new Date(y,m,0);
+  const start=first.getDay()||7;
+  
   for(let i=1;i<start;i++){const e=document.createElement('div');e.className='cal-day empty';cal.appendChild(e);}
-  const R=getAll().filter(function(r){return r.y===y&&r.m===m;});
+  
+  // Obtener filtros
+  const filtroAlumno=document.getElementById('calFiltroAlumno').value;
+  const filtroEstado=document.getElementById('calFiltroEstado').value;
+  
+  let R=getAll().filter(r=>r.y===y&&r.m===m);
+  if(filtroAlumno!=='TODOS')R=R.filter(r=>r.alumno===filtroAlumno);
+  if(filtroEstado!=='TODOS')R=R.filter(r=>r.estado===filtroEstado);
+  
   const byDay={};
-  R.forEach(function(r){
+  R.forEach(r=>{
     if(!byDay[r.d])byDay[r.d]={counts:{presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0},alumnos:{}};
     byDay[r.d].counts[r.estado]++;
-    byDay[r.d].alumnos[r.alumno]={estado:r.estado,causa:r.causa,horaSalida:r.horaSalida,horaLlegada:r.horaLlegada,horaUnica:r.horaUnica};
+    byDay[r.d].alumnos[r.alumno]={estado:r.estado};
   });
+  
   for(let d=1;d<=last.getDate();d++){
-    const dayInfo=getDayType(y,m,d); const e=document.createElement('div'); e.className='cal-day';
+    const dayInfo=getDayType(y,m,d);
+    const e=document.createElement('div');
+    e.className='cal-day';
+    
     const counts=byDay[d]?byDay[d].counts:null;
-    if(counts){
-      if(counts.presente>0&&counts.ausente===0&&counts.entrada_tarde===0&&counts.salida_pronto===0&&counts.cita_medica===0&&counts.conciliacion===0&&counts.baja===0)e.classList.add('present');
-      else if(counts.ausente>0)e.classList.add('absent');
-      else if(counts.entrada_tarde>0)e.classList.add('late');
-      else if(counts.salida_pronto>0)e.classList.add('early');
-      else if(counts.cita_medica>0)e.classList.add('medical');
-      else if(counts.conciliacion>0)e.classList.add('conciliation');
-      else if(counts.baja>0)e.classList.add('sick-leave');
+    const totalRegistros=counts?Object.values(counts).reduce((a,b)=>a+b,0):0;
+    
+    // Determinar clase de color según el estado del día
+    if(dayInfo.type==='holiday'){
+      e.classList.add('status-holiday');
+    }else if(dayInfo.type==='vacation'){
+      e.classList.add('status-vacation');
+    }else if(dayInfo.type==='weekend'){
+      e.classList.add('status-weekend');
+    }else if(counts){
+      if(counts.ausente>0) e.classList.add('status-absent');
+      else if(counts.entrada_tarde>0||counts.salida_pronto>0) e.classList.add('status-late');
+      else if(counts.cita_medica>0||counts.conciliacion>0||counts.baja>0) e.classList.add('status-mixed');
+      else if(counts.presente>0) e.classList.add('status-all-present');
     }
-    if(dayInfo.type==='holiday')e.style.background='#faf5ff';
-    else if(dayInfo.type==='vacation')e.style.background='#fff7ed';
-    else if(dayInfo.type==='before-course'||dayInfo.type==='after-course')e.style.background='#f3f4f6';
+    
     let html='<div class="day-num">'+d+'</div>';
-    if(byDay[d]){
-      const c=byDay[d].counts;
-      if(c.presente>0)html+='<div class="pkg-info" style="color:#166534">✓ '+c.presente+'</div>';
-      if(c.ausente>0)html+='<div class="pkg-info" style="color:#991b1b">✗ '+c.ausente+'</div>';
-      if(c.entrada_tarde>0)html+='<div class="pkg-info" style="color:#92400e"> '+c.entrada_tarde+'</div>';
-      if(c.salida_pronto>0)html+='<div class="pkg-info" style="color:#9d174d"> '+c.salida_pronto+'</div>';
-      if(c.cita_medica>0)html+='<div class="pkg-info" style="color:#1e40af"> '+c.cita_medica+'</div>';
-      if(c.conciliacion>0)html+='<div class="pkg-info" style="color:#3730a3">👨‍👩‍ '+c.conciliacion+'</div>';
-      if(c.baja>0)html+='<div class="pkg-info" style="color:#991b1b">🏥 '+c.baja+'</div>';
-      Object.keys(byDay[d].alumnos).sort().forEach(function(alumName){
-        const info=byDay[d].alumnos[alumName]; const nombreCorto=alumName.split(',')[0];
-        let detalle=ABBREVIATIONS[info.estado]||info.estado.charAt(0).toUpperCase();
-        if(info.horaUnica)detalle+=' '+info.horaUnica;
-        else if(info.horaSalida&&info.horaLlegada)detalle+=' '+info.horaSalida+'-'+info.horaLlegada;
-        html+='<div class="pkg-info" title="'+alumName+': '+LABELS_ESTADOS[info.estado]+(info.causa?' - '+info.causa:'')+(info.horaUnica?' ('+info.horaUnica+')':'')+(info.horaSalida?' ('+info.horaSalida+'-'+info.horaLlegada+')':'')+'">'+nombreCorto+': '+detalle+'</div>';
-      });
+    
+    if(dayInfo.type==='holiday'||dayInfo.type==='vacation'){
+      html+='<div class="day-info">'+dayInfo.label+'</div>';
+    }else if(dayInfo.type==='weekend'){
+      html+='<div class="day-info">Fin de semana</div>';
+    }else if(counts){
+      // Mostrar estadísticas resumidas
+      const stats=[];
+      if(counts.presente>0) stats.push('✓'+counts.presente);
+      if(counts.ausente>0) stats.push('✗'+counts.ausente);
+      if(counts.entrada_tarde>0) stats.push(''+counts.entrada_tarde);
+      if(counts.salida_pronto>0) stats.push('📤'+counts.salida_pronto);
+      if(counts.cita_medica>0) stats.push('🏥'+counts.cita_medica);
+      if(counts.conciliacion>0) stats.push('👨‍👩‍👧'+counts.conciliacion);
+      if(counts.baja>0) stats.push('🤒'+counts.baja);
+      
+      html+='<div class="day-stats">'+stats.join(' ')+'</div>';
+      html+='<div class="day-info">'+totalRegistros+'/'+ALUMNOS.length+' alumnos</div>';
+    }else{
+      html+='<div class="day-info">Sin registros</div>';
     }
-    if(dayInfo.type==='holiday'||dayInfo.type==='vacation'){ html+='<div style="font-size:9px;color:#6b7280;margin-top:2px;font-style:italic">'+dayInfo.label+'</div>'; }
-    e.innerHTML=html;cal.appendChild(e);
+    
+    e.innerHTML=html;
+    
+    // Hacer clickeable solo si es día lectivo
+    if(!dayInfo.type==='weekend'&&dayInfo.type!=='holiday'&&dayInfo.type!=='vacation'&&dayInfo.type!=='before-course'&&dayInfo.type!=='after-course'){
+      e.onclick=()=>abrirModalDetalle(y,m,d);
+    }
+    
+    cal.appendChild(e);
   }
-  const det=document.getElementById('calDetalle');
-  const totalPresentes=R.filter(function(r){return r.estado==='presente';}).length;
-  const totalAusentes=R.filter(function(r){return r.estado==='ausente';}).length;
-  const totalEntradasTarde=R.filter(function(r){return r.estado==='entrada_tarde';}).length;
-  const totalSalidasPronto=R.filter(function(r){return r.estado==='salida_pronto';}).length;
-  const totalBajas=R.filter(function(r){return r.estado==='baja';}).length;
-  det.innerHTML='<strong>Total '+getPeriodoLabel(y,m)+':</strong> '+totalPresentes+' presente'+(totalPresentes>1?'s':'')+', '+totalAusentes+' ausencia'+(totalAusentes>1?'s':'')+', '+totalEntradasTarde+' entrada'+(totalEntradasTarde>1?'s':'')+' tarde, '+totalSalidasPronto+' salida'+(totalSalidasPronto>1?'s':'')+' pronto, '+totalBajas+' baja'+(totalBajas>1?'s':'');
-  det.style.display='block';
+  
+  // Ocultar panel de detalle al cambiar de mes
+  document.getElementById('dayDetailPanel').style.display='none';
+}
+
+// 📋 MODAL DE DETALLE DEL DÍA
+function abrirModalDetalle(y,m,d){
+  diaDetalleSeleccionado={y,m,d};
+  const registros=getAll().filter(r=>r.y===y&&r.m===m&&r.d===d);
+  
+  document.getElementById('modalDetalleTitulo').textContent=' Detalle del '+pad(d)+'/'+pad(m)+'/'+y;
+  
+  let html='';
+  
+  if(registros.length===0){
+    html='<div style="padding:20px;text-align:center;color:#6b7280">';
+    html+='<p style="font-size:48px;margin-bottom:12px">📭</p>';
+    html+='<p>No hay registros para este día</p>';
+    html+='<p style="margin-top:12px"><button class="btn b2" onclick="cerrarModalDetalle();abrirModalAsistenciaDesdeDetalle('+d+')">➕ Añadir registros</button></p>';
+    html+='</div>';
+  }else{
+    // Resumen
+    const counts={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
+    registros.forEach(r=>{if(counts[r.estado]!==undefined)counts[r.estado]++;});
+    const porcentajeAsistencia=Math.round((counts.presente/ALUMNOS.length)*100);
+    
+    html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:20px">';
+    html+='<div style="padding:12px;background:#dcfce7;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#166534">'+counts.presente+'</div><div style="font-size:12px;color:#166534">Presentes</div></div>';
+    html+='<div style="padding:12px;background:#fee2e2;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#991b1b">'+counts.ausente+'</div><div style="font-size:12px;color:#991b1b">Ausentes</div></div>';
+    html+='<div style="padding:12px;background:#fef3c7;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#92400e">'+counts.entrada_tarde+'</div><div style="font-size:12px;color:#92400e">Tarde</div></div>';
+    html+='<div style="padding:12px;background:#dbeafe;border-radius:6px;text-align:center"><div style="font-size:24px;font-weight:700;color:#1e40af">'+porcentajeAsistencia+'%</div><div style="font-size:12px;color:#1e40af">Asistencia</div></div>';
+    html+='</div>';
+    
+    // Lista detallada
+    html+='<h4 style="margin-bottom:12px;color:#1f2937">Detalle por alumno:</h4>';
+    html+='<div class="day-detail-grid">';
+    
+    ALUMNOS.forEach(alumno=>{
+      const reg=registros.find(r=>r.alumno===alumno);
+      if(reg){
+        html+='<div class="day-detail-item">';
+        html+='<div class="nombre">'+alumno+'</div>';
+        html+='<div class="estado estado-'+reg.estado+'">'+(LABELS_ESTADOS[reg.estado]||reg.estado)+'</div>';
+        if(reg.causa) html+='<div style="font-size:11px;color:#6b7280;margin-top:4px">📝 '+reg.causa+'</div>';
+        if(reg.horaUnica) html+='<div style="font-size:11px;color:#6b7280">🕐 '+reg.horaUnica+'</div>';
+        if(reg.horaSalida&&reg.horaLlegada) html+='<div style="font-size:11px;color:#6b7280"> '+reg.horaSalida+' - '+reg.horaLlegada+'</div>';
+        html+='</div>';
+      }else{
+        html+='<div class="day-detail-item" style="opacity:0.5">';
+        html+='<div class="nombre">'+alumno+'</div>';
+        html+='<div class="estado" style="color:#9ca3af">Sin registrar</div>';
+        html+='</div>';
+      }
+    });
+    
+    html+='</div>';
+  }
+  
+  document.getElementById('modalDetalleContenido').innerHTML=html;
+  document.getElementById('modalDetalle').classList.add('show');
+}
+
+function cerrarModalDetalle(){
+  document.getElementById('modalDetalle').classList.remove('show');
+  diaDetalleSeleccionado=null;
+}
+
+function abrirModalAsistenciaDesdeDetalle(d){
+  const periodoVal=document.getElementById('calPeriodo').value;
+  const parts=periodoVal.split('-');
+  mesSeleccionado=parseInt(parts[1]);
+  anioSeleccionado=parseInt(parts[0]);
+  
+  // Cambiar a la pestaña de entrada
+  showTab('p7');
+  setTimeout(()=>abrirModalAsistencia(d),200);
+}
+
+function editarDiaDesdeDetalle(){
+  if(diaDetalleSeleccionado){
+    abrirModalAsistenciaDesdeDetalle(diaDetalleSeleccionado.d);
+    cerrarModalDetalle();
+  }
 }
 
 function cargarRegistrosEditarDesdePeriodo(){
@@ -1307,30 +888,43 @@ function cargarRegistrosEditarDesdePeriodo(){
 
 function cargarRegistrosEditar(y,m){
   const tb=document.getElementById('tEdit');tb.innerHTML='';
-  const R=[...historicalRecords,...userRecords].filter(function(r){return r.y===y&&r.m===m;}).sort(function(a,b){return a.d-b.d;});
-  if(R.length===0){tb.innerHTML='<tr><td colspan="5" style="text-align:center">Sin registros este mes</td></tr>';return;}
-  R.forEach(function(r,i){
-    const estadoText='<span style="color:'+getColorEstado(r.estado)+'">'+LABELS_ESTADOS[r.estado]+'</span>';
-    let detalles='';
-    if(r.causa)detalles+=r.causa;
-    if(r.horaUnica)detalles+=(detalles?', ':'')+'Hora: '+r.horaUnica;
-    if(r.horaSalida&&r.horaLlegada)detalles+=(detalles?', ':'')+r.horaSalida+'-'+r.horaLlegada;
-    if(r.justificada)detalles+=' (Justificada)';
-    tb.innerHTML+='<tr><td>'+pad(r.d)+'/'+pad(r.m)+'/'+r.y+'</td><td>'+r.alumno+'</td><td class="r">'+estadoText+'</td><td>'+(detalles||'-')+'</td><td><button class="btn b2 action-btn" onclick="editarRegistro('+i+')">✏️ Editar</button> <button class="btn b3 action-btn" onclick="eliminarRegistro('+i+')">🗑️ Eliminar</button></td></tr>';
+  const R=[...historicalRecords,...userRecords].filter(r=>r.y===y&&r.m===m).sort((a,b)=>a.d-b.d);
+  if(R.length===0){tb.innerHTML='<tr><td colspan="5" style="text-align:center">Sin registros</td></tr>';return;}
+  R.forEach((r,i)=>{
+    tb.innerHTML+='<tr><td>'+pad(r.d)+'/'+pad(r.m)+'/'+r.y+'</td><td>'+r.alumno+'</td><td class="r" style="color:'+COLORES_ESTADO[r.estado]+'">'+(LABELS_ESTADOS[r.estado]||r.estado)+'</td><td>'+(r.causa||'-')+'</td><td><button class="btn b3 action-btn" onclick="eliminarRegistro('+i+')">🗑️</button></td></tr>';
   });
 }
 
-function getColorEstado(estado){
-  const colors={presente:'#166534',ausente:'#991b1b',entrada_tarde:'#92400e',salida_pronto:'#9d174d',cita_medica:'#1e40af',conciliacion:'#3730a3',baja:'#991b1b'};
-  return colors[estado]||'#374151';
-}
-
-function editarRegistro(idx){
+function eliminarRegistro(idx){
   const periodoVal=document.getElementById('editPeriodo').value;
   const parts=periodoVal.split('-'); const y=parseInt(parts[0]); const m=parseInt(parts[1]);
-  const R=[...historicalRecords,...userRecords].filter(function(r){return r.y===y&&r.m===m;}).sort(function(a,b){return a.d-b.d;});
+  const R=[...historicalRecords,...userRecords].filter(r=>r.y===y&&r.m===m).sort((a,b)=>a.d-b.d);
   const r=R[idx];
-  showModal('✏️ Editar registro','Modifica el registro del '+pad(r.d)+'/'+pad(r.m)+'/'+r.y+' ('+r.alumno+')','edit',{estado:r.estado,causa:r.causa,justificada:r.justificada,horaSalida:r.horaSalida,horaLlegada:r.horaLlegada,horaUnica:r.horaUnica},function(data){
-    if(data!==null){
-      const idxH=historicalRecords.findIndex(function(x){return x.y===r.y&&x.m===r.m&&x.d===r.d&&x.alumno===r.alumno;}); if(idxH>=0)historicalRecords.splice(idxH,1);
-      const idxU=userRecords.findIndex(function(x){return x.y===r.y&&x.m===r.m&&x.d===
+  if(confirm('¿Eliminar registro de '+r.alumno+' el '+pad(r.d)+'/'+pad(r.m)+'/'+r.y+'?')){
+    const idxH=historicalRecords.findIndex(x=>x.y===r.y&&x.m===r.m&&x.d===r.d&&x.alumno===r.alumno); if(idxH>=0)historicalRecords.splice(idxH,1);
+    const idxU=userRecords.findIndex(x=>x.y===r.y&&x.m===r.m&&x.d===r.d&&x.alumno===r.alumno); if(idxU>=0)userRecords.splice(idxU,1);
+    saveUser();renderAll();cargarRegistrosEditar(y,m);
+    mostrarAlerta('success','Registro eliminado');
+  }
+}
+
+function imprimir(tipo){
+  const area=document.getElementById('printArea');let contenido='';
+  if(tipo==='maquinas')contenido='<h1>Total por Alumno</h1>'+document.getElementById('tablaMaquinasTbl').outerHTML;
+  else if(tipo==='tiempo')contenido='<h1>Resumen por Periodo</h1>'+document.getElementById('tablaTiempoTbl').outerHTML;
+  area.innerHTML=contenido;window.print();setTimeout(()=>{area.innerHTML='';},1000);
+}
+
+function resetearTodo(){
+  if(confirm('¿Seguro? Se borrarán TODOS los datos.')){
+    localStorage.removeItem('ca_cache');
+    location.reload();
+  }
+}
+
+document.getElementById('fPeriodo').addEventListener('change',renderTiempo);
+document.getElementById('todayDate').textContent = new Date().toLocaleDateString('es-ES');
+inicializarApp();
+</script>
+</body>
+</html>
