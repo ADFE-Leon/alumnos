@@ -2659,6 +2659,21 @@ document.getElementById('todayDate').textContent = '📅 Hoy: '+DIA_HOY+'/'+pad(
 
 // INICIALIZAR SISTEMA DE LOGIN
 async function iniciarSistema(){
+  // Esperar a que Firebase esté listo
+  let intentos = 0;
+  while (!window.firebaseRef && intentos < 50) {
+    await new Promise(r => setTimeout(r, 100));
+    intentos++;
+  }
+  
+  if (!window.firebaseRef) {
+    console.error('Firebase no se cargó correctamente');
+    document.getElementById('loginOverlay').style.display = 'flex';
+    document.getElementById('loginPassword').focus();
+    inicializarApp();
+    return;
+  }
+  
   if(verificarSesionActiva()){
     document.getElementById('loginOverlay').style.display = 'none';
     inicializarApp();
