@@ -28,6 +28,15 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:linear
 .login-box .info{background:#f0f9ff;border-left:4px solid #3b82f6;padding:12px;border-radius:6px;margin-top:20px;font-size:12px;color:#64748b}
 .login-box .info strong{color:#0369a1}
 
+/* INACTIVITY OVERLAY */
+.inactivity-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);z-index:9999;display:none;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
+.inactivity-overlay.show{display:flex}
+.inactivity-box{background:#fff;border-radius:16px;padding:40px;max-width:400px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.5);animation:slideIn 0.3s ease}
+.inactivity-box .icono{font-size:64px;margin-bottom:16px}
+.inactivity-box h2{color:#1e3a8a;margin-bottom:12px}
+.inactivity-box p{color:#6b7280;margin-bottom:20px}
+.inactivity-box .timer{font-size:32px;font-weight:700;color:#dc2626;margin:16px 0}
+
 .header{background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 100%);border-radius:14px;padding:16px 24px;color:#fff;box-shadow:0 6px 20px rgba(30,58,138,0.25);margin-bottom:16px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px}
 .header-left h1{font-size:26px;font-weight:700;letter-spacing:-0.3px}
 .header-left .sub{font-size:13px;opacity:0.85;margin-top:2px}
@@ -330,7 +339,7 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 <!-- LOGIN SCREEN -->
 <div class="login-overlay" id="loginOverlay">
 <div class="login-box">
-<h1>🔐 Control de Alumnos</h1>
+<h1> Control de Alumnos</h1>
 <p class="subtitle">Introduce la clave de acceso</p>
 <div class="error-msg" id="loginError"></div>
 <div class="input-group">
@@ -346,13 +355,27 @@ Clave de emergencia disponible.
 </div>
 </div>
 
+<!-- MODAL INACTIVIDAD -->
+<div class="inactivity-overlay" id="inactivityOverlay">
+  <div class="inactivity-box">
+    <div class="icono">⏰</div>
+    <h2>Sesión expirada</h2>
+    <p>Por seguridad, la sesión se ha cerrado tras 5 minutos de inactividad.</p>
+    <div class="timer" id="inactivityTimer">00:00</div>
+    <p style="font-size:13px;color:#9ca3af;margin-bottom:20px">Introduce tu clave para continuar</p>
+    <input type="password" id="inactivityPassword" placeholder="Clave de acceso" style="width:100%;padding:12px;border:2px solid #e5e7eb;border-radius:8px;font-size:15px;margin-bottom:12px" onkeypress="if(event.key==='Enter')reanudarSesion()">
+    <div id="inactivityError" style="background:#fee2e2;color:#991b1b;padding:10px;border-radius:6px;margin-bottom:12px;display:none;font-size:13px"></div>
+    <button class="btn b1" onclick="reanudarSesion()" style="width:100%;padding:12px;font-size:15px"> Reanudar sesión</button>
+  </div>
+</div>
+
 <div id="loader"><div class="spinner"></div>Cargando datos desde la nube...</div>
 
 <div class="wrap">
 
 <div class="header">
 <div class="header-left">
-<h1> Control de Alumnos</h1>
+<h1>📚 Control de Alumnos</h1>
 <p class="sub">Seguimiento de asistencias</p>
 </div>
 <div class="header-center">
@@ -384,13 +407,13 @@ Clave de emergencia disponible.
 
 <div class="tabs-container">
 <div class="tabs">
-<button class="tb on" data-t="p7">📝 Entrada de Datos</button>
+<button class="tb on" data-t="p7"> Entrada de Datos</button>
 <button class="tb" data-t="p9">🔍 Consultas</button>
 
 <div class="subtabs-inline" id="subtabsConsultas">
 <button class="subtb on" data-st="p2">👤 Por Alumno</button>
-<button class="subtb" data-st="p3"> Por Mes/Año</button>
-<button class="subtb" data-st="p4">️ Calendario</button>
+<button class="subtb" data-st="p3">📊 Por Mes/Año</button>
+<button class="subtb" data-st="p4">🗓️ Calendario</button>
 </div>
 
 <div style="display:flex;flex-direction:row;align-items:center;gap:10px;margin-left:auto">
@@ -444,7 +467,7 @@ Clave de emergencia disponible.
 <div class="informe-header">
 <h2>📊 Resumen por Periodo</h2>
 <div class="informe-botones">
-<button class="btn b4" onclick="imprimir('tiempo')">️ Imprimir</button>
+<button class="btn b4" onclick="imprimir('tiempo')">🖨️ Imprimir</button>
 <button class="btn b7" onclick="crearPDF('tiempo')">📄 Crear PDF</button>
 </div>
 </div>
@@ -480,7 +503,7 @@ Clave de emergencia disponible.
 </div>
 
 <div id="p8" class="pnl" style="box-shadow:none;border:none;margin-top:16px;display:none">
-<h2>️ Configuración</h2>
+<h2>⚙️ Configuración</h2>
 
 <div id="configDashboard" class="config-dashboard">
 <div class="config-card card-alumnos" onclick="mostrarPanelConfig('alumnos')">
@@ -502,7 +525,7 @@ Clave de emergencia disponible.
 <div class="card-count"><strong id="countVacaciones">0</strong> días</div>
 </div>
 <div class="config-card card-fechas" onclick="mostrarPanelConfig('fechas')">
-<div class="card-icono">📅</div>
+<div class="card-icono"></div>
 <div class="card-titulo">Gestión de Fechas</div>
 <div class="card-desc">Definir el periodo del curso escolar</div>
 <div class="card-count" id="countFechas"><strong>01/03/2026</strong> - <strong>28/02/2027</strong></div>
@@ -516,7 +539,7 @@ Clave de emergencia disponible.
 <p style="color:#166534;font-size:12px;margin-bottom:10px">Define el periodo del curso escolar. Los calendarios se ajustarán automáticamente a estas fechas.</p>
 <div class="rango-fechas">
 <div class="rango-box" style="background:#dcfce7;border-color:#86efac">
-<h4 style="color:#166534">📅 Fecha de inicio del curso</h4>
+<h4 style="color:#166534"> Fecha de inicio del curso</h4>
 <div class="rango-inputs">
 <div class="filter-group"><label>Día</label><select id="cursoInicioDia"></select></div>
 <div class="filter-group"><label>Mes</label><select id="cursoInicioMes">
@@ -587,7 +610,7 @@ Clave de emergencia disponible.
 </div>
 </div>
 <div class="rango-box">
-<h4>📅 Fecha final (inclusive)</h4>
+<h4> Fecha final (inclusive)</h4>
 <div class="rango-inputs">
 <div class="filter-group"><label>Día</label><select id="nuevaVacacionDiaFin"></select></div>
 <div class="filter-group"><label>Mes</label><select id="nuevaVacacionMesFin">
@@ -604,7 +627,7 @@ Clave de emergencia disponible.
 
 <div class="stats-config" id="statsConfig">
 <div class="stats-group vacaciones">
-<h4>️ Vacaciones</h4>
+<h4>🏖️ Vacaciones</h4>
 <div class="stats-items">
 <div class="stat-item total"><span class="stat-label">Solicitadas</span><span class="stat-value" id="statVacTotal">0</span></div>
 <div class="stat-item consumidos"><span class="stat-label">Disfrutadas</span><span class="stat-value" id="statVacConsumidas">0</span></div>
@@ -628,11 +651,10 @@ Clave de emergencia disponible.
 <p class="backup-info">Se guardará como: <strong id="backupFilename">backup_curso_2026_27.html</strong></p>
 </div>
 
-<!-- CAMBIO DE CLAVE -->
 <div class="backup-section" style="background:linear-gradient(135deg,#f5f3ff,#ede9fe);border-color:#a78bfa">
-<h3> Cambiar clave de acceso</h3>
+<h3>🔑 Cambiar clave de acceso</h3>
 <p>Modifica la clave de acceso de usuario. La clave de emergencia de administrador no puede modificarse.</p>
-<button class="btn b6" onclick="abrirModalCambioClave()" style="padding:12px 28px;font-size:15px"> Cambiar clave</button>
+<button class="btn b6" onclick="abrirModalCambioClave()" style="padding:12px 28px;font-size:15px">🔐 Cambiar clave</button>
 </div>
 
 <div class="reset-section">
@@ -649,6 +671,8 @@ Clave de emergencia disponible.
 </div>
 </div>
 
+
+<!-- MODALES -->
 <div class="modal-overlay" id="modalAsistencia">
 <div class="modal">
 <div class="modal-header">
@@ -658,7 +682,7 @@ Clave de emergencia disponible.
 <div id="modalContenido"></div>
 <div class="modal-footer">
 <button class="btn b4" onclick="cerrarModalAsistencia()">Cancelar</button>
-<button class="btn b2" onclick="guardarAsistenciaDia()"> Guardar Todos</button>
+<button class="btn b2" onclick="guardarAsistenciaDia()">💾 Guardar Todos</button>
 </div>
 </div>
 </div>
@@ -685,7 +709,7 @@ Clave de emergencia disponible.
 </div>
 <div id="modalDetalleAlumnoContenido" class="detalle-alumno"></div>
 <div class="modal-footer">
-<button class="btn b4" onclick="imprimirDetalleAlumno()">️ Imprimir</button>
+<button class="btn b4" onclick="imprimirDetalleAlumno()">🖨️ Imprimir</button>
 <button class="btn b7" onclick="crearPDFDetalleAlumno()">📄 Crear PDF</button>
 <button class="btn b1" onclick="cerrarModalDetalleAlumno()">Cerrar</button>
 </div>
@@ -727,7 +751,7 @@ Clave de emergencia disponible.
 <div class="modal-overlay" id="modalCambioClave">
 <div class="modal" style="max-width:500px">
 <div class="modal-header">
-<h3>🔑 Cambiar clave de acceso</h3>
+<h3> Cambiar clave de acceso</h3>
 <button class="modal-close" onclick="cerrarModalCambioClave()">×</button>
 </div>
 <div style="padding:10px 0">
@@ -736,8 +760,18 @@ Clave de emergencia disponible.
 <input type="password" id="claveActual" placeholder="Introduce la clave actual" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:6px;font-size:13px">
 </div>
 <div class="input-group">
-<label for="nuevaClave">Nueva clave (mín. 6 caracteres):</label>
+<label for="nuevaClave">Nueva clave:</label>
 <input type="password" id="nuevaClave" placeholder="Introduce la nueva clave" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:6px;font-size:13px">
+</div>
+<div id="requisitosClave" style="background:#f0f9ff;border-left:4px solid #3b82f6;padding:10px;border-radius:6px;margin-top:8px;font-size:12px;display:none">
+  <strong style="color:#0369a1">Requisitos de la clave:</strong>
+  <ul style="margin:8px 0 0 20px;color:#64748b">
+    <li id="req-longitud">⚪ Mínimo 6 caracteres</li>
+    <li id="req-mayus">⚪ Al menos 1 mayúscula</li>
+    <li id="req-minus"> Al menos 1 minúscula</li>
+    <li id="req-numero"> Al menos 1 número</li>
+    <li id="req-especial">⚪ Al menos 1 carácter especial</li>
+  </ul>
 </div>
 <div class="input-group">
 <label for="confirmarClave">Confirmar nueva clave:</label>
@@ -798,6 +832,7 @@ let FIN_CURSO={y:2027,m:2,d:28};
 
 let FESTIVOS=[];
 let VACACIONES=[];
+let notasPorDia = {};
 const LABELS_ESTADOS={'':'-- Sin registrar --',presente:'Presente',ausente:'Ausente',entrada_tarde:'Entrada tarde',salida_pronto:'Salida pronto',cita_medica:'Cita médica',conciliacion:'Conciliación',baja:'Baja'};
 const COLORES_ESTADO={presente:'#166534',ausente:'#991b1b',entrada_tarde:'#92400e',salida_pronto:'#9d174d',cita_medica:'#1e40af',conciliacion:'#3730a3',baja:'#991b1b'};
 let ALUMNOS=[...ALUMNOS_BASE];
@@ -818,7 +853,12 @@ let esDiaFuturo=false;
 // CLAVES DE ACCESO
 const CLAVE_ADMIN_FIJA = "Sancayetano.2026";
 const CLAVE_USUARIO_DEFAULT = "Control Afe XVI";
-const CLAVE_MIN_LENGTH = 6;
+
+// BLOQUEO POR INACTIVIDAD
+let inactivityTimer;
+const INACTIVITY_TIMEOUT = 5 * 60 * 1000; // 5 minutos
+let inactivityCountdown;
+let secondsRemaining = 0;
 
 const FECHA_HOY = new Date();
 FECHA_HOY.setHours(0,0,0,0);
@@ -835,9 +875,47 @@ async function hashSHA256(texto){
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
+// VALIDACIÓN DE COMPLEJIDAD DE CLAVE
+function validarComplejidadClave(clave) {
+  const errores = [];
+  if (clave.length < 6) errores.push('mínimo 6 caracteres');
+  if (!/[A-Z]/.test(clave)) errores.push('al menos 1 mayúscula (A-Z)');
+  if (!/[a-z]/.test(clave)) errores.push('al menos 1 minúscula (a-z)');
+  if (!/[0-9]/.test(clave)) errores.push('al menos 1 número (0-9)');
+  if (!/[.,$%&!@#^*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(clave)) errores.push('al menos 1 carácter especial (.,$%&!@#...)');
+  return errores;
+}
+
+function actualizarRequisitosClave() {
+  const clave = document.getElementById('nuevaClave').value;
+  const cont = document.getElementById('requisitosClave');
+  cont.style.display = clave ? 'block' : 'none';
+  
+  const checks = {
+    'req-longitud': clave.length >= 6,
+    'req-mayus': /[A-Z]/.test(clave),
+    'req-minus': /[a-z]/.test(clave),
+    'req-numero': /[0-9]/.test(clave),
+    'req-especial': /[.,$%&!@#^*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(clave)
+  };
+  
+  Object.keys(checks).forEach(id => {
+    const el = document.getElementById(id);
+    el.textContent = (checks[id] ? '✅ ' : ' ') + el.textContent.substring(2);
+    el.style.color = checks[id] ? '#166534' : '#64748b';
+    el.style.fontWeight = checks[id] ? '600' : '400';
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const nuevaClaveInput = document.getElementById('nuevaClave');
+  if (nuevaClaveInput) {
+    nuevaClaveInput.addEventListener('input', actualizarRequisitosClave);
+  }
+});
+
 // GESTIÓN DE CLAVES
 async function obtenerClaveUsuario(){
-  // Intentar obtener de Firebase
   try{
     const db = window.firebaseDB;
     const dbRef = window.firebaseRef(db);
@@ -849,18 +927,15 @@ async function obtenerClaveUsuario(){
     console.error('Error al obtener clave de Firebase:', e);
   }
   
-  // Si no, intentar de localStorage
   const localClave = localStorage.getItem('ca_claveUsuario');
   if(localClave){
     return localClave;
   }
   
-  // Si no existe, devolver la default
   return await hashSHA256(CLAVE_USUARIO_DEFAULT);
 }
 
 async function guardarClaveUsuario(hashClave){
-  // Guardar en Firebase
   try{
     const db = window.firebaseDB;
     const dbRef = window.firebaseRef(db, 'config/claveUsuario');
@@ -869,7 +944,6 @@ async function guardarClaveUsuario(hashClave){
     console.error('Error al guardar clave en Firebase:', e);
   }
   
-  // Guardar en localStorage
   localStorage.setItem('ca_claveUsuario', hashClave);
 }
 
@@ -880,6 +954,7 @@ function verificarSesionActiva(){
 function iniciarSesion(){
   sessionStorage.setItem('ca_sesionActiva', 'true');
   document.getElementById('loginOverlay').style.display = 'none';
+  resetInactivityTimer();
 }
 
 function cerrarSesion(){
@@ -893,17 +968,15 @@ async function verificarLogin(){
   const errorMsg = document.getElementById('loginError');
   
   if(!claveIntroducida){
-    errorMsg.textContent = '️ Introduce una clave';
+    errorMsg.textContent = '⚠️ Introduce una clave';
     errorMsg.classList.add('show');
     return;
   }
   
-  // Obtener clave de usuario almacenada
   const claveUsuarioHash = await obtenerClaveUsuario();
   const claveIntroducidaHash = await hashSHA256(claveIntroducida);
   const claveAdminHash = await hashSHA256(CLAVE_ADMIN_FIJA);
   
-  // Verificar si es la clave de usuario o la de admin
   if(claveIntroducidaHash === claveUsuarioHash || claveIntroducidaHash === claveAdminHash){
     iniciarSesion();
     errorMsg.classList.remove('show');
@@ -916,12 +989,74 @@ async function verificarLogin(){
   }
 }
 
+// BLOQUEO POR INACTIVIDAD
+function resetInactivityTimer() {
+  clearTimeout(inactivityTimer);
+  clearInterval(inactivityCountdown);
+  secondsRemaining = INACTIVITY_TIMEOUT / 1000;
+  inactivityTimer = setTimeout(() => {
+    bloquearPorInactividad();
+  }, INACTIVITY_TIMEOUT);
+}
+
+function bloquearPorInactividad() {
+  document.getElementById('inactivityOverlay').classList.add('show');
+  document.getElementById('inactivityPassword').value = '';
+  document.getElementById('inactivityError').style.display = 'none';
+  document.getElementById('inactivityPassword').focus();
+  secondsRemaining = 60;
+  actualizarTimerInactividad();
+  inactivityCountdown = setInterval(() => {
+    secondsRemaining++;
+    actualizarTimerInactividad();
+  }, 1000);
+}
+
+function actualizarTimerInactividad() {
+  const mins = Math.floor(secondsRemaining / 60);
+  const secs = secondsRemaining % 60;
+  document.getElementById('inactivityTimer').textContent = 
+    String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+}
+
+async function reanudarSesion() {
+  const clave = document.getElementById('inactivityPassword').value.trim();
+  const errorMsg = document.getElementById('inactivityError');
+  
+  if (!clave) {
+    errorMsg.textContent = '⚠️ Introduce una clave';
+    errorMsg.style.display = 'block';
+    return;
+  }
+  
+  const claveUsuarioHash = await obtenerClaveUsuario();
+  const claveIntroducidaHash = await hashSHA256(clave);
+  const claveAdminHash = await hashSHA256(CLAVE_ADMIN_FIJA);
+  
+  if (claveIntroducidaHash === claveUsuarioHash || claveIntroducidaHash === claveAdminHash) {
+    clearInterval(inactivityCountdown);
+    document.getElementById('inactivityOverlay').classList.remove('show');
+    resetInactivityTimer();
+    mostrarAlerta('success', '✅ Sesión reanudada');
+  } else {
+    errorMsg.textContent = '❌ Clave incorrecta';
+    errorMsg.style.display = 'block';
+  }
+}
+
+// Escuchar actividad del usuario
+['click', 'keypress', 'mousemove', 'scroll', 'touchstart', 'keydown'].forEach(evt => {
+  document.addEventListener(evt, resetInactivityTimer, { passive: true });
+});
+
 async function abrirModalCambioClave(){
   document.getElementById('claveActual').value = '';
   document.getElementById('nuevaClave').value = '';
   document.getElementById('confirmarClave').value = '';
   document.getElementById('mensajeErrorClave').style.display = 'none';
+  document.getElementById('requisitosClave').style.display = 'none';
   document.getElementById('modalCambioClave').classList.add('show');
+  actualizarRequisitosClave();
 }
 
 function cerrarModalCambioClave(){
@@ -930,11 +1065,10 @@ function cerrarModalCambioClave(){
 
 async function cambiarClave(){
   const claveActual = document.getElementById('claveActual').value.trim();
-  const nuevaClave = document.getElementById('nuevaClave').value.trim();
-  const confirmarClave = document.getElementById('confirmarClave').value.trim();
+  const nuevaClave = document.getElementById('nuevaClave').value;
+  const confirmarClave = document.getElementById('confirmarClave').value;
   const mensajeError = document.getElementById('mensajeErrorClave');
   
-  // Validaciones
   if(!claveActual){
     mensajeError.textContent = '❌ Debes introducir la clave actual';
     mensajeError.style.display = 'block';
@@ -947,8 +1081,9 @@ async function cambiarClave(){
     return;
   }
   
-  if(nuevaClave.length < CLAVE_MIN_LENGTH){
-    mensajeError.textContent = `❌ La nueva clave debe tener al menos ${CLAVE_MIN_LENGTH} caracteres`;
+  const errores = validarComplejidadClave(nuevaClave);
+  if (errores.length > 0) {
+    mensajeError.innerHTML = '❌ La clave no cumple los requisitos:<br>• ' + errores.join('<br>• ');
     mensajeError.style.display = 'block';
     return;
   }
@@ -959,7 +1094,6 @@ async function cambiarClave(){
     return;
   }
   
-  // Verificar clave actual
   const claveUsuarioHash = await obtenerClaveUsuario();
   const claveActualHash = await hashSHA256(claveActual);
   const claveAdminHash = await hashSHA256(CLAVE_ADMIN_FIJA);
@@ -970,13 +1104,14 @@ async function cambiarClave(){
     return;
   }
   
-  // Todo correcto, guardar nueva clave
   const nuevaClaveHash = await hashSHA256(nuevaClave);
   await guardarClaveUsuario(nuevaClaveHash);
   
   cerrarModalCambioClave();
   mostrarAlerta('success', '✅ Clave de acceso cambiada correctamente');
 }
+
+
 
 function getPeriodoLabel(year, month){return MESES_NOMBRES[month-1]+" "+year;}
 function getDayType(year, month, day){
@@ -1035,7 +1170,7 @@ function llenarSelectAnios(selectId, valorSeleccionado){
 
 function mostrarAlerta(tipo,mensaje,duracion=5000){
   const cont=document.getElementById('alertContainer');
-  const iconos={info:'ℹ️',error:'',success:'✅',warning:'⚠️'};
+  const iconos={info:'ℹ️',error:'❌',success:'✅',warning:'⚠️'};
   const alertDiv=document.createElement('div');
   alertDiv.className='alert alert-'+tipo;
   alertDiv.innerHTML='<span style="font-size:18px">'+(iconos[tipo]||'')+'</span><span>'+mensaje+'</span>';
@@ -1058,7 +1193,8 @@ async function guardarEnNube(mensajeExito){
       festivos: FESTIVOS,
       vacaciones: VACACIONES,
       inicioCurso: INICIO_CURSO,
-      finCurso: FIN_CURSO
+      finCurso: FIN_CURSO,
+      notasPorDia: notasPorDia
     };
     const db = window.firebaseDB;
     const dbRef = window.firebaseRef(db, 'datos');
@@ -1067,7 +1203,7 @@ async function guardarEnNube(mensajeExito){
     return true;
   } catch (e) {
     console.error('Error al guardar:', e);
-    mostrarAlerta('error', ' Error al guardar en la nube: ' + e.message);
+    mostrarAlerta('error', '❌ Error al guardar en la nube: ' + e.message);
     return false;
   }
 }
@@ -1087,6 +1223,7 @@ async function cargarDatosNube() {
       } else { historicalRecords = []; userRecords = []; }
       if (datos.festivos) FESTIVOS = datos.festivos.map(f => ({y: parseInt(f.y), m: parseInt(f.m), d: parseInt(f.d), nombre: f.nombre}));
       if (datos.vacaciones) VACACIONES = datos.vacaciones.map(v => ({y: parseInt(v.y), m: parseInt(v.m), d: parseInt(v.d)}));
+      if (datos.notasPorDia) notasPorDia = datos.notasPorDia;
       if (datos.inicioCurso) INICIO_CURSO = {y: parseInt(datos.inicioCurso.y), m: parseInt(datos.inicioCurso.m), d: parseInt(datos.inicioCurso.d)};
       if (datos.finCurso) FIN_CURSO = {y: parseInt(datos.finCurso.y), m: parseInt(datos.finCurso.m), d: parseInt(datos.finCurso.d)};
       dataSourceMsg = "☁️ Nube";
@@ -1182,7 +1319,7 @@ function onMesSeleccionado(){
 }
 
 function getAll(){return[...historicalRecords,...userRecords];}
-function saveUser(){localStorage.setItem('ca_cache',JSON.stringify({alumnos:ALUMNOS,registros:[...historicalRecords,...userRecords],festivos:FESTIVOS,vacaciones:VACACIONES,inicioCurso:INICIO_CURSO,finCurso:FIN_CURSO}));}
+function saveUser(){localStorage.setItem('ca_cache',JSON.stringify({alumnos:ALUMNOS,registros:[...historicalRecords,...userRecords],festivos:FESTIVOS,vacaciones:VACACIONES,inicioCurso:INICIO_CURSO,finCurso:FIN_CURSO,notasPorDia:notasPorDia}));}
 function pad(n){return n<10?'0'+n:''+n;}
 
 function toggleConfig(){
@@ -1340,21 +1477,22 @@ function abrirDetalleAlumno(alumno){
       const fechaObj=new Date(r.y,r.m-1,r.d);
       const diaSemana=DIAS_SEMANA[fechaObj.getDay()];
       let horario='-';
-      if(r.horaUnica) horario=' '+r.horaUnica;
+      if(r.horaUnica) horario='🕐 '+r.horaUnica;
       else if(r.horaSalida&&r.horaLlegada) horario='🕐 '+r.horaSalida+' - '+r.horaLlegada;
       let detalles='';
-      if(r.causa) detalles='<span class="causa-detalle">📝 '+r.causa+'</span>';
-      if(r.justificada) detalles+=' <span style="color:#166534">✓ Justificada</span>';
+      if(r.justificada) detalles='<span style="color:#166534;font-weight:600">✓ Justificada</span>';
+      else if(r.estado==='ausente') detalles='<span style="color:#dc2626">✗ No justificada</span>';
+      if(r.causa) detalles+=(detalles?'<br>':'')+'<span class="causa-detalle">📝 '+r.causa+'</span>';
       t+='<tr><td><strong>'+fecha+'</strong></td><td>'+diaSemana+'</td><td class="hora-detalle">'+horario+'</td><td>'+(detalles||'-')+'</td></tr>';
     });
     t+='</tbody></table>';
     return t;
   }
   html+=generarTabla(ausencias,'Ausencias','❌');
-  html+=generarTabla(entradasTarde,'Entradas tarde','');
-  html+=generarTabla(salidasPronto,'Salidas pronto','📤');
+  html+=generarTabla(entradasTarde,'Entradas tarde','⏰');
+  html+=generarTabla(salidasPronto,'Salidas pronto','');
   html+=generarTabla(citasMedicas,'Citas médicas','🏥');
-  html+=generarTabla(conciliaciones,'Conciliaciones','👨‍👩‍👧');
+  html+=generarTabla(conciliaciones,'Conciliaciones','👨‍👩👧');
   html+=generarTabla(bajas,'Bajas','🤒');
   if(registros.filter(r=>r.estado!=='presente').length===0){
     html='<div style="padding:40px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px">✅</p><p style="font-size:16px">Este alumno no tiene incidencias registradas</p><p style="margin-top:8px;font-size:13px">Todos sus registros son de asistencia presente.</p></div>';
@@ -1417,11 +1555,11 @@ function crearPDFDetalleAlumno(){
       const fechaObj=new Date(r.y,r.m-1,r.d);
       const diaSemana=DIAS_SEMANA[fechaObj.getDay()];
       let horario='-';
-      if(r.horaUnica) horario='🕐 '+r.horaUnica;
+      if(r.horaUnica) horario=' '+r.horaUnica;
       else if(r.horaSalida&&r.horaLlegada) horario='🕐 '+r.horaSalida+' - '+r.horaLlegada;
       let detalles='';
-      if(r.causa) detalles='📝 '+r.causa;
-      if(r.justificada) detalles+=' ✓ Justificada';
+      if(r.justificada) detalles+='✓ Justificada ';
+      if(r.causa) detalles+='📝 '+r.causa;
       t+='<tr><td><strong>'+fecha+'</strong></td><td>'+diaSemana+'</td><td>'+horario+'</td><td>'+(detalles||'-')+'</td></tr>';
     });
     t+='</tbody></table>';
@@ -1432,8 +1570,8 @@ function crearPDFDetalleAlumno(){
   html+=genTablaPDF(entradasTarde,'Entradas tarde','⏰','#92400e');
   html+=genTablaPDF(salidasPronto,'Salidas pronto','📤','#9d174d');
   html+=genTablaPDF(citasMedicas,'Citas médicas','🏥','#1e40af');
-  html+=genTablaPDF(conciliaciones,'Conciliaciones','👨‍👩‍👧','#3730a3');
-  html+=genTablaPDF(bajas,'Bajas','','#991b1b');
+  html+=genTablaPDF(conciliaciones,'Conciliaciones','‍👩‍👧','#3730a3');
+  html+=genTablaPDF(bajas,'Bajas','🤒','#991b1b');
   
   if(registros.filter(r=>r.estado!=='presente').length===0){
     html+='<div style="padding:30px;text-align:center;color:#6b7280"><p style="font-size:36px;margin-bottom:10px">✅</p><p style="font-size:14px">Este alumno no tiene incidencias registradas. Todos sus registros son de asistencia presente.</p></div>';
@@ -1465,8 +1603,12 @@ function generarListaDetalladaPeriodo(registros, estado, icono){
       const fecha=pad(r.d)+'/'+pad(r.m)+'/'+r.y;
       let horaInfo='';
       if(r.horaUnica) horaInfo='<span class="hora-info">🕐 '+r.horaUnica+'</span>';
-      else if(r.horaSalida&&r.horaLlegada) horaInfo='<span class="hora-info"> '+r.horaSalida+' - '+r.horaLlegada+'</span>';
-      html+='<li class="'+estado+'"><strong>'+alumno+'</strong> - '+fecha+horaInfo+'</li>';
+      else if(r.horaSalida&&r.horaLlegada) horaInfo='<span class="hora-info">🕐 '+r.horaSalida+' - '+r.horaLlegada+'</span>';
+      let justInfo='';
+      if(r.justificada) justInfo=' <span style="color:#166534">✓ Justificada</span>';
+      let causaInfo='';
+      if(r.causa) causaInfo=' <em>('+r.causa+')</em>';
+      html+='<li class="'+estado+'"><strong>'+alumno+'</strong> - '+fecha+horaInfo+justInfo+causaInfo+'</li>';
     });
   });
   html+='</ul></div>';
@@ -1479,7 +1621,7 @@ function crearPDF(tipo){
   if(tipo==='maquinas'){
     const R=getAll();
     let detallesHTML='';
-    const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'🏥',conciliacion:'‍👩‍👧',baja:'🤒'};
+    const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'🏥',conciliacion:'👨👩‍👧',baja:'🤒'};
     ['presente','ausente','entrada_tarde','salida_pronto','cita_medica','conciliacion','baja'].forEach(estado=>{
       detallesHTML+=generarListaDetalladaPeriodo(R, estado, iconos[estado]);
     });
@@ -1515,7 +1657,7 @@ function crearPDF(tipo){
       if(!periodosData[k]) periodosData[k]=[];
       periodosData[k].push(r);
     });
-    const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'🏥',conciliacion:'‍👩‍👧',baja:'🤒'};
+    const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'',cita_medica:'🏥',conciliacion:'👨‍👩‍👧',baja:'🤒'};
     Object.keys(periodosData).sort().forEach(periodo=>{
       detallesHTML+='<h3 style="margin-top:20px;color:#1e3a8a;border-bottom:2px solid #e5e7eb;padding-bottom:8px">📅 '+periodo+'</h3>';
       ['presente','ausente','entrada_tarde','salida_pronto','cita_medica','conciliacion','baja'].forEach(estado=>{
@@ -1580,6 +1722,17 @@ function generarCalendarioEntrada(){
       html+='<div class="day-info">'+registrosDia.length+'/'+ALUMNOS.length+(completado?' ✅':'')+'</div>';
     }
     e.innerHTML=html;
+    
+    // Mostrar icono si hay nota
+    const claveNota = anioSeleccionado+'-'+mesSeleccionado+'-'+d;
+    if(notasPorDia[claveNota]){
+      const iconoNota = document.createElement('div');
+      iconoNota.style.cssText='position:absolute;top:3px;right:3px;font-size:10px;cursor:help';
+      iconoNota.textContent='📝';
+      iconoNota.title=notasPorDia[claveNota];
+      e.appendChild(iconoNota);
+    }
+    
     if(!esFinde&&dayInfo.type==='lectivo'){
       e.onclick=(function(dia,futuro){
         return function(){
@@ -1600,8 +1753,21 @@ function abrirModalAsistencia(dia){
   let html='';
   
   if(esDiaFuturo){
-    html+='<div class="aviso-futuro">⚠️ Este día es futuro. Solo se permite registrar <strong>Bajas</strong>. Los demás estados no están disponibles.</div>';
+    html+='<div class="aviso-futuro">️ Este día es futuro. Solo se permite registrar <strong>Bajas</strong>. Los demás estados no están disponibles.</div>';
   }
+  
+  // Botones de acción rápida
+  html+='<div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">';
+  html+='<button class="btn b6" onclick="copiarDiaAnterior()" style="padding:8px 14px;font-size:12px">📋 Copiar día anterior</button>';
+  html+='<button class="btn b2" onclick="marcarTodosPresentes()" style="padding:8px 14px;font-size:12px">✅ Todos presentes</button>';
+  html+='<button class="btn b4" onclick="limpiarTodos()" style="padding:8px 14px;font-size:12px"> Limpiar todo</button>';
+  html+='</div>';
+  
+  // Nota del día
+  html+='<div style="margin-bottom:16px;padding:12px;background:#fef3c7;border-radius:6px;border-left:4px solid #f59e0b">';
+  html+='<label style="display:block;font-size:13px;font-weight:600;color:#92400e;margin-bottom:6px">📝 Notas del día (opcional):</label>';
+  html+='<textarea id="notaDelDia" placeholder="Ej: Excursión al museo, examen final, reunión de padres..." style="width:100%;padding:8px;border:1px solid #fcd34d;border-radius:6px;font-size:13px;resize:vertical;min-height:60px;font-family:inherit"></textarea>';
+  html+='</div>';
   
   html+='<div style="margin-bottom:16px;padding:12px;background:#f0f9ff;border-radius:6px;border-left:4px solid #2563eb">';
   html+='<strong>'+registrosDia.length+'</strong> de <strong>'+ALUMNOS.length+'</strong> alumnos registrados';
@@ -1613,6 +1779,8 @@ function abrirModalAsistencia(dia){
     const horaUnica=registro?registro.horaUnica||'':'';
     const horaSalida=registro?registro.horaSalida||'':'';
     const horaLlegada=registro?registro.horaLlegada||'':'';
+    const justificada=registro?registro.justificada:false;
+    const causa=registro?registro.causa||'':'';
     html+='<div class="alumno-row" data-alumno="'+alumno+'">';
     html+='<div class="alumno-name">'+alumno+'</div>';
     html+='<div style="display:flex;flex-direction:column;gap:6px">';
@@ -1632,10 +1800,23 @@ function abrirModalAsistencia(dia){
     html+='<div class="hora-fila"><label>Salida:</label><input type="time" class="hora-salida-input" value="'+horaSalida+'"></div>';
     html+='<div class="hora-fila"><label>Llegada:</label><input type="time" class="hora-llegada-input" value="'+horaLlegada+'"></div>';
     html+='</div>';
+    // Campos de ausencia justificada
+    html+='<div class="campos-ausencia" data-alumno="'+alumno+'" style="display:'+(estadoActual==='ausente'?'block':'none')+';margin-top:6px;padding:8px;background:#fee2e2;border-radius:6px">';
+    html+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">';
+    html+='<input type="checkbox" class="chk-justificada" '+(justificada?'checked':'')+' style="width:16px;height:16px">';
+    html+='<label style="font-size:12px;color:#991b1b;font-weight:600">Ausencia justificada</label>';
+    html+='</div>';
+    html+='<textarea class="txt-causa" placeholder="Motivo de la ausencia..." style="width:100%;padding:6px;border:1px solid #fca5a5;border-radius:5px;font-size:12px;resize:vertical;min-height:50px;font-family:inherit">'+causa+'</textarea>';
+    html+='</div>';
     html+='</div></div>';
   });
   
   document.getElementById('modalContenido').innerHTML=html;
+  
+  // Cargar nota existente
+  const claveNota = anioSeleccionado+'-'+mesSeleccionado+'-'+dia;
+  document.getElementById('notaDelDia').value = notasPorDia[claveNota] || '';
+  
   document.getElementById('modalAsistencia').classList.add('show');
 }
 
@@ -1643,13 +1824,16 @@ function toggleCamposHora(select){
   const fila=select.closest('.alumno-row');
   const horaUnica=fila.querySelector('.hora-unica');
   const horaRango=fila.querySelector('.hora-rango');
+  const ausenciaDiv=fila.querySelector('.campos-ausencia');
   const labelHoraUnica=fila.querySelector('.hora-unica label');
   horaUnica.style.display='none';
   horaRango.style.display='none';
+  if(ausenciaDiv) ausenciaDiv.style.display='none';
   const estado=select.value;
   if(estado==='entrada_tarde'){ horaUnica.style.display='flex'; labelHoraUnica.textContent='Hora entrada:'; }
   else if(estado==='salida_pronto'){ horaUnica.style.display='flex'; labelHoraUnica.textContent='Hora salida:'; }
   else if(estado==='cita_medica'||estado==='conciliacion'){ horaRango.style.display='flex'; }
+  else if(estado==='ausente'){ if(ausenciaDiv) ausenciaDiv.style.display='block'; }
 }
 
 function cerrarModalAsistencia(){ document.getElementById('modalAsistencia').classList.remove('show'); diaSeleccionado=null; esDiaFuturo=false; }
@@ -1663,6 +1847,7 @@ function guardarAsistenciaDia(){
     const alumno=select.getAttribute('data-alumno');
     const estado=select.value;
     let horaUnica='', horaSalida='', horaLlegada='';
+    let justificada=false, causa='';
     if(estado==='entrada_tarde'||estado==='salida_pronto'){
       const inputHoraUnica=fila.querySelector('.hora-unica-input');
       if(inputHoraUnica) horaUnica=inputHoraUnica.value;
@@ -1671,16 +1856,31 @@ function guardarAsistenciaDia(){
       const inputLlegada=fila.querySelector('.hora-llegada-input');
       if(inputSalida) horaSalida=inputSalida.value;
       if(inputLlegada) horaLlegada=inputLlegada.value;
+    }else if(estado==='ausente'){
+      const chkJust=fila.querySelector('.chk-justificada');
+      const txtCausa=fila.querySelector('.txt-causa');
+      if(chkJust) justificada=chkJust.checked;
+      if(txtCausa) causa=txtCausa.value.trim();
     }
     const idx=userRecords.findIndex(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===diaSeleccionado&&r.alumno===alumno);
     if(idx>=0)userRecords.splice(idx,1);
     const idxH=historicalRecords.findIndex(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===diaSeleccionado&&r.alumno===alumno);
     if(idxH>=0)historicalRecords.splice(idxH,1);
     if(estado){
-      userRecords.push({ y:anioSeleccionado,m:mesSeleccionado,d:diaSeleccionado, alumno:alumno,estado:estado, causa:'',justificada:false, horaSalida:horaSalida,horaLlegada:horaLlegada,horaUnica:horaUnica, hist:false });
+      userRecords.push({ y:anioSeleccionado,m:mesSeleccionado,d:diaSeleccionado, alumno:alumno,estado:estado, causa:causa,justificada:justificada, horaSalida:horaSalida,horaLlegada:horaLlegada,horaUnica:horaUnica, hist:false });
       guardados++;
     }
   });
+  
+  // Guardar nota del día
+  const claveNota = anioSeleccionado+'-'+mesSeleccionado+'-'+diaSeleccionado;
+  const nota = document.getElementById('notaDelDia').value.trim();
+  if (nota) {
+    notasPorDia[claveNota] = nota;
+  } else {
+    delete notasPorDia[claveNota];
+  }
+  
   saveUser();
   renderAll();
   generarCalendarioEntrada();
@@ -1688,6 +1888,159 @@ function guardarAsistenciaDia(){
   mostrarAlerta('success','✅ Guardados '+guardados+' registros del día '+pad(diaSeleccionado)+'/'+pad(mesSeleccionado)+'/'+anioSeleccionado);
   guardarEnNube('✅ Asistencia guardada en la nube');
 }
+
+// COPIAR DÍA ANTERIOR
+function copiarDiaAnterior() {
+  let diaAnt = diaSeleccionado - 1;
+  let mesAnt = mesSeleccionado;
+  let anioAnt = anioSeleccionado;
+  
+  let intentos = 0;
+  while (intentos < 400) {
+    if (diaAnt < 1) {
+      mesAnt--;
+      if (mesAnt < 1) { mesAnt = 12; anioAnt--; }
+      diaAnt = new Date(anioAnt, mesAnt, 0).getDate();
+    }
+    const tipo = getDayType(anioAnt, mesAnt, diaAnt);
+    if (tipo.type === 'lectivo') break;
+    diaAnt--;
+    intentos++;
+  }
+  
+  if (intentos >= 400) {
+    mostrarAlerta('warning', '️ No se encontró ningún día lectivo anterior');
+    return;
+  }
+  
+  const registrosAnt = getAll().filter(r => r.y === anioAnt && r.m === mesAnt && r.d === diaAnt);
+  
+  const filas = document.querySelectorAll('.alumno-row');
+  let copiados = 0;
+  filas.forEach(fila => {
+    const select = fila.querySelector('.alumno-select');
+    const alumno = select.getAttribute('data-alumno');
+    const regAnt = registrosAnt.find(r => r.alumno === alumno);
+    if (regAnt) {
+      if (!(esDiaFuturo && regAnt.estado !== '' && regAnt.estado !== 'baja')) {
+        select.value = regAnt.estado;
+        toggleCamposHora(select);
+        if (regAnt.horaUnica) {
+          const input = fila.querySelector('.hora-unica-input');
+          if (input) input.value = regAnt.horaUnica;
+        }
+        if (regAnt.horaSalida) {
+          const input = fila.querySelector('.hora-salida-input');
+          if (input) input.value = regAnt.horaSalida;
+        }
+        if (regAnt.horaLlegada) {
+          const input = fila.querySelector('.hora-llegada-input');
+          if (input) input.value = regAnt.horaLlegada;
+        }
+        if (regAnt.justificada !== undefined) {
+          const chk = fila.querySelector('.chk-justificada');
+          if (chk) chk.checked = regAnt.justificada;
+        }
+        if (regAnt.causa) {
+          const txt = fila.querySelector('.txt-causa');
+          if (txt) txt.value = regAnt.causa;
+        }
+        copiados++;
+      }
+    }
+  });
+  
+  mostrarAlerta('success', '📋 Copiados '+copiados+' registros del día '+pad(diaAnt)+'/'+pad(mesAnt)+'/'+anioAnt);
+}
+
+function marcarTodosPresentes() {
+  const filas = document.querySelectorAll('.alumno-row');
+  filas.forEach(fila => {
+    const select = fila.querySelector('.alumno-select');
+    select.value = 'presente';
+    toggleCamposHora(select);
+  });
+  mostrarAlerta('success', '✅ Todos marcados como presentes');
+}
+
+function limpiarTodos() {
+  const filas = document.querySelectorAll('.alumno-row');
+  filas.forEach(fila => {
+    const select = fila.querySelector('.alumno-select');
+    select.value = '';
+    toggleCamposHora(select);
+    const chk = fila.querySelector('.chk-justificada');
+    if (chk) chk.checked = false;
+    const txt = fila.querySelector('.txt-causa');
+    if (txt) txt.value = '';
+  });
+  mostrarAlerta('info', ' Registros limpiados');
+}
+
+// NAVEGACIÓN CON FLECHAS
+function navegarDia(dir) {
+  const erMes = document.getElementById('erMes');
+  let m = parseInt(erMes.value);
+  let y = calcularAnioParaMes(m);
+  const ultimoDia = new Date(y, m, 0).getDate();
+  
+  let d = diaSeleccionado || DIA_HOY;
+  d += dir;
+  
+  if (d > ultimoDia) {
+    m++;
+    if (m > 12) { m = 1; y++; }
+    d = 1;
+    erMes.value = m;
+    onMesSeleccionado();
+  } else if (d < 1) {
+    m--;
+    if (m < 1) { m = 12; y--; }
+    d = new Date(y, m, 0).getDate();
+    erMes.value = m;
+    onMesSeleccionado();
+  }
+  
+  const tipo = getDayType(y, m, d);
+  if (tipo.type === 'lectivo') {
+    const fecha = new Date(y, m-1, d);
+    fecha.setHours(0,0,0,0);
+    esDiaFuturo = fecha > FECHA_HOY;
+    setTimeout(() => abrirModalAsistencia(d), 100);
+  } else {
+    mostrarAlerta('info', 'ℹ️ '+tipo.label+' - no se puede registrar asistencia');
+  }
+}
+
+// ATAJOS DE TECLADO
+document.addEventListener('keydown', function(e) {
+  // Ctrl+S: guardar asistencia
+  if (e.ctrlKey && e.key === 's') {
+    e.preventDefault();
+    if (document.getElementById('modalAsistencia').classList.contains('show')) {
+      guardarAsistenciaDia();
+    }
+  }
+  
+  // Escape: cerrar modales
+  if (e.key === 'Escape') {
+    if (document.getElementById('modalAsistencia').classList.contains('show')) cerrarModalAsistencia();
+    if (document.getElementById('modalDetalle').classList.contains('show')) cerrarModalDetalle();
+    if (document.getElementById('modalDetalleAlumno').classList.contains('show')) cerrarModalDetalleAlumno();
+    if (document.getElementById('modalConfirmacion').classList.contains('show')) cerrarModalConfirmacion();
+    if (document.getElementById('modalEditarAlumno').classList.contains('show')) cerrarModalEditarAlumno();
+    if (document.getElementById('modalCambioClave').classList.contains('show')) cerrarModalCambioClave();
+  }
+  
+  // Flechas: navegar entre días
+  if (!document.querySelector('.modal-overlay.show') && !document.getElementById('inactivityOverlay').classList.contains('show')) {
+    const p7 = document.getElementById('p7');
+    if (p7 && p7.classList.contains('on')) {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); navegarDia(-1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); navegarDia(1); }
+    }
+  }
+});
 
 function actualizarCalendarioDesdePeriodo(){
   const periodoVal=document.getElementById('calPeriodo').value;
@@ -1743,7 +2096,7 @@ function actualizarCalendario(y,m){
       if(counts.entrada_tarde>0) stats.push('⏰'+counts.entrada_tarde);
       if(counts.salida_pronto>0) stats.push('📤'+counts.salida_pronto);
       if(counts.cita_medica>0) stats.push('🏥'+counts.cita_medica);
-      if(counts.conciliacion>0) stats.push('‍👩‍👧'+counts.conciliacion);
+      if(counts.conciliacion>0) stats.push('👨👩‍👧'+counts.conciliacion);
       if(counts.baja>0) stats.push('🤒'+counts.baja);
       html+='<div class="day-stats">'+stats.join(' ')+'</div>';
       html+='<div class="day-info">'+totalRegistros+'/'+ALUMNOS.length+' alumnos</div>';
@@ -1764,8 +2117,16 @@ function abrirModalDetalle(y,m,d){
   const registros=getAll().filter(r=>r.y===y&&r.m===m&&r.d===d);
   document.getElementById('modalDetalleTitulo').textContent='📋 Detalle del '+pad(d)+'/'+pad(m)+'/'+y;
   let html='';
+  
+  // Mostrar nota del día si existe
+  const claveNota = y+'-'+m+'-'+d;
+  const notaDia = notasPorDia[claveNota];
+  if (notaDia) {
+    html += '<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:12px;border-radius:6px;margin-bottom:16px"><strong style="color:#92400e">📝 Nota del día:</strong><p style="color:#92400e;margin-top:6px;font-style:italic">'+notaDia+'</p></div>';
+  }
+  
   if(registros.length===0){
-    html='<div style="padding:20px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px">📭</p><p>No hay registros para este día</p><p style="margin-top:12px"><button class="btn b2" onclick="cerrarModalDetalle();abrirModalAsistenciaDesdeDetalle('+d+')">➕ Añadir registros</button></p></div>';
+    html+='<div style="padding:20px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px">📭</p><p>No hay registros para este día</p><p style="margin-top:12px"><button class="btn b2" onclick="cerrarModalDetalle();abrirModalAsistenciaDesdeDetalle('+d+')">➕ Añadir registros</button></p></div>';
   }else{
     const counts={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
     registros.forEach(r=>{if(counts[r.estado]!==undefined)counts[r.estado]++;});
@@ -1782,7 +2143,8 @@ function abrirModalDetalle(y,m,d){
       const reg=registros.find(r=>r.alumno===alumno);
       if(reg){
         html+='<div class="day-detail-item"><div class="nombre">'+alumno+'</div><div class="estado estado-'+reg.estado+'">'+(LABELS_ESTADOS[reg.estado]||reg.estado)+'</div>';
-        if(reg.horaUnica) html+='<div class="hora"> '+reg.horaUnica+'</div>';
+        if(reg.justificada) html+='<div class="hora" style="color:#166534">✓ Justificada</div>';
+        if(reg.horaUnica) html+='<div class="hora">🕐 '+reg.horaUnica+'</div>';
         if(reg.horaSalida&&reg.horaLlegada) html+='<div class="hora">🕐 '+reg.horaSalida+' - '+reg.horaLlegada+'</div>';
         if(reg.causa) html+='<div class="hora">📝 '+reg.causa+'</div>';
         html+='</div>';
@@ -1836,7 +2198,7 @@ function confirmarResetear(){
 }
 
 function confirmarVaciarActividades(){
-  abrirModalConfirmacion('⚠️ Importante: Haz un backup primero','<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:15px;border-radius:6px;margin-bottom:15px"><strong>💡 Recomendación:</strong> Antes de vaciar las actividades, te recomendamos exportar un backup del curso actual para conservar un registro.</div><p style="margin-bottom:15px">¿Seguro que quieres borrar <strong>TODOS los registros de asistencia</strong>?</p><p style="background:#dcfce7;padding:10px;border-radius:6px;margin-bottom:15px"><strong>Se mantendrán:</strong><br>• Lista de alumnos<br>• Festivos configurados<br>• Vacaciones configuradas<br>• Fechas del curso</p><p style="color:#dc2626;font-weight:600">Esta acción NO se puede deshacer.</p>',function(){
+  abrirModalConfirmacion('️ Importante: Haz un backup primero','<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:15px;border-radius:6px;margin-bottom:15px"><strong>💡 Recomendación:</strong> Antes de vaciar las actividades, te recomendamos exportar un backup del curso actual para conservar un registro.</div><p style="margin-bottom:15px">¿Seguro que quieres borrar <strong>TODOS los registros de asistencia</strong>?</p><p style="background:#dcfce7;padding:10px;border-radius:6px;margin-bottom:15px"><strong>Se mantendrán:</strong><br>• Lista de alumnos<br>• Festivos configurados<br>• Vacaciones configuradas<br>• Fechas del curso</p><p style="color:#dc2626;font-weight:600">Esta acción NO se puede deshacer.</p>',function(){
     historicalRecords=[];
     userRecords=[];
     saveUser();
@@ -2099,7 +2461,7 @@ function confirmarEliminarVacacion(idx){
   });
 }
 
-// ✅ FUNCIÓN DE BACKUP
+// ✅ FUNCIÓN DE BACKUP (incluye notas)
 function exportarBackup(){
   const inicioStr=pad(INICIO_CURSO.d)+'/'+pad(INICIO_CURSO.m)+'/'+INICIO_CURSO.y;
   const finStr=pad(FIN_CURSO.d)+'/'+pad(FIN_CURSO.m)+'/'+FIN_CURSO.y;
@@ -2147,6 +2509,7 @@ tr:hover{background:#f9fafb}
 .estado-baja{color:#dc2626;font-weight:600}
 .alumno-card{background:#f9fafb;padding:20px;border-radius:8px;margin:15px 0;border-left:4px solid #3b82f6}
 .alumno-card h3{margin-top:0;color:#1e3a8a}
+.nota-dia{background:#fef3c7;border-left:4px solid #f59e0b;padding:10px;border-radius:6px;margin:10px 0;font-style:italic;color:#92400e}
 .footer{margin-top:40px;padding-top:20px;border-top:2px solid #e5e7eb;text-align:center;color:#6b7280;font-size:12px}
 @media print{body{background:#fff;padding:0}.wrap{box-shadow:none;padding:20px}}
 </style>
@@ -2197,23 +2560,29 @@ tr:hover{background:#f9fafb}
     <table>
     <thead><tr><th>Fecha</th><th>Día</th>`;
     ALUMNOS.forEach(a=>{html+=`<th>${a.split(',')[0]}</th>`;});
-    html+=`</tr></thead><tbody>`;
+    html+=`<th>Nota</th></tr></thead><tbody>`;
     
     const last=new Date(periodo.y,periodo.m,0);
     for(let d=1;d<=last.getDate();d++){
       const fecha=new Date(periodo.y,periodo.m-1,d);
       const diaSemana=DIAS_SEMANA[fecha.getDay()];
       const fechaStr=pad(d)+'/'+pad(periodo.m)+'/'+periodo.y;
+      const claveNota = periodo.y+'-'+periodo.m+'-'+d;
+      const nota = notasPorDia[claveNota] || '';
       html+=`<tr><td>${fechaStr}</td><td>${diaSemana}</td>`;
       
       ALUMNOS.forEach(alumno=>{
         const reg=registrosPeriodo.find(r=>r.d===d&&r.alumno===alumno);
         if(reg){
-          html+=`<td class="estado-${reg.estado}">${LABELS_ESTADOS[reg.estado]}</td>`;
+          let estadoTxt = LABELS_ESTADOS[reg.estado]||reg.estado;
+          if(reg.justificada) estadoTxt += ' ✓';
+          if(reg.causa) estadoTxt += ' ('+reg.causa+')';
+          html+=`<td class="estado-${reg.estado}">${estadoTxt}</td>`;
         }else{
           html+=`<td style="color:#9ca3af">-</td>`;
         }
       });
+      html+=`<td style="font-size:11px;color:#92400e">${nota}</td>`;
       html+=`</tr>`;
     }
     html+=`</tbody></table>`;
@@ -2245,11 +2614,16 @@ tr:hover{background:#f9fafb}
     const totalRegistros=Object.values(s).reduce((a,b)=>a+b,0);
     const porcentajeAsistencia=totalRegistros>0?Math.round((s.presente/totalRegistros)*100):0;
     
+    // Ausencias justificadas vs no justificadas
+    const ausenciasAlumno = R.filter(r=>r.alumno===alumno&&r.estado==='ausente');
+    const justificadas = ausenciasAlumno.filter(r=>r.justificada).length;
+    const noJustificadas = ausenciasAlumno.length - justificadas;
+    
     html+=`<div class="alumno-card">
     <h3>${alumno}</h3>
     <div class="stats-grid">
     <div class="stat-box"><div class="num">${s.presente}</div><div class="lbl">Presentes</div></div>
-    <div class="stat-box"><div class="num">${s.ausente}</div><div class="lbl">Ausencias</div></div>
+    <div class="stat-box"><div class="num">${s.ausente}</div><div class="lbl">Ausencias (${justificadas}✓ / ${noJustificadas}✗)</div></div>
     <div class="stat-box"><div class="num">${s.entrada_tarde}</div><div class="lbl">Entradas Tarde</div></div>
     <div class="stat-box"><div class="num">${s.salida_pronto}</div><div class="lbl">Salidas Pronto</div></div>
     <div class="stat-box"><div class="num">${s.cita_medica}</div><div class="lbl">Citas Médicas</div></div>
@@ -2285,17 +2659,13 @@ document.getElementById('todayDate').textContent = '📅 Hoy: '+DIA_HOY+'/'+pad(
 
 // INICIALIZAR SISTEMA DE LOGIN
 async function iniciarSistema(){
-  // Verificar si hay sesión activa
   if(verificarSesionActiva()){
     document.getElementById('loginOverlay').style.display = 'none';
     inicializarApp();
     cargarDatosNube();
   }else{
-    // Mostrar login
     document.getElementById('loginOverlay').style.display = 'flex';
     document.getElementById('loginPassword').focus();
-    
-    // Inicializar app en segundo plano
     inicializarApp();
     cargarDatosNube();
   }
