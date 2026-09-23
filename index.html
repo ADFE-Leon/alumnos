@@ -11,7 +11,6 @@
 body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f5f7fa 0%,#e4e8ec 100%);color:#1f2937;padding:16px;min-height:100vh}
 .wrap{max-width:1280px;margin:0 auto}
 
-/* HEADER */
 .header{background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 100%);border-radius:14px;padding:16px 24px;color:#fff;box-shadow:0 6px 20px rgba(30,58,138,0.25);margin-bottom:16px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px}
 .header-left h1{font-size:26px;font-weight:700;letter-spacing:-0.3px}
 .header-left .sub{font-size:13px;opacity:0.85;margin-top:2px}
@@ -26,7 +25,6 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:linear
 .indicador-mini .ind-num{font-size:20px;font-weight:700;line-height:1}
 .indicador-mini .ind-label{font-size:9px;opacity:0.9;text-transform:uppercase;letter-spacing:0.3px;font-weight:600;margin-top:3px}
 
-/* BARRA DE PESTAÑAS */
 .tabs-container{background:#fff;border-radius:12px 12px 0 0;padding:16px 16px 0 16px;border:1px solid #e5e7eb;border-bottom:none;box-shadow:0 4px 12px rgba(0,0,0,0.06)}
 .tabs{display:flex;gap:4px;margin-bottom:0;align-items:center}
 .tb{padding:14px 28px;border:none;cursor:pointer;font-size:16px;font-weight:600;border-radius:10px 10px 0 0;background:linear-gradient(135deg,#e5e7eb,#d1d5db);color:#6b7280;transition:all 0.3s;display:flex;align-items:center;gap:8px;position:relative;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
@@ -44,18 +42,15 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:linear
 .origen-bar{background:#fff;border-radius:8px;padding:8px 14px;margin-top:8px;display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#6b7280;box-shadow:0 2px 6px rgba(0,0,0,0.05);border:1px solid #e5e7eb}
 .origen-bar strong{color:#2563eb}
 
-/* PANELES */
 .pnl{background:#fff;padding:24px;border-radius:0 0 12px 12px;box-shadow:0 4px 12px rgba(0,0,0,0.06);display:none;border:1px solid #e5e7eb;border-top:none;animation:fadeIn 0.3s ease}
 .pnl.on{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .pnl h2{margin-bottom:18px;font-size:20px;color:#1f2937;display:flex;align-items:center;gap:10px}
 
-/* SELECTOR DE MES */
 .mes-selector{display:flex;align-items:center;gap:12px;margin:0}
 .mes-selector label{font-size:14px;font-weight:600;color:#1f2937;margin:0}
 .mes-selector .sel{max-width:280px}
 
-/* SUB-PESTAÑAS INLINE */
 .subtabs-inline{display:none;gap:4px;padding:0;background:transparent;border-radius:0;margin:0;margin-left:8px}
 .subtabs-inline.visible{display:flex}
 .subtb{padding:10px 18px;border:none;cursor:pointer;font-size:14px;font-weight:600;border-radius:8px 8px 0 0;background:#e5e7eb;color:#6b7280;transition:all 0.3s;display:flex;align-items:center;gap:6px}
@@ -63,7 +58,6 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:linear
 .subtb.on{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;box-shadow:0 4px 12px rgba(102,126,234,0.3)}
 .subtb.desactivada{display:none}
 
-/* BOTONES */
 .btn{padding:10px 20px;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700;color:#fff;margin-right:5px;margin-bottom:5px;transition:all 0.3s;display:inline-flex;align-items:center;gap:6px;position:relative;overflow:hidden;text-transform:uppercase;letter-spacing:0.5px;box-shadow:0 4px 12px rgba(0,0,0,0.15)}
 .btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);transition:left 0.5s}
 .btn:hover::before{left:100%}
@@ -78,7 +72,6 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:linear
 .b7{background:linear-gradient(135deg,#f97316,#ea580c)}
 .b8{background:linear-gradient(135deg,#f59e0b,#d97706)}
 
-/* TABLAS */
 table{width:100%;border-collapse:collapse;margin-top:12px;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
 th{background:linear-gradient(135deg,#f9fafb,#f3f4f6);text-align:left;padding:10px 12px;font-size:11px;text-transform:uppercase;color:#6b7280;font-weight:700;letter-spacing:0.5px;border-bottom:2px solid #e5e7eb}
 th.r,td.r{text-align:center}
@@ -89,7 +82,6 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 .alumno-link{color:#3b82f6;cursor:pointer;text-decoration:none;font-weight:600;transition:color 0.2s}
 .alumno-link:hover{color:#1d4ed8;text-decoration:underline}
 
-/* CALENDARIO */
 .calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:16px}
 .cal-header{background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:8px;text-align:center;font-weight:700;font-size:11px;border-radius:6px}
 .cal-day{background:#fff;border:2px solid #e5e7eb;padding:6px;min-height:75px;cursor:pointer;border-radius:6px;position:relative;transition:all 0.2s}
@@ -110,13 +102,11 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 .cal-day.status-future{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);border-color:#d1d5db;opacity:0.7;cursor:pointer}
 .cal-day.status-future:hover{opacity:1;border-color:#3b82f6}
 
-/* INFORMES */
 .informe-container{background:#fff;border-radius:10px;padding:20px;border:1px solid #e5e7eb;box-shadow:0 2px 8px rgba(0,0,0,0.04);margin-top:16px}
 .informe-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid #f3f4f6}
 .informe-header h2{margin:0;font-size:18px}
 .informe-botones{display:flex;gap:8px}
 
-/* CONFIGURACIÓN DASHBOARD */
 .config-dashboard{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
 .config-card{background:#fff;border:2px solid #e5e7eb;border-radius:12px;padding:24px;cursor:pointer;transition:all 0.3s;text-align:center;position:relative;overflow:hidden}
 .config-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
@@ -137,13 +127,17 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 .config-panel{display:none}
 .config-panel.active{display:block;animation:fadeIn 0.3s ease}
 
-/* ZONA DE PELIGRO */
 .reset-section{margin-top:32px;padding:24px;background:linear-gradient(135deg,#fef2f2,#fee2e2);border:2px solid #fca5a5;border-radius:12px;text-align:center;box-shadow:0 4px 12px rgba(239,68,68,0.1)}
 .reset-section h3{color:#dc2626;font-size:18px;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:8px}
 .reset-section p{color:#6b7280;font-size:13px;margin-bottom:16px}
 .reset-section .btn{padding:12px 28px;font-size:15px;margin:5px}
 
-/* CONFIG SECTIONS */
+.backup-section{background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:2px solid #7dd3fc;border-radius:12px;padding:24px;margin-bottom:24px;text-align:center}
+.backup-section h3{color:#0369a1;margin-bottom:10px;font-size:18px;display:flex;align-items:center;justify-content:center;gap:8px}
+.backup-section p{color:#64748b;font-size:13px;margin-bottom:16px}
+.backup-section .btn{padding:12px 28px;font-size:15px}
+.backup-section .backup-info{color:#94a3b8;font-size:11px;margin-top:10px}
+
 .config-section{margin-bottom:24px;padding:20px;background:#f9fafb;border-radius:10px;border:1px solid #e5e7eb}
 .config-section h3{margin-bottom:14px;color:#1e3a8a;font-size:17px;display:flex;align-items:center;gap:8px}
 .config-form{display:flex;gap:10px;flex-wrap:wrap;align-items:end;margin-bottom:14px}
@@ -180,7 +174,6 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 .stat-item.consumidos .stat-value{color:#059669}
 .stat-item.pendientes .stat-value{color:#dc2626}
 
-/* MODAL */
 .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(4px)}
 .modal-overlay.show{display:flex}
 .modal{background:#fff;border-radius:14px;padding:24px;max-width:700px;width:90%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3);animation:modalIn 0.3s ease}
@@ -238,7 +231,6 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 .filter-group label{font-size:11px;font-weight:600;color:#374151}
 .sel{padding:8px 10px;border:1px solid #d1d5db;border-radius:7px;font-size:13px}
 
-/* LEYENDA EN LÍNEA */
 .leyenda{display:flex;gap:10px;flex-wrap:nowrap;font-size:11px;padding:8px 12px;background:#f9fafb;border-radius:7px;overflow-x:auto;white-space:nowrap}
 .leyenda-item{display:flex;align-items:center;gap:5px;flex-shrink:0}
 .leyenda-color{width:14px;height:14px;border-radius:3px;border:1px solid #d1d5db;flex-shrink:0}
@@ -322,11 +314,9 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 
 <div class="wrap">
 
-<!-- HEADER -->
 <div class="header">
 <div class="header-left">
-<h1>📚 Control de Alumnos</h1>
-
+<h1> Control de Alumnos</h1>
 <p class="sub">Seguimiento de asistencias</p>
 </div>
 <div class="header-center">
@@ -356,10 +346,9 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 
 <div id="alertContainer" class="alert-container"></div>
 
-<!-- BARRA DE PESTAÑAS -->
 <div class="tabs-container">
 <div class="tabs">
-<button class="tb on" data-t="p7"> Entrada de Datos</button>
+<button class="tb on" data-t="p7">📝 Entrada de Datos</button>
 <button class="tb" data-t="p9">🔍 Consultas</button>
 
 <div class="subtabs-inline" id="subtabsConsultas">
@@ -369,16 +358,14 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 </div>
 
 <div style="display:flex;flex-direction:row;align-items:center;gap:10px;margin-left:auto">
-<div class="origen-bar"> Conectado: <strong id="dataSource">Cargando...</strong></div>
+<div class="origen-bar">📂 Conectado: <strong id="dataSource">Cargando...</strong></div>
 <button class="tb-config" id="btnConfig" onclick="toggleConfig()">⚙️ Configuración</button>
 </div>
 </div>
 </div>
 
-<!-- PANEL: ENTRADA DE DATOS -->
 <div id="p7" class="pnl on">
 
-<!-- Selector de mes y leyenda en la misma línea -->
 <div style="display:flex;align-items:center;gap:16px;margin-bottom:18px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:8px">
 <div class="mes-selector" style="margin:0;flex-shrink:0">
 <label for="erMes">Mes:</label>
@@ -402,15 +389,14 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 <div id="calendarioEntrada" class="calendar"></div>
 </div>
 
-<!-- PANEL: CONSULTAS -->
 <div id="p9" class="pnl">
 <div id="p2" class="pnl on" style="box-shadow:none;border:none;padding:0">
 <div class="informe-container">
 <div class="informe-header">
-<h2>👤 Total por Alumno</h2>
+<h2> Total por Alumno</h2>
 <div class="informe-botones">
-<button class="btn b4" onclick="imprimir('maquinas')">🖨️ Imprimir</button>
-<button class="btn b7" onclick="crearPDF('maquinas')">📄 Crear PDF</button>
+<button class="btn b4" onclick="imprimir('maquinas')">️ Imprimir</button>
+<button class="btn b7" onclick="crearPDF('maquinas')"> Crear PDF</button>
 </div>
 </div>
 <table id="tablaMaquinasTbl"><thead><tr><th>Alumno</th><th class="r">Presentes</th><th class="r">Ausencias</th><th class="r">Entradas tarde</th><th class="r">Salidas pronto</th><th class="r">Citas médicas</th><th class="r">Conciliaciones</th><th class="r">Bajas</th></tr></thead><tbody id="t2"></tbody></table>
@@ -457,7 +443,6 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 </div>
 </div>
 
-<!-- PANEL: CONFIGURACIÓN -->
 <div id="p8" class="pnl" style="box-shadow:none;border:none;margin-top:16px;display:none">
 <h2>⚙️ Configuración</h2>
 
@@ -491,7 +476,7 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 <div id="panelFechas" class="config-panel">
 <button class="config-volver" onclick="volverDashboardConfig()">← Volver a Configuración</button>
 <div class="config-section" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-color:#86efac">
-<h3> Fechas del Curso</h3>
+<h3>📅 Fechas del Curso</h3>
 <p style="color:#166534;font-size:12px;margin-bottom:10px">Define el periodo del curso escolar. Los calendarios se ajustarán automáticamente a estas fechas.</p>
 <div class="rango-fechas">
 <div class="rango-box" style="background:#dcfce7;border-color:#86efac">
@@ -535,7 +520,7 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 <div id="panelFestivos" class="config-panel">
 <button class="config-volver" onclick="volverDashboardConfig()">← Volver a Configuración</button>
 <div class="config-section">
-<h3>🎉 Gestión de Festivos</h3>
+<h3> Gestión de Festivos</h3>
 <div class="config-form">
 <div class="filter-group"><label>Día</label><select id="nuevoFestivoDia"></select></div>
 <div class="filter-group"><label>Mes</label><select id="nuevoFestivoMes">
@@ -600,12 +585,21 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 </div>
 </div>
 
+<!-- BACKUP -->
+<div class="backup-section">
+<h3> Backup del Curso</h3>
+<p>Exporta todos los datos del curso actual a un archivo HTML que podrás consultar e imprimir en cualquier momento.</p>
+<button class="btn b1" onclick="exportarBackup()" style="padding:12px 28px;font-size:15px"> Exportar backup del curso</button>
+<p class="backup-info">Se guardará como: <strong id="backupFilename">backup_curso_2026_27.html</strong></p>
+</div>
+
+<!-- ZONA DE PELIGRO -->
 <div class="reset-section">
 <h3>⚠️ Zona de peligro</h3>
 <p>Estas acciones son irreversibles. Asegúrate de haber guardado tus datos antes de continuar.</p>
 <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
 <button class="btn b8" onclick="confirmarVaciarActividades()"> Vaciar solo actividades</button>
-<button class="btn b3" onclick="confirmarResetear()">🗑️ Resetear todo</button>
+<button class="btn b3" onclick="confirmarResetear()">️ Resetear todo</button>
 </div>
 <p style="margin-top:12px;font-size:11px;color:#9ca3af"><strong>Vaciar actividades:</strong> Borra todos los registros de asistencia pero mantiene alumnos, festivos, vacaciones y fechas del curso.</p>
 </div>
@@ -614,7 +608,6 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 </div>
 </div>
 
-<!-- MODALES -->
 <div class="modal-overlay" id="modalAsistencia">
 <div class="modal">
 <div class="modal-header">
@@ -651,7 +644,7 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 </div>
 <div id="modalDetalleAlumnoContenido" class="detalle-alumno"></div>
 <div class="modal-footer">
-<button class="btn b4" onclick="imprimirDetalleAlumno()">🖨️ Imprimir</button>
+<button class="btn b4" onclick="imprimirDetalleAlumno()">️ Imprimir</button>
 <button class="btn b7" onclick="crearPDFDetalleAlumno()">📄 Crear PDF</button>
 <button class="btn b1" onclick="cerrarModalDetalleAlumno()">Cerrar</button>
 </div>
@@ -684,14 +677,13 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 </div>
 <div class="modal-footer">
 <button class="btn b4" onclick="cerrarModalEditarAlumno()">Cancelar</button>
-<button class="btn b1" onclick="confirmarEdicionAlumno()"> Guardar</button>
+<button class="btn b1" onclick="confirmarEdicionAlumno()">💾 Guardar</button>
 </div>
 </div>
 </div>
 
 <div id="printArea" class="print-area"></div>
 
-<!-- FIREBASE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
@@ -722,7 +714,6 @@ setTimeout(() => {
 }, 100);
 </script>
 
-<!-- JAVASCRIPT PRINCIPAL -->
 <script>
 const ALUMNOS_BASE=["AMEZ FUERTES, RAUL","BLANCO FRANCO, SANTIAGO ANDRÉS","FERNÁNDEZ MACAYO, M. ISABEL","MAIQUEZ DOMINGUEZ, HECTOR JOSÉ","MALLO RODRÍGUEZ, MIGUEL","MUÑIZ CAÑIBANO, MARÍA BELÉN"];
 const DIAS=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
@@ -871,7 +862,7 @@ async function cargarDatosNube() {
       if (datos.vacaciones) VACACIONES = datos.vacaciones.map(v => ({y: parseInt(v.y), m: parseInt(v.m), d: parseInt(v.d)}));
       if (datos.inicioCurso) INICIO_CURSO = {y: parseInt(datos.inicioCurso.y), m: parseInt(datos.inicioCurso.m), d: parseInt(datos.inicioCurso.d)};
       if (datos.finCurso) FIN_CURSO = {y: parseInt(datos.finCurso.y), m: parseInt(datos.finCurso.m), d: parseInt(datos.finCurso.d)};
-      dataSourceMsg = "☁️ Nube";
+      dataSourceMsg = "️ Nube";
       document.getElementById('dataSource').textContent = dataSourceMsg;
       saveUser();
       inicializarApp();
@@ -901,6 +892,11 @@ function actualizarInfoCurso(){
   const countFechas=document.getElementById('countFechas');
   if(countFechas){
     countFechas.innerHTML='<strong>'+inicioStr+'</strong> - <strong>'+finStr+'</strong>';
+  }
+  const backupFilename=document.getElementById('backupFilename');
+  if(backupFilename){
+    const cursoAnio=INICIO_CURSO.y+'/'+String(FIN_CURSO.y).slice(-2);
+    backupFilename.textContent='backup_curso_'+cursoAnio.replace('/','_')+'.html';
   }
 }
 
@@ -1118,7 +1114,7 @@ function abrirDetalleAlumno(alumno){
       const diaSemana=DIAS_SEMANA[fechaObj.getDay()];
       let horario='-';
       if(r.horaUnica) horario='🕐 '+r.horaUnica;
-      else if(r.horaSalida&&r.horaLlegada) horario=' '+r.horaSalida+' - '+r.horaLlegada;
+      else if(r.horaSalida&&r.horaLlegada) horario='🕐 '+r.horaSalida+' - '+r.horaLlegada;
       let detalles='';
       if(r.causa) detalles='<span class="causa-detalle">📝 '+r.causa+'</span>';
       if(r.justificada) detalles+=' <span style="color:#166534">✓ Justificada</span>';
@@ -1131,7 +1127,7 @@ function abrirDetalleAlumno(alumno){
   html+=generarTabla(entradasTarde,'Entradas tarde','⏰');
   html+=generarTabla(salidasPronto,'Salidas pronto','📤');
   html+=generarTabla(citasMedicas,'Citas médicas','');
-  html+=generarTabla(conciliaciones,'Conciliaciones','👨‍👩‍👧');
+  html+=generarTabla(conciliaciones,'Conciliaciones','👨👩‍👧');
   html+=generarTabla(bajas,'Bajas','');
   if(registros.filter(r=>r.estado!=='presente').length===0){
     html='<div style="padding:40px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px">✅</p><p style="font-size:16px">Este alumno no tiene incidencias registradas</p><p style="margin-top:8px;font-size:13px">Todos sus registros son de asistencia presente.</p></div>';
@@ -1172,7 +1168,7 @@ function crearPDFDetalleAlumno(){
   const bajas=registros.filter(r=>r.estado==='baja');
   
   let html='<div class="pdf-content">';
-  html+='<h1> Control de Alumnos</h1>';
+  html+='<h1>📚 Control de Alumnos</h1>';
   html+='<h2>Detalle de: '+alumnoDetalleActual+'</h2>';
   html+='<p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>';
   
@@ -1205,12 +1201,12 @@ function crearPDFDetalleAlumno(){
     return t;
   }
   
-  html+=genTablaPDF(ausencias,'Ausencias','❌','#991b1b');
+  html+=genTablaPDF(ausencias,'Ausencias','','#991b1b');
   html+=genTablaPDF(entradasTarde,'Entradas tarde','⏰','#92400e');
   html+=genTablaPDF(salidasPronto,'Salidas pronto','📤','#9d174d');
   html+=genTablaPDF(citasMedicas,'Citas médicas','🏥','#1e40af');
-  html+=genTablaPDF(conciliaciones,'Conciliaciones','👨‍👩👧','#3730a3');
-  html+=genTablaPDF(bajas,'Bajas','🤒','#991b1b');
+  html+=genTablaPDF(conciliaciones,'Conciliaciones','👨‍👩‍','#3730a3');
+  html+=genTablaPDF(bajas,'Bajas','','#991b1b');
   
   if(registros.filter(r=>r.estado!=='presente').length===0){
     html+='<div style="padding:30px;text-align:center;color:#6b7280"><p style="font-size:36px;margin-bottom:10px">✅</p><p style="font-size:14px">Este alumno no tiene incidencias registradas. Todos sus registros son de asistencia presente.</p></div>';
@@ -1242,7 +1238,7 @@ function generarListaDetalladaPeriodo(registros, estado, icono){
       const fecha=pad(r.d)+'/'+pad(r.m)+'/'+r.y;
       let horaInfo='';
       if(r.horaUnica) horaInfo='<span class="hora-info">🕐 '+r.horaUnica+'</span>';
-      else if(r.horaSalida&&r.horaLlegada) horaInfo='<span class="hora-info">🕐 '+r.horaSalida+' - '+r.horaLlegada+'</span>';
+      else if(r.horaSalida&&r.horaLlegada) horaInfo='<span class="hora-info"> '+r.horaSalida+' - '+r.horaLlegada+'</span>';
       html+='<li class="'+estado+'"><strong>'+alumno+'</strong> - '+fecha+horaInfo+'</li>';
     });
   });
@@ -1256,7 +1252,7 @@ function crearPDF(tipo){
   if(tipo==='maquinas'){
     const R=getAll();
     let detallesHTML='';
-    const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'🏥',conciliacion:'👨👩‍👧',baja:'🤒'};
+    const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'🏥',conciliacion:'👨‍👩‍👧',baja:'🤒'};
     ['presente','ausente','entrada_tarde','salida_pronto','cita_medica','conciliacion','baja'].forEach(estado=>{
       detallesHTML+=generarListaDetalladaPeriodo(R, estado, iconos[estado]);
     });
@@ -1292,7 +1288,7 @@ function crearPDF(tipo){
       if(!periodosData[k]) periodosData[k]=[];
       periodosData[k].push(r);
     });
-    const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'',conciliacion:'👨‍‍👧',baja:''};
+    const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'',cita_medica:'🏥',conciliacion:'👨‍👩‍👧',baja:'🤒'};
     Object.keys(periodosData).sort().forEach(periodo=>{
       detallesHTML+='<h3 style="margin-top:20px;color:#1e3a8a;border-bottom:2px solid #e5e7eb;padding-bottom:8px">📅 '+periodo+'</h3>';
       ['presente','ausente','entrada_tarde','salida_pronto','cita_medica','conciliacion','baja'].forEach(estado=>{
@@ -1517,11 +1513,11 @@ function actualizarCalendario(y,m){
       const stats=[];
       if(counts.presente>0) stats.push('✓'+counts.presente);
       if(counts.ausente>0) stats.push('✗'+counts.ausente);
-      if(counts.entrada_tarde>0) stats.push(''+counts.entrada_tarde);
+      if(counts.entrada_tarde>0) stats.push('⏰'+counts.entrada_tarde);
       if(counts.salida_pronto>0) stats.push('📤'+counts.salida_pronto);
       if(counts.cita_medica>0) stats.push('🏥'+counts.cita_medica);
-      if(counts.conciliacion>0) stats.push('👨‍👩‍👧'+counts.conciliacion);
-      if(counts.baja>0) stats.push(''+counts.baja);
+      if(counts.conciliacion>0) stats.push('👨👩‍👧'+counts.conciliacion);
+      if(counts.baja>0) stats.push('🤒'+counts.baja);
       html+='<div class="day-stats">'+stats.join(' ')+'</div>';
       html+='<div class="day-info">'+totalRegistros+'/'+ALUMNOS.length+' alumnos</div>';
     }else{
@@ -1598,7 +1594,7 @@ function imprimir(tipo){
 }
 
 function confirmarResetear(){
-  abrirModalConfirmacion('Primera confirmación','¿Estás seguro de que quieres resetear TODOS los datos? Esta acción eliminará:\n\n• Todos los alumnos\n• Todos los registros de asistencia\n• Festivos y vacaciones configurados\n• Fechas del curso\n\nEsta acción NO se puede deshacer.',function(){
+  abrirModalConfirmacion('⚠️ Importante: Haz un backup primero','<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:15px;border-radius:6px;margin-bottom:15px"><strong>💡 Recomendación:</strong> Antes de borrar todos los datos, te recomendamos exportar un backup del curso actual para no perder la información.</div><p style="margin-bottom:15px">¿Estás seguro de que quieres resetear TODOS los datos? Esta acción eliminará:</p><ul style="text-align:left;margin-left:20px;margin-bottom:15px"><li>Todos los alumnos</li><li>Todos los registros de asistencia</li><li>Festivos y vacaciones configurados</li><li>Fechas del curso</li></ul><p style="color:#dc2626;font-weight:600">Esta acción NO se puede deshacer.</p>',function(){
     abrirModalConfirmacion('⚠️ ÚLTIMA CONFIRMACIÓN','¿REALMENTE ESTÁS SEGURO?\n\nSe borrarán TODOS los datos permanentemente.\n\nSi continúas, perderás toda la información.',function(){
       localStorage.removeItem('ca_cache');
       localStorage.removeItem('ca_user');
@@ -1613,7 +1609,7 @@ function confirmarResetear(){
 }
 
 function confirmarVaciarActividades(){
-  abrirModalConfirmacion('Vaciar actividades','¿Seguro que quieres borrar <strong>TODOS los registros de asistencia</strong>?\n\nSe mantendrán:\n• Lista de alumnos\n• Festivos configurados\n• Vacaciones configuradas\n• Fechas del curso\n\nEsta acción NO se puede deshacer.',function(){
+  abrirModalConfirmacion('⚠️ Importante: Haz un backup primero','<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:15px;border-radius:6px;margin-bottom:15px"><strong>💡 Recomendación:</strong> Antes de vaciar las actividades, te recomendamos exportar un backup del curso actual para conservar un registro.</div><p style="margin-bottom:15px">¿Seguro que quieres borrar <strong>TODOS los registros de asistencia</strong>?</p><p style="background:#dcfce7;padding:10px;border-radius:6px;margin-bottom:15px"><strong>Se mantendrán:</strong><br>• Lista de alumnos<br>• Festivos configurados<br>• Vacaciones configuradas<br>• Fechas del curso</p><p style="color:#dc2626;font-weight:600">Esta acción NO se puede deshacer.</p>',function(){
     historicalRecords=[];
     userRecords=[];
     saveUser();
@@ -1820,7 +1816,7 @@ function renderListaVacaciones(){
   VACACIONES.sort((a,b)=>{ if(a.y!==b.y)return a.y-b.y; if(a.m!==b.m)return a.m-b.m; return a.d-b.d; });
   VACACIONES.forEach(function(vacacion,idx){
     const fecha=pad(vacacion.d)+'/'+pad(vacacion.m)+'/'+vacacion.y;
-    lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+fecha+'</strong></div><div class="config-item-actions"><button class="btn b3 action-btn" onclick="confirmarEliminarVacacion('+idx+')">🗑️ Eliminar</button></div></div>';
+    lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+fecha+'</strong></div><div class="config-item-actions"><button class="btn b3 action-btn" onclick="confirmarEliminarVacacion('+idx+')">️ Eliminar</button></div></div>';
   });
 }
 function agregarVacacion(){
@@ -1874,6 +1870,187 @@ function confirmarEliminarVacacion(idx){
     VACACIONES.splice(idx,1);renderListaVacaciones();renderEstadisticasConfig();generarCalendarioEntrada();actualizarContadoresConfig();
     guardarEnNube('✅ Vacación eliminada y cambios guardados en la nube');
   });
+}
+
+// ✅ FUNCIÓN DE BACKUP
+function exportarBackup(){
+  const inicioStr=pad(INICIO_CURSO.d)+'/'+pad(INICIO_CURSO.m)+'/'+INICIO_CURSO.y;
+  const finStr=pad(FIN_CURSO.d)+'/'+pad(FIN_CURSO.m)+'/'+FIN_CURSO.y;
+  const cursoAnio=INICIO_CURSO.y+'/'+String(FIN_CURSO.y).slice(-2);
+  
+  const R=getAll();
+  const totalPresentes=R.filter(r=>r.estado==='presente').length;
+  const totalAusentes=R.filter(r=>r.estado==='ausente').length;
+  const totalEntradasTarde=R.filter(r=>r.estado==='entrada_tarde').length;
+  const totalSalidasPronto=R.filter(r=>r.estado==='salida_pronto').length;
+  const totalCitasMedicas=R.filter(r=>r.estado==='cita_medica').length;
+  const totalConciliaciones=R.filter(r=>r.estado==='conciliacion').length;
+  const totalBajas=R.filter(r=>r.estado==='baja').length;
+  
+  let html=`<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Backup Control de Alumnos - Curso ${cursoAnio}</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f5f7fa;color:#1f2937;padding:20px;line-height:1.6}
+.wrap{max-width:1200px;margin:0 auto;background:#fff;padding:40px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+h1{color:#1e3a8a;margin-bottom:10px;font-size:28px}
+h2{color:#1e3a8a;margin:30px 0 15px 0;font-size:22px;border-bottom:2px solid #e5e7eb;padding-bottom:8px}
+h3{color:#374151;margin:20px 0 10px 0;font-size:18px}
+.info-curso{background:linear-gradient(135deg,#dbeafe,#bfdbfe);padding:20px;border-radius:8px;margin-bottom:30px}
+.info-curso p{margin:5px 0;font-size:14px}
+.info-curso strong{color:#1e40af}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0}
+.stat-box{background:#f9fafb;padding:15px;border-radius:8px;text-align:center;border-left:4px solid #3b82f6}
+.stat-box .num{font-size:24px;font-weight:700;color:#1e3a8a}
+.stat-box .lbl{font-size:12px;color:#6b7280;margin-top:4px}
+table{width:100%;border-collapse:collapse;margin:15px 0;font-size:13px}
+th{background:#f3f4f6;padding:10px;text-align:left;font-weight:600;color:#374151;border-bottom:2px solid #d1d5db}
+td{padding:8px 10px;border-bottom:1px solid #e5e7eb}
+tr:hover{background:#f9fafb}
+.estado-presente{color:#166534;font-weight:600}
+.estado-ausente{color:#dc2626;font-weight:600}
+.estado-entrada_tarde{color:#d97706;font-weight:600}
+.estado-salida_pronto{color:#db2777;font-weight:600}
+.estado-cita_medica{color:#2563eb;font-weight:600}
+.estado-conciliacion{color:#7c3aed;font-weight:600}
+.estado-baja{color:#dc2626;font-weight:600}
+.alumno-card{background:#f9fafb;padding:20px;border-radius:8px;margin:15px 0;border-left:4px solid #3b82f6}
+.alumno-card h3{margin-top:0;color:#1e3a8a}
+.footer{margin-top:40px;padding-top:20px;border-top:2px solid #e5e7eb;text-align:center;color:#6b7280;font-size:12px}
+@media print{body{background:#fff;padding:0}.wrap{box-shadow:none;padding:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>📚 Control de Alumnos - Backup del Curso</h1>
+<div class="info-curso">
+<p><strong>Curso:</strong> ${inicioStr} - ${finStr}</p>
+<p><strong>Fecha de generación:</strong> ${new Date().toLocaleDateString('es-ES')}</p>
+<p><strong>Total de alumnos:</strong> ${ALUMNOS.length}</p>
+</div>
+
+<h2>📊 Resumen General del Curso</h2>
+<div class="stats-grid">
+<div class="stat-box"><div class="num">${totalPresentes}</div><div class="lbl">Presentes</div></div>
+<div class="stat-box"><div class="num">${totalAusentes}</div><div class="lbl">Ausencias</div></div>
+<div class="stat-box"><div class="num">${totalEntradasTarde}</div><div class="lbl">Entradas Tarde</div></div>
+<div class="stat-box"><div class="num">${totalSalidasPronto}</div><div class="lbl">Salidas Pronto</div></div>
+<div class="stat-box"><div class="num">${totalCitasMedicas}</div><div class="lbl">Citas Médicas</div></div>
+<div class="stat-box"><div class="num">${totalConciliaciones}</div><div class="lbl">Conciliaciones</div></div>
+<div class="stat-box"><div class="num">${totalBajas}</div><div class="lbl">Bajas</div></div>
+</div>
+
+<h2> Lista de Alumnos</h2>
+<table>
+<thead><tr><th>Alumno</th><th>Presentes</th><th>Ausencias</th><th>Entradas Tarde</th><th>Salidas Pronto</th><th>Citas Médicas</th><th>Conciliaciones</th><th>Bajas</th></tr></thead>
+<tbody>`;
+
+  const sm={};
+  ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
+  R.forEach(r=>{if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++;});
+  
+  ALUMNOS.forEach(alumno=>{
+    const s=sm[alumno];
+    html+=`<tr><td><strong>${alumno}</strong></td><td>${s.presente}</td><td>${s.ausente}</td><td>${s.entrada_tarde}</td><td>${s.salida_pronto}</td><td>${s.cita_medica}</td><td>${s.conciliacion}</td><td>${s.baja}</td></tr>`;
+  });
+  
+  html+=`</tbody></table>
+
+<h2>📅 Calendario Detallado Día a Día</h2>
+`;
+
+  const periodos=generarPeriodos();
+  periodos.forEach(periodo=>{
+    const registrosPeriodo=R.filter(r=>r.y===periodo.y&&r.m===periodo.m);
+    html+=`<h3>${periodo.label}</h3>
+    <table>
+    <thead><tr><th>Fecha</th><th>Día</th>`;
+    ALUMNOS.forEach(a=>{html+=`<th>${a.split(',')[0]}</th>`;});
+    html+=`</tr></thead><tbody>`;
+    
+    const last=new Date(periodo.y,periodo.m,0);
+    for(let d=1;d<=last.getDate();d++){
+      const fecha=new Date(periodo.y,periodo.m-1,d);
+      const diaSemana=DIAS_SEMANA[fecha.getDay()];
+      const fechaStr=pad(d)+'/'+pad(periodo.m)+'/'+periodo.y;
+      html+=`<tr><td>${fechaStr}</td><td>${diaSemana}</td>`;
+      
+      ALUMNOS.forEach(alumno=>{
+        const reg=registrosPeriodo.find(r=>r.d===d&&r.alumno===alumno);
+        if(reg){
+          html+=`<td class="estado-${reg.estado}">${LABELS_ESTADOS[reg.estado]}</td>`;
+        }else{
+          html+=`<td style="color:#9ca3af">-</td>`;
+        }
+      });
+      html+=`</tr>`;
+    }
+    html+=`</tbody></table>`;
+  });
+
+  if(FESTIVOS.length>0){
+    html+=`<h2>🎉 Festivos Configurados</h2>
+    <table><thead><tr><th>Fecha</th><th>Nombre</th></tr></thead><tbody>`;
+    FESTIVOS.forEach(f=>{
+      html+=`<tr><td>${pad(f.d)}/${pad(f.m)}/${f.y}</td><td>${f.nombre}</td></tr>`;
+    });
+    html+=`</tbody></table>`;
+  }
+
+  if(VACACIONES.length>0){
+    html+=`<h2>🏖️ Vacaciones Registradas</h2>
+    <table><thead><tr><th>Fecha</th></tr></thead><tbody>`;
+    VACACIONES.forEach(v=>{
+      html+=`<tr><td>${pad(v.d)}/${pad(v.m)}/${v.y}</td></tr>`;
+    });
+    html+=`</tbody></table>`;
+  }
+
+  html+=`<h2> Resumen Final por Alumno</h2>
+  <p style="margin-bottom:15px;color:#6b7280">Estadísticas completas de cada alumno durante todo el curso:</p>`;
+  
+  ALUMNOS.forEach(alumno=>{
+    const s=sm[alumno];
+    const totalRegistros=Object.values(s).reduce((a,b)=>a+b,0);
+    const porcentajeAsistencia=totalRegistros>0?Math.round((s.presente/totalRegistros)*100):0;
+    
+    html+=`<div class="alumno-card">
+    <h3>${alumno}</h3>
+    <div class="stats-grid">
+    <div class="stat-box"><div class="num">${s.presente}</div><div class="lbl">Presentes</div></div>
+    <div class="stat-box"><div class="num">${s.ausente}</div><div class="lbl">Ausencias</div></div>
+    <div class="stat-box"><div class="num">${s.entrada_tarde}</div><div class="lbl">Entradas Tarde</div></div>
+    <div class="stat-box"><div class="num">${s.salida_pronto}</div><div class="lbl">Salidas Pronto</div></div>
+    <div class="stat-box"><div class="num">${s.cita_medica}</div><div class="lbl">Citas Médicas</div></div>
+    <div class="stat-box"><div class="num">${s.conciliacion}</div><div class="lbl">Conciliaciones</div></div>
+    <div class="stat-box"><div class="num">${s.baja}</div><div class="lbl">Bajas</div></div>
+    </div>
+    <p style="margin-top:10px"><strong>Total registros:</strong> ${totalRegistros} | <strong>Porcentaje de asistencia:</strong> ${porcentajeAsistencia}%</p>
+    </div>`;
+  });
+
+  html+=`<div class="footer">
+  <p>Backup generado automáticamente por Control de Alumnos</p>
+  <p>Curso ${cursoAnio} | Generado el ${new Date().toLocaleDateString('es-ES')} a las ${new Date().toLocaleTimeString('es-ES')}</p>
+  </div>
+</div>
+</body>
+</html>`;
+  
+  const blob=new Blob([html],{type:'text/html'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download=`backup_curso_${cursoAnio.replace('/','_')}.html`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  mostrarAlerta('success','✅ Backup exportado correctamente');
 }
 
 document.getElementById('fPeriodo').addEventListener('change',renderTiempo);
