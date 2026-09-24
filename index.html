@@ -1123,7 +1123,7 @@ const R=getAll();const tb=document.getElementById('t2');tb.innerHTML='';
 const sm={};ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
 R.forEach(r=>{
   if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++;
-  if(esPresente(r.estado)) sm[r.alumno].presente++;
+  if(esPresente(r.estado) && r.estado!=='presente') sm[r.alumno].presente++;
 });
 let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
 ALUMNOS.forEach(m=>{
@@ -1146,8 +1146,9 @@ filt.forEach(r=>{
   const k=getPeriodoLabel(r.y,r.m);
   if(!ag[k]) ag[k]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};
   if(ag[k][r.estado]!==undefined) ag[k][r.estado]++;
-  if(esPresente(r.estado)) ag[k].presente++;
+  if(esPresente(r.estado) && r.estado!=='presente') ag[k].presente++;
 });
+
 const ks=Object.keys(ag).sort((a,b)=>{const partsA=a.split(' '),monthA=MESES_NOMBRES.indexOf(partsA[0]),yearA=parseInt(partsA[1]);const partsB=b.split(' '),monthB=MESES_NOMBRES.indexOf(partsB[0]),yearB=parseInt(partsB[1]);if(yearA!==yearB) return yearA-yearB;return monthA-monthB;});
 let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};
 if(ks.length===0){tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:#9ca3af">Sin registros</td></tr>';}
@@ -1644,7 +1645,7 @@ const totalConciliaciones=R.filter(r=>r.estado==='conciliacion').length;
 const totalBajas=R.filter(r=>r.estado==='baja').length;
 let html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Backup Control de Alumnos - Curso ${cursoAnio}</title><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',system-ui,sans-serif;background:#f5f7fa;color:#1f2937;padding:20px;line-height:1.6}.wrap{max-width:1200px;margin:0 auto;background:#fff;padding:40px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1)}h1{color:#1e3a8a;margin-bottom:10px;font-size:28px}h2{color:#1e3a8a;margin:30px 0 15px 0;font-size:22px;border-bottom:2px solid #e5e7eb;padding-bottom:8px}h3{color:#374151;margin:20px 0 10px 0;font-size:18px}.info-curso{background:linear-gradient(135deg,#dbeafe,#bfdbfe);padding:20px;border-radius:8px;margin-bottom:30px}.info-curso p{margin:5px 0;font-size:14px}.info-curso strong{color:#1e40af}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0}.stat-box{background:#f9fafb;padding:15px;border-radius:8px;text-align:center;border-left:4px solid #3b82f6}.stat-box .num{font-size:24px;font-weight:700;color:#1e3a8a}.stat-box .lbl{font-size:12px;color:#6b7280;margin-top:4px}table{width:100%;border-collapse:collapse;margin:15px 0;font-size:13px}th{background:#f3f4f6;padding:10px;text-align:left;font-weight:600;color:#374151;border-bottom:2px solid #d1d5db}td{padding:8px 10px;border-bottom:1px solid #e5e7eb}tr:hover{background:#f9fafb}.alumno-card{background:#f9fafb;padding:20px;border-radius:8px;margin:15px 0;border-left:4px solid #3b82f6}.alumno-card h3{margin-top:0;color:#1e3a8a}.footer{margin-top:40px;padding-top:20px;border-top:2px solid #e5e7eb;text-align:center;color:#6b7280;font-size:12px}@media print{body{background:#fff;padding:0}.wrap{box-shadow:none;padding:20px}}</style></head><body><div class="wrap"><h1>📚 Control de Alumnos - Backup</h1><div class="info-curso"><p><strong>Curso:</strong> ${inicioStr} - ${finStr}</p><p><strong>Fecha de generación:</strong> ${new Date().toLocaleDateString('es-ES')}</p><p><strong>Total de alumnos:</strong> ${ALUMNOS.length}</p></div><h2>📊 Resumen General</h2><div class="stats-grid"><div class="stat-box"><div class="num">${totalPresentes}</div><div class="lbl">Presentes</div></div><div class="stat-box"><div class="num">${totalAusentes}</div><div class="lbl">Ausencias</div></div><div class="stat-box"><div class="num">${totalEntradasTarde}</div><div class="lbl">Entradas Tarde</div></div><div class="stat-box"><div class="num">${totalSalidasPronto}</div><div class="lbl">Salidas Pronto</div></div><div class="stat-box"><div class="num">${totalCitasMedicas}</div><div class="lbl">Citas Médicas</div></div><div class="stat-box"><div class="num">${totalConciliaciones}</div><div class="lbl">Conciliaciones</div></div><div class="stat-box"><div class="num">${totalBajas}</div><div class="lbl">Bajas</div></div></div><h2>👥 Lista de Alumnos</h2><table><thead><tr><th>Alumno</th><th>Presentes</th><th>Ausencias</th><th>Entradas Tarde</th><th>Salidas Pronto</th><th>Citas Médicas</th><th>Conciliaciones</th><th>Bajas</th></tr></thead><tbody>`;
 const sm={};ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
-R.forEach(r=>{if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++;if(esPresente(r.estado)) sm[r.alumno].presente++;});
+R.forEach(r=>{if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++;if(esPresente(r.estado) && r.estado!=='presente') sm[r.alumno].presente++;});
 ALUMNOS.forEach(alumno=>{const s=sm[alumno];html+=`<tr><td><strong>${alumno}</strong></td><td>${s.presente}</td><td>${s.ausente}</td><td>${s.entrada_tarde}</td><td>${s.salida_pronto}</td><td>${s.cita_medica}</td><td>${s.conciliacion}</td><td>${s.baja}</td></tr>`;});
 html+=`</tbody></table><h2>📅 Calendario Detallado</h2>`;
 const periodos=generarPeriodos();
