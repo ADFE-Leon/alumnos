@@ -326,7 +326,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 <p style="font-size:13px;color:#9ca3af;margin-bottom:20px">Introduce tu contraseña para continuar</p>
 <input type="password" id="inactivityPassword" placeholder="Contraseña" style="width:100%;padding:12px;border:2px solid #e5e7eb;border-radius:8px;font-size:15px;margin-bottom:12px" onkeypress="if(event.key==='Enter')reanudarSesion()">
 <div id="inactivityError" style="background:#fee2e2;color:#991b1b;padding:10px;border-radius:6px;margin-bottom:12px;display:none;font-size:13px"></div>
-<button class="btn b1" onclick="reanudarSesion()" style="width:100%;padding:12px;font-size:15px"> Reanudar sesión</button>
+<button class="btn b1" onclick="reanudarSesion()" style="width:100%;padding:12px;font-size:15px">🔓 Reanudar sesión</button>
 </div>
 </div>
 <div id="loader"><div class="spinner"></div>Cargando datos desde la nube...</div>
@@ -342,7 +342,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 <div class="header-right">
 <div class="curso-mini">
-<div class="label"> Curso actual</div>
+<div class="label">📅 Curso actual</div>
 <div class="fechas" id="cursoInfoTextoGlobal">01/03/2026 - 28/02/2027</div>
 </div>
 <div class="indicadores">
@@ -356,7 +356,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 <div class="tabs-container">
 <div class="tabs">
 <button class="tb on" data-t="p7">📝 Entrada de Datos</button>
-<button class="tb" data-t="p9"> Consultas</button>
+<button class="tb" data-t="p9">🔍 Consultas</button>
 <div class="subtabs-inline" id="subtabsConsultas">
 <button class="subtb on" data-st="p2"> Por Alumno</button>
 <button class="subtb" data-st="p3">📊 Por Mes/Año</button>
@@ -364,7 +364,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 <div style="display:flex;flex-direction:row;align-items:center;gap:10px;margin-left:auto">
 <div class="origen-bar">📂 Conectado: <strong id="dataSource">Cargando...</strong></div>
-<button class="tb-config" id="btnConfig" onclick="toggleConfig()">️ Configuración</button>
+<button class="tb-config" id="btnConfig" onclick="toggleConfig()">⚙️ Configuración</button>
 </div>
 </div>
 </div>
@@ -393,10 +393,10 @@ Si olvidaste la contraseña, contacta con el administrador.
 <div id="p2" class="pnl on" style="box-shadow:none;border:none;padding:0">
 <div class="informe-container">
 <div class="informe-header">
-<h2>👤 Total por Alumno</h2>
+<h2> Total por Alumno</h2>
 <div class="informe-botones">
-<button class="btn b4" onclick="imprimir('maquinas')">🖨️ Imprimir</button>
-<button class="btn b7" onclick="crearPDF('maquinas')">📄 Crear PDF</button>
+<button class="btn b4" onclick="imprimir('maquinas')">️ Imprimir</button>
+<button class="btn b7" onclick="crearPDF('maquinas')"> Crear PDF</button>
 </div>
 </div>
 <table id="tablaMaquinasTbl"><thead><tr><th>Alumno</th><th class="r">Presentes</th><th class="r">Ausencias</th><th class="r">Entradas tarde</th><th class="r">Salidas pronto</th><th class="r">Citas médicas</th><th class="r">Conciliaciones</th><th class="r">Bajas</th></tr></thead><tbody id="t2"></tbody></table>
@@ -405,10 +405,10 @@ Si olvidaste la contraseña, contacta con el administrador.
 <div id="p3" class="pnl" style="box-shadow:none;border:none;padding:0">
 <div class="informe-container">
 <div class="informe-header">
-<h2>📊 Resumen por Periodo</h2>
+<h2> Resumen por Periodo</h2>
 <div class="informe-botones">
-<button class="btn b4" onclick="imprimir('tiempo')">🖨️ Imprimir</button>
-<button class="btn b7" onclick="crearPDF('tiempo')">📄 Crear PDF</button>
+<button class="btn b4" onclick="imprimir('tiempo')">️ Imprimir</button>
+<button class="btn b7" onclick="crearPDF('tiempo')"> Crear PDF</button>
 </div>
 </div>
 <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap">
@@ -491,13 +491,13 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 </div>
-<button class="btn b2" onclick="guardarFechasCurso()" style="padding:10px 22px">💾 Guardar fechas</button>
+<button class="btn b2" onclick="guardarFechasCurso()" style="padding:10px 22px"> Guardar fechas</button>
 </div>
 </div>
 <div id="panelAlumnos" class="config-panel">
 <button class="config-volver" onclick="volverDashboardConfig()">← Volver</button>
 <div class="config-section">
-<h3>👥 Gestión de Alumnos</h3>
+<h3> Gestión de Alumnos</h3>
 <div class="config-form">
 <div class="filter-group"><label>Nombre del alumno</label><input type="text" id="nuevoAlumno" placeholder="Ej: GARCÍA LÓPEZ, JUAN"></div>
 <button class="btn b2" onclick="agregarAlumno()">➕ Añadir</button>
@@ -567,16 +567,16 @@ Si olvidaste la contraseña, contacta con el administrador.
 <div class="backup-section">
 <h3>💾 Backup del Curso</h3>
 <p>Exporta todos los datos a un archivo HTML.</p>
-<button class="btn b1" onclick="exportarBackup()" style="padding:12px 28px;font-size:15px"> Exportar backup</button>
+<button class="btn b1" onclick="exportarBackup()" style="padding:12px 28px;font-size:15px">📤 Exportar backup</button>
 <p class="backup-info">Se guardará como: <strong id="backupFilename">backup_curso_2026_27.html</strong></p>
 </div>
 <div class="backup-section" style="background:linear-gradient(135deg,#f5f3ff,#ede9fe);border-color:#a78bfa" id="seccionCambiarClave">
 <h3>🔑 Cambiar contraseña</h3>
 <p>Modifica tu contraseña de acceso. Tu número de usuario no puede cambiarse.</p>
-<button class="btn b6" onclick="abrirModalCambioClave()" style="padding:12px 28px;font-size:15px"> Cambiar contraseña</button>
+<button class="btn b6" onclick="abrirModalCambioClave()" style="padding:12px 28px;font-size:15px">🔐 Cambiar contraseña</button>
 </div>
 <div class="reset-section">
-<h3>️ Zona de peligro</h3>
+<h3>⚠️ Zona de peligro</h3>
 <p>Estas acciones son irreversibles.</p>
 <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
 <button class="btn b8" onclick="confirmarVaciarActividades()">🧹 Vaciar actividades</button>
@@ -658,7 +658,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 <div class="modal-overlay" id="modalCambioClave">
 <div class="modal" style="max-width:500px">
 <div class="modal-header">
-<h3> Cambiar contraseña</h3>
+<h3>🔑 Cambiar contraseña</h3>
 <button class="modal-close" onclick="cerrarModalCambioClave()">×</button>
 </div>
 <div style="padding:10px 0">
@@ -677,11 +677,11 @@ Si olvidaste la contraseña, contacta con el administrador.
 <div id="requisitosClave" style="background:#f0f9ff;border-left:4px solid #3b82f6;padding:10px;border-radius:6px;margin-top:8px;font-size:12px;display:none">
 <strong style="color:#0369a1">Requisitos:</strong>
 <ul style="margin:8px 0 0 20px;color:#64748b">
-<li id="req-longitud"> Mínimo 6 caracteres</li>
-<li id="req-mayus">⚪ Al menos 1 mayúscula</li>
+<li id="req-longitud">⚪ Mínimo 6 caracteres</li>
+<li id="req-mayus"> Al menos 1 mayúscula</li>
 <li id="req-minus">⚪ Al menos 1 minúscula</li>
 <li id="req-numero">⚪ Al menos 1 número</li>
-<li id="req-especial"> Al menos 1 carácter especial</li>
+<li id="req-especial">⚪ Al menos 1 carácter especial</li>
 </ul>
 </div>
 <div class="input-group" style="margin-top:12px">
@@ -692,7 +692,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 <div class="modal-footer">
 <button class="btn b4" onclick="cerrarModalCambioClave()">Cancelar</button>
-<button class="btn b6" onclick="cambiarClave()">🔐 Cambiar</button>
+<button class="btn b6" onclick="cambiarClave()"> Cambiar</button>
 </div>
 </div>
 </div>
@@ -761,7 +761,7 @@ const DIA_HOY=FECHA_HOY.getDate();
 const MES_HOY=FECHA_HOY.getMonth()+1;
 const ANIO_HOY=FECHA_HOY.getFullYear();
 
-// FUNCIÓN AUXILIAR: ¿Es presente?
+// FUNCIÓN AUXILIAR: ¿Es presente? (incluye incidencias)
 function esPresente(estado) {
   return estado === 'presente' || 
          estado === 'entrada_tarde' || 
@@ -899,7 +899,7 @@ return;
 }
 const clave=document.getElementById('inactivityPassword').value.trim();
 const errorMsg=document.getElementById('inactivityError');
-if(!clave){errorMsg.textContent='⚠️ Introduce tu contraseña';errorMsg.style.display='block';return;}
+if(!clave){errorMsg.textContent='️ Introduce tu contraseña';errorMsg.style.display='block';return;}
 const claveHash=await obtenerClaveUsuario(usuarioActual.id);
 const claveIntroducidaHash=await hashSHA256(clave);
 if(claveIntroducidaHash===claveHash){
@@ -938,10 +938,10 @@ const claveActual=document.getElementById('claveActual').value.trim();
 const nuevaClave=document.getElementById('nuevaClave').value;
 const confirmarClave=document.getElementById('confirmarClave').value;
 const mensajeError=document.getElementById('mensajeErrorClave');
-if(!claveActual){mensajeError.textContent=' Debes introducir la contraseña actual';mensajeError.style.display='block';return;}
+if(!claveActual){mensajeError.textContent='❌ Debes introducir la contraseña actual';mensajeError.style.display='block';return;}
 if(!nuevaClave){mensajeError.textContent='❌ Debes introducir una nueva contraseña';mensajeError.style.display='block';return;}
 const errores=validarComplejidadClave(nuevaClave);
-if(errores.length>0){mensajeError.innerHTML='❌ La contraseña no cumple los requisitos:<br>• '+errores.join('<br>• ');mensajeError.style.display='block';return;}
+if(errores.length>0){mensajeError.innerHTML=' La contraseña no cumple los requisitos:<br>• '+errores.join('<br>• ');mensajeError.style.display='block';return;}
 if(nuevaClave!==confirmarClave){mensajeError.textContent='❌ Las contraseñas no coinciden';mensajeError.style.display='block';return;}
 const claveActualHash=await obtenerClaveUsuario(usuarioActual.id);
 const claveIntroducidaHash=await hashSHA256(claveActual);
@@ -1046,7 +1046,7 @@ const backupFilename=document.getElementById('backupFilename');
 if(backupFilename){const cursoAnio=INICIO_CURSO.y+'/'+String(FIN_CURSO.y).slice(-2);backupFilename.textContent='backup_curso_'+cursoAnio.replace('/','_')+'.html';}
 }
 function inicializarApp(){
-document.getElementById('todayDate').textContent='📅 Hoy: '+DIA_HOY+'/'+pad(MES_HOY)+'/'+ANIO_HOY;
+document.getElementById('todayDate').textContent=' Hoy: '+DIA_HOY+'/'+pad(MES_HOY)+'/'+ANIO_HOY;
 const periodos=generarPeriodos();
 const erMes=document.getElementById('erMes');erMes.innerHTML='';
 periodos.forEach(function(p){const o=document.createElement('option');o.value=p.m;o.textContent=p.label;erMes.appendChild(o);});
@@ -1148,7 +1148,6 @@ filt.forEach(r=>{
   if(ag[k][r.estado]!==undefined) ag[k][r.estado]++;
   if(esPresente(r.estado) && r.estado!=='presente') ag[k].presente++;
 });
-
 const ks=Object.keys(ag).sort((a,b)=>{const partsA=a.split(' '),monthA=MESES_NOMBRES.indexOf(partsA[0]),yearA=parseInt(partsA[1]);const partsB=b.split(' '),monthB=MESES_NOMBRES.indexOf(partsB[0]),yearB=parseInt(partsB[1]);if(yearA!==yearB) return yearA-yearB;return monthA-monthB;});
 let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};
 if(ks.length===0){tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:#9ca3af">Sin registros</td></tr>';}
@@ -1184,7 +1183,7 @@ const fechaObj=new Date(r.y,r.m-1,r.d);
 const diaSemana=DIAS_SEMANA[fechaObj.getDay()];
 let horario='-';
 if(r.horaUnica) horario='🕐 '+r.horaUnica;
-else if(r.horaSalida&&r.horaLlegada) horario=' '+r.horaSalida+' - '+r.horaLlegada;
+else if(r.horaSalida&&r.horaLlegada) horario='🕐 '+r.horaSalida+' - '+r.horaLlegada;
 let detalles='';
 if(r.justificada) detalles='<span style="color:#166534;font-weight:600">✓ Justificada</span>';
 else if(r.estado==='ausente') detalles='<span style="color:#dc2626">✗ No justificada</span>';
@@ -1194,11 +1193,11 @@ t+='<tr><td><strong>'+fecha+'</strong></td><td>'+diaSemana+'</td><td class="hora
 t+='</tbody></table>';return t;
 }
 html+=generarTabla(ausencias,'Ausencias','❌');
-html+=generarTabla(entradasTarde,'Entradas tarde','⏰');
+html+=generarTabla(entradasTarde,'Entradas tarde','');
 html+=generarTabla(salidasPronto,'Salidas pronto','📤');
 html+=generarTabla(citasMedicas,'Citas médicas','🏥');
-html+=generarTabla(conciliaciones,'Conciliaciones','👨‍👩👧');
-html+=generarTabla(bajas,'Bajas','🤒');
+html+=generarTabla(conciliaciones,'Conciliaciones','👨‍👩‍👧');
+html+=generarTabla(bajas,'Bajas','');
 if(registros.filter(r=>!esPresente(r.estado)).length===0){
 html='<div style="padding:40px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px">✅</p><p style="font-size:16px">Este alumno no tiene incidencias registradas</p></div>';
 }
@@ -1282,7 +1281,7 @@ function crearPDF(tipo){
 mostrarAlerta('info','Generando PDF...');
 if(tipo==='maquinas'){
 const R=getAll();let detallesHTML='';
-const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'🏥',conciliacion:'‍👩‍👧',baja:'🤒'};
+const iconos={presente:'✅',ausente:'❌',entrada_tarde:'',salida_pronto:'📤',cita_medica:'🏥',conciliacion:'‍👩‍👧',baja:'🤒'};
 ['presente','ausente','entrada_tarde','salida_pronto','cita_medica','conciliacion','baja'].forEach(estado=>{detallesHTML+=generarListaDetalladaPeriodo(R,estado,iconos[estado]);});
 let html='<div class="pdf-content"><h1>📚 Control de Alumnos</h1><h2>Total por Alumno</h2><p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>';
 html+=document.getElementById('tablaMaquinasTbl').outerHTML;
@@ -1298,7 +1297,7 @@ if(fPeriodo!=='ALL'){const parts=fPeriodo.split('-');filt=filt.filter(r=>r.y===p
 if(falumno!=='TODOS') filt=filt.filter(r=>r.alumno===falumno);
 let detallesHTML='';const periodosData={};
 filt.forEach(r=>{const k=getPeriodoLabel(r.y,r.m);if(!periodosData[k]) periodosData[k]=[];periodosData[k].push(r);});
-const iconos={presente:'✅',ausente:'',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'',conciliacion:'👨‍👩‍👧',baja:'🤒'};
+const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'🏥',conciliacion:'👨‍‍👧',baja:''};
 Object.keys(periodosData).sort().forEach(periodo=>{detallesHTML+='<h3 style="margin-top:20px;color:#1e3a8a;border-bottom:2px solid #e5e7eb;padding-bottom:8px">📅 '+periodo+'</h3>';['presente','ausente','entrada_tarde','salida_pronto','cita_medica','conciliacion','baja'].forEach(estado=>{detallesHTML+=generarListaDetalladaPeriodo(periodosData[periodo],estado,iconos[estado]);});});
 let html='<div class="pdf-content"><h1>📚 Control de Alumnos</h1><h2>Resumen por Periodo</h2><p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>';
 if(falumno!=='TODOS') html+='<p>Alumno: <strong>'+falumno+'</strong></p>';
@@ -1340,7 +1339,7 @@ else if(esFuturo) html+='<div class="day-info">🔒 Futuro</div>';
 else{const completado=registrosDia.length===ALUMNOS.length;html+='<div class="day-info">'+registrosDia.length+'/'+ALUMNOS.length+(completado?' ✅':'')+'</div>';}
 e.innerHTML=html;
 const claveNota=anioSeleccionado+'-'+mesSeleccionado+'-'+d;
-if(notasPorDia[claveNota]){const iconoNota=document.createElement('div');iconoNota.style.cssText='position:absolute;top:3px;right:3px;font-size:10px;cursor:help';iconoNota.textContent='';iconoNota.title=notasPorDia[claveNota];e.appendChild(iconoNota);}
+if(notasPorDia[claveNota]){const iconoNota=document.createElement('div');iconoNota.style.cssText='position:absolute;top:3px;right:3px;font-size:10px;cursor:help';iconoNota.textContent='📝';iconoNota.title=notasPorDia[claveNota];e.appendChild(iconoNota);}
 if(!esFinde&&dayInfo.type==='lectivo'){e.onclick=(function(dia,futuro){return function(){esDiaFuturo=futuro;abrirModalAsistencia(dia);};})(d,esFuturo);}
 cont.appendChild(e);
 }
@@ -1354,7 +1353,7 @@ if(esDiaFuturo) html+='<div class="aviso-futuro">⚠️ Día futuro. Solo se per
 html+='<div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">';
 html+='<button class="btn b6" onclick="copiarDiaAnterior()" style="padding:8px 14px;font-size:12px">📋 Copiar día anterior</button>';
 html+='<button class="btn b2" onclick="marcarTodosPresentes()" style="padding:8px 14px;font-size:12px">✅ Todos presentes</button>';
-html+='<button class="btn b4" onclick="limpiarTodos()" style="padding:8px 14px;font-size:12px"> Limpiar</button>';
+html+='<button class="btn b4" onclick="limpiarTodos()" style="padding:8px 14px;font-size:12px">🔄 Limpiar</button>';
 html+='</div>';
 html+='<div style="margin-bottom:16px;padding:12px;background:#fef3c7;border-radius:6px;border-left:4px solid #f59e0b">';
 html+='<label style="display:block;font-size:13px;font-weight:600;color:#92400e;margin-bottom:6px">📝 Notas del día:</label>';
@@ -1474,7 +1473,7 @@ copiados++;
 mostrarAlerta('success','📋 Copiados '+copiados+' registros del día '+pad(diaAnt)+'/'+pad(mesAnt)+'/'+anioAnt);
 }
 function marcarTodosPresentes(){const filas=document.querySelectorAll('.alumno-row');filas.forEach(fila=>{const select=fila.querySelector('.alumno-select');select.value='presente';toggleCamposHora(select);});mostrarAlerta('success','✅ Todos marcados como presentes');}
-function limpiarTodos(){const filas=document.querySelectorAll('.alumno-row');filas.forEach(fila=>{const select=fila.querySelector('.alumno-select');select.value='';toggleCamposHora(select);const chk=fila.querySelector('.chk-justificada');if(chk) chk.checked=false;const txt=fila.querySelector('.txt-causa');if(txt) txt.value='';});mostrarAlerta('info',' Registros limpiados');}
+function limpiarTodos(){const filas=document.querySelectorAll('.alumno-row');filas.forEach(fila=>{const select=fila.querySelector('.alumno-select');select.value='';toggleCamposHora(select);const chk=fila.querySelector('.chk-justificada');if(chk) chk.checked=false;const txt=fila.querySelector('.txt-causa');if(txt) txt.value='';});mostrarAlerta('info','🔄 Registros limpiados');}
 function navegarDia(dir){
 const erMes=document.getElementById('erMes');
 let m=parseInt(erMes.value);let y=calcularAnioParaMes(m);
@@ -1534,7 +1533,7 @@ let html='<div class="day-num">'+d+'</div>';
 if(dayInfo.type==='holiday'||dayInfo.type==='vacation') html+='<div class="day-info">'+dayInfo.label+'</div>';
 else if(dayInfo.type==='weekend') html+='<div class="day-info">Fin de semana</div>';
 else if(dayInfo.type==='before-course'||dayInfo.type==='after-course'){html+='<div class="day-info">Fuera del curso</div>';e.style.opacity='0.4';}
-else if(counts){const stats=[];const totalPresentesReal = counts.presente + counts.entrada_tarde + counts.salida_pronto + counts.cita_medica + counts.conciliacion;if(totalPresentesReal>0) stats.push('✓'+totalPresentesReal);if(counts.ausente>0) stats.push('✗'+counts.ausente);if(counts.entrada_tarde>0) stats.push('⏰'+counts.entrada_tarde);if(counts.salida_pronto>0) stats.push('📤'+counts.salida_pronto);if(counts.cita_medica>0) stats.push('🏥'+counts.cita_medica);if(counts.conciliacion>0) stats.push('👨‍👩‍👧'+counts.conciliacion);if(counts.baja>0) stats.push(''+counts.baja);html+='<div class="day-stats">'+stats.join(' ')+'</div>';}
+else if(counts){const stats=[];const totalPresentesReal = counts.presente + counts.entrada_tarde + counts.salida_pronto + counts.cita_medica + counts.conciliacion;if(totalPresentesReal>0) stats.push('✓'+totalPresentesReal);if(counts.ausente>0) stats.push('✗'+counts.ausente);if(counts.entrada_tarde>0) stats.push('⏰'+counts.entrada_tarde);if(counts.salida_pronto>0) stats.push('📤'+counts.salida_pronto);if(counts.cita_medica>0) stats.push('🏥'+counts.cita_medica);if(counts.conciliacion>0) stats.push('👨‍👩‍'+counts.conciliacion);if(counts.baja>0) stats.push('🤒'+counts.baja);html+='<div class="day-stats">'+stats.join(' ')+'</div>';}
 else html+='<div class="day-info">Sin registros</div>';
 e.innerHTML=html;
 if(dayInfo.type==='lectivo'){e.style.cursor='pointer';e.onclick=(function(dia){return function(){abrirModalDetalle(y,m,dia);};})(d);}
@@ -1618,7 +1617,7 @@ const festTotal=FESTIVOS.length;let festConsumidos=0,festPendientes=0;
 FESTIVOS.forEach(f=>{const fechaFest=new Date(f.y,f.m-1,f.d);if(fechaFest<hoy) festConsumidos++;else festPendientes++;});
 document.getElementById('statFestTotal').textContent=festTotal;document.getElementById('statFestConsumidos').textContent=festConsumidos;document.getElementById('statFestPendientes').textContent=festPendientes;
 }
-function renderListaAlumnos(){const lista=document.getElementById('listaAlumnos');lista.innerHTML='';if(ALUMNOS.length===0){lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay alumnos</p>';return;}ALUMNOS.forEach(function(alumno,idx){lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+alumno+'</strong></div><div class="config-item-actions"><button class="btn b1 action-btn" onclick="abrirEditarAlumno('+idx+')">✏️ Editar</button><button class="btn b3 action-btn" onclick="confirmarEliminarAlumno('+idx+')">🗑️ Eliminar</button></div></div>';});}
+function renderListaAlumnos(){const lista=document.getElementById('listaAlumnos');lista.innerHTML='';if(ALUMNOS.length===0){lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay alumnos</p>';return;}ALUMNOS.forEach(function(alumno,idx){lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+alumno+'</strong></div><div class="config-item-actions"><button class="btn b1 action-btn" onclick="abrirEditarAlumno('+idx+')">✏️ Editar</button><button class="btn b3 action-btn" onclick="confirmarEliminarAlumno('+idx+')">️ Eliminar</button></div></div>';});}
 function agregarAlumno(){const nombre=document.getElementById('nuevoAlumno').value.trim();if(!nombre){mostrarAlerta('warning','Introduce un nombre');return;}if(ALUMNOS.includes(nombre)){mostrarAlerta('error','Ya existe');return;}ALUMNOS.push(nombre);document.getElementById('nuevoAlumno').value='';renderListaAlumnos();actualizarSelectoresAlumnos();renderAll();actualizarContadoresConfig();guardarEnNube('✅ Alumno añadido');}
 function abrirEditarAlumno(idx){indiceAlumnoEditar=idx;document.getElementById('inputNuevoNombreAlumno').value=ALUMNOS[idx];document.getElementById('modalEditarAlumno').classList.add('show');}
 function cerrarModalEditarAlumno(){document.getElementById('modalEditarAlumno').classList.remove('show');indiceAlumnoEditar=null;}
@@ -1643,7 +1642,7 @@ const totalSalidasPronto=R.filter(r=>r.estado==='salida_pronto').length;
 const totalCitasMedicas=R.filter(r=>r.estado==='cita_medica').length;
 const totalConciliaciones=R.filter(r=>r.estado==='conciliacion').length;
 const totalBajas=R.filter(r=>r.estado==='baja').length;
-let html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Backup Control de Alumnos - Curso ${cursoAnio}</title><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',system-ui,sans-serif;background:#f5f7fa;color:#1f2937;padding:20px;line-height:1.6}.wrap{max-width:1200px;margin:0 auto;background:#fff;padding:40px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1)}h1{color:#1e3a8a;margin-bottom:10px;font-size:28px}h2{color:#1e3a8a;margin:30px 0 15px 0;font-size:22px;border-bottom:2px solid #e5e7eb;padding-bottom:8px}h3{color:#374151;margin:20px 0 10px 0;font-size:18px}.info-curso{background:linear-gradient(135deg,#dbeafe,#bfdbfe);padding:20px;border-radius:8px;margin-bottom:30px}.info-curso p{margin:5px 0;font-size:14px}.info-curso strong{color:#1e40af}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0}.stat-box{background:#f9fafb;padding:15px;border-radius:8px;text-align:center;border-left:4px solid #3b82f6}.stat-box .num{font-size:24px;font-weight:700;color:#1e3a8a}.stat-box .lbl{font-size:12px;color:#6b7280;margin-top:4px}table{width:100%;border-collapse:collapse;margin:15px 0;font-size:13px}th{background:#f3f4f6;padding:10px;text-align:left;font-weight:600;color:#374151;border-bottom:2px solid #d1d5db}td{padding:8px 10px;border-bottom:1px solid #e5e7eb}tr:hover{background:#f9fafb}.alumno-card{background:#f9fafb;padding:20px;border-radius:8px;margin:15px 0;border-left:4px solid #3b82f6}.alumno-card h3{margin-top:0;color:#1e3a8a}.footer{margin-top:40px;padding-top:20px;border-top:2px solid #e5e7eb;text-align:center;color:#6b7280;font-size:12px}@media print{body{background:#fff;padding:0}.wrap{box-shadow:none;padding:20px}}</style></head><body><div class="wrap"><h1>📚 Control de Alumnos - Backup</h1><div class="info-curso"><p><strong>Curso:</strong> ${inicioStr} - ${finStr}</p><p><strong>Fecha de generación:</strong> ${new Date().toLocaleDateString('es-ES')}</p><p><strong>Total de alumnos:</strong> ${ALUMNOS.length}</p></div><h2>📊 Resumen General</h2><div class="stats-grid"><div class="stat-box"><div class="num">${totalPresentes}</div><div class="lbl">Presentes</div></div><div class="stat-box"><div class="num">${totalAusentes}</div><div class="lbl">Ausencias</div></div><div class="stat-box"><div class="num">${totalEntradasTarde}</div><div class="lbl">Entradas Tarde</div></div><div class="stat-box"><div class="num">${totalSalidasPronto}</div><div class="lbl">Salidas Pronto</div></div><div class="stat-box"><div class="num">${totalCitasMedicas}</div><div class="lbl">Citas Médicas</div></div><div class="stat-box"><div class="num">${totalConciliaciones}</div><div class="lbl">Conciliaciones</div></div><div class="stat-box"><div class="num">${totalBajas}</div><div class="lbl">Bajas</div></div></div><h2>👥 Lista de Alumnos</h2><table><thead><tr><th>Alumno</th><th>Presentes</th><th>Ausencias</th><th>Entradas Tarde</th><th>Salidas Pronto</th><th>Citas Médicas</th><th>Conciliaciones</th><th>Bajas</th></tr></thead><tbody>`;
+let html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Backup Control de Alumnos - Curso ${cursoAnio}</title><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',system-ui,sans-serif;background:#f5f7fa;color:#1f2937;padding:20px;line-height:1.6}.wrap{max-width:1200px;margin:0 auto;background:#fff;padding:40px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1)}h1{color:#1e3a8a;margin-bottom:10px;font-size:28px}h2{color:#1e3a8a;margin:30px 0 15px 0;font-size:22px;border-bottom:2px solid #e5e7eb;padding-bottom:8px}h3{color:#374151;margin:20px 0 10px 0;font-size:18px}.info-curso{background:linear-gradient(135deg,#dbeafe,#bfdbfe);padding:20px;border-radius:8px;margin-bottom:30px}.info-curso p{margin:5px 0;font-size:14px}.info-curso strong{color:#1e40af}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0}.stat-box{background:#f9fafb;padding:15px;border-radius:8px;text-align:center;border-left:4px solid #3b82f6}.stat-box .num{font-size:24px;font-weight:700;color:#1e3a8a}.stat-box .lbl{font-size:12px;color:#6b7280;margin-top:4px}table{width:100%;border-collapse:collapse;margin:15px 0;font-size:13px}th{background:#f3f4f6;padding:10px;text-align:left;font-weight:600;color:#374151;border-bottom:2px solid #d1d5db}td{padding:8px 10px;border-bottom:1px solid #e5e7eb}tr:hover{background:#f9fafb}.alumno-card{background:#f9fafb;padding:20px;border-radius:8px;margin:15px 0;border-left:4px solid #3b82f6}.alumno-card h3{margin-top:0;color:#1e3a8a}.footer{margin-top:40px;padding-top:20px;border-top:2px solid #e5e7eb;text-align:center;color:#6b7280;font-size:12px}@media print{body{background:#fff;padding:0}.wrap{box-shadow:none;padding:20px}}</style></head><body><div class="wrap"><h1>📚 Control de Alumnos - Backup</h1><div class="info-curso"><p><strong>Curso:</strong> ${inicioStr} - ${finStr}</p><p><strong>Fecha de generación:</strong> ${new Date().toLocaleDateString('es-ES')}</p><p><strong>Total de alumnos:</strong> ${ALUMNOS.length}</p></div><h2>📊 Resumen General</h2><div class="stats-grid"><div class="stat-box"><div class="num">${totalPresentes}</div><div class="lbl">Presentes</div></div><div class="stat-box"><div class="num">${totalAusentes}</div><div class="lbl">Ausencias</div></div><div class="stat-box"><div class="num">${totalEntradasTarde}</div><div class="lbl">Entradas Tarde</div></div><div class="stat-box"><div class="num">${totalSalidasPronto}</div><div class="lbl">Salidas Pronto</div></div><div class="stat-box"><div class="num">${totalCitasMedicas}</div><div class="lbl">Citas Médicas</div></div><div class="stat-box"><div class="num">${totalConciliaciones}</div><div class="lbl">Conciliaciones</div></div><div class="stat-box"><div class="num">${totalBajas}</div><div class="lbl">Bajas</div></div></div><h2> Lista de Alumnos</h2><table><thead><tr><th>Alumno</th><th>Presentes</th><th>Ausencias</th><th>Entradas Tarde</th><th>Salidas Pronto</th><th>Citas Médicas</th><th>Conciliaciones</th><th>Bajas</th></tr></thead><tbody>`;
 const sm={};ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
 R.forEach(r=>{if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++;if(esPresente(r.estado) && r.estado!=='presente') sm[r.alumno].presente++;});
 ALUMNOS.forEach(alumno=>{const s=sm[alumno];html+=`<tr><td><strong>${alumno}</strong></td><td>${s.presente}</td><td>${s.ausente}</td><td>${s.entrada_tarde}</td><td>${s.salida_pronto}</td><td>${s.cita_medica}</td><td>${s.conciliacion}</td><td>${s.baja}</td></tr>`;});
