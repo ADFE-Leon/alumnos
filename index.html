@@ -11,7 +11,6 @@
 body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f5f7fa 0%,#e4e8ec 100%);color:#1f2937;padding:16px;min-height:100vh}
 .wrap{max-width:1280px;margin:0 auto}
 
-/* LOGIN SCREEN */
 .login-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 100%);z-index:10000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px)}
 .login-box{background:#fff;border-radius:16px;padding:40px;max-width:450px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.3);animation:slideIn 0.3s ease}
 @keyframes slideIn{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
@@ -19,8 +18,8 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:linear
 .login-box .subtitle{color:#6b7280;text-align:center;margin-bottom:30px;font-size:14px}
 .login-box .input-group{margin-bottom:20px}
 .login-box label{display:block;margin-bottom:8px;font-size:14px;font-weight:600;color:#374151}
-.login-box input[type="password"]{width:100%;padding:12px 16px;border:2px solid #e5e7eb;border-radius:8px;font-size:15px;transition:border-color 0.2s}
-.login-box input[type="password"]:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,0.1)}
+.login-box input[type="text"],.login-box input[type="password"]{width:100%;padding:12px 16px;border:2px solid #e5e7eb;border-radius:8px;font-size:15px;transition:border-color 0.2s}
+.login-box input[type="text"]:focus,.login-box input[type="password"]:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,0.1)}
 .login-box .btn-login{width:100%;padding:14px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;transition:all 0.3s}
 .login-box .btn-login:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(59,130,246,0.4)}
 .login-box .error-msg{background:#fee2e2;color:#991b1b;padding:12px;border-radius:8px;margin-bottom:16px;font-size:13px;display:none}
@@ -28,7 +27,6 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:linear
 .login-box .info{background:#f0f9ff;border-left:4px solid #3b82f6;padding:12px;border-radius:6px;margin-top:20px;font-size:12px;color:#64748b}
 .login-box .info strong{color:#0369a1}
 
-/* INACTIVITY OVERLAY */
 .inactivity-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);z-index:9999;display:none;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
 .inactivity-overlay.show{display:flex}
 .inactivity-box{background:#fff;border-radius:16px;padding:40px;max-width:400px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.5);animation:slideIn 0.3s ease}
@@ -39,7 +37,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:linear
 
 .header{background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 100%);border-radius:14px;padding:16px 24px;color:#fff;box-shadow:0 6px 20px rgba(30,58,138,0.25);margin-bottom:16px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px}
 .header-left h1{font-size:26px;font-weight:700;letter-spacing:-0.3px}
-.header-left .sub{font-size:13px;opacity:0.85;margin-top:2px}
+.header-left .sub{font-size:13px;opacity:0.95;margin-top:2px;font-weight:500}
 .header-center{text-align:center}
 .header-center .fecha-hoy{background:rgba(255,255,255,0.2);backdrop-filter:blur(10px);padding:14px 28px;border-radius:10px;font-weight:700;font-size:22px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.3);height:65px}
 .header-right{display:flex;flex-direction:row;gap:12px;align-items:stretch;justify-content:flex-end;height:50px}
@@ -82,7 +80,6 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:linear
 .subtb{padding:10px 18px;border:none;cursor:pointer;font-size:14px;font-weight:600;border-radius:8px 8px 0 0;background:#e5e7eb;color:#6b7280;transition:all 0.3s;display:flex;align-items:center;gap:6px}
 .subtb:hover{background:#d1d5db;color:#1f2937}
 .subtb.on{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;box-shadow:0 4px 12px rgba(102,126,234,0.3)}
-.subtb.desactivada{display:none}
 
 .btn{padding:10px 20px;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700;color:#fff;margin-right:5px;margin-bottom:5px;transition:all 0.3s;display:inline-flex;align-items:center;gap:6px;position:relative;overflow:hidden;text-transform:uppercase;letter-spacing:0.5px;box-shadow:0 4px 12px rgba(0,0,0,0.15)}
 .btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);transition:left 0.5s}
@@ -336,36 +333,37 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 </head>
 <body>
 
-<!-- LOGIN SCREEN -->
 <div class="login-overlay" id="loginOverlay">
 <div class="login-box">
-<h1> Control de Alumnos</h1>
-<p class="subtitle">Introduce la clave de acceso</p>
+<h1>🔐 Control de Alumnos</h1>
+<p class="subtitle">Introduce tus credenciales</p>
 <div class="error-msg" id="loginError"></div>
 <div class="input-group">
-<label for="loginPassword">Clave de acceso:</label>
-<input type="password" id="loginPassword" placeholder="Introduce tu clave" onkeypress="if(event.key==='Enter')verificarLogin()">
+<label for="loginUsuario">Usuario:</label>
+<input type="text" id="loginUsuario" placeholder="Número de usuario o 'admin'" maxlength="6" onkeypress="if(event.key==='Enter')document.getElementById('loginPassword').focus()">
+</div>
+<div class="input-group">
+<label for="loginPassword">Contraseña:</label>
+<input type="password" id="loginPassword" placeholder="Introduce tu contraseña" onkeypress="if(event.key==='Enter')verificarLogin()">
 </div>
 <button class="btn-login" onclick="verificarLogin()">🔓 ENTRAR</button>
 <div class="info">
 <strong>💡 Información:</strong><br>
-Si olvidaste la clave, contacta con el administrador.<br>
-Clave de emergencia disponible.
+Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 </div>
 
-<!-- MODAL INACTIVIDAD -->
 <div class="inactivity-overlay" id="inactivityOverlay">
   <div class="inactivity-box">
     <div class="icono">⏰</div>
     <h2>Sesión expirada</h2>
     <p>Por seguridad, la sesión se ha cerrado tras 5 minutos de inactividad.</p>
     <div class="timer" id="inactivityTimer">00:00</div>
-    <p style="font-size:13px;color:#9ca3af;margin-bottom:20px">Introduce tu clave para continuar</p>
-    <input type="password" id="inactivityPassword" placeholder="Clave de acceso" style="width:100%;padding:12px;border:2px solid #e5e7eb;border-radius:8px;font-size:15px;margin-bottom:12px" onkeypress="if(event.key==='Enter')reanudarSesion()">
+    <p style="font-size:13px;color:#9ca3af;margin-bottom:20px">Introduce tu contraseña para continuar</p>
+    <input type="password" id="inactivityPassword" placeholder="Contraseña" style="width:100%;padding:12px;border:2px solid #e5e7eb;border-radius:8px;font-size:15px;margin-bottom:12px" onkeypress="if(event.key==='Enter')reanudarSesion()">
     <div id="inactivityError" style="background:#fee2e2;color:#991b1b;padding:10px;border-radius:6px;margin-bottom:12px;display:none;font-size:13px"></div>
-    <button class="btn b1" onclick="reanudarSesion()" style="width:100%;padding:12px;font-size:15px"> Reanudar sesión</button>
+    <button class="btn b1" onclick="reanudarSesion()" style="width:100%;padding:12px;font-size:15px">🔓 Reanudar sesión</button>
   </div>
 </div>
 
@@ -387,18 +385,9 @@ Clave de emergencia disponible.
 <div class="fechas" id="cursoInfoTextoGlobal">01/03/2026 - 28/02/2027</div>
 </div>
 <div class="indicadores">
-<div class="indicador-mini">
-<div class="ind-num" id="sP">0</div>
-<div class="ind-label">Asistencias</div>
-</div>
-<div class="indicador-mini">
-<div class="ind-num" id="sH">0</div>
-<div class="ind-label">Ausencias</div>
-</div>
-<div class="indicador-mini">
-<div class="ind-num" id="sC">0</div>
-<div class="ind-label">Alumnos</div>
-</div>
+<div class="indicador-mini"><div class="ind-num" id="sP">0</div><div class="ind-label">Asistencias</div></div>
+<div class="indicador-mini"><div class="ind-num" id="sH">0</div><div class="ind-label">Ausencias</div></div>
+<div class="indicador-mini"><div class="ind-num" id="sC">0</div><div class="ind-label">Alumnos</div></div>
 </div>
 </div>
 </div>
@@ -407,15 +396,13 @@ Clave de emergencia disponible.
 
 <div class="tabs-container">
 <div class="tabs">
-<button class="tb on" data-t="p7"> Entrada de Datos</button>
+<button class="tb on" data-t="p7">📝 Entrada de Datos</button>
 <button class="tb" data-t="p9">🔍 Consultas</button>
-
 <div class="subtabs-inline" id="subtabsConsultas">
 <button class="subtb on" data-st="p2">👤 Por Alumno</button>
 <button class="subtb" data-st="p3">📊 Por Mes/Año</button>
 <button class="subtb" data-st="p4">🗓️ Calendario</button>
 </div>
-
 <div style="display:flex;flex-direction:row;align-items:center;gap:10px;margin-left:auto">
 <div class="origen-bar">📂 Conectado: <strong id="dataSource">Cargando...</strong></div>
 <button class="tb-config" id="btnConfig" onclick="toggleConfig()">⚙️ Configuración</button>
@@ -424,13 +411,11 @@ Clave de emergencia disponible.
 </div>
 
 <div id="p7" class="pnl on">
-
 <div style="display:flex;align-items:center;gap:16px;margin-bottom:18px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:8px">
 <div class="mes-selector" style="margin:0;flex-shrink:0">
 <label for="erMes">Mes:</label>
 <select id="erMes" onchange="onMesSeleccionado()" class="sel"></select>
 </div>
-
 <div class="leyenda" style="margin:0;flex:1;overflow-x:auto">
 <div class="leyenda-item"><div class="leyenda-color" style="background:#dcfce7"></div>Presente</div>
 <div class="leyenda-item"><div class="leyenda-color" style="background:#fee2e2"></div>Ausente</div>
@@ -444,7 +429,6 @@ Clave de emergencia disponible.
 <div class="leyenda-item"><div class="leyenda-color" style="background:#e5e7eb"></div>Futuro (solo bajas)</div>
 </div>
 </div>
-
 <div id="calendarioEntrada" class="calendar"></div>
 </div>
 
@@ -461,7 +445,6 @@ Clave de emergencia disponible.
 <table id="tablaMaquinasTbl"><thead><tr><th>Alumno</th><th class="r">Presentes</th><th class="r">Ausencias</th><th class="r">Entradas tarde</th><th class="r">Salidas pronto</th><th class="r">Citas médicas</th><th class="r">Conciliaciones</th><th class="r">Bajas</th></tr></thead><tbody id="t2"></tbody></table>
 </div>
 </div>
-
 <div id="p3" class="pnl" style="box-shadow:none;border:none;padding:0">
 <div class="informe-container">
 <div class="informe-header">
@@ -478,10 +461,9 @@ Clave de emergencia disponible.
 <table id="tablaTiempoTbl"><thead><tr><th>Periodo</th><th class="r">Presentes</th><th class="r">Ausencias</th><th class="r">Entradas tarde</th><th class="r">Salidas pronto</th><th class="r">Bajas</th></tr></thead><tbody id="t3"></tbody></table>
 </div>
 </div>
-
 <div id="p4" class="pnl" style="box-shadow:none;border:none;padding:0">
 <div class="informe-container">
-<h2>🗓️ Calendario de Asistencias</h2>
+<h2>️ Calendario de Asistencias</h2>
 <p style="color:#6b7280;margin-bottom:14px;font-size:12px">Visualiza rápidamente el estado de cada día. Haz clic en un día para ver el detalle completo.</p>
 <div class="cal-filtros">
 <div class="filter-group"><label>Periodo</label><select id="calPeriodo" onchange="actualizarCalendarioDesdePeriodo()" class="sel"></select></div>
@@ -503,7 +485,7 @@ Clave de emergencia disponible.
 </div>
 
 <div id="p8" class="pnl" style="box-shadow:none;border:none;margin-top:16px;display:none">
-<h2>⚙️ Configuración</h2>
+<h2>️ Configuración</h2>
 
 <div id="configDashboard" class="config-dashboard">
 <div class="config-card card-alumnos" onclick="mostrarPanelConfig('alumnos')">
@@ -525,7 +507,7 @@ Clave de emergencia disponible.
 <div class="card-count"><strong id="countVacaciones">0</strong> días</div>
 </div>
 <div class="config-card card-fechas" onclick="mostrarPanelConfig('fechas')">
-<div class="card-icono"></div>
+<div class="card-icono">📅</div>
 <div class="card-titulo">Gestión de Fechas</div>
 <div class="card-desc">Definir el periodo del curso escolar</div>
 <div class="card-count" id="countFechas"><strong>01/03/2026</strong> - <strong>28/02/2027</strong></div>
@@ -536,91 +518,80 @@ Clave de emergencia disponible.
 <button class="config-volver" onclick="volverDashboardConfig()">← Volver a Configuración</button>
 <div class="config-section" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-color:#86efac">
 <h3>📅 Fechas del Curso</h3>
-<p style="color:#166534;font-size:12px;margin-bottom:10px">Define el periodo del curso escolar. Los calendarios se ajustarán automáticamente a estas fechas.</p>
+<p style="color:#166534;font-size:12px;margin-bottom:10px">Define el periodo del curso escolar.</p>
 <div class="rango-fechas">
 <div class="rango-box" style="background:#dcfce7;border-color:#86efac">
-<h4 style="color:#166534"> Fecha de inicio del curso</h4>
+<h4 style="color:#166534">📅 Fecha de inicio</h4>
 <div class="rango-inputs">
 <div class="filter-group"><label>Día</label><select id="cursoInicioDia"></select></div>
-<div class="filter-group"><label>Mes</label><select id="cursoInicioMes">
-<option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
-</select></div>
+<div class="filter-group"><label>Mes</label><select id="cursoInicioMes"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
 <div class="filter-group"><label>Año</label><select id="cursoInicioAnio"></select></div>
 </div>
 </div>
 <div class="rango-box" style="background:#dcfce7;border-color:#86efac">
-<h4 style="color:#166534">📅 Fecha de fin del curso</h4>
+<h4 style="color:#166534">📅 Fecha de fin</h4>
 <div class="rango-inputs">
 <div class="filter-group"><label>Día</label><select id="cursoFinDia"></select></div>
-<div class="filter-group"><label>Mes</label><select id="cursoFinMes">
-<option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
-</select></div>
+<div class="filter-group"><label>Mes</label><select id="cursoFinMes"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
 <div class="filter-group"><label>Año</label><select id="cursoFinAnio"></select></div>
 </div>
 </div>
 </div>
-<button class="btn b2" onclick="guardarFechasCurso()" style="padding:10px 22px"> Guardar fechas del curso</button>
-<div id="cursoActualInfo" style="margin-top:10px;padding:10px;background:#fff;border-radius:6px;font-size:12px;color:#166534"></div>
+<button class="btn b2" onclick="guardarFechasCurso()" style="padding:10px 22px">💾 Guardar fechas</button>
 </div>
 </div>
 
 <div id="panelAlumnos" class="config-panel">
-<button class="config-volver" onclick="volverDashboardConfig()">← Volver a Configuración</button>
+<button class="config-volver" onclick="volverDashboardConfig()">← Volver</button>
 <div class="config-section">
 <h3>👥 Gestión de Alumnos</h3>
 <div class="config-form">
 <div class="filter-group"><label>Nombre del alumno</label><input type="text" id="nuevoAlumno" placeholder="Ej: GARCÍA LÓPEZ, JUAN"></div>
-<button class="btn b2" onclick="agregarAlumno()">➕ Añadir Alumno</button>
+<button class="btn b2" onclick="agregarAlumno()">➕ Añadir</button>
 </div>
 <div class="config-list" id="listaAlumnos"></div>
 </div>
 </div>
 
 <div id="panelFestivos" class="config-panel">
-<button class="config-volver" onclick="volverDashboardConfig()">← Volver a Configuración</button>
+<button class="config-volver" onclick="volverDashboardConfig()">← Volver</button>
 <div class="config-section">
 <h3>🎉 Gestión de Festivos</h3>
 <div class="config-form">
 <div class="filter-group"><label>Día</label><select id="nuevoFestivoDia"></select></div>
-<div class="filter-group"><label>Mes</label><select id="nuevoFestivoMes">
-<option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
-</select></div>
+<div class="filter-group"><label>Mes</label><select id="nuevoFestivoMes"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
 <div class="filter-group"><label>Año</label><select id="nuevoFestivoAnio"></select></div>
-<div class="filter-group"><label>Nombre del festivo</label><input type="text" id="nuevoFestivoNombre" placeholder="Ej: Día del Trabajo"></div>
-<button class="btn b2" onclick="agregarFestivo()">➕ Añadir Festivo</button>
+<div class="filter-group"><label>Nombre</label><input type="text" id="nuevoFestivoNombre" placeholder="Ej: Día del Trabajo"></div>
+<button class="btn b2" onclick="agregarFestivo()">➕ Añadir</button>
 </div>
 <div class="config-list" id="listaFestivos"></div>
 </div>
 </div>
 
 <div id="panelVacaciones" class="config-panel">
-<button class="config-volver" onclick="volverDashboardConfig()">← Volver a Configuración</button>
+<button class="config-volver" onclick="volverDashboardConfig()">← Volver</button>
 <div class="config-section">
-<h3>🏖️ Gestión de Vacaciones (por rangos)</h3>
-<p style="color:#6b7280;font-size:12px;margin-bottom:10px">Introduce la fecha de inicio y la fecha final (ambas inclusive). <strong>Se añadirán automáticamente solo los días lectivos</strong> (se excluyen sábados, domingos y festivos).</p>
+<h3>️ Gestión de Vacaciones</h3>
+<p style="color:#6b7280;font-size:12px;margin-bottom:10px">Introduce fecha inicio y final. Se añadirán solo días lectivos.</p>
 <div class="rango-fechas">
 <div class="rango-box">
-<h4>📅 Fecha de inicio</h4>
+<h4>📅 Fecha inicio</h4>
 <div class="rango-inputs">
 <div class="filter-group"><label>Día</label><select id="nuevaVacacionDiaIni"></select></div>
-<div class="filter-group"><label>Mes</label><select id="nuevaVacacionMesIni">
-<option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
-</select></div>
+<div class="filter-group"><label>Mes</label><select id="nuevaVacacionMesIni"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
 <div class="filter-group"><label>Año</label><select id="nuevaVacacionAnioIni"></select></div>
 </div>
 </div>
 <div class="rango-box">
-<h4> Fecha final (inclusive)</h4>
+<h4> Fecha final</h4>
 <div class="rango-inputs">
 <div class="filter-group"><label>Día</label><select id="nuevaVacacionDiaFin"></select></div>
-<div class="filter-group"><label>Mes</label><select id="nuevaVacacionMesFin">
-<option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
-</select></div>
+<div class="filter-group"><label>Mes</label><select id="nuevaVacacionMesFin"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
 <div class="filter-group"><label>Año</label><select id="nuevaVacacionAnioFin"></select></div>
 </div>
 </div>
 </div>
-<button class="btn b2" onclick="agregarVacacion()">➕ Añadir Rango de Vacaciones</button>
+<button class="btn b2" onclick="agregarVacacion()">➕ Añadir Rango</button>
 <div class="config-list" id="listaVacaciones"></div>
 </div>
 </div>
@@ -646,33 +617,30 @@ Clave de emergencia disponible.
 
 <div class="backup-section">
 <h3>💾 Backup del Curso</h3>
-<p>Exporta todos los datos del curso actual a un archivo HTML que podrás consultar e imprimir en cualquier momento.</p>
-<button class="btn b1" onclick="exportarBackup()" style="padding:12px 28px;font-size:15px">📤 Exportar backup del curso</button>
+<p>Exporta todos los datos a un archivo HTML.</p>
+<button class="btn b1" onclick="exportarBackup()" style="padding:12px 28px;font-size:15px">📤 Exportar backup</button>
 <p class="backup-info">Se guardará como: <strong id="backupFilename">backup_curso_2026_27.html</strong></p>
 </div>
 
-<div class="backup-section" style="background:linear-gradient(135deg,#f5f3ff,#ede9fe);border-color:#a78bfa">
-<h3>🔑 Cambiar clave de acceso</h3>
-<p>Modifica la clave de acceso de usuario. La clave de emergencia de administrador no puede modificarse.</p>
-<button class="btn b6" onclick="abrirModalCambioClave()" style="padding:12px 28px;font-size:15px">🔐 Cambiar clave</button>
+<div class="backup-section" style="background:linear-gradient(135deg,#f5f3ff,#ede9fe);border-color:#a78bfa" id="seccionCambiarClave">
+<h3>🔑 Cambiar contraseña</h3>
+<p>Modifica tu contraseña de acceso. Tu número de usuario no puede cambiarse.</p>
+<button class="btn b6" onclick="abrirModalCambioClave()" style="padding:12px 28px;font-size:15px">🔐 Cambiar contraseña</button>
 </div>
 
 <div class="reset-section">
 <h3>⚠️ Zona de peligro</h3>
-<p>Estas acciones son irreversibles. Asegúrate de haber guardado tus datos antes de continuar.</p>
+<p>Estas acciones son irreversibles.</p>
 <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-<button class="btn b8" onclick="confirmarVaciarActividades()">🧹 Vaciar solo actividades</button>
-<button class="btn b3" onclick="confirmarResetear()">🗑️ Resetear todo</button>
+<button class="btn b8" onclick="confirmarVaciarActividades()">🧹 Vaciar actividades</button>
+<button class="btn b3" onclick="confirmarResetear()">️ Resetear todo</button>
 </div>
-<p style="margin-top:12px;font-size:11px;color:#9ca3af"><strong>Vaciar actividades:</strong> Borra todos los registros de asistencia pero mantiene alumnos, festivos, vacaciones y fechas del curso.</p>
-</div>
-</div>
-
 </div>
 </div>
 
+</div>
+</div>
 
-<!-- MODALES -->
 <div class="modal-overlay" id="modalAsistencia">
 <div class="modal">
 <div class="modal-header">
@@ -682,7 +650,7 @@ Clave de emergencia disponible.
 <div id="modalContenido"></div>
 <div class="modal-footer">
 <button class="btn b4" onclick="cerrarModalAsistencia()">Cancelar</button>
-<button class="btn b2" onclick="guardarAsistenciaDia()">💾 Guardar Todos</button>
+<button class="btn b2" onclick="guardarAsistenciaDia()">💾 Guardar</button>
 </div>
 </div>
 </div>
@@ -695,7 +663,7 @@ Clave de emergencia disponible.
 </div>
 <div id="modalDetalleContenido"></div>
 <div class="modal-footer">
-<button class="btn b1" onclick="editarDiaDesdeDetalle()">✏️ Editar registros</button>
+<button class="btn b1" onclick="editarDiaDesdeDetalle()">✏️ Editar</button>
 <button class="btn b4" onclick="cerrarModalDetalle()">Cerrar</button>
 </div>
 </div>
@@ -710,7 +678,7 @@ Clave de emergencia disponible.
 <div id="modalDetalleAlumnoContenido" class="detalle-alumno"></div>
 <div class="modal-footer">
 <button class="btn b4" onclick="imprimirDetalleAlumno()">🖨️ Imprimir</button>
-<button class="btn b7" onclick="crearPDFDetalleAlumno()">📄 Crear PDF</button>
+<button class="btn b7" onclick="crearPDFDetalleAlumno()">📄 PDF</button>
 <button class="btn b1" onclick="cerrarModalDetalleAlumno()">Cerrar</button>
 </div>
 </div>
@@ -719,7 +687,7 @@ Clave de emergencia disponible.
 <div class="modal-overlay" id="modalConfirmacion">
 <div class="modal" style="max-width:500px">
 <div class="modal-header">
-<h3 id="modalConfirmacionTitulo">Confirmar acción</h3>
+<h3 id="modalConfirmacionTitulo">Confirmar</h3>
 <button class="modal-close" onclick="cerrarModalConfirmacion()">×</button>
 </div>
 <div id="modalConfirmacionContenido"></div>
@@ -733,11 +701,11 @@ Clave de emergencia disponible.
 <div class="modal-overlay" id="modalEditarAlumno">
 <div class="modal" style="max-width:500px">
 <div class="modal-header">
-<h3>✏️ Editar nombre del alumno</h3>
+<h3>✏️ Editar alumno</h3>
 <button class="modal-close" onclick="cerrarModalEditarAlumno()">×</button>
 </div>
 <div style="padding:10px 0">
-<label style="display:block;margin-bottom:8px;font-size:13px;font-weight:600;color:#374151">Nuevo nombre:</label>
+<label style="display:block;margin-bottom:8px;font-size:13px;font-weight:600">Nuevo nombre:</label>
 <input type="text" id="inputNuevoNombreAlumno" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:6px;font-size:13px">
 </div>
 <div class="modal-footer">
@@ -747,41 +715,44 @@ Clave de emergencia disponible.
 </div>
 </div>
 
-<!-- MODAL CAMBIO DE CLAVE -->
 <div class="modal-overlay" id="modalCambioClave">
 <div class="modal" style="max-width:500px">
 <div class="modal-header">
-<h3> Cambiar clave de acceso</h3>
+<h3>🔑 Cambiar contraseña</h3>
 <button class="modal-close" onclick="cerrarModalCambioClave()">×</button>
 </div>
 <div style="padding:10px 0">
-<div class="input-group">
-<label for="claveActual">Clave actual:</label>
-<input type="password" id="claveActual" placeholder="Introduce la clave actual" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:6px;font-size:13px">
+<div style="background:#f0f9ff;padding:12px;border-radius:6px;margin-bottom:16px">
+<strong style="color:#0369a1">Usuario:</strong> <span id="usuarioActualDisplay"></span><br>
+<strong style="color:#0369a1">Nombre:</strong> <span id="nombreUsuarioDisplay"></span>
 </div>
 <div class="input-group">
-<label for="nuevaClave">Nueva clave:</label>
-<input type="password" id="nuevaClave" placeholder="Introduce la nueva clave" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:6px;font-size:13px">
+<label for="claveActual">Contraseña actual:</label>
+<input type="password" id="claveActual" placeholder="Introduce tu contraseña actual" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:6px;font-size:13px;margin-bottom:12px">
+</div>
+<div class="input-group">
+<label for="nuevaClave">Nueva contraseña:</label>
+<input type="password" id="nuevaClave" placeholder="Introduce la nueva contraseña" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:6px;font-size:13px">
 </div>
 <div id="requisitosClave" style="background:#f0f9ff;border-left:4px solid #3b82f6;padding:10px;border-radius:6px;margin-top:8px;font-size:12px;display:none">
-  <strong style="color:#0369a1">Requisitos de la clave:</strong>
+  <strong style="color:#0369a1">Requisitos:</strong>
   <ul style="margin:8px 0 0 20px;color:#64748b">
     <li id="req-longitud">⚪ Mínimo 6 caracteres</li>
-    <li id="req-mayus">⚪ Al menos 1 mayúscula</li>
-    <li id="req-minus"> Al menos 1 minúscula</li>
-    <li id="req-numero"> Al menos 1 número</li>
+    <li id="req-mayus"> Al menos 1 mayúscula</li>
+    <li id="req-minus">⚪ Al menos 1 minúscula</li>
+    <li id="req-numero">⚪ Al menos 1 número</li>
     <li id="req-especial">⚪ Al menos 1 carácter especial</li>
   </ul>
 </div>
-<div class="input-group">
-<label for="confirmarClave">Confirmar nueva clave:</label>
-<input type="password" id="confirmarClave" placeholder="Repite la nueva clave" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:6px;font-size:13px">
+<div class="input-group" style="margin-top:12px">
+<label for="confirmarClave">Confirmar nueva contraseña:</label>
+<input type="password" id="confirmarClave" placeholder="Repite la nueva contraseña" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:6px;font-size:13px">
 </div>
 <div id="mensajeErrorClave" style="background:#fee2e2;color:#991b1b;padding:12px;border-radius:6px;margin-top:12px;display:none;font-size:13px"></div>
 </div>
 <div class="modal-footer">
 <button class="btn b4" onclick="cerrarModalCambioClave()">Cancelar</button>
-<button class="btn b6" onclick="cambiarClave()">🔐 Cambiar clave</button>
+<button class="btn b6" onclick="cambiarClave()">🔐 Cambiar</button>
 </div>
 </div>
 </div>
@@ -812,10 +783,6 @@ window.firebaseGet = get;
 window.firebaseChild = child;
 
 console.log('✅ Firebase inicializado');
-
-setTimeout(() => {
-  if (window.cargarDatosNube) window.cargarDatosNube();
-}, 100);
 </script>
 
 <script>
@@ -823,23 +790,18 @@ const ALUMNOS_BASE=["AMEZ FUERTES, RAUL","BLANCO FRANCO, SANTIAGO ANDRÉS","FERN
 const DIAS=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
 const MESES_NOMBRES=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 const DIAS_SEMANA=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
-
-const ANIO_MIN_DESPLEGABLE = 2026;
-const ANIO_MAX_DESPLEGABLE = 2035;
+const ANIO_MIN_DESPLEGABLE=2026;
+const ANIO_MAX_DESPLEGABLE=2035;
 
 let INICIO_CURSO={y:2026,m:3,d:1};
 let FIN_CURSO={y:2027,m:2,d:28};
-
 let FESTIVOS=[];
 let VACACIONES=[];
-let notasPorDia = {};
+let notasPorDia={};
 const LABELS_ESTADOS={'':'-- Sin registrar --',presente:'Presente',ausente:'Ausente',entrada_tarde:'Entrada tarde',salida_pronto:'Salida pronto',cita_medica:'Cita médica',conciliacion:'Conciliación',baja:'Baja'};
-const COLORES_ESTADO={presente:'#166534',ausente:'#991b1b',entrada_tarde:'#92400e',salida_pronto:'#9d174d',cita_medica:'#1e40af',conciliacion:'#3730a3',baja:'#991b1b'};
 let ALUMNOS=[...ALUMNOS_BASE];
 let historicalRecords=[];
 let userRecords=[];
-let dataSourceMsg="Cargando...";
-let alertTimeout=null;
 let diaSeleccionado=null;
 let mesSeleccionado=null;
 let anioSeleccionado=null;
@@ -850,271 +812,220 @@ let alumnoDetalleActual=null;
 let configVisible=false;
 let esDiaFuturo=false;
 
-// CLAVES DE ACCESO
-const CLAVE_ADMIN_FIJA = "Sancayetano.2026";
-const CLAVE_USUARIO_DEFAULT = "Control Afe XVI";
+// USUARIOS DEL SISTEMA
+const USUARIOS_SISTEMA={
+  '206704':{nombre:'Leticia',rol:'profesora',claveFija:false},
+  '200732':{nombre:'Marina',rol:'profesora',claveFija:false},
+  'admin':{nombre:'Administrador',rol:'admin',claveFija:true}
+};
+const CLAVE_ADMIN_FIJA="Sancayetano.2026";
+const CLAVE_PROFESORA_DEFAULT={'206704':"206704.Leticia",'200732':"200732.Marina"};
+let usuarioActual=null;
 
-// BLOQUEO POR INACTIVIDAD
+// INACTIVIDAD
 let inactivityTimer;
-const INACTIVITY_TIMEOUT = 5 * 60 * 1000; // 5 minutos
+const INACTIVITY_TIMEOUT=5*60*1000;
 let inactivityCountdown;
-let secondsRemaining = 0;
+let secondsRemaining=0;
 
-const FECHA_HOY = new Date();
+const FECHA_HOY=new Date();
 FECHA_HOY.setHours(0,0,0,0);
-const DIA_HOY = FECHA_HOY.getDate();
-const MES_HOY = FECHA_HOY.getMonth() + 1;
-const ANIO_HOY = FECHA_HOY.getFullYear();
+const DIA_HOY=FECHA_HOY.getDate();
+const MES_HOY=FECHA_HOY.getMonth()+1;
+const ANIO_HOY=FECHA_HOY.getFullYear();
 
-// FUNCIONES DE HASH SHA-256
 async function hashSHA256(texto){
-  const encoder = new TextEncoder();
-  const data = encoder.encode(texto);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  const encoder=new TextEncoder();
+  const data=encoder.encode(texto);
+  const hashBuffer=await crypto.subtle.digest('SHA-256',data);
+  const hashArray=Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b=>b.toString(16).padStart(2,'0')).join('');
 }
 
-// VALIDACIÓN DE COMPLEJIDAD DE CLAVE
-function validarComplejidadClave(clave) {
-  const errores = [];
-  if (clave.length < 6) errores.push('mínimo 6 caracteres');
-  if (!/[A-Z]/.test(clave)) errores.push('al menos 1 mayúscula (A-Z)');
-  if (!/[a-z]/.test(clave)) errores.push('al menos 1 minúscula (a-z)');
-  if (!/[0-9]/.test(clave)) errores.push('al menos 1 número (0-9)');
-  if (!/[.,$%&!@#^*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(clave)) errores.push('al menos 1 carácter especial (.,$%&!@#...)');
+function validarComplejidadClave(clave){
+  const errores=[];
+  if(clave.length<6) errores.push('mínimo 6 caracteres');
+  if(!/[A-Z]/.test(clave)) errores.push('al menos 1 mayúscula (A-Z)');
+  if(!/[a-z]/.test(clave)) errores.push('al menos 1 minúscula (a-z)');
+  if(!/[0-9]/.test(clave)) errores.push('al menos 1 número (0-9)');
+  if(!/[.,$%&!@#^*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(clave)) errores.push('al menos 1 carácter especial (.,$%&!@#...)');
   return errores;
 }
 
-function actualizarRequisitosClave() {
-  const clave = document.getElementById('nuevaClave').value;
-  const cont = document.getElementById('requisitosClave');
-  cont.style.display = clave ? 'block' : 'none';
-  
-  const checks = {
-    'req-longitud': clave.length >= 6,
-    'req-mayus': /[A-Z]/.test(clave),
-    'req-minus': /[a-z]/.test(clave),
-    'req-numero': /[0-9]/.test(clave),
-    'req-especial': /[.,$%&!@#^*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(clave)
-  };
-  
-  Object.keys(checks).forEach(id => {
-    const el = document.getElementById(id);
-    el.textContent = (checks[id] ? '✅ ' : ' ') + el.textContent.substring(2);
-    el.style.color = checks[id] ? '#166534' : '#64748b';
-    el.style.fontWeight = checks[id] ? '600' : '400';
+function actualizarRequisitosClave(){
+  const clave=document.getElementById('nuevaClave').value;
+  const cont=document.getElementById('requisitosClave');
+  cont.style.display=clave?'block':'none';
+  const checks={'req-longitud':clave.length>=6,'req-mayus':/[A-Z]/.test(clave),'req-minus':/[a-z]/.test(clave),'req-numero':/[0-9]/.test(clave),'req-especial':/[.,$%&!@#^*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(clave)};
+  Object.keys(checks).forEach(id=>{
+    const el=document.getElementById(id);
+    el.textContent=(checks[id]?'✅ ':'⚪ ')+el.textContent.substring(2);
+    el.style.color=checks[id]?'#166534':'#64748b';
+    el.style.fontWeight=checks[id]?'600':'400';
   });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  const nuevaClaveInput = document.getElementById('nuevaClave');
-  if (nuevaClaveInput) {
-    nuevaClaveInput.addEventListener('input', actualizarRequisitosClave);
-  }
-});
-
-// GESTIÓN DE CLAVES
-async function obtenerClaveUsuario(){
+async function obtenerClaveUsuario(usuario){
   try{
-    const db = window.firebaseDB;
-    const dbRef = window.firebaseRef(db);
-    const snapshot = await window.firebaseGet(window.firebaseChild(dbRef, 'config/claveUsuario'));
-    if(snapshot.exists()){
-      return snapshot.val();
-    }
-  }catch(e){
-    console.error('Error al obtener clave de Firebase:', e);
-  }
-  
-  const localClave = localStorage.getItem('ca_claveUsuario');
-  if(localClave){
-    return localClave;
-  }
-  
-  return await hashSHA256(CLAVE_USUARIO_DEFAULT);
+    const db=window.firebaseDB;
+    const dbRef=window.firebaseRef(db);
+    const snapshot=await window.firebaseGet(window.firebaseChild(dbRef,'config/claves/'+usuario));
+    if(snapshot.exists()) return snapshot.val();
+  }catch(e){console.error('Error Firebase:',e);}
+  const localClave=localStorage.getItem('ca_clave_'+usuario);
+  if(localClave) return localClave;
+  if(CLAVE_PROFESORA_DEFAULT[usuario]) return await hashSHA256(CLAVE_PROFESORA_DEFAULT[usuario]);
+  return await hashSHA256(CLAVE_ADMIN_FIJA);
 }
 
-async function guardarClaveUsuario(hashClave){
+async function guardarClaveUsuario(usuario,hashClave){
   try{
-    const db = window.firebaseDB;
-    const dbRef = window.firebaseRef(db, 'config/claveUsuario');
-    await window.firebaseSet(dbRef, hashClave);
-  }catch(e){
-    console.error('Error al guardar clave en Firebase:', e);
-  }
-  
-  localStorage.setItem('ca_claveUsuario', hashClave);
+    const db=window.firebaseDB;
+    const dbRef=window.firebaseRef(db,'config/claves/'+usuario);
+    await window.firebaseSet(dbRef,hashClave);
+  }catch(e){console.error('Error Firebase:',e);}
+  localStorage.setItem('ca_clave_'+usuario,hashClave);
 }
 
-function verificarSesionActiva(){
-  return sessionStorage.getItem('ca_sesionActiva') === 'true';
-}
+function verificarSesionActiva(){return sessionStorage.getItem('ca_sesionActiva')==='true';}
 
 function iniciarSesion(){
-  sessionStorage.setItem('ca_sesionActiva', 'true');
-  document.getElementById('loginOverlay').style.display = 'none';
+  sessionStorage.setItem('ca_sesionActiva','true');
+  document.getElementById('loginOverlay').style.display='none';
+  actualizarSaludoUsuario();
   resetInactivityTimer();
 }
 
-function cerrarSesion(){
-  sessionStorage.removeItem('ca_sesionActiva');
-  location.reload();
+function actualizarSaludoUsuario(){
+  if(!usuarioActual) return;
+  const hora=new Date().getHours();
+  const saludo=hora<13?'Buenos días':'Buenas tardes';
+  const subHeader=document.querySelector('.header-left .sub');
+  if(subHeader) subHeader.textContent=saludo+', '+usuarioActual.nombre;
 }
 
 async function verificarLogin(){
-  const input = document.getElementById('loginPassword');
-  const claveIntroducida = input.value.trim();
-  const errorMsg = document.getElementById('loginError');
+  const usuarioInput=document.getElementById('loginUsuario').value.trim().toLowerCase();
+  const claveInput=document.getElementById('loginPassword').value;
+  const errorMsg=document.getElementById('loginError');
   
-  if(!claveIntroducida){
-    errorMsg.textContent = '⚠️ Introduce una clave';
-    errorMsg.classList.add('show');
-    return;
-  }
+  if(!usuarioInput){errorMsg.textContent='️ Introduce un usuario';errorMsg.classList.add('show');return;}
+  if(!USUARIOS_SISTEMA[usuarioInput]){errorMsg.textContent='❌ Usuario no válido';errorMsg.classList.add('show');return;}
+  if(!claveInput){errorMsg.textContent='⚠️ Introduce una contraseña';errorMsg.classList.add('show');return;}
   
-  const claveUsuarioHash = await obtenerClaveUsuario();
-  const claveIntroducidaHash = await hashSHA256(claveIntroducida);
-  const claveAdminHash = await hashSHA256(CLAVE_ADMIN_FIJA);
+  const claveHash=await obtenerClaveUsuario(usuarioInput);
+  const claveIntroducidaHash=await hashSHA256(claveInput);
   
-  if(claveIntroducidaHash === claveUsuarioHash || claveIntroducidaHash === claveAdminHash){
+  if(claveIntroducidaHash===claveHash){
+    usuarioActual={id:usuarioInput,nombre:USUARIOS_SISTEMA[usuarioInput].nombre,rol:USUARIOS_SISTEMA[usuarioInput].rol};
+    sessionStorage.setItem('ca_usuarioActual',JSON.stringify(usuarioActual));
     iniciarSesion();
     errorMsg.classList.remove('show');
-    input.value = '';
+    document.getElementById('loginUsuario').value='';
+    document.getElementById('loginPassword').value='';
   }else{
-    errorMsg.textContent = '❌ Clave incorrecta. Inténtalo de nuevo.';
+    errorMsg.textContent='❌ Contraseña incorrecta';
     errorMsg.classList.add('show');
-    input.value = '';
-    input.focus();
+    document.getElementById('loginPassword').value='';
+    document.getElementById('loginPassword').focus();
   }
 }
 
-// BLOQUEO POR INACTIVIDAD
-function resetInactivityTimer() {
+function resetInactivityTimer(){
   clearTimeout(inactivityTimer);
   clearInterval(inactivityCountdown);
-  secondsRemaining = INACTIVITY_TIMEOUT / 1000;
-  inactivityTimer = setTimeout(() => {
-    bloquearPorInactividad();
-  }, INACTIVITY_TIMEOUT);
+  secondsRemaining=INACTIVITY_TIMEOUT/1000;
+  inactivityTimer=setTimeout(()=>{bloquearPorInactividad();},INACTIVITY_TIMEOUT);
 }
 
-function bloquearPorInactividad() {
+function bloquearPorInactividad(){
   document.getElementById('inactivityOverlay').classList.add('show');
-  document.getElementById('inactivityPassword').value = '';
-  document.getElementById('inactivityError').style.display = 'none';
+  document.getElementById('inactivityPassword').value='';
+  document.getElementById('inactivityError').style.display='none';
   document.getElementById('inactivityPassword').focus();
-  secondsRemaining = 60;
+  secondsRemaining=60;
   actualizarTimerInactividad();
-  inactivityCountdown = setInterval(() => {
-    secondsRemaining++;
-    actualizarTimerInactividad();
-  }, 1000);
+  inactivityCountdown=setInterval(()=>{secondsRemaining++;actualizarTimerInactividad();},1000);
 }
 
-function actualizarTimerInactividad() {
-  const mins = Math.floor(secondsRemaining / 60);
-  const secs = secondsRemaining % 60;
-  document.getElementById('inactivityTimer').textContent = 
-    String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+function actualizarTimerInactividad(){
+  const mins=Math.floor(secondsRemaining/60);
+  const secs=secondsRemaining%60;
+  document.getElementById('inactivityTimer').textContent=String(mins).padStart(2,'0')+':'+String(secs).padStart(2,'0');
 }
 
-async function reanudarSesion() {
-  const clave = document.getElementById('inactivityPassword').value.trim();
-  const errorMsg = document.getElementById('inactivityError');
-  
-  if (!clave) {
-    errorMsg.textContent = '⚠️ Introduce una clave';
-    errorMsg.style.display = 'block';
+async function reanudarSesion(){
+  if(!usuarioActual){
+    document.getElementById('inactivityOverlay').classList.remove('show');
+    document.getElementById('loginOverlay').style.display='flex';
     return;
   }
-  
-  const claveUsuarioHash = await obtenerClaveUsuario();
-  const claveIntroducidaHash = await hashSHA256(clave);
-  const claveAdminHash = await hashSHA256(CLAVE_ADMIN_FIJA);
-  
-  if (claveIntroducidaHash === claveUsuarioHash || claveIntroducidaHash === claveAdminHash) {
+  const clave=document.getElementById('inactivityPassword').value.trim();
+  const errorMsg=document.getElementById('inactivityError');
+  if(!clave){errorMsg.textContent='⚠️ Introduce tu contraseña';errorMsg.style.display='block';return;}
+  const claveHash=await obtenerClaveUsuario(usuarioActual.id);
+  const claveIntroducidaHash=await hashSHA256(clave);
+  if(claveIntroducidaHash===claveHash){
     clearInterval(inactivityCountdown);
     document.getElementById('inactivityOverlay').classList.remove('show');
     resetInactivityTimer();
-    mostrarAlerta('success', '✅ Sesión reanudada');
-  } else {
-    errorMsg.textContent = '❌ Clave incorrecta';
-    errorMsg.style.display = 'block';
+    mostrarAlerta('success','✅ Sesión reanudada');
+  }else{
+    errorMsg.textContent='❌ Contraseña incorrecta';
+    errorMsg.style.display='block';
   }
 }
 
-// Escuchar actividad del usuario
-['click', 'keypress', 'mousemove', 'scroll', 'touchstart', 'keydown'].forEach(evt => {
-  document.addEventListener(evt, resetInactivityTimer, { passive: true });
+['click','keypress','mousemove','scroll','touchstart','keydown'].forEach(evt=>{
+  document.addEventListener(evt,resetInactivityTimer,{passive:true});
 });
 
 async function abrirModalCambioClave(){
-  document.getElementById('claveActual').value = '';
-  document.getElementById('nuevaClave').value = '';
-  document.getElementById('confirmarClave').value = '';
-  document.getElementById('mensajeErrorClave').style.display = 'none';
-  document.getElementById('requisitosClave').style.display = 'none';
+  if(!usuarioActual) return;
+  document.getElementById('usuarioActualDisplay').textContent=usuarioActual.id;
+  document.getElementById('nombreUsuarioDisplay').textContent=usuarioActual.nombre;
+  document.getElementById('claveActual').value='';
+  document.getElementById('nuevaClave').value='';
+  document.getElementById('confirmarClave').value='';
+  document.getElementById('mensajeErrorClave').style.display='none';
+  document.getElementById('requisitosClave').style.display='none';
+  
+  if(usuarioActual.rol==='admin'){
+    document.getElementById('mensajeErrorClave').textContent=' La contraseña de administrador no se puede cambiar';
+    document.getElementById('mensajeErrorClave').style.display='block';
+  }
+  
   document.getElementById('modalCambioClave').classList.add('show');
   actualizarRequisitosClave();
 }
 
-function cerrarModalCambioClave(){
-  document.getElementById('modalCambioClave').classList.remove('show');
-}
+function cerrarModalCambioClave(){document.getElementById('modalCambioClave').classList.remove('show');}
 
 async function cambiarClave(){
-  const claveActual = document.getElementById('claveActual').value.trim();
-  const nuevaClave = document.getElementById('nuevaClave').value;
-  const confirmarClave = document.getElementById('confirmarClave').value;
-  const mensajeError = document.getElementById('mensajeErrorClave');
+  if(!usuarioActual||usuarioActual.rol==='admin') return;
+  const claveActual=document.getElementById('claveActual').value.trim();
+  const nuevaClave=document.getElementById('nuevaClave').value;
+  const confirmarClave=document.getElementById('confirmarClave').value;
+  const mensajeError=document.getElementById('mensajeErrorClave');
   
-  if(!claveActual){
-    mensajeError.textContent = '❌ Debes introducir la clave actual';
-    mensajeError.style.display = 'block';
-    return;
-  }
+  if(!claveActual){mensajeError.textContent=' Debes introducir la contraseña actual';mensajeError.style.display='block';return;}
+  if(!nuevaClave){mensajeError.textContent='❌ Debes introducir una nueva contraseña';mensajeError.style.display='block';return;}
+  const errores=validarComplejidadClave(nuevaClave);
+  if(errores.length>0){mensajeError.innerHTML='❌ La contraseña no cumple los requisitos:<br>• '+errores.join('<br>• ');mensajeError.style.display='block';return;}
+  if(nuevaClave!==confirmarClave){mensajeError.textContent='❌ Las contraseñas no coinciden';mensajeError.style.display='block';return;}
   
-  if(!nuevaClave){
-    mensajeError.textContent = '❌ Debes introducir una nueva clave';
-    mensajeError.style.display = 'block';
-    return;
-  }
+  const claveActualHash=await obtenerClaveUsuario(usuarioActual.id);
+  const claveIntroducidaHash=await hashSHA256(claveActual);
+  if(claveIntroducidaHash!==claveActualHash){mensajeError.textContent='❌ La contraseña actual es incorrecta';mensajeError.style.display='block';return;}
   
-  const errores = validarComplejidadClave(nuevaClave);
-  if (errores.length > 0) {
-    mensajeError.innerHTML = '❌ La clave no cumple los requisitos:<br>• ' + errores.join('<br>• ');
-    mensajeError.style.display = 'block';
-    return;
-  }
-  
-  if(nuevaClave !== confirmarClave){
-    mensajeError.textContent = '❌ La nueva clave y la confirmación no coinciden';
-    mensajeError.style.display = 'block';
-    return;
-  }
-  
-  const claveUsuarioHash = await obtenerClaveUsuario();
-  const claveActualHash = await hashSHA256(claveActual);
-  const claveAdminHash = await hashSHA256(CLAVE_ADMIN_FIJA);
-  
-  if(claveActualHash !== claveUsuarioHash && claveActualHash !== claveAdminHash){
-    mensajeError.textContent = '❌ La clave actual es incorrecta';
-    mensajeError.style.display = 'block';
-    return;
-  }
-  
-  const nuevaClaveHash = await hashSHA256(nuevaClave);
-  await guardarClaveUsuario(nuevaClaveHash);
-  
+  const nuevaClaveHash=await hashSHA256(nuevaClave);
+  await guardarClaveUsuario(usuarioActual.id,nuevaClaveHash);
   cerrarModalCambioClave();
-  mostrarAlerta('success', '✅ Clave de acceso cambiada correctamente');
+  mostrarAlerta('success','✅ Contraseña cambiada correctamente');
 }
 
-
-
-function getPeriodoLabel(year, month){return MESES_NOMBRES[month-1]+" "+year;}
-function getDayType(year, month, day){
+function getPeriodoLabel(year,month){return MESES_NOMBRES[month-1]+" "+year;}
+function getDayType(year,month,day){
   const fecha=new Date(year,month-1,day);
   const diaSemana=fecha.getDay();
   if(diaSemana===0||diaSemana===6) return {type:'weekend',label:'Fin de semana'};
@@ -1123,130 +1034,87 @@ function getDayType(year, month, day){
   if(fechaActual<fechaInicio) return {type:'before-course',label:'Antes del curso'};
   const fechaFin=new Date(FIN_CURSO.y,FIN_CURSO.m-1,FIN_CURSO.d);
   if(fechaActual>fechaFin) return {type:'after-course',label:'Después del curso'};
-  for(const f of FESTIVOS){ if(f.y===year&&f.m===month&&f.d===day) return {type:'holiday',label:f.nombre}; }
-  for(const v of VACACIONES){ if(v.y===year&&v.m===month&&v.d===day) return {type:'vacation',label:'Vacaciones'}; }
+  for(const f of FESTIVOS){if(f.y===year&&f.m===month&&f.d===day) return {type:'holiday',label:f.nombre};}
+  for(const v of VACACIONES){if(v.y===year&&v.m===month&&v.d===day) return {type:'vacation',label:'Vacaciones'};}
   return {type:'lectivo',label:'Día lectivo'};
 }
 
 function generarPeriodos(){
   const periodos=[];
-  let year=INICIO_CURSO.y, month=INICIO_CURSO.m;
-  const endYear=FIN_CURSO.y, endMonth=FIN_CURSO.m;
+  let year=INICIO_CURSO.y,month=INICIO_CURSO.m;
+  const endYear=FIN_CURSO.y,endMonth=FIN_CURSO.m;
   while(year<endYear||(year===endYear&&month<=endMonth)){
     periodos.push({y:year,m:month,label:getPeriodoLabel(year,month)});
-    month++; if(month>12){month=1;year++;}
+    month++;if(month>12){month=1;year++;}
   }
   return periodos;
 }
 
-function calcularAnioParaMes(mes){
-  if(mes >= INICIO_CURSO.m){ return INICIO_CURSO.y; }
-  else{ return INICIO_CURSO.y + 1; }
+function calcularAnioParaMes(mes){return mes>=INICIO_CURSO.m?INICIO_CURSO.y:INICIO_CURSO.y+1;}
+
+function llenarSelectDias(selectId,valorSeleccionado){
+  const select=document.getElementById(selectId);select.innerHTML='';
+  for(let d=1;d<=31;d++){const o=document.createElement('option');o.value=d;o.textContent=d;if(d===valorSeleccionado) o.selected=true;select.appendChild(o);}
 }
 
-function llenarSelectDias(selectId, valorSeleccionado){
-  const select=document.getElementById(selectId);
-  select.innerHTML='';
-  for(let d=1;d<=31;d++){
-    const o=document.createElement('option');
-    o.value=d;
-    o.textContent=d;
-    if(d===valorSeleccionado) o.selected=true;
-    select.appendChild(o);
-  }
-}
-
-function llenarSelectAnios(selectId, valorSeleccionado){
-  const select=document.getElementById(selectId);
-  select.innerHTML='';
-  for(let y=ANIO_MIN_DESPLEGABLE;y<=ANIO_MAX_DESPLEGABLE;y++){
-    const o=document.createElement('option');
-    o.value=y;
-    o.textContent=y;
-    if(y===valorSeleccionado) o.selected=true;
-    select.appendChild(o);
-  }
+function llenarSelectAnios(selectId,valorSeleccionado){
+  const select=document.getElementById(selectId);select.innerHTML='';
+  for(let y=ANIO_MIN_DESPLEGABLE;y<=ANIO_MAX_DESPLEGABLE;y++){const o=document.createElement('option');o.value=y;o.textContent=y;if(y===valorSeleccionado) o.selected=true;select.appendChild(o);}
 }
 
 function mostrarAlerta(tipo,mensaje,duracion=5000){
   const cont=document.getElementById('alertContainer');
-  const iconos={info:'ℹ️',error:'❌',success:'✅',warning:'⚠️'};
+  const iconos={info:'ℹ️',error:'❌',success:'✅',warning:'️'};
   const alertDiv=document.createElement('div');
   alertDiv.className='alert alert-'+tipo;
   alertDiv.innerHTML='<span style="font-size:18px">'+(iconos[tipo]||'')+'</span><span>'+mensaje+'</span>';
   alertDiv.onclick=function(){this.remove();};
   cont.appendChild(alertDiv);
-  if(duracion>0){
-    setTimeout(function(){
-      alertDiv.style.opacity='0';
-      alertDiv.style.transform='translateX(100%)';
-      setTimeout(function(){alertDiv.remove();},300);
-    },duracion);
-  }
+  if(duracion>0){setTimeout(function(){alertDiv.style.opacity='0';alertDiv.style.transform='translateX(100%)';setTimeout(function(){alertDiv.remove();},300);},duracion);}
 }
 
 async function guardarEnNube(mensajeExito){
-  try {
-    const payload = {
-      alumnos: ALUMNOS,
-      registros: [...historicalRecords, ...userRecords],
-      festivos: FESTIVOS,
-      vacaciones: VACACIONES,
-      inicioCurso: INICIO_CURSO,
-      finCurso: FIN_CURSO,
-      notasPorDia: notasPorDia
-    };
-    const db = window.firebaseDB;
-    const dbRef = window.firebaseRef(db, 'datos');
-    await window.firebaseSet(dbRef, payload);
-    if(mensajeExito) mostrarAlerta('success', mensajeExito);
+  try{
+    const payload={alumnos:ALUMNOS,registros:[...historicalRecords,...userRecords],festivos:FESTIVOS,vacaciones:VACACIONES,inicioCurso:INICIO_CURSO,finCurso:FIN_CURSO,notasPorDia:notasPorDia};
+    const db=window.firebaseDB;
+    const dbRef=window.firebaseRef(db,'datos');
+    await window.firebaseSet(dbRef,payload);
+    if(mensajeExito) mostrarAlerta('success',mensajeExito);
     return true;
-  } catch (e) {
-    console.error('Error al guardar:', e);
-    mostrarAlerta('error', '❌ Error al guardar en la nube: ' + e.message);
-    return false;
-  }
+  }catch(e){console.error('Error:',e);mostrarAlerta('error','❌ Error al guardar: '+e.message);return false;}
 }
 
-async function cargarDatosNube() {
+async function cargarDatosNube(){
   document.getElementById('loader').classList.remove('hidden');
-  try {
-    const db = window.firebaseDB;
-    const dbRef = window.firebaseRef(db);
-    const snapshot = await window.firebaseGet(window.firebaseChild(dbRef, 'datos'));
-    if (snapshot.exists()) {
-      const datos = snapshot.val();
-      if (datos.alumnos && datos.alumnos.length > 0) ALUMNOS = datos.alumnos;
-      if (datos.registros && datos.registros.length > 0) {
-        historicalRecords = datos.registros.filter(r => r.hist === true);
-        userRecords = datos.registros.filter(r => r.hist !== true);
-      } else { historicalRecords = []; userRecords = []; }
-      if (datos.festivos) FESTIVOS = datos.festivos.map(f => ({y: parseInt(f.y), m: parseInt(f.m), d: parseInt(f.d), nombre: f.nombre}));
-      if (datos.vacaciones) VACACIONES = datos.vacaciones.map(v => ({y: parseInt(v.y), m: parseInt(v.m), d: parseInt(v.d)}));
-      if (datos.notasPorDia) notasPorDia = datos.notasPorDia;
-      if (datos.inicioCurso) INICIO_CURSO = {y: parseInt(datos.inicioCurso.y), m: parseInt(datos.inicioCurso.m), d: parseInt(datos.inicioCurso.d)};
-      if (datos.finCurso) FIN_CURSO = {y: parseInt(datos.finCurso.y), m: parseInt(datos.finCurso.m), d: parseInt(datos.finCurso.d)};
-      dataSourceMsg = "☁️ Nube";
-      document.getElementById('dataSource').textContent = dataSourceMsg;
+  try{
+    const db=window.firebaseDB;
+    const dbRef=window.firebaseRef(db);
+    const snapshot=await window.firebaseGet(window.firebaseChild(dbRef,'datos'));
+    if(snapshot.exists()){
+      const datos=snapshot.val();
+      if(datos.alumnos&&datos.alumnos.length>0) ALUMNOS=datos.alumnos;
+      if(datos.registros&&datos.registros.length>0){historicalRecords=datos.registros.filter(r=>r.hist===true);userRecords=datos.registros.filter(r=>r.hist!==true);}
+      else{historicalRecords=[];userRecords=[];}
+      if(datos.festivos) FESTIVOS=datos.festivos.map(f=>({y:parseInt(f.y),m:parseInt(f.m),d:parseInt(f.d),nombre:f.nombre}));
+      if(datos.vacaciones) VACACIONES=datos.vacaciones.map(v=>({y:parseInt(v.y),m:parseInt(v.m),d:parseInt(v.d)}));
+      if(datos.notasPorDia) notasPorDia=datos.notasPorDia;
+      if(datos.inicioCurso) INICIO_CURSO={y:parseInt(datos.inicioCurso.y),m:parseInt(datos.inicioCurso.m),d:parseInt(datos.inicioCurso.d)};
+      if(datos.finCurso) FIN_CURSO={y:parseInt(datos.finCurso.y),m:parseInt(datos.finCurso.m),d:parseInt(datos.finCurso.d)};
+      document.getElementById('dataSource').textContent="☁️ Nube";
       saveUser();
       inicializarApp();
       renderAll();
       renderConfiguracion();
       actualizarInfoCurso();
-    } else {
-      dataSourceMsg = "Local (Sin datos)";
-      document.getElementById('dataSource').textContent = dataSourceMsg;
+    }else{
+      document.getElementById('dataSource').textContent="Local";
       inicializarApp();
       renderAll();
       renderConfiguracion();
       actualizarInfoCurso();
     }
-  } catch (e) {
-    console.error('Error:', e);
-    mostrarAlerta('error', 'Error al conectar con la nube: ' + e.message);
-  } finally {
-    document.getElementById('loader').classList.add('hidden');
-  }
+  }catch(e){console.error('Error:',e);mostrarAlerta('error','Error al conectar: '+e.message);}
+  finally{document.getElementById('loader').classList.add('hidden');}
 }
 
 function actualizarInfoCurso(){
@@ -1254,70 +1122,37 @@ function actualizarInfoCurso(){
   const finStr=pad(FIN_CURSO.d)+'/'+pad(FIN_CURSO.m)+'/'+FIN_CURSO.y;
   document.getElementById('cursoInfoTextoGlobal').textContent=inicioStr+' - '+finStr;
   const countFechas=document.getElementById('countFechas');
-  if(countFechas){
-    countFechas.innerHTML='<strong>'+inicioStr+'</strong> - <strong>'+finStr+'</strong>';
-  }
+  if(countFechas) countFechas.innerHTML='<strong>'+inicioStr+'</strong> - <strong>'+finStr+'</strong>';
   const backupFilename=document.getElementById('backupFilename');
-  if(backupFilename){
-    const cursoAnio=INICIO_CURSO.y+'/'+String(FIN_CURSO.y).slice(-2);
-    backupFilename.textContent='backup_curso_'+cursoAnio.replace('/','_')+'.html';
-  }
+  if(backupFilename){const cursoAnio=INICIO_CURSO.y+'/'+String(FIN_CURSO.y).slice(-2);backupFilename.textContent='backup_curso_'+cursoAnio.replace('/','_')+'.html';}
 }
 
 function inicializarApp(){
   document.getElementById('todayDate').textContent='📅 Hoy: '+DIA_HOY+'/'+pad(MES_HOY)+'/'+ANIO_HOY;
   const periodos=generarPeriodos();
   const erMes=document.getElementById('erMes');erMes.innerHTML='';
-  periodos.forEach(function(p){
-    const o=document.createElement('option');
-    o.value=p.m;
-    o.textContent=p.label;
-    erMes.appendChild(o);
-  });
-  
-  const periodoActual=periodos.find(p => p.y===ANIO_HOY && p.m===MES_HOY);
-  if(periodoActual){
-    erMes.value=periodoActual.m;
-  }else{
-    let mejorPeriodo=periodos[0];
-    let mejorDiff=Infinity;
-    periodos.forEach(p=>{
-      const fechaPeriodo=new Date(p.y,p.m-1,1);
-      const diff=Math.abs(fechaPeriodo-FECHA_HOY);
-      if(diff<mejorDiff){mejorDiff=diff;mejorPeriodo=p;}
-    });
-    erMes.value=mejorPeriodo.m;
-  }
+  periodos.forEach(function(p){const o=document.createElement('option');o.value=p.m;o.textContent=p.label;erMes.appendChild(o);});
+  const periodoActual=periodos.find(p=>p.y===ANIO_HOY&&p.m===MES_HOY);
+  if(periodoActual){erMes.value=periodoActual.m;}
+  else{let mejorPeriodo=periodos[0];let mejorDiff=Infinity;periodos.forEach(p=>{const fechaPeriodo=new Date(p.y,p.m-1,1);const diff=Math.abs(fechaPeriodo-FECHA_HOY);if(diff<mejorDiff){mejorDiff=diff;mejorPeriodo=p;}});erMes.value=mejorPeriodo.m;}
   onMesSeleccionado();
-  
-  const fPeriodo=document.getElementById('fPeriodo'); fPeriodo.innerHTML='<option value="ALL">Todo el curso</option>';
-  periodos.forEach(function(p){ const o=document.createElement('option'); o.value=p.y+'-'+p.m; o.textContent=p.label; fPeriodo.appendChild(o); });
-  const periodoActualIdx=periodos.findIndex(p => p.y===ANIO_HOY && p.m===MES_HOY);
+  const fPeriodo=document.getElementById('fPeriodo');fPeriodo.innerHTML='<option value="ALL">Todo el curso</option>';
+  periodos.forEach(function(p){const o=document.createElement('option');o.value=p.y+'-'+p.m;o.textContent=p.label;fPeriodo.appendChild(o);});
+  const periodoActualIdx=periodos.findIndex(p=>p.y===ANIO_HOY&&p.m===MES_HOY);
   if(periodoActualIdx>=0) fPeriodo.value=periodos[periodoActualIdx].y+'-'+periodos[periodoActualIdx].m;
-  
-  const fMaq=document.getElementById('fMaq'); fMaq.innerHTML='<option value="TODOS">Todos los alumnos</option>';
+  const fMaq=document.getElementById('fMaq');fMaq.innerHTML='<option value="TODOS">Todos los alumnos</option>';
   ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;fMaq.appendChild(o);});
-  
-  const calPeriodo=document.getElementById('calPeriodo'); calPeriodo.innerHTML='';
-  periodos.forEach(function(p){ const o=document.createElement('option'); o.value=p.y+'-'+p.m; o.textContent=p.label; calPeriodo.appendChild(o); });
+  const calPeriodo=document.getElementById('calPeriodo');calPeriodo.innerHTML='';
+  periodos.forEach(function(p){const o=document.createElement('option');o.value=p.y+'-'+p.m;o.textContent=p.label;calPeriodo.appendChild(o);});
   if(periodoActualIdx>=0) calPeriodo.value=periodos[periodoActualIdx].y+'-'+periodos[periodoActualIdx].m;
-  
   const calFiltroAlumno=document.getElementById('calFiltroAlumno');
   calFiltroAlumno.innerHTML='<option value="TODOS">Todos los alumnos</option>';
   ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;calFiltroAlumno.appendChild(o);});
-  
   renderAll();
   generarCalendarioEntrada();
 }
 
-function onMesSeleccionado(){
-  const mes=parseInt(document.getElementById('erMes').value);
-  const anio=calcularAnioParaMes(mes);
-  mesSeleccionado=mes;
-  anioSeleccionado=anio;
-  generarCalendarioEntrada();
-}
-
+function onMesSeleccionado(){const mes=parseInt(document.getElementById('erMes').value);const anio=calcularAnioParaMes(mes);mesSeleccionado=mes;anioSeleccionado=anio;generarCalendarioEntrada();}
 function getAll(){return[...historicalRecords,...userRecords];}
 function saveUser(){localStorage.setItem('ca_cache',JSON.stringify({alumnos:ALUMNOS,registros:[...historicalRecords,...userRecords],festivos:FESTIVOS,vacaciones:VACACIONES,inicioCurso:INICIO_CURSO,finCurso:FIN_CURSO,notasPorDia:notasPorDia}));}
 function pad(n){return n<10?'0'+n:''+n;}
@@ -1327,75 +1162,35 @@ function toggleConfig(){
   const pnl=document.getElementById('p8');
   const btn=document.getElementById('btnConfig');
   if(configVisible){
-    pnl.style.display='block';
-    pnl.classList.add('on');
-    btn.classList.add('on');
-    volverDashboardConfig();
-    renderConfiguracion();
+    pnl.style.display='block';pnl.classList.add('on');btn.classList.add('on');
+    volverDashboardConfig();renderConfiguracion();
+    const seccionClave=document.getElementById('seccionCambiarClave');
+    if(seccionClave) seccionClave.style.display=(usuarioActual&&usuarioActual.rol!=='admin')?'block':'none';
     setTimeout(()=>{pnl.scrollIntoView({behavior:'smooth',block:'start'});},100);
-  }else{
-    pnl.style.display='none';
-    pnl.classList.remove('on');
-    btn.classList.remove('on');
-  }
+  }else{pnl.style.display='none';pnl.classList.remove('on');btn.classList.remove('on');}
 }
 
-function mostrarPanelConfig(panel){
-  document.getElementById('configDashboard').style.display='none';
-  document.querySelectorAll('.config-panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('panel'+panel.charAt(0).toUpperCase()+panel.slice(1)).classList.add('active');
-}
-
-function volverDashboardConfig(){
-  document.querySelectorAll('.config-panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('configDashboard').style.display='grid';
-}
+function mostrarPanelConfig(panel){document.getElementById('configDashboard').style.display='none';document.querySelectorAll('.config-panel').forEach(p=>p.classList.remove('active'));document.getElementById('panel'+panel.charAt(0).toUpperCase()+panel.slice(1)).classList.add('active');}
+function volverDashboardConfig(){document.querySelectorAll('.config-panel').forEach(p=>p.classList.remove('active'));document.getElementById('configDashboard').style.display='grid';}
 
 function showTab(id){
-  document.querySelectorAll('.pnl').forEach(p=>{
-    if(p.id!=='p8') p.classList.remove('on');
-  });
+  document.querySelectorAll('.pnl').forEach(p=>{if(p.id!=='p8') p.classList.remove('on');});
   document.querySelectorAll('.tb').forEach(t=>t.classList.remove('on'));
-  
-  if(id!=='p8'){
-    document.getElementById(id).classList.add('on');
-  }
-  
-  const btn=document.querySelector('[data-t="'+id+'"]');
-  if(btn)btn.classList.add('on');
-  
+  if(id!=='p8') document.getElementById(id).classList.add('on');
+  const btn=document.querySelector('[data-t="'+id+'"]');if(btn) btn.classList.add('on');
   const subtabs=document.getElementById('subtabsConsultas');
-  if(id==='p9'){
-    subtabs.classList.add('visible');
-    showSubTab('p2');
-  }else{
-    subtabs.classList.remove('visible');
-  }
-  
-  if(configVisible && id!=='p8'){
-    configVisible=false;
-    document.getElementById('p8').style.display='none';
-    document.getElementById('p8').classList.remove('on');
-    document.getElementById('btnConfig').classList.remove('on');
-  }
-  
-  if(id==='p7'){setTimeout(generarCalendarioEntrada,100);}
+  if(id==='p9'){subtabs.classList.add('visible');showSubTab('p2');}else{subtabs.classList.remove('visible');}
+  if(configVisible&&id!=='p8'){configVisible=false;document.getElementById('p8').style.display='none';document.getElementById('p8').classList.remove('on');document.getElementById('btnConfig').classList.remove('on');}
+  if(id==='p7') setTimeout(generarCalendarioEntrada,100);
 }
 
 function showSubTab(id){
   const subtabsContainer=document.getElementById('subtabsConsultas');
   subtabsContainer.querySelectorAll('.subtb').forEach(t=>t.classList.remove('on'));
-  
-  const btn=subtabsContainer.querySelector('[data-st="'+id+'"]');
-  if(btn)btn.classList.add('on');
-  
-  const p9=document.getElementById('p9');
-  p9.querySelectorAll('.pnl').forEach(p=>p.classList.remove('on'));
+  const btn=subtabsContainer.querySelector('[data-st="'+id+'"]');if(btn) btn.classList.add('on');
+  const p9=document.getElementById('p9');p9.querySelectorAll('.pnl').forEach(p=>p.classList.remove('on'));
   document.getElementById(id).classList.add('on');
-  
-  if(id==='p2')renderMaquinas();
-  if(id==='p3')renderTiempo();
-  if(id==='p4')setTimeout(actualizarCalendarioDesdePeriodo,100);
+  if(id==='p2') renderMaquinas();if(id==='p3') renderTiempo();if(id==='p4') setTimeout(actualizarCalendarioDesdePeriodo,100);
 }
 
 document.querySelectorAll('.tb').forEach(b=>b.addEventListener('click',function(){showTab(this.getAttribute('data-t'));}));
@@ -1414,14 +1209,14 @@ function renderAll(){
 }
 
 function renderMaquinas(){
-  const R=getAll(); const tb=document.getElementById('t2'); tb.innerHTML='';
-  const sm={}; ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
-  R.forEach(r=>{ if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++; });
+  const R=getAll();const tb=document.getElementById('t2');tb.innerHTML='';
+  const sm={};ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
+  R.forEach(r=>{if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++;});
   let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
   ALUMNOS.forEach(m=>{
     const s=sm[m];
-    totales.presente+=s.presente; totales.ausente+=s.ausente; totales.entrada_tarde+=s.entrada_tarde;
-    totales.salida_pronto+=s.salida_pronto; totales.cita_medica+=s.cita_medica; totales.conciliacion+=s.conciliacion;
+    totales.presente+=s.presente;totales.ausente+=s.ausente;totales.entrada_tarde+=s.entrada_tarde;
+    totales.salida_pronto+=s.salida_pronto;totales.cita_medica+=s.cita_medica;totales.conciliacion+=s.conciliacion;
     totales.baja+=s.baja;
     tb.innerHTML+='<tr><td><a class="alumno-link" onclick="abrirDetalleAlumno(\''+m.replace(/'/g,"\\'")+'\')">'+m+'</a></td><td class="r">'+s.presente+'</td><td class="r">'+s.ausente+'</td><td class="r">'+s.entrada_tarde+'</td><td class="r">'+s.salida_pronto+'</td><td class="r">'+s.cita_medica+'</td><td class="r">'+s.conciliacion+'</td><td class="r">'+s.baja+'</td></tr>';
   });
@@ -1429,29 +1224,23 @@ function renderMaquinas(){
 }
 
 function renderTiempo(){
-  const R=getAll(); const fPeriodo=document.getElementById('fPeriodo').value; const falumno=document.getElementById('fMaq').value;
-  const tb=document.getElementById('t3'); tb.innerHTML='';
+  const R=getAll();const fPeriodo=document.getElementById('fPeriodo').value;const falumno=document.getElementById('fMaq').value;
+  const tb=document.getElementById('t3');tb.innerHTML='';
   let filt=R;
-  if(fPeriodo!=='ALL'){ const parts=fPeriodo.split('-'); filt=filt.filter(r=>r.y===parseInt(parts[0])&&r.m===parseInt(parts[1])); }
-  if(falumno!=='TODOS')filt=filt.filter(r=>r.alumno===falumno);
+  if(fPeriodo!=='ALL'){const parts=fPeriodo.split('-');filt=filt.filter(r=>r.y===parseInt(parts[0])&&r.m===parseInt(parts[1]));}
+  if(falumno!=='TODOS') filt=filt.filter(r=>r.alumno===falumno);
   const ag={};
-  filt.forEach(r=>{ const k=getPeriodoLabel(r.y,r.m); if(!ag[k])ag[k]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0}; if(ag[k][r.estado]!==undefined)ag[k][r.estado]++; });
-  const ks=Object.keys(ag).sort((a,b)=>{ const partsA=a.split(' '), monthA=MESES_NOMBRES.indexOf(partsA[0]), yearA=parseInt(partsA[1]); const partsB=b.split(' '), monthB=MESES_NOMBRES.indexOf(partsB[0]), yearB=parseInt(partsB[1]); if(yearA!==yearB)return yearA-yearB; return monthA-monthB; });
+  filt.forEach(r=>{const k=getPeriodoLabel(r.y,r.m);if(!ag[k]) ag[k]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};if(ag[k][r.estado]!==undefined) ag[k][r.estado]++;});
+  const ks=Object.keys(ag).sort((a,b)=>{const partsA=a.split(' '),monthA=MESES_NOMBRES.indexOf(partsA[0]),yearA=parseInt(partsA[1]);const partsB=b.split(' '),monthB=MESES_NOMBRES.indexOf(partsB[0]),yearB=parseInt(partsB[1]);if(yearA!==yearB) return yearA-yearB;return monthA-monthB;});
   let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};
-  if(ks.length===0){ tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:#9ca3af">Sin registros</td></tr>'; }
-  else {
-    ks.forEach(k=>{ totales.presente+=ag[k].presente; totales.ausente+=ag[k].ausente; totales.entrada_tarde+=ag[k].entrada_tarde; totales.salida_pronto+=ag[k].salida_pronto; totales.baja+=ag[k].baja; tb.innerHTML+='<tr><td>'+k+'</td><td class="r">'+ag[k].presente+'</td><td class="r">'+ag[k].ausente+'</td><td class="r">'+ag[k].entrada_tarde+'</td><td class="r">'+ag[k].salida_pronto+'</td><td class="r">'+ag[k].baja+'</td></tr>'; });
-    tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.baja+'</td></tr>';
-  }
+  if(ks.length===0){tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:#9ca3af">Sin registros</td></tr>';}
+  else{ks.forEach(k=>{totales.presente+=ag[k].presente;totales.ausente+=ag[k].ausente;totales.entrada_tarde+=ag[k].entrada_tarde;totales.salida_pronto+=ag[k].salida_pronto;totales.baja+=ag[k].baja;tb.innerHTML+='<tr><td>'+k+'</td><td class="r">'+ag[k].presente+'</td><td class="r">'+ag[k].ausente+'</td><td class="r">'+ag[k].entrada_tarde+'</td><td class="r">'+ag[k].salida_pronto+'</td><td class="r">'+ag[k].baja+'</td></tr>';});
+    tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.baja+'</td></tr>';}
 }
 
 function abrirDetalleAlumno(alumno){
   alumnoDetalleActual=alumno;
-  const registros=getAll().filter(r=>r.alumno===alumno).sort((a,b)=>{
-    if(a.y!==b.y) return a.y-b.y;
-    if(a.m!==b.m) return a.m-b.m;
-    return a.d-b.d;
-  });
+  const registros=getAll().filter(r=>r.alumno===alumno).sort((a,b)=>{if(a.y!==b.y) return a.y-b.y;if(a.m!==b.m) return a.m-b.m;return a.d-b.d;});
   document.getElementById('modalDetalleAlumnoTitulo').textContent='📋 Detalle de: '+alumno;
   const ausencias=registros.filter(r=>r.estado==='ausente');
   const entradasTarde=registros.filter(r=>r.estado==='entrada_tarde');
@@ -1468,7 +1257,7 @@ function abrirDetalleAlumno(alumno){
   html+='<div style="padding:10px;background:#e0e7ff;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#3730a3">'+conciliaciones.length+'</div><div style="font-size:11px;color:#3730a3">Conciliaciones</div></div>';
   html+='<div style="padding:10px;background:#fecaca;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#991b1b">'+bajas.length+'</div><div style="font-size:11px;color:#991b1b">Bajas</div></div>';
   html+='</div>';
-  function generarTabla(registros, titulo, icono){
+  function generarTabla(registros,titulo,icono){
     if(registros.length===0) return '';
     let t='<h4>'+icono+' '+titulo+' ('+registros.length+')</h4>';
     t+='<table><thead><tr><th>Fecha</th><th>Día</th><th>Horario</th><th>Detalles</th></tr></thead><tbody>';
@@ -1481,72 +1270,51 @@ function abrirDetalleAlumno(alumno){
       else if(r.horaSalida&&r.horaLlegada) horario='🕐 '+r.horaSalida+' - '+r.horaLlegada;
       let detalles='';
       if(r.justificada) detalles='<span style="color:#166534;font-weight:600">✓ Justificada</span>';
-      else if(r.estado==='ausente') detalles='<span style="color:#dc2626">✗ No justificada</span>';
-      if(r.causa) detalles+=(detalles?'<br>':'')+'<span class="causa-detalle">📝 '+r.causa+'</span>';
+      else if(r.estado==='ausente') detalles='<span style="color:#dc2626"> No justificada</span>';
+      if(r.causa) detalles+=(detalles?'<br>':'')+'<span class="causa-detalle"> '+r.causa+'</span>';
       t+='<tr><td><strong>'+fecha+'</strong></td><td>'+diaSemana+'</td><td class="hora-detalle">'+horario+'</td><td>'+(detalles||'-')+'</td></tr>';
     });
-    t+='</tbody></table>';
-    return t;
+    t+='</tbody></table>';return t;
   }
   html+=generarTabla(ausencias,'Ausencias','❌');
   html+=generarTabla(entradasTarde,'Entradas tarde','⏰');
-  html+=generarTabla(salidasPronto,'Salidas pronto','');
+  html+=generarTabla(salidasPronto,'Salidas pronto','📤');
   html+=generarTabla(citasMedicas,'Citas médicas','🏥');
-  html+=generarTabla(conciliaciones,'Conciliaciones','👨‍👩👧');
+  html+=generarTabla(conciliaciones,'Conciliaciones','👨‍‍👧');
   html+=generarTabla(bajas,'Bajas','🤒');
   if(registros.filter(r=>r.estado!=='presente').length===0){
-    html='<div style="padding:40px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px">✅</p><p style="font-size:16px">Este alumno no tiene incidencias registradas</p><p style="margin-top:8px;font-size:13px">Todos sus registros son de asistencia presente.</p></div>';
+    html='<div style="padding:40px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px">✅</p><p style="font-size:16px">Este alumno no tiene incidencias registradas</p></div>';
   }
   document.getElementById('modalDetalleAlumnoContenido').innerHTML=html;
   document.getElementById('modalDetalleAlumno').classList.add('show');
 }
 
-function cerrarModalDetalleAlumno(){
-  document.getElementById('modalDetalleAlumno').classList.remove('show');
-  alumnoDetalleActual=null;
-}
-
-function imprimirDetalleAlumno(){
-  if(!alumnoDetalleActual) return;
-  const contenido=document.getElementById('modalDetalleAlumnoContenido').innerHTML;
-  const area=document.getElementById('printArea');
-  area.innerHTML='<div style="padding:20px"><h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Detalle de: '+alumnoDetalleActual+'</h2><p style="color:#6b7280;margin-bottom:20px">Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>'+contenido+'</div>';
-  window.print();
-  setTimeout(()=>{area.innerHTML='';},1000);
-}
+function cerrarModalDetalleAlumno(){document.getElementById('modalDetalleAlumno').classList.remove('show');alumnoDetalleActual=null;}
+function imprimirDetalleAlumno(){if(!alumnoDetalleActual) return;const contenido=document.getElementById('modalDetalleAlumnoContenido').innerHTML;const area=document.getElementById('printArea');area.innerHTML='<div style="padding:20px"><h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Detalle de: '+alumnoDetalleActual+'</h2><p style="color:#6b7280;margin-bottom:20px">Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>'+contenido+'</div>';window.print();setTimeout(()=>{area.innerHTML='';},1000);}
 
 function crearPDFDetalleAlumno(){
   if(!alumnoDetalleActual) return;
-  mostrarAlerta('info','Generando PDF detallado...');
-  
-  const registros=getAll().filter(r=>r.alumno===alumnoDetalleActual).sort((a,b)=>{
-    if(a.y!==b.y) return a.y-b.y;
-    if(a.m!==b.m) return a.m-b.m;
-    return a.d-b.d;
-  });
-  
+  mostrarAlerta('info','Generando PDF...');
+  const registros=getAll().filter(r=>r.alumno===alumnoDetalleActual).sort((a,b)=>{if(a.y!==b.y) return a.y-b.y;if(a.m!==b.m) return a.m-b.m;return a.d-b.d;});
   const ausencias=registros.filter(r=>r.estado==='ausente');
   const entradasTarde=registros.filter(r=>r.estado==='entrada_tarde');
   const salidasPronto=registros.filter(r=>r.estado==='salida_pronto');
   const citasMedicas=registros.filter(r=>r.estado==='cita_medica');
   const conciliaciones=registros.filter(r=>r.estado==='conciliacion');
   const bajas=registros.filter(r=>r.estado==='baja');
-  
   let html='<div class="pdf-content">';
   html+='<h1>📚 Control de Alumnos</h1>';
   html+='<h2>Detalle de: '+alumnoDetalleActual+'</h2>';
   html+='<p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>';
-  
   html+='<div class="pdf-stats">';
-  html+='<div class="pdf-stat-box" style="background:#fee2e2"><div class="num" style="color:#991b1b">'+ausencias.length+'</div><div class="lbl" style="color:#991b1b">Ausencias</div></div>';
-  html+='<div class="pdf-stat-box" style="background:#fef3c7"><div class="num" style="color:#92400e">'+entradasTarde.length+'</div><div class="lbl" style="color:#92400e">Entradas tarde</div></div>';
-  html+='<div class="pdf-stat-box" style="background:#fce7f3"><div class="num" style="color:#9d174d">'+salidasPronto.length+'</div><div class="lbl" style="color:#9d174d">Salidas pronto</div></div>';
-  html+='<div class="pdf-stat-box" style="background:#dbeafe"><div class="num" style="color:#1e40af">'+citasMedicas.length+'</div><div class="lbl" style="color:#1e40af">Citas médicas</div></div>';
-  html+='<div class="pdf-stat-box" style="background:#e0e7ff"><div class="num" style="color:#3730a3">'+conciliaciones.length+'</div><div class="lbl" style="color:#3730a3">Conciliaciones</div></div>';
-  html+='<div class="pdf-stat-box" style="background:#fecaca"><div class="num" style="color:#991b1b">'+bajas.length+'</div><div class="lbl" style="color:#991b1b">Bajas</div></div>';
+  html+='<div class="pdf-stat-box" style="background:#fee2e2"><div class="num" style="color:#991b1b">'+ausencias.length+'</div><div class="lbl">Ausencias</div></div>';
+  html+='<div class="pdf-stat-box" style="background:#fef3c7"><div class="num" style="color:#92400e">'+entradasTarde.length+'</div><div class="lbl">Entradas tarde</div></div>';
+  html+='<div class="pdf-stat-box" style="background:#fce7f3"><div class="num" style="color:#9d174d">'+salidasPronto.length+'</div><div class="lbl">Salidas pronto</div></div>';
+  html+='<div class="pdf-stat-box" style="background:#dbeafe"><div class="num" style="color:#1e40af">'+citasMedicas.length+'</div><div class="lbl">Citas médicas</div></div>';
+  html+='<div class="pdf-stat-box" style="background:#e0e7ff"><div class="num" style="color:#3730a3">'+conciliaciones.length+'</div><div class="lbl">Conciliaciones</div></div>';
+  html+='<div class="pdf-stat-box" style="background:#fecaca"><div class="num" style="color:#991b1b">'+bajas.length+'</div><div class="lbl">Bajas</div></div>';
   html+='</div>';
-  
-  function genTablaPDF(regs, titulo, icono, color){
+  function genTablaPDF(regs,titulo,icono,color){
     if(regs.length===0) return '';
     let t='<h3 style="color:'+color+'">'+icono+' '+titulo+' ('+regs.length+')</h3>';
     t+='<table><thead><tr><th>Fecha</th><th>Día</th><th>Horario</th><th>Detalles</th></tr></thead><tbody>';
@@ -1555,139 +1323,85 @@ function crearPDFDetalleAlumno(){
       const fechaObj=new Date(r.y,r.m-1,r.d);
       const diaSemana=DIAS_SEMANA[fechaObj.getDay()];
       let horario='-';
-      if(r.horaUnica) horario=' '+r.horaUnica;
+      if(r.horaUnica) horario='🕐 '+r.horaUnica;
       else if(r.horaSalida&&r.horaLlegada) horario='🕐 '+r.horaSalida+' - '+r.horaLlegada;
       let detalles='';
       if(r.justificada) detalles+='✓ Justificada ';
-      if(r.causa) detalles+='📝 '+r.causa;
+      if(r.causa) detalles+=' '+r.causa;
       t+='<tr><td><strong>'+fecha+'</strong></td><td>'+diaSemana+'</td><td>'+horario+'</td><td>'+(detalles||'-')+'</td></tr>';
     });
-    t+='</tbody></table>';
-    return t;
+    t+='</tbody></table>';return t;
   }
-  
-  html+=genTablaPDF(ausencias,'Ausencias','❌','#991b1b');
+  html+=genTablaPDF(ausencias,'Ausencias','','#991b1b');
   html+=genTablaPDF(entradasTarde,'Entradas tarde','⏰','#92400e');
   html+=genTablaPDF(salidasPronto,'Salidas pronto','📤','#9d174d');
   html+=genTablaPDF(citasMedicas,'Citas médicas','🏥','#1e40af');
-  html+=genTablaPDF(conciliaciones,'Conciliaciones','‍👩‍👧','#3730a3');
-  html+=genTablaPDF(bajas,'Bajas','🤒','#991b1b');
-  
-  if(registros.filter(r=>r.estado!=='presente').length===0){
-    html+='<div style="padding:30px;text-align:center;color:#6b7280"><p style="font-size:36px;margin-bottom:10px">✅</p><p style="font-size:14px">Este alumno no tiene incidencias registradas. Todos sus registros son de asistencia presente.</p></div>';
-  }
-  
+  html+=genTablaPDF(conciliaciones,'Conciliaciones','👨‍👩‍','#3730a3');
+  html+=genTablaPDF(bajas,'Bajas','','#991b1b');
   html+='</div>';
-  
-  const element=document.createElement('div');
-  element.innerHTML=html;
-  document.body.appendChild(element);
+  const element=document.createElement('div');element.innerHTML=html;document.body.appendChild(element);
   const opt={margin:10,filename:'detalle_'+alumnoDetalleActual.replace(/[^a-zA-Z0-9]/g,'_')+'.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
-  html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(element);mostrarAlerta('success','PDF detallado generado correctamente');}).catch(err=>{document.body.removeChild(element);mostrarAlerta('error','Error al generar PDF: '+err.message);});
+  html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(element);mostrarAlerta('success','PDF generado');}).catch(err=>{document.body.removeChild(element);mostrarAlerta('error','Error: '+err.message);});
 }
 
-function generarListaDetalladaPeriodo(registros, estado, icono){
+function generarListaDetalladaPeriodo(registros,estado,icono){
   const alumnosEstado=registros.filter(r=>r.estado===estado);
   if(alumnosEstado.length===0) return '';
   const porAlumno={};
-  alumnosEstado.forEach(r=>{
-    if(!porAlumno[r.alumno]) porAlumno[r.alumno]=[];
-    porAlumno[r.alumno].push(r);
-  });
+  alumnosEstado.forEach(r=>{if(!porAlumno[r.alumno]) porAlumno[r.alumno]=[];porAlumno[r.alumno].push(r);});
   let html='<div class="pdf-detalle-section">';
-  html+='<h4>'+icono+' '+LABELS_ESTADOS[estado]+' ('+alumnosEstado.length+' registros)</h4>';
+  html+='<h4>'+icono+' '+LABELS_ESTADOS[estado]+' ('+alumnosEstado.length+')</h4>';
   html+='<ul class="pdf-detalle-list">';
   Object.keys(porAlumno).sort().forEach(alumno=>{
     const regs=porAlumno[alumno];
     regs.forEach(r=>{
       const fecha=pad(r.d)+'/'+pad(r.m)+'/'+r.y;
-      let horaInfo='';
-      if(r.horaUnica) horaInfo='<span class="hora-info">🕐 '+r.horaUnica+'</span>';
-      else if(r.horaSalida&&r.horaLlegada) horaInfo='<span class="hora-info">🕐 '+r.horaSalida+' - '+r.horaLlegada+'</span>';
-      let justInfo='';
-      if(r.justificada) justInfo=' <span style="color:#166534">✓ Justificada</span>';
-      let causaInfo='';
-      if(r.causa) causaInfo=' <em>('+r.causa+')</em>';
+      let horaInfo='';if(r.horaUnica) horaInfo='<span class="hora-info">🕐 '+r.horaUnica+'</span>';else if(r.horaSalida&&r.horaLlegada) horaInfo='<span class="hora-info">🕐 '+r.horaSalida+' - '+r.horaLlegada+'</span>';
+      let justInfo='';if(r.justificada) justInfo=' <span style="color:#166534">✓ Justificada</span>';
+      let causaInfo='';if(r.causa) causaInfo=' <em>('+r.causa+')</em>';
       html+='<li class="'+estado+'"><strong>'+alumno+'</strong> - '+fecha+horaInfo+justInfo+causaInfo+'</li>';
     });
   });
-  html+='</ul></div>';
-  return html;
+  html+='</ul></div>';return html;
 }
 
 function crearPDF(tipo){
-  mostrarAlerta('info','Generando PDF detallado...');
-  
+  mostrarAlerta('info','Generando PDF...');
   if(tipo==='maquinas'){
-    const R=getAll();
-    let detallesHTML='';
-    const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'🏥',conciliacion:'👨👩‍👧',baja:'🤒'};
-    ['presente','ausente','entrada_tarde','salida_pronto','cita_medica','conciliacion','baja'].forEach(estado=>{
-      detallesHTML+=generarListaDetalladaPeriodo(R, estado, iconos[estado]);
-    });
-    
-    let html='<div class="pdf-content">';
-    html+='<h1>📚 Control de Alumnos</h1>';
-    html+='<h2>Total por Alumno</h2>';
-    html+='<p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>';
+    const R=getAll();let detallesHTML='';
+    const iconos={presente:'✅',ausente:'',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'',conciliacion:'👨‍👩‍👧',baja:'🤒'};
+    ['presente','ausente','entrada_tarde','salida_pronto','cita_medica','conciliacion','baja'].forEach(estado=>{detallesHTML+=generarListaDetalladaPeriodo(R,estado,iconos[estado]);});
+    let html='<div class="pdf-content"><h1>📚 Control de Alumnos</h1><h2>Total por Alumno</h2><p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>';
     html+=document.getElementById('tablaMaquinasTbl').outerHTML;
-    if(detallesHTML){
-      html+='<h3>📋 Detalle por estado</h3>';
-      html+=detallesHTML;
-    }
+    if(detallesHTML){html+='<h3>📋 Detalle por estado</h3>'+detallesHTML;}
     html+='</div>';
-    const element=document.createElement('div');
-    element.innerHTML=html;
-    document.body.appendChild(element);
-    const opt={margin:10,filename:'total_por_alumno_detallado.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
-    html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(element);mostrarAlerta('success','PDF detallado generado correctamente');}).catch(err=>{document.body.removeChild(element);mostrarAlerta('error','Error al generar PDF: '+err.message);});
-    
+    const element=document.createElement('div');element.innerHTML=html;document.body.appendChild(element);
+    const opt={margin:10,filename:'total_por_alumno.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
+    html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(element);mostrarAlerta('success','PDF generado');}).catch(err=>{document.body.removeChild(element);mostrarAlerta('error','Error: '+err.message);});
   }else if(tipo==='tiempo'){
-    const R=getAll();
-    const fPeriodo=document.getElementById('fPeriodo').value;
-    const falumno=document.getElementById('fMaq').value;
+    const R=getAll();const fPeriodo=document.getElementById('fPeriodo').value;const falumno=document.getElementById('fMaq').value;
     let filt=R;
-    if(fPeriodo!=='ALL'){ const parts=fPeriodo.split('-'); filt=filt.filter(r=>r.y===parseInt(parts[0])&&r.m===parseInt(parts[1])); }
-    if(falumno!=='TODOS')filt=filt.filter(r=>r.alumno===falumno);
-    
-    let detallesHTML='';
-    const periodosData={};
-    filt.forEach(r=>{
-      const k=getPeriodoLabel(r.y,r.m);
-      if(!periodosData[k]) periodosData[k]=[];
-      periodosData[k].push(r);
-    });
-    const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'',cita_medica:'🏥',conciliacion:'👨‍👩‍👧',baja:'🤒'};
-    Object.keys(periodosData).sort().forEach(periodo=>{
-      detallesHTML+='<h3 style="margin-top:20px;color:#1e3a8a;border-bottom:2px solid #e5e7eb;padding-bottom:8px">📅 '+periodo+'</h3>';
-      ['presente','ausente','entrada_tarde','salida_pronto','cita_medica','conciliacion','baja'].forEach(estado=>{
-        detallesHTML+=generarListaDetalladaPeriodo(periodosData[periodo], estado, iconos[estado]);
-      });
-    });
-    
-    let html='<div class="pdf-content">';
-    html+='<h1>📚 Control de Alumnos</h1>';
-    html+='<h2>Resumen por Periodo</h2>';
-    html+='<p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>';
+    if(fPeriodo!=='ALL'){const parts=fPeriodo.split('-');filt=filt.filter(r=>r.y===parseInt(parts[0])&&r.m===parseInt(parts[1]));}
+    if(falumno!=='TODOS') filt=filt.filter(r=>r.alumno===falumno);
+    let detallesHTML='';const periodosData={};
+    filt.forEach(r=>{const k=getPeriodoLabel(r.y,r.m);if(!periodosData[k]) periodosData[k]=[];periodosData[k].push(r);});
+    const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'🏥',conciliacion:'👨👩‍👧',baja:'🤒'};
+    Object.keys(periodosData).sort().forEach(periodo=>{detallesHTML+='<h3 style="margin-top:20px;color:#1e3a8a;border-bottom:2px solid #e5e7eb;padding-bottom:8px">📅 '+periodo+'</h3>';['presente','ausente','entrada_tarde','salida_pronto','cita_medica','conciliacion','baja'].forEach(estado=>{detallesHTML+=generarListaDetalladaPeriodo(periodosData[periodo],estado,iconos[estado]);});});
+    let html='<div class="pdf-content"><h1>📚 Control de Alumnos</h1><h2>Resumen por Periodo</h2><p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>';
     if(falumno!=='TODOS') html+='<p>Alumno: <strong>'+falumno+'</strong></p>';
     html+=document.getElementById('tablaTiempoTbl').outerHTML;
-    if(detallesHTML){
-      html+='<h3>📋 Detalle por periodo y estado</h3>';
-      html+=detallesHTML;
-    }
+    if(detallesHTML){html+='<h3>📋 Detalle</h3>'+detallesHTML;}
     html+='</div>';
-    const element=document.createElement('div');
-    element.innerHTML=html;
-    document.body.appendChild(element);
-    const opt={margin:10,filename:'resumen_por_periodo_detallado.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
-    html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(element);mostrarAlerta('success','PDF detallado generado correctamente');}).catch(err=>{document.body.removeChild(element);mostrarAlerta('error','Error al generar PDF: '+err.message);});
+    const element=document.createElement('div');element.innerHTML=html;document.body.appendChild(element);
+    const opt={margin:10,filename:'resumen_periodo.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
+    html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(element);mostrarAlerta('success','PDF generado');}).catch(err=>{document.body.removeChild(element);mostrarAlerta('error','Error: '+err.message);});
   }
 }
 
 function generarCalendarioEntrada(){
   mesSeleccionado=parseInt(document.getElementById('erMes').value);
   anioSeleccionado=calcularAnioParaMes(mesSeleccionado);
-  const cont=document.getElementById('calendarioEntrada'); cont.innerHTML='';
+  const cont=document.getElementById('calendarioEntrada');cont.innerHTML='';
   DIAS.forEach(d=>{const h=document.createElement('div');h.className='cal-header';h.textContent=d;cont.appendChild(h);});
   const first=new Date(anioSeleccionado,mesSeleccionado-1,1);
   const last=new Date(anioSeleccionado,mesSeleccionado,0);
@@ -1700,47 +1414,22 @@ function generarCalendarioEntrada(){
     const esFinde=(diaSemana===0||diaSemana===6);
     const dayInfo=getDayType(anioSeleccionado,mesSeleccionado,d);
     const esFuturo=fecha>FECHA_HOY;
-    const e=document.createElement('div');
-    e.className='cal-day';
-    if(dayInfo.type==='holiday')e.classList.add('status-holiday');
-    else if(dayInfo.type==='vacation')e.classList.add('status-vacation');
-    else if(esFinde)e.classList.add('status-weekend');
-    else if(esFuturo)e.classList.add('status-future');
+    const e=document.createElement('div');e.className='cal-day';
+    if(dayInfo.type==='holiday') e.classList.add('status-holiday');
+    else if(dayInfo.type==='vacation') e.classList.add('status-vacation');
+    else if(esFinde) e.classList.add('status-weekend');
+    else if(esFuturo) e.classList.add('status-future');
     const registrosDia=getAll().filter(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===d);
     let html='<div class="day-num">'+d+'</div>';
-    if(dayInfo.type==='holiday'||dayInfo.type==='vacation'){
-      html+='<div class="day-info">'+dayInfo.label+'</div>';
-    }else if(dayInfo.type==='before-course'||dayInfo.type==='after-course'){
-      html+='<div class="day-info">Fuera del curso</div>';
-      e.style.opacity='0.4';
-    }else if(esFinde){
-      html+='<div class="day-info">Fin de semana</div>';
-    }else if(esFuturo){
-      html+='<div class="day-info">🔒 Futuro (solo bajas)</div>';
-    }else{
-      const completado=registrosDia.length===ALUMNOS.length;
-      html+='<div class="day-info">'+registrosDia.length+'/'+ALUMNOS.length+(completado?' ✅':'')+'</div>';
-    }
+    if(dayInfo.type==='holiday'||dayInfo.type==='vacation') html+='<div class="day-info">'+dayInfo.label+'</div>';
+    else if(dayInfo.type==='before-course'||dayInfo.type==='after-course'){html+='<div class="day-info">Fuera del curso</div>';e.style.opacity='0.4';}
+    else if(esFinde) html+='<div class="day-info">Fin de semana</div>';
+    else if(esFuturo) html+='<div class="day-info">🔒 Futuro</div>';
+    else{const completado=registrosDia.length===ALUMNOS.length;html+='<div class="day-info">'+registrosDia.length+'/'+ALUMNOS.length+(completado?' ✅':'')+'</div>';}
     e.innerHTML=html;
-    
-    // Mostrar icono si hay nota
-    const claveNota = anioSeleccionado+'-'+mesSeleccionado+'-'+d;
-    if(notasPorDia[claveNota]){
-      const iconoNota = document.createElement('div');
-      iconoNota.style.cssText='position:absolute;top:3px;right:3px;font-size:10px;cursor:help';
-      iconoNota.textContent='📝';
-      iconoNota.title=notasPorDia[claveNota];
-      e.appendChild(iconoNota);
-    }
-    
-    if(!esFinde&&dayInfo.type==='lectivo'){
-      e.onclick=(function(dia,futuro){
-        return function(){
-          esDiaFuturo=futuro;
-          abrirModalAsistencia(dia);
-        };
-      })(d,esFuturo);
-    }
+    const claveNota=anioSeleccionado+'-'+mesSeleccionado+'-'+d;
+    if(notasPorDia[claveNota]){const iconoNota=document.createElement('div');iconoNota.style.cssText='position:absolute;top:3px;right:3px;font-size:10px;cursor:help';iconoNota.textContent='';iconoNota.title=notasPorDia[claveNota];e.appendChild(iconoNota);}
+    if(!esFinde&&dayInfo.type==='lectivo'){e.onclick=(function(dia,futuro){return function(){esDiaFuturo=futuro;abrirModalAsistencia(dia);};})(d,esFuturo);}
     cont.appendChild(e);
   }
 }
@@ -1749,30 +1438,20 @@ function abrirModalAsistencia(dia){
   diaSeleccionado=dia;
   const registrosDia=getAll().filter(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===dia);
   document.getElementById('modalTitulo').textContent='✏️ Asistencia del '+pad(dia)+'/'+pad(mesSeleccionado)+'/'+anioSeleccionado;
-  
   let html='';
-  
-  if(esDiaFuturo){
-    html+='<div class="aviso-futuro">️ Este día es futuro. Solo se permite registrar <strong>Bajas</strong>. Los demás estados no están disponibles.</div>';
-  }
-  
-  // Botones de acción rápida
+  if(esDiaFuturo) html+='<div class="aviso-futuro">⚠️ Día futuro. Solo se permite registrar <strong>Bajas</strong>.</div>';
   html+='<div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">';
   html+='<button class="btn b6" onclick="copiarDiaAnterior()" style="padding:8px 14px;font-size:12px">📋 Copiar día anterior</button>';
   html+='<button class="btn b2" onclick="marcarTodosPresentes()" style="padding:8px 14px;font-size:12px">✅ Todos presentes</button>';
-  html+='<button class="btn b4" onclick="limpiarTodos()" style="padding:8px 14px;font-size:12px"> Limpiar todo</button>';
+  html+='<button class="btn b4" onclick="limpiarTodos()" style="padding:8px 14px;font-size:12px">🔄 Limpiar</button>';
   html+='</div>';
-  
-  // Nota del día
   html+='<div style="margin-bottom:16px;padding:12px;background:#fef3c7;border-radius:6px;border-left:4px solid #f59e0b">';
-  html+='<label style="display:block;font-size:13px;font-weight:600;color:#92400e;margin-bottom:6px">📝 Notas del día (opcional):</label>';
-  html+='<textarea id="notaDelDia" placeholder="Ej: Excursión al museo, examen final, reunión de padres..." style="width:100%;padding:8px;border:1px solid #fcd34d;border-radius:6px;font-size:13px;resize:vertical;min-height:60px;font-family:inherit"></textarea>';
+  html+='<label style="display:block;font-size:13px;font-weight:600;color:#92400e;margin-bottom:6px">📝 Notas del día:</label>';
+  html+='<textarea id="notaDelDia" placeholder="Ej: Excursión, examen..." style="width:100%;padding:8px;border:1px solid #fcd34d;border-radius:6px;font-size:13px;resize:vertical;min-height:60px;font-family:inherit"></textarea>';
   html+='</div>';
-  
   html+='<div style="margin-bottom:16px;padding:12px;background:#f0f9ff;border-radius:6px;border-left:4px solid #2563eb">';
   html+='<strong>'+registrosDia.length+'</strong> de <strong>'+ALUMNOS.length+'</strong> alumnos registrados';
   html+='</div>';
-  
   ALUMNOS.forEach(alumno=>{
     const registro=registrosDia.find(r=>r.alumno===alumno);
     const estadoActual=registro?registro.estado:'';
@@ -1786,11 +1465,8 @@ function abrirModalAsistencia(dia){
     html+='<div style="display:flex;flex-direction:column;gap:6px">';
     html+='<select class="alumno-select" data-alumno="'+alumno+'" onchange="toggleCamposHora(this)">';
     Object.keys(LABELS_ESTADOS).forEach(key=>{
-      if(esDiaFuturo && key!=='' && key!=='baja'){
-        html+='<option value="'+key+'" '+(estadoActual===key?'selected':'')+' disabled>'+LABELS_ESTADOS[key]+' (no disponible)</option>';
-      }else{
-        html+='<option value="'+key+'" '+(estadoActual===key?'selected':'')+'>'+LABELS_ESTADOS[key]+'</option>';
-      }
+      if(esDiaFuturo&&key!==''&&key!=='baja') html+='<option value="'+key+'" '+(estadoActual===key?'selected':'')+' disabled>'+LABELS_ESTADOS[key]+' (no disponible)</option>';
+      else html+='<option value="'+key+'" '+(estadoActual===key?'selected':'')+'>'+LABELS_ESTADOS[key]+'</option>';
     });
     html+='</select>';
     html+='<div class="campos-hora hora-unica" data-alumno="'+alumno+'" style="display:'+(estadoActual==='entrada_tarde'||estadoActual==='salida_pronto'?'flex':'none')+'">';
@@ -1800,23 +1476,18 @@ function abrirModalAsistencia(dia){
     html+='<div class="hora-fila"><label>Salida:</label><input type="time" class="hora-salida-input" value="'+horaSalida+'"></div>';
     html+='<div class="hora-fila"><label>Llegada:</label><input type="time" class="hora-llegada-input" value="'+horaLlegada+'"></div>';
     html+='</div>';
-    // Campos de ausencia justificada
     html+='<div class="campos-ausencia" data-alumno="'+alumno+'" style="display:'+(estadoActual==='ausente'?'block':'none')+';margin-top:6px;padding:8px;background:#fee2e2;border-radius:6px">';
     html+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">';
     html+='<input type="checkbox" class="chk-justificada" '+(justificada?'checked':'')+' style="width:16px;height:16px">';
     html+='<label style="font-size:12px;color:#991b1b;font-weight:600">Ausencia justificada</label>';
     html+='</div>';
-    html+='<textarea class="txt-causa" placeholder="Motivo de la ausencia..." style="width:100%;padding:6px;border:1px solid #fca5a5;border-radius:5px;font-size:12px;resize:vertical;min-height:50px;font-family:inherit">'+causa+'</textarea>';
+    html+='<textarea class="txt-causa" placeholder="Motivo..." style="width:100%;padding:6px;border:1px solid #fca5a5;border-radius:5px;font-size:12px;resize:vertical;min-height:50px;font-family:inherit">'+causa+'</textarea>';
     html+='</div>';
     html+='</div></div>';
   });
-  
   document.getElementById('modalContenido').innerHTML=html;
-  
-  // Cargar nota existente
-  const claveNota = anioSeleccionado+'-'+mesSeleccionado+'-'+dia;
-  document.getElementById('notaDelDia').value = notasPorDia[claveNota] || '';
-  
+  const claveNota=anioSeleccionado+'-'+mesSeleccionado+'-'+dia;
+  document.getElementById('notaDelDia').value=notasPorDia[claveNota]||'';
   document.getElementById('modalAsistencia').classList.add('show');
 }
 
@@ -1826,288 +1497,139 @@ function toggleCamposHora(select){
   const horaRango=fila.querySelector('.hora-rango');
   const ausenciaDiv=fila.querySelector('.campos-ausencia');
   const labelHoraUnica=fila.querySelector('.hora-unica label');
-  horaUnica.style.display='none';
-  horaRango.style.display='none';
+  horaUnica.style.display='none';horaRango.style.display='none';
   if(ausenciaDiv) ausenciaDiv.style.display='none';
   const estado=select.value;
-  if(estado==='entrada_tarde'){ horaUnica.style.display='flex'; labelHoraUnica.textContent='Hora entrada:'; }
-  else if(estado==='salida_pronto'){ horaUnica.style.display='flex'; labelHoraUnica.textContent='Hora salida:'; }
-  else if(estado==='cita_medica'||estado==='conciliacion'){ horaRango.style.display='flex'; }
-  else if(estado==='ausente'){ if(ausenciaDiv) ausenciaDiv.style.display='block'; }
+  if(estado==='entrada_tarde'){horaUnica.style.display='flex';labelHoraUnica.textContent='Hora entrada:';}
+  else if(estado==='salida_pronto'){horaUnica.style.display='flex';labelHoraUnica.textContent='Hora salida:';}
+  else if(estado==='cita_medica'||estado==='conciliacion') horaRango.style.display='flex';
+  else if(estado==='ausente'){if(ausenciaDiv) ausenciaDiv.style.display='block';}
 }
 
-function cerrarModalAsistencia(){ document.getElementById('modalAsistencia').classList.remove('show'); diaSeleccionado=null; esDiaFuturo=false; }
+function cerrarModalAsistencia(){document.getElementById('modalAsistencia').classList.remove('show');diaSeleccionado=null;esDiaFuturo=false;}
 
 function guardarAsistenciaDia(){
-  if(!diaSeleccionado){ mostrarAlerta('warning','No hay día seleccionado'); return; }
+  if(!diaSeleccionado){mostrarAlerta('warning','No hay día seleccionado');return;}
   const filas=document.querySelectorAll('.alumno-row');
   let guardados=0;
   filas.forEach(fila=>{
     const select=fila.querySelector('.alumno-select');
     const alumno=select.getAttribute('data-alumno');
     const estado=select.value;
-    let horaUnica='', horaSalida='', horaLlegada='';
-    let justificada=false, causa='';
-    if(estado==='entrada_tarde'||estado==='salida_pronto'){
-      const inputHoraUnica=fila.querySelector('.hora-unica-input');
-      if(inputHoraUnica) horaUnica=inputHoraUnica.value;
-    }else if(estado==='cita_medica'||estado==='conciliacion'){
-      const inputSalida=fila.querySelector('.hora-salida-input');
-      const inputLlegada=fila.querySelector('.hora-llegada-input');
-      if(inputSalida) horaSalida=inputSalida.value;
-      if(inputLlegada) horaLlegada=inputLlegada.value;
-    }else if(estado==='ausente'){
-      const chkJust=fila.querySelector('.chk-justificada');
-      const txtCausa=fila.querySelector('.txt-causa');
-      if(chkJust) justificada=chkJust.checked;
-      if(txtCausa) causa=txtCausa.value.trim();
-    }
+    let horaUnica='',horaSalida='',horaLlegada='';
+    let justificada=false,causa='';
+    if(estado==='entrada_tarde'||estado==='salida_pronto'){const inputHoraUnica=fila.querySelector('.hora-unica-input');if(inputHoraUnica) horaUnica=inputHoraUnica.value;}
+    else if(estado==='cita_medica'||estado==='conciliacion'){const inputSalida=fila.querySelector('.hora-salida-input');const inputLlegada=fila.querySelector('.hora-llegada-input');if(inputSalida) horaSalida=inputSalida.value;if(inputLlegada) horaLlegada=inputLlegada.value;}
+    else if(estado==='ausente'){const chkJust=fila.querySelector('.chk-justificada');const txtCausa=fila.querySelector('.txt-causa');if(chkJust) justificada=chkJust.checked;if(txtCausa) causa=txtCausa.value.trim();}
     const idx=userRecords.findIndex(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===diaSeleccionado&&r.alumno===alumno);
-    if(idx>=0)userRecords.splice(idx,1);
+    if(idx>=0) userRecords.splice(idx,1);
     const idxH=historicalRecords.findIndex(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===diaSeleccionado&&r.alumno===alumno);
-    if(idxH>=0)historicalRecords.splice(idxH,1);
-    if(estado){
-      userRecords.push({ y:anioSeleccionado,m:mesSeleccionado,d:diaSeleccionado, alumno:alumno,estado:estado, causa:causa,justificada:justificada, horaSalida:horaSalida,horaLlegada:horaLlegada,horaUnica:horaUnica, hist:false });
-      guardados++;
-    }
+    if(idxH>=0) historicalRecords.splice(idxH,1);
+    if(estado){userRecords.push({y:anioSeleccionado,m:mesSeleccionado,d:diaSeleccionado,alumno:alumno,estado:estado,causa:causa,justificada:justificada,horaSalida:horaSalida,horaLlegada:horaLlegada,horaUnica:horaUnica,hist:false});guardados++;}
   });
-  
-  // Guardar nota del día
-  const claveNota = anioSeleccionado+'-'+mesSeleccionado+'-'+diaSeleccionado;
-  const nota = document.getElementById('notaDelDia').value.trim();
-  if (nota) {
-    notasPorDia[claveNota] = nota;
-  } else {
-    delete notasPorDia[claveNota];
-  }
-  
-  saveUser();
-  renderAll();
-  generarCalendarioEntrada();
-  cerrarModalAsistencia();
+  const claveNota=anioSeleccionado+'-'+mesSeleccionado+'-'+diaSeleccionado;
+  const nota=document.getElementById('notaDelDia').value.trim();
+  if(nota) notasPorDia[claveNota]=nota;else delete notasPorDia[claveNota];
+  saveUser();renderAll();generarCalendarioEntrada();cerrarModalAsistencia();
   mostrarAlerta('success','✅ Guardados '+guardados+' registros del día '+pad(diaSeleccionado)+'/'+pad(mesSeleccionado)+'/'+anioSeleccionado);
-  guardarEnNube('✅ Asistencia guardada en la nube');
+  guardarEnNube('✅ Asistencia guardada');
 }
 
-// COPIAR DÍA ANTERIOR
-function copiarDiaAnterior() {
-  let diaAnt = diaSeleccionado - 1;
-  let mesAnt = mesSeleccionado;
-  let anioAnt = anioSeleccionado;
-  
-  let intentos = 0;
-  while (intentos < 400) {
-    if (diaAnt < 1) {
-      mesAnt--;
-      if (mesAnt < 1) { mesAnt = 12; anioAnt--; }
-      diaAnt = new Date(anioAnt, mesAnt, 0).getDate();
-    }
-    const tipo = getDayType(anioAnt, mesAnt, diaAnt);
-    if (tipo.type === 'lectivo') break;
-    diaAnt--;
-    intentos++;
+function copiarDiaAnterior(){
+  let diaAnt=diaSeleccionado-1;let mesAnt=mesSeleccionado;let anioAnt=anioSeleccionado;
+  let intentos=0;
+  while(intentos<400){
+    if(diaAnt<1){mesAnt--;if(mesAnt<1){mesAnt=12;anioAnt--;}diaAnt=new Date(anioAnt,mesAnt,0).getDate();}
+    const tipo=getDayType(anioAnt,mesAnt,diaAnt);
+    if(tipo.type==='lectivo') break;
+    diaAnt--;intentos++;
   }
-  
-  if (intentos >= 400) {
-    mostrarAlerta('warning', '️ No se encontró ningún día lectivo anterior');
-    return;
-  }
-  
-  const registrosAnt = getAll().filter(r => r.y === anioAnt && r.m === mesAnt && r.d === diaAnt);
-  
-  const filas = document.querySelectorAll('.alumno-row');
-  let copiados = 0;
-  filas.forEach(fila => {
-    const select = fila.querySelector('.alumno-select');
-    const alumno = select.getAttribute('data-alumno');
-    const regAnt = registrosAnt.find(r => r.alumno === alumno);
-    if (regAnt) {
-      if (!(esDiaFuturo && regAnt.estado !== '' && regAnt.estado !== 'baja')) {
-        select.value = regAnt.estado;
-        toggleCamposHora(select);
-        if (regAnt.horaUnica) {
-          const input = fila.querySelector('.hora-unica-input');
-          if (input) input.value = regAnt.horaUnica;
-        }
-        if (regAnt.horaSalida) {
-          const input = fila.querySelector('.hora-salida-input');
-          if (input) input.value = regAnt.horaSalida;
-        }
-        if (regAnt.horaLlegada) {
-          const input = fila.querySelector('.hora-llegada-input');
-          if (input) input.value = regAnt.horaLlegada;
-        }
-        if (regAnt.justificada !== undefined) {
-          const chk = fila.querySelector('.chk-justificada');
-          if (chk) chk.checked = regAnt.justificada;
-        }
-        if (regAnt.causa) {
-          const txt = fila.querySelector('.txt-causa');
-          if (txt) txt.value = regAnt.causa;
-        }
+  if(intentos>=400){mostrarAlerta('warning','⚠️ No se encontró día lectivo anterior');return;}
+  const registrosAnt=getAll().filter(r=>r.y===anioAnt&&r.m===mesAnt&&r.d===diaAnt);
+  const filas=document.querySelectorAll('.alumno-row');
+  let copiados=0;
+  filas.forEach(fila=>{
+    const select=fila.querySelector('.alumno-select');
+    const alumno=select.getAttribute('data-alumno');
+    const regAnt=registrosAnt.find(r=>r.alumno===alumno);
+    if(regAnt){
+      if(!(esDiaFuturo&&regAnt.estado!==''&&regAnt.estado!=='baja')){
+        select.value=regAnt.estado;toggleCamposHora(select);
+        if(regAnt.horaUnica){const input=fila.querySelector('.hora-unica-input');if(input) input.value=regAnt.horaUnica;}
+        if(regAnt.horaSalida){const input=fila.querySelector('.hora-salida-input');if(input) input.value=regAnt.horaSalida;}
+        if(regAnt.horaLlegada){const input=fila.querySelector('.hora-llegada-input');if(input) input.value=regAnt.horaLlegada;}
+        if(regAnt.justificada!==undefined){const chk=fila.querySelector('.chk-justificada');if(chk) chk.checked=regAnt.justificada;}
+        if(regAnt.causa){const txt=fila.querySelector('.txt-causa');if(txt) txt.value=regAnt.causa;}
         copiados++;
       }
     }
   });
-  
-  mostrarAlerta('success', '📋 Copiados '+copiados+' registros del día '+pad(diaAnt)+'/'+pad(mesAnt)+'/'+anioAnt);
+  mostrarAlerta('success',' Copiados '+copiados+' registros del día '+pad(diaAnt)+'/'+pad(mesAnt)+'/'+anioAnt);
 }
 
-function marcarTodosPresentes() {
-  const filas = document.querySelectorAll('.alumno-row');
-  filas.forEach(fila => {
-    const select = fila.querySelector('.alumno-select');
-    select.value = 'presente';
-    toggleCamposHora(select);
-  });
-  mostrarAlerta('success', '✅ Todos marcados como presentes');
+function marcarTodosPresentes(){const filas=document.querySelectorAll('.alumno-row');filas.forEach(fila=>{const select=fila.querySelector('.alumno-select');select.value='presente';toggleCamposHora(select);});mostrarAlerta('success','✅ Todos marcados como presentes');}
+function limpiarTodos(){const filas=document.querySelectorAll('.alumno-row');filas.forEach(fila=>{const select=fila.querySelector('.alumno-select');select.value='';toggleCamposHora(select);const chk=fila.querySelector('.chk-justificada');if(chk) chk.checked=false;const txt=fila.querySelector('.txt-causa');if(txt) txt.value='';});mostrarAlerta('info','🔄 Registros limpiados');}
+
+function navegarDia(dir){
+  const erMes=document.getElementById('erMes');
+  let m=parseInt(erMes.value);let y=calcularAnioParaMes(m);
+  const ultimoDia=new Date(y,m,0).getDate();
+  let d=diaSeleccionado||DIA_HOY;d+=dir;
+  if(d>ultimoDia){m++;if(m>12){m=1;y++;}d=1;erMes.value=m;onMesSeleccionado();}
+  else if(d<1){m--;if(m<1){m=12;y--;}d=new Date(y,m,0).getDate();erMes.value=m;onMesSeleccionado();}
+  const tipo=getDayType(y,m,d);
+  if(tipo.type==='lectivo'){const fecha=new Date(y,m-1,d);fecha.setHours(0,0,0,0);esDiaFuturo=fecha>FECHA_HOY;setTimeout(()=>abrirModalAsistencia(d),100);}
+  else mostrarAlerta('info','ℹ️ '+tipo.label);
 }
 
-function limpiarTodos() {
-  const filas = document.querySelectorAll('.alumno-row');
-  filas.forEach(fila => {
-    const select = fila.querySelector('.alumno-select');
-    select.value = '';
-    toggleCamposHora(select);
-    const chk = fila.querySelector('.chk-justificada');
-    if (chk) chk.checked = false;
-    const txt = fila.querySelector('.txt-causa');
-    if (txt) txt.value = '';
-  });
-  mostrarAlerta('info', ' Registros limpiados');
-}
-
-// NAVEGACIÓN CON FLECHAS
-function navegarDia(dir) {
-  const erMes = document.getElementById('erMes');
-  let m = parseInt(erMes.value);
-  let y = calcularAnioParaMes(m);
-  const ultimoDia = new Date(y, m, 0).getDate();
-  
-  let d = diaSeleccionado || DIA_HOY;
-  d += dir;
-  
-  if (d > ultimoDia) {
-    m++;
-    if (m > 12) { m = 1; y++; }
-    d = 1;
-    erMes.value = m;
-    onMesSeleccionado();
-  } else if (d < 1) {
-    m--;
-    if (m < 1) { m = 12; y--; }
-    d = new Date(y, m, 0).getDate();
-    erMes.value = m;
-    onMesSeleccionado();
+document.addEventListener('keydown',function(e){
+  if(e.ctrlKey&&e.key==='s'){e.preventDefault();if(document.getElementById('modalAsistencia').classList.contains('show')) guardarAsistenciaDia();}
+  if(e.key==='Escape'){
+    if(document.getElementById('modalAsistencia').classList.contains('show')) cerrarModalAsistencia();
+    if(document.getElementById('modalDetalle').classList.contains('show')) cerrarModalDetalle();
+    if(document.getElementById('modalDetalleAlumno').classList.contains('show')) cerrarModalDetalleAlumno();
+    if(document.getElementById('modalConfirmacion').classList.contains('show')) cerrarModalConfirmacion();
+    if(document.getElementById('modalEditarAlumno').classList.contains('show')) cerrarModalEditarAlumno();
+    if(document.getElementById('modalCambioClave').classList.contains('show')) cerrarModalCambioClave();
   }
-  
-  const tipo = getDayType(y, m, d);
-  if (tipo.type === 'lectivo') {
-    const fecha = new Date(y, m-1, d);
-    fecha.setHours(0,0,0,0);
-    esDiaFuturo = fecha > FECHA_HOY;
-    setTimeout(() => abrirModalAsistencia(d), 100);
-  } else {
-    mostrarAlerta('info', 'ℹ️ '+tipo.label+' - no se puede registrar asistencia');
-  }
-}
-
-// ATAJOS DE TECLADO
-document.addEventListener('keydown', function(e) {
-  // Ctrl+S: guardar asistencia
-  if (e.ctrlKey && e.key === 's') {
-    e.preventDefault();
-    if (document.getElementById('modalAsistencia').classList.contains('show')) {
-      guardarAsistenciaDia();
-    }
-  }
-  
-  // Escape: cerrar modales
-  if (e.key === 'Escape') {
-    if (document.getElementById('modalAsistencia').classList.contains('show')) cerrarModalAsistencia();
-    if (document.getElementById('modalDetalle').classList.contains('show')) cerrarModalDetalle();
-    if (document.getElementById('modalDetalleAlumno').classList.contains('show')) cerrarModalDetalleAlumno();
-    if (document.getElementById('modalConfirmacion').classList.contains('show')) cerrarModalConfirmacion();
-    if (document.getElementById('modalEditarAlumno').classList.contains('show')) cerrarModalEditarAlumno();
-    if (document.getElementById('modalCambioClave').classList.contains('show')) cerrarModalCambioClave();
-  }
-  
-  // Flechas: navegar entre días
-  if (!document.querySelector('.modal-overlay.show') && !document.getElementById('inactivityOverlay').classList.contains('show')) {
-    const p7 = document.getElementById('p7');
-    if (p7 && p7.classList.contains('on')) {
-      if (e.key === 'ArrowLeft') { e.preventDefault(); navegarDia(-1); }
-      if (e.key === 'ArrowRight') { e.preventDefault(); navegarDia(1); }
-    }
+  if(!document.querySelector('.modal-overlay.show')&&!document.getElementById('inactivityOverlay').classList.contains('show')){
+    const p7=document.getElementById('p7');
+    if(p7&&p7.classList.contains('on')){if(e.key==='ArrowLeft'){e.preventDefault();navegarDia(-1);}if(e.key==='ArrowRight'){e.preventDefault();navegarDia(1);}}
   }
 });
 
-function actualizarCalendarioDesdePeriodo(){
-  const periodoVal=document.getElementById('calPeriodo').value;
-  const parts=periodoVal.split('-');
-  actualizarCalendario(parseInt(parts[0]),parseInt(parts[1]));
-}
+document.getElementById('nuevaClave').addEventListener('input',actualizarRequisitosClave);
+
+function actualizarCalendarioDesdePeriodo(){const periodoVal=document.getElementById('calPeriodo').value;const parts=periodoVal.split('-');actualizarCalendario(parseInt(parts[0]),parseInt(parts[1]));}
 function actualizarCalendario(y,m){
   const cal=document.getElementById('calendar');cal.innerHTML='';
   DIAS.forEach(d=>{const h=document.createElement('div');h.className='cal-header';h.textContent=d;cal.appendChild(h);});
-  const first=new Date(y,m-1,1);
-  const last=new Date(y,m,0);
-  const start=first.getDay()||7;
+  const first=new Date(y,m-1,1);const last=new Date(y,m,0);const start=first.getDay()||7;
   for(let i=1;i<start;i++){const e=document.createElement('div');e.className='cal-day empty';cal.appendChild(e);}
   const filtroAlumno=document.getElementById('calFiltroAlumno').value;
   const filtroEstado=document.getElementById('calFiltroEstado').value;
   let R=getAll().filter(r=>r.y===y&&r.m===m);
-  if(filtroAlumno!=='TODOS')R=R.filter(r=>r.alumno===filtroAlumno);
-  if(filtroEstado!=='TODOS')R=R.filter(r=>r.estado===filtroEstado);
+  if(filtroAlumno!=='TODOS') R=R.filter(r=>r.alumno===filtroAlumno);
+  if(filtroEstado!=='TODOS') R=R.filter(r=>r.estado===filtroEstado);
   const byDay={};
-  R.forEach(r=>{
-    if(!byDay[r.d])byDay[r.d]={counts:{presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0},alumnos:{}};
-    byDay[r.d].counts[r.estado]++;
-    byDay[r.d].alumnos[r.alumno]={estado:r.estado,horaUnica:r.horaUnica,horaSalida:r.horaSalida,horaLlegada:r.horaLlegada};
-  });
+  R.forEach(r=>{if(!byDay[r.d]) byDay[r.d]={counts:{presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0}};byDay[r.d].counts[r.estado]++;});
   for(let d=1;d<=last.getDate();d++){
     const dayInfo=getDayType(y,m,d);
-    const e=document.createElement('div');
-    e.className='cal-day';
+    const e=document.createElement('div');e.className='cal-day';
     const counts=byDay[d]?byDay[d].counts:null;
-    const totalRegistros=counts?Object.values(counts).reduce((a,b)=>a+b,0):0;
-    if(dayInfo.type==='holiday'){ e.classList.add('status-holiday'); }
-    else if(dayInfo.type==='vacation'){ e.classList.add('status-vacation'); }
-    else if(dayInfo.type==='weekend'){ e.classList.add('status-weekend'); }
-    else if(dayInfo.type==='before-course'||dayInfo.type==='after-course'){ e.classList.add('status-weekend'); }
-    else if(counts){
-      if(counts.ausente>0) e.classList.add('status-absent');
-      else if(counts.entrada_tarde>0||counts.salida_pronto>0) e.classList.add('status-late');
-      else if(counts.cita_medica>0||counts.conciliacion>0||counts.baja>0) e.classList.add('status-mixed');
-      else if(counts.presente>0) e.classList.add('status-all-present');
-    }
+    if(dayInfo.type==='holiday') e.classList.add('status-holiday');
+    else if(dayInfo.type==='vacation') e.classList.add('status-vacation');
+    else if(dayInfo.type==='weekend') e.classList.add('status-weekend');
+    else if(dayInfo.type==='before-course'||dayInfo.type==='after-course') e.classList.add('status-weekend');
+    else if(counts){if(counts.ausente>0) e.classList.add('status-absent');else if(counts.entrada_tarde>0||counts.salida_pronto>0) e.classList.add('status-late');else if(counts.cita_medica>0||counts.conciliacion>0||counts.baja>0) e.classList.add('status-mixed');else if(counts.presente>0) e.classList.add('status-all-present');}
     let html='<div class="day-num">'+d+'</div>';
-    if(dayInfo.type==='holiday'||dayInfo.type==='vacation'){
-      html+='<div class="day-info">'+dayInfo.label+'</div>';
-    }else if(dayInfo.type==='weekend'){
-      html+='<div class="day-info">Fin de semana</div>';
-    }else if(dayInfo.type==='before-course'||dayInfo.type==='after-course'){
-      html+='<div class="day-info">Fuera del curso</div>';
-      e.style.opacity='0.4';
-    }else if(counts){
-      const stats=[];
-      if(counts.presente>0) stats.push('✓'+counts.presente);
-      if(counts.ausente>0) stats.push('✗'+counts.ausente);
-      if(counts.entrada_tarde>0) stats.push('⏰'+counts.entrada_tarde);
-      if(counts.salida_pronto>0) stats.push('📤'+counts.salida_pronto);
-      if(counts.cita_medica>0) stats.push('🏥'+counts.cita_medica);
-      if(counts.conciliacion>0) stats.push('👨👩‍👧'+counts.conciliacion);
-      if(counts.baja>0) stats.push('🤒'+counts.baja);
-      html+='<div class="day-stats">'+stats.join(' ')+'</div>';
-      html+='<div class="day-info">'+totalRegistros+'/'+ALUMNOS.length+' alumnos</div>';
-    }else{
-      html+='<div class="day-info">Sin registros</div>';
-    }
+    if(dayInfo.type==='holiday'||dayInfo.type==='vacation') html+='<div class="day-info">'+dayInfo.label+'</div>';
+    else if(dayInfo.type==='weekend') html+='<div class="day-info">Fin de semana</div>';
+    else if(dayInfo.type==='before-course'||dayInfo.type==='after-course'){html+='<div class="day-info">Fuera del curso</div>';e.style.opacity='0.4';}
+    else if(counts){const stats=[];if(counts.presente>0) stats.push('✓'+counts.presente);if(counts.ausente>0) stats.push('✗'+counts.ausente);if(counts.entrada_tarde>0) stats.push('⏰'+counts.entrada_tarde);if(counts.salida_pronto>0) stats.push('📤'+counts.salida_pronto);if(counts.cita_medica>0) stats.push('🏥'+counts.cita_medica);if(counts.conciliacion>0) stats.push('👨‍👩‍👧'+counts.conciliacion);if(counts.baja>0) stats.push('🤒'+counts.baja);html+='<div class="day-stats">'+stats.join(' ')+'</div>';}
+    else html+='<div class="day-info">Sin registros</div>';
     e.innerHTML=html;
-    if(dayInfo.type==='lectivo'){
-      e.style.cursor='pointer';
-      e.onclick=(function(dia){ return function(){ abrirModalDetalle(y,m,dia); }; })(d);
-    }
+    if(dayInfo.type==='lectivo'){e.style.cursor='pointer';e.onclick=(function(dia){return function(){abrirModalDetalle(y,m,dia);};})(d);}
     cal.appendChild(e);
   }
 }
@@ -2115,21 +1637,15 @@ function actualizarCalendario(y,m){
 function abrirModalDetalle(y,m,d){
   diaDetalleSeleccionado={y,m,d};
   const registros=getAll().filter(r=>r.y===y&&r.m===m&&r.d===d);
-  document.getElementById('modalDetalleTitulo').textContent='📋 Detalle del '+pad(d)+'/'+pad(m)+'/'+y;
+  document.getElementById('modalDetalleTitulo').textContent=' Detalle del '+pad(d)+'/'+pad(m)+'/'+y;
   let html='';
-  
-  // Mostrar nota del día si existe
-  const claveNota = y+'-'+m+'-'+d;
-  const notaDia = notasPorDia[claveNota];
-  if (notaDia) {
-    html += '<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:12px;border-radius:6px;margin-bottom:16px"><strong style="color:#92400e">📝 Nota del día:</strong><p style="color:#92400e;margin-top:6px;font-style:italic">'+notaDia+'</p></div>';
-  }
-  
-  if(registros.length===0){
-    html+='<div style="padding:20px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px">📭</p><p>No hay registros para este día</p><p style="margin-top:12px"><button class="btn b2" onclick="cerrarModalDetalle();abrirModalAsistenciaDesdeDetalle('+d+')">➕ Añadir registros</button></p></div>';
-  }else{
+  const claveNota=y+'-'+m+'-'+d;
+  const notaDia=notasPorDia[claveNota];
+  if(notaDia) html+='<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:12px;border-radius:6px;margin-bottom:16px"><strong style="color:#92400e">📝 Nota del día:</strong><p style="color:#92400e;margin-top:6px;font-style:italic">'+notaDia+'</p></div>';
+  if(registros.length===0){html+='<div style="padding:20px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px"></p><p>No hay registros</p><p style="margin-top:12px"><button class="btn b2" onclick="cerrarModalDetalle();abrirModalAsistenciaDesdeDetalle('+d+')">➕ Añadir</button></p></div>';}
+  else{
     const counts={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
-    registros.forEach(r=>{if(counts[r.estado]!==undefined)counts[r.estado]++;});
+    registros.forEach(r=>{if(counts[r.estado]!==undefined) counts[r.estado]++;});
     const porcentajeAsistencia=Math.round((counts.presente/ALUMNOS.length)*100);
     html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:18px">';
     html+='<div style="padding:10px;background:#dcfce7;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#166534">'+counts.presente+'</div><div style="font-size:11px;color:#166534">Presentes</div></div>';
@@ -2141,332 +1657,88 @@ function abrirModalDetalle(y,m,d){
     html+='<div class="day-detail-grid">';
     ALUMNOS.forEach(alumno=>{
       const reg=registros.find(r=>r.alumno===alumno);
-      if(reg){
-        html+='<div class="day-detail-item"><div class="nombre">'+alumno+'</div><div class="estado estado-'+reg.estado+'">'+(LABELS_ESTADOS[reg.estado]||reg.estado)+'</div>';
-        if(reg.justificada) html+='<div class="hora" style="color:#166534">✓ Justificada</div>';
-        if(reg.horaUnica) html+='<div class="hora">🕐 '+reg.horaUnica+'</div>';
-        if(reg.horaSalida&&reg.horaLlegada) html+='<div class="hora">🕐 '+reg.horaSalida+' - '+reg.horaLlegada+'</div>';
-        if(reg.causa) html+='<div class="hora">📝 '+reg.causa+'</div>';
-        html+='</div>';
-      }else{
-        html+='<div class="day-detail-item" style="opacity:0.5"><div class="nombre">'+alumno+'</div><div class="estado" style="color:#9ca3af">Sin registrar</div></div>';
-      }
+      if(reg){html+='<div class="day-detail-item"><div class="nombre">'+alumno+'</div><div class="estado estado-'+reg.estado+'">'+(LABELS_ESTADOS[reg.estado]||reg.estado)+'</div>';if(reg.justificada) html+='<div class="hora" style="color:#166534">✓ Justificada</div>';if(reg.horaUnica) html+='<div class="hora">🕐 '+reg.horaUnica+'</div>';if(reg.horaSalida&&reg.horaLlegada) html+='<div class="hora"> '+reg.horaSalida+' - '+reg.horaLlegada+'</div>';if(reg.causa) html+='<div class="hora"> '+reg.causa+'</div>';html+='</div>';}
+      else html+='<div class="day-detail-item" style="opacity:0.5"><div class="nombre">'+alumno+'</div><div class="estado" style="color:#9ca3af">Sin registrar</div></div>';
     });
     html+='</div>';
   }
   document.getElementById('modalDetalleContenido').innerHTML=html;
   document.getElementById('modalDetalle').classList.add('show');
 }
-function cerrarModalDetalle(){ document.getElementById('modalDetalle').classList.remove('show'); diaDetalleSeleccionado=null; }
-function abrirModalAsistenciaDesdeDetalle(d){
-  const periodoVal=document.getElementById('calPeriodo').value;
-  const parts=periodoVal.split('-');
-  mesSeleccionado=parseInt(parts[1]);
-  anioSeleccionado=parseInt(parts[0]);
-  const fecha=new Date(anioSeleccionado,mesSeleccionado-1,d);
-  fecha.setHours(0,0,0,0);
-  esDiaFuturo=fecha>FECHA_HOY;
-  showTab('p7');
-  setTimeout(()=>abrirModalAsistencia(d),200);
-}
-function editarDiaDesdeDetalle(){
-  if(diaDetalleSeleccionado){ abrirModalAsistenciaDesdeDetalle(diaDetalleSeleccionado.d); cerrarModalDetalle(); }
-}
 
-function imprimir(tipo){
-  const area=document.getElementById('printArea');let contenido='';
-  if(tipo==='maquinas')contenido='<h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Total por Alumno</h2><p style="color:#6b7280;margin-bottom:20px">Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>'+document.getElementById('tablaMaquinasTbl').outerHTML;
-  else if(tipo==='tiempo')contenido='<h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Resumen por Periodo</h2><p style="color:#6b7280;margin-bottom:20px">Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>'+document.getElementById('tablaTiempoTbl').outerHTML;
-  area.innerHTML='<div style="padding:20px">'+contenido+'</div>';
-  window.print();
-  setTimeout(()=>{area.innerHTML='';},1000);
-}
+function cerrarModalDetalle(){document.getElementById('modalDetalle').classList.remove('show');diaDetalleSeleccionado=null;}
+function abrirModalAsistenciaDesdeDetalle(d){const periodoVal=document.getElementById('calPeriodo').value;const parts=periodoVal.split('-');mesSeleccionado=parseInt(parts[1]);anioSeleccionado=parseInt(parts[0]);const fecha=new Date(anioSeleccionado,mesSeleccionado-1,d);fecha.setHours(0,0,0,0);esDiaFuturo=fecha>FECHA_HOY;showTab('p7');setTimeout(()=>abrirModalAsistencia(d),200);}
+function editarDiaDesdeDetalle(){if(diaDetalleSeleccionado){abrirModalAsistenciaDesdeDetalle(diaDetalleSeleccionado.d);cerrarModalDetalle();}}
 
-function confirmarResetear(){
-  abrirModalConfirmacion('⚠️ Importante: Haz un backup primero','<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:15px;border-radius:6px;margin-bottom:15px"><strong>💡 Recomendación:</strong> Antes de borrar todos los datos, te recomendamos exportar un backup del curso actual para no perder la información.</div><p style="margin-bottom:15px">¿Estás seguro de que quieres resetear TODOS los datos? Esta acción eliminará:</p><ul style="text-align:left;margin-left:20px;margin-bottom:15px"><li>Todos los alumnos</li><li>Todos los registros de asistencia</li><li>Festivos y vacaciones configurados</li><li>Fechas del curso</li></ul><p style="color:#dc2626;font-weight:600">Esta acción NO se puede deshacer.</p>',function(){
-    abrirModalConfirmacion('⚠️ ÚLTIMA CONFIRMACIÓN','¿REALMENTE ESTÁS SEGURO?\n\nSe borrarán TODOS los datos permanentemente.\n\nSi continúas, perderás toda la información.',function(){
-      localStorage.removeItem('ca_cache');
-      localStorage.removeItem('ca_user');
-      const db = window.firebaseDB;
-      const dbRef = window.firebaseRef(db, 'datos');
-      window.firebaseSet(dbRef, null).then(()=>{
-        mostrarAlerta('success','Todos los datos han sido eliminados');
-        setTimeout(()=>{location.reload();},1500);
-      }).catch(err=>{console.error('Error:',err);mostrarAlerta('error','Error al resetear: '+err.message);});
-    });
-  });
-}
+function imprimir(tipo){const area=document.getElementById('printArea');let contenido='';if(tipo==='maquinas') contenido='<h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Total por Alumno</h2><p style="color:#6b7280;margin-bottom:20px">Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>'+document.getElementById('tablaMaquinasTbl').outerHTML;else if(tipo==='tiempo') contenido='<h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Resumen por Periodo</h2><p style="color:#6b7280;margin-bottom:20px">Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>'+document.getElementById('tablaTiempoTbl').outerHTML;area.innerHTML='<div style="padding:20px">'+contenido+'</div>';window.print();setTimeout(()=>{area.innerHTML='';},1000);}
 
-function confirmarVaciarActividades(){
-  abrirModalConfirmacion('️ Importante: Haz un backup primero','<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:15px;border-radius:6px;margin-bottom:15px"><strong>💡 Recomendación:</strong> Antes de vaciar las actividades, te recomendamos exportar un backup del curso actual para conservar un registro.</div><p style="margin-bottom:15px">¿Seguro que quieres borrar <strong>TODOS los registros de asistencia</strong>?</p><p style="background:#dcfce7;padding:10px;border-radius:6px;margin-bottom:15px"><strong>Se mantendrán:</strong><br>• Lista de alumnos<br>• Festivos configurados<br>• Vacaciones configuradas<br>• Fechas del curso</p><p style="color:#dc2626;font-weight:600">Esta acción NO se puede deshacer.</p>',function(){
-    historicalRecords=[];
-    userRecords=[];
-    saveUser();
-    renderAll();
-    generarCalendarioEntrada();
-    renderConfiguracion();
-    guardarEnNube('✅ Actividades vaciadas. Alumnos, festivos y vacaciones conservados.');
-  });
-}
+function confirmarResetear(){abrirModalConfirmacion('⚠️ Haz un backup primero','<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:15px;border-radius:6px;margin-bottom:15px"><strong>💡 Recomendación:</strong> Exporta un backup antes de borrar.</div><p>¿Seguro que quieres resetear TODOS los datos?</p><ul style="text-align:left;margin-left:20px;margin-bottom:15px"><li>Todos los alumnos</li><li>Todos los registros</li><li>Festivos y vacaciones</li><li>Fechas del curso</li></ul><p style="color:#dc2626;font-weight:600">Esta acción NO se puede deshacer.</p>',function(){abrirModalConfirmacion('️ ÚLTIMA CONFIRMACIÓN','¿REALMENTE ESTÁS SEGURO?\n\nSe borrarán TODOS los datos.',function(){localStorage.removeItem('ca_cache');const db=window.firebaseDB;const dbRef=window.firebaseRef(db,'datos');window.firebaseSet(dbRef,null).then(()=>{mostrarAlerta('success','Datos eliminados');setTimeout(()=>{location.reload();},1500);}).catch(err=>{console.error('Error:',err);mostrarAlerta('error','Error: '+err.message);});});});}
 
-function abrirModalConfirmacion(titulo,contenido,callback){
-  confirmacionCallback=callback;
-  document.getElementById('modalConfirmacionTitulo').textContent=titulo;
-  document.getElementById('modalConfirmacionContenido').innerHTML='<div style="padding:20px;background:#fef3c7;border-radius:8px;border-left:4px solid #f59e0b;margin-bottom:16px"><p style="white-space:pre-line;color:#92400e;line-height:1.6">'+contenido+'</p></div>';
-  document.getElementById('btnConfirmarAccion').onclick=function(){if(confirmacionCallback) confirmacionCallback();cerrarModalConfirmacion();};
-  document.getElementById('modalConfirmacion').classList.add('show');
-}
+function confirmarVaciarActividades(){abrirModalConfirmacion('️ Haz un backup primero','<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:15px;border-radius:6px;margin-bottom:15px"><strong>💡 Recomendación:</strong> Exporta un backup antes.</div><p>¿Seguro que quieres borrar <strong>TODOS los registros de asistencia</strong>?</p><p style="background:#dcfce7;padding:10px;border-radius:6px;margin-bottom:15px"><strong>Se mantendrán:</strong><br>• Alumnos<br>• Festivos<br>• Vacaciones<br>• Fechas del curso</p>',function(){historicalRecords=[];userRecords=[];saveUser();renderAll();generarCalendarioEntrada();renderConfiguracion();guardarEnNube('✅ Actividades vaciadas');});}
+
+function abrirModalConfirmacion(titulo,contenido,callback){confirmacionCallback=callback;document.getElementById('modalConfirmacionTitulo').textContent=titulo;document.getElementById('modalConfirmacionContenido').innerHTML='<div style="padding:20px;background:#fef3c7;border-radius:8px;border-left:4px solid #f59e0b;margin-bottom:16px"><p style="white-space:pre-line;color:#92400e;line-height:1.6">'+contenido+'</p></div>';document.getElementById('btnConfirmarAccion').onclick=function(){if(confirmacionCallback) confirmacionCallback();cerrarModalConfirmacion();};document.getElementById('modalConfirmacion').classList.add('show');}
 function cerrarModalConfirmacion(){document.getElementById('modalConfirmacion').classList.remove('show');confirmacionCallback=null;}
 
 function guardarFechasCurso(){
-  const diaIni=parseInt(document.getElementById('cursoInicioDia').value);
-  const mesIni=parseInt(document.getElementById('cursoInicioMes').value);
-  const anioIni=parseInt(document.getElementById('cursoInicioAnio').value);
-  const diaFin=parseInt(document.getElementById('cursoFinDia').value);
-  const mesFin=parseInt(document.getElementById('cursoFinMes').value);
-  const anioFin=parseInt(document.getElementById('cursoFinAnio').value);
-  if(!diaIni||!mesIni||!anioIni||!diaFin||!mesFin||!anioFin){ mostrarAlerta('warning','Completa todos los campos de fecha (inicio y fin)'); return; }
-  const fechaIni=new Date(anioIni,mesIni-1,diaIni);
-  const fechaFin=new Date(anioFin,mesFin-1,diaFin);
-  if(fechaIni.getDate()!==diaIni||fechaIni.getMonth()!==mesIni-1){ mostrarAlerta('error','La fecha de inicio no es válida'); return; }
-  if(fechaFin.getDate()!==diaFin||fechaFin.getMonth()!==mesFin-1){ mostrarAlerta('error','La fecha final no es válida'); return; }
-  if(fechaFin<=fechaIni){ mostrarAlerta('error','La fecha final debe ser posterior a la inicial'); return; }
+  const diaIni=parseInt(document.getElementById('cursoInicioDia').value);const mesIni=parseInt(document.getElementById('cursoInicioMes').value);const anioIni=parseInt(document.getElementById('cursoInicioAnio').value);
+  const diaFin=parseInt(document.getElementById('cursoFinDia').value);const mesFin=parseInt(document.getElementById('cursoFinMes').value);const anioFin=parseInt(document.getElementById('cursoFinAnio').value);
+  if(!diaIni||!mesIni||!anioIni||!diaFin||!mesFin||!anioFin){mostrarAlerta('warning','Completa todos los campos');return;}
+  const fechaIni=new Date(anioIni,mesIni-1,diaIni);const fechaFin=new Date(anioFin,mesFin-1,diaFin);
+  if(fechaIni.getDate()!==diaIni||fechaIni.getMonth()!==mesIni-1){mostrarAlerta('error','Fecha inicio no válida');return;}
+  if(fechaFin.getDate()!==diaFin||fechaFin.getMonth()!==mesFin-1){mostrarAlerta('error','Fecha final no válida');return;}
+  if(fechaFin<=fechaIni){mostrarAlerta('error','La fecha final debe ser posterior');return;}
   const diffMeses=(anioFin-anioIni)*12+(mesFin-mesIni);
-  if(diffMeses>24){
-    if(!confirm('El curso es muy largo ('+diffMeses+' meses). ¿Seguro que las fechas son correctas?')){ return; }
-  }
-  INICIO_CURSO={y:anioIni,m:mesIni,d:diaIni};
-  FIN_CURSO={y:anioFin,m:mesFin,d:diaFin};
-  actualizarInfoCurso();
-  inicializarApp();
-  renderConfiguracion();
-  guardarEnNube('✅ Fechas del curso actualizadas y guardadas en la nube');
+  if(diffMeses>24){if(!confirm('El curso es muy largo ('+diffMeses+' meses). ¿Seguro?')) return;}
+  INICIO_CURSO={y:anioIni,m:mesIni,d:diaIni};FIN_CURSO={y:anioFin,m:mesFin,d:diaFin};
+  actualizarInfoCurso();inicializarApp();renderConfiguracion();guardarEnNube('✅ Fechas actualizadas');
 }
 
 function renderConfiguracion(){
-  const inicioDia = INICIO_CURSO.d || DIA_HOY;
-  const inicioMes = INICIO_CURSO.m || MES_HOY;
-  const inicioAnio = INICIO_CURSO.y || ANIO_HOY;
-  const finDia = FIN_CURSO.d || DIA_HOY;
-  const finMes = FIN_CURSO.m || MES_HOY;
-  const finAnio = FIN_CURSO.y || ANIO_HOY;
-  llenarSelectDias('cursoInicioDia', inicioDia);
-  llenarSelectAnios('cursoInicioAnio', inicioAnio);
-  document.getElementById('cursoInicioMes').value=inicioMes;
-  llenarSelectDias('cursoFinDia', finDia);
-  llenarSelectAnios('cursoFinAnio', finAnio);
-  document.getElementById('cursoFinMes').value=finMes;
-  llenarSelectDias('nuevoFestivoDia', DIA_HOY);
-  llenarSelectAnios('nuevoFestivoAnio', ANIO_HOY);
-  document.getElementById('nuevoFestivoMes').value=MES_HOY;
-  llenarSelectDias('nuevaVacacionDiaIni', DIA_HOY);
-  llenarSelectAnios('nuevaVacacionAnioIni', ANIO_HOY);
-  document.getElementById('nuevaVacacionMesIni').value=MES_HOY;
-  llenarSelectDias('nuevaVacacionDiaFin', DIA_HOY);
-  llenarSelectAnios('nuevaVacacionAnioFin', ANIO_HOY);
-  document.getElementById('nuevaVacacionMesFin').value=MES_HOY;
-  actualizarSelectoresAnioCurso();
-  renderEstadisticasConfig();
-  renderListaAlumnos();
-  renderListaFestivos();
-  renderListaVacaciones();
-  actualizarInfoCurso();
-  actualizarContadoresConfig();
+  const inicioDia=INICIO_CURSO.d||DIA_HOY;const inicioMes=INICIO_CURSO.m||MES_HOY;const inicioAnio=INICIO_CURSO.y||ANIO_HOY;
+  const finDia=FIN_CURSO.d||DIA_HOY;const finMes=FIN_CURSO.m||MES_HOY;const finAnio=FIN_CURSO.y||ANIO_HOY;
+  llenarSelectDias('cursoInicioDia',inicioDia);llenarSelectAnios('cursoInicioAnio',inicioAnio);document.getElementById('cursoInicioMes').value=inicioMes;
+  llenarSelectDias('cursoFinDia',finDia);llenarSelectAnios('cursoFinAnio',finAnio);document.getElementById('cursoFinMes').value=finMes;
+  llenarSelectDias('nuevoFestivoDia',DIA_HOY);llenarSelectAnios('nuevoFestivoAnio',ANIO_HOY);document.getElementById('nuevoFestivoMes').value=MES_HOY;
+  llenarSelectDias('nuevaVacacionDiaIni',DIA_HOY);llenarSelectAnios('nuevaVacacionAnioIni',ANIO_HOY);document.getElementById('nuevaVacacionMesIni').value=MES_HOY;
+  llenarSelectDias('nuevaVacacionDiaFin',DIA_HOY);llenarSelectAnios('nuevaVacacionAnioFin',ANIO_HOY);document.getElementById('nuevaVacacionMesFin').value=MES_HOY;
+  actualizarSelectoresAnioCurso();renderEstadisticasConfig();renderListaAlumnos();renderListaFestivos();renderListaVacaciones();actualizarInfoCurso();actualizarContadoresConfig();
 }
 
-function actualizarContadoresConfig(){
-  document.getElementById('countAlumnos').textContent=ALUMNOS.length;
-  document.getElementById('countFestivos').textContent=FESTIVOS.length;
-  document.getElementById('countVacaciones').textContent=VACACIONES.length;
-}
+function actualizarContadoresConfig(){document.getElementById('countAlumnos').textContent=ALUMNOS.length;document.getElementById('countFestivos').textContent=FESTIVOS.length;document.getElementById('countVacaciones').textContent=VACACIONES.length;}
 
 function actualizarSelectoresAnioCurso(){
-  const anioMin=INICIO_CURSO.y;
-  const anioMax=FIN_CURSO.y;
   const selectsAnio=['nuevoFestivoAnio','nuevaVacacionAnioIni','nuevaVacacionAnioFin'];
-  selectsAnio.forEach(id=>{
-    const select=document.getElementById(id);
-    if(!select) return;
-    const valorActual=select.value;
-    select.innerHTML='';
-    for(let y=ANIO_MIN_DESPLEGABLE;y<=ANIO_MAX_DESPLEGABLE;y++){
-      const o=document.createElement('option');
-      o.value=y;
-      o.textContent=y;
-      select.appendChild(o);
-    }
-    if(valorActual>=ANIO_MIN_DESPLEGABLE && valorActual<=ANIO_MAX_DESPLEGABLE){
-      select.value=valorActual;
-    }else{
-      select.value=ANIO_HOY>=ANIO_MIN_DESPLEGABLE && ANIO_HOY<=ANIO_MAX_DESPLEGABLE ? ANIO_HOY : anioMin;
-    }
-  });
+  selectsAnio.forEach(id=>{const select=document.getElementById(id);if(!select) return;const valorActual=select.value;select.innerHTML='';for(let y=ANIO_MIN_DESPLEGABLE;y<=ANIO_MAX_DESPLEGABLE;y++){const o=document.createElement('option');o.value=y;o.textContent=y;select.appendChild(o);}if(valorActual>=ANIO_MIN_DESPLEGABLE&&valorActual<=ANIO_MAX_DESPLEGABLE) select.value=valorActual;else select.value=ANIO_HOY>=ANIO_MIN_DESPLEGABLE&&ANIO_HOY<=ANIO_MAX_DESPLEGABLE?ANIO_HOY:INICIO_CURSO.y;});
 }
 
 function renderEstadisticasConfig(){
   const hoy=new Date();hoy.setHours(0,0,0,0);
-  const vacTotal=VACACIONES.length;let vacConsumidas=0, vacPendientes=0;
-  VACACIONES.forEach(v=>{ const fechaVac=new Date(v.y,v.m-1,v.d); if(fechaVac<hoy) vacConsumidas++; else vacPendientes++; });
-  document.getElementById('statVacTotal').textContent=vacTotal;
-  document.getElementById('statVacConsumidas').textContent=vacConsumidas;
-  document.getElementById('statVacPendientes').textContent=vacPendientes;
-  const festTotal=FESTIVOS.length;let festConsumidos=0, festPendientes=0;
-  FESTIVOS.forEach(f=>{ const fechaFest=new Date(f.y,f.m-1,f.d); if(fechaFest<hoy) festConsumidos++; else festPendientes++; });
-  document.getElementById('statFestTotal').textContent=festTotal;
-  document.getElementById('statFestConsumidos').textContent=festConsumidos;
-  document.getElementById('statFestPendientes').textContent=festPendientes;
+  const vacTotal=VACACIONES.length;let vacConsumidas=0,vacPendientes=0;
+  VACACIONES.forEach(v=>{const fechaVac=new Date(v.y,v.m-1,v.d);if(fechaVac<hoy) vacConsumidas++;else vacPendientes++;});
+  document.getElementById('statVacTotal').textContent=vacTotal;document.getElementById('statVacConsumidas').textContent=vacConsumidas;document.getElementById('statVacPendientes').textContent=vacPendientes;
+  const festTotal=FESTIVOS.length;let festConsumidos=0,festPendientes=0;
+  FESTIVOS.forEach(f=>{const fechaFest=new Date(f.y,f.m-1,f.d);if(fechaFest<hoy) festConsumidos++;else festPendientes++;});
+  document.getElementById('statFestTotal').textContent=festTotal;document.getElementById('statFestConsumidos').textContent=festConsumidos;document.getElementById('statFestPendientes').textContent=festPendientes;
 }
 
-function renderListaAlumnos(){
-  const lista=document.getElementById('listaAlumnos');lista.innerHTML='';
-  if(ALUMNOS.length===0){ lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay alumnos configurados</p>'; return; }
-  ALUMNOS.forEach(function(alumno,idx){
-    lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+alumno+'</strong></div><div class="config-item-actions"><button class="btn b1 action-btn" onclick="abrirEditarAlumno('+idx+')">✏️ Editar</button><button class="btn b3 action-btn" onclick="confirmarEliminarAlumno('+idx+')">🗑️ Eliminar</button></div></div>';
-  });
-}
-function agregarAlumno(){
-  const nombre=document.getElementById('nuevoAlumno').value.trim();
-  if(!nombre){mostrarAlerta('warning','Introduce un nombre de alumno');return;}
-  if(ALUMNOS.includes(nombre)){mostrarAlerta('error','Este alumno ya existe');return;}
-  ALUMNOS.push(nombre);
-  document.getElementById('nuevoAlumno').value='';
-  renderListaAlumnos();actualizarSelectoresAlumnos();renderAll();actualizarContadoresConfig();
-  guardarEnNube('✅ Alumno añadido y guardado en la nube');
-}
-function abrirEditarAlumno(idx){
-  indiceAlumnoEditar=idx;
-  document.getElementById('inputNuevoNombreAlumno').value=ALUMNOS[idx];
-  document.getElementById('modalEditarAlumno').classList.add('show');
-}
-function cerrarModalEditarAlumno(){ document.getElementById('modalEditarAlumno').classList.remove('show'); indiceAlumnoEditar=null; }
-function confirmarEdicionAlumno(){
-  const nuevoNombre=document.getElementById('inputNuevoNombreAlumno').value.trim();
-  if(!nuevoNombre){mostrarAlerta('warning','El nombre no puede estar vacío');return;}
-  if(nuevoNombre===ALUMNOS[indiceAlumnoEditar]){cerrarModalEditarAlumno();return;}
-  if(ALUMNOS.includes(nuevoNombre)){mostrarAlerta('error','Ya existe un alumno con ese nombre');return;}
-  const nombreAnterior=ALUMNOS[indiceAlumnoEditar];
-  ALUMNOS[indiceAlumnoEditar]=nuevoNombre;
-  [...historicalRecords,...userRecords].forEach(r=>{ if(r.alumno===nombreAnterior) r.alumno=nuevoNombre; });
-  cerrarModalEditarAlumno();renderListaAlumnos();actualizarSelectoresAlumnos();renderAll();actualizarContadoresConfig();
-  guardarEnNube('✅ Nombre del alumno actualizado y guardado en la nube');
-}
-function confirmarEliminarAlumno(idx){
-  const alumno=ALUMNOS[idx];
-  abrirModalConfirmacion('Eliminar alumno','¿Seguro que quieres eliminar a <strong>'+alumno+'</strong>?\n\nSe perderán todos sus registros de asistencia.\n\nEsta acción no se puede deshacer.',function(){
-    ALUMNOS.splice(idx,1);
-    historicalRecords=historicalRecords.filter(r=>r.alumno!==alumno);
-    userRecords=userRecords.filter(r=>r.alumno!==alumno);
-    renderListaAlumnos();actualizarSelectoresAlumnos();renderAll();renderEstadisticasConfig();actualizarContadoresConfig();
-    guardarEnNube('✅ Alumno eliminado y cambios guardados en la nube');
-  });
-}
-function actualizarSelectoresAlumnos(){
-  const fMaq=document.getElementById('fMaq');const valorActual=fMaq.value;
-  fMaq.innerHTML='<option value="TODOS">Todos los alumnos</option>';
-  ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;fMaq.appendChild(o);});
-  if(ALUMNOS.includes(valorActual)) fMaq.value=valorActual;
-  const calFiltroAlumno=document.getElementById('calFiltroAlumno');const valorCal=calFiltroAlumno.value;
-  calFiltroAlumno.innerHTML='<option value="TODOS">Todos los alumnos</option>';
-  ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;calFiltroAlumno.appendChild(o);});
-  if(ALUMNOS.includes(valorCal)) calFiltroAlumno.value=valorCal;
-}
-function renderListaFestivos(){
-  const lista=document.getElementById('listaFestivos');lista.innerHTML='';
-  if(FESTIVOS.length===0){ lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay festivos configurados</p>'; return; }
-  FESTIVOS.sort((a,b)=>{ if(a.y!==b.y)return a.y-b.y; if(a.m!==b.m)return a.m-b.m; return a.d-b.d; });
-  FESTIVOS.forEach(function(festivo,idx){
-    const fecha=pad(festivo.d)+'/'+pad(festivo.m)+'/'+festivo.y;
-    lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+fecha+'</strong> - '+festivo.nombre+'</div><div class="config-item-actions"><button class="btn b3 action-btn" onclick="confirmarEliminarFestivo('+idx+')">🗑️ Eliminar</button></div></div>';
-  });
-}
-function agregarFestivo(){
-  const dia=parseInt(document.getElementById('nuevoFestivoDia').value);
-  const mes=parseInt(document.getElementById('nuevoFestivoMes').value);
-  const anio=parseInt(document.getElementById('nuevoFestivoAnio').value);
-  const nombre=document.getElementById('nuevoFestivoNombre').value.trim();
-  if(!dia||!mes||!anio||!nombre){mostrarAlerta('warning','Completa todos los campos');return;}
-  const existe=FESTIVOS.find(f=>f.y===anio&&f.m===mes&&f.d===dia);
-  if(existe){mostrarAlerta('error','Ya existe un festivo en esa fecha');return;}
-  FESTIVOS.push({y:anio,m:mes,d:dia,nombre:nombre});
-  document.getElementById('nuevoFestivoDia').value='';document.getElementById('nuevoFestivoNombre').value='';
-  renderListaFestivos();renderEstadisticasConfig();generarCalendarioEntrada();actualizarContadoresConfig();
-  guardarEnNube('✅ Festivo añadido y guardado en la nube');
-}
-function confirmarEliminarFestivo(idx){
-  const festivo=FESTIVOS[idx];const fecha=pad(festivo.d)+'/'+pad(festivo.m)+'/'+festivo.y;
-  abrirModalConfirmacion('Eliminar festivo','¿Seguro que quieres eliminar el festivo del <strong>'+fecha+'</strong> ('+festivo.nombre+')?\n\nEsta acción no se puede deshacer.',function(){
-    FESTIVOS.splice(idx,1);renderListaFestivos();renderEstadisticasConfig();generarCalendarioEntrada();actualizarContadoresConfig();
-    guardarEnNube('✅ Festivo eliminado y cambios guardados en la nube');
-  });
-}
-function renderListaVacaciones(){
-  const lista=document.getElementById('listaVacaciones');lista.innerHTML='';
-  if(VACACIONES.length===0){ lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay vacaciones configuradas</p>'; return; }
-  VACACIONES.sort((a,b)=>{ if(a.y!==b.y)return a.y-b.y; if(a.m!==b.m)return a.m-b.m; return a.d-b.d; });
-  VACACIONES.forEach(function(vacacion,idx){
-    const fecha=pad(vacacion.d)+'/'+pad(vacacion.m)+'/'+vacacion.y;
-    lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+fecha+'</strong></div><div class="config-item-actions"><button class="btn b3 action-btn" onclick="confirmarEliminarVacacion('+idx+')">🗑️ Eliminar</button></div></div>';
-  });
-}
-function agregarVacacion(){
-  const diaIni=parseInt(document.getElementById('nuevaVacacionDiaIni').value);
-  const mesIni=parseInt(document.getElementById('nuevaVacacionMesIni').value);
-  const anioIni=parseInt(document.getElementById('nuevaVacacionAnioIni').value);
-  const diaFin=parseInt(document.getElementById('nuevaVacacionDiaFin').value);
-  const mesFin=parseInt(document.getElementById('nuevaVacacionMesFin').value);
-  const anioFin=parseInt(document.getElementById('nuevaVacacionAnioFin').value);
-  if(!diaIni||!mesIni||!anioIni||!diaFin||!mesFin||!anioFin){ mostrarAlerta('warning','Completa todos los campos (inicio y final)'); return; }
-  const fechaIni=new Date(anioIni,mesIni-1,diaIni);const fechaFin=new Date(anioFin,mesFin-1,diaFin);
-  if(fechaIni.getDate()!==diaIni||fechaIni.getMonth()!==mesIni-1){ mostrarAlerta('error','La fecha de inicio no es válida'); return; }
-  if(fechaFin.getDate()!==diaFin||fechaFin.getMonth()!==mesFin-1){ mostrarAlerta('error','La fecha final no es válida'); return; }
-  if(fechaFin<fechaIni){ mostrarAlerta('error','La fecha final debe ser posterior o igual a la inicial'); return; }
-  let diasAñadidos=0, diasDuplicados=0, diasFinde=0, diasFestivos=0;
-  const fechaActual=new Date(fechaIni);
-  while(fechaActual<=fechaFin){
-    const y=fechaActual.getFullYear(); const m=fechaActual.getMonth()+1; const d=fechaActual.getDate();
-    const diaSemana=fechaActual.getDay();
-    if(diaSemana===0||diaSemana===6){ diasFinde++; fechaActual.setDate(fechaActual.getDate()+1); continue; }
-    const esFestivo=FESTIVOS.find(f=>f.y===y&&f.m===m&&f.d===d);
-    if(esFestivo){ diasFestivos++; fechaActual.setDate(fechaActual.getDate()+1); continue; }
-    const existe=VACACIONES.find(v=>v.y===y&&v.m===m&&v.d===d);
-    if(!existe){ VACACIONES.push({y:y,m:m,d:d}); diasAñadidos++; }else{ diasDuplicados++; }
-    fechaActual.setDate(fechaActual.getDate()+1);
-  }
-  document.getElementById('nuevaVacacionDiaIni').value='';document.getElementById('nuevaVacacionDiaFin').value='';
-  renderListaVacaciones();renderEstadisticasConfig();generarCalendarioEntrada();actualizarContadoresConfig();
-  if(diasAñadidos>0){
-    let msg='✅ Añadidos '+diasAñadidos+' día'+(diasAñadidos>1?'s':'')+' lectivo'+(diasAñadidos>1?'s':'')+' de vacaciones';
-    const omitidos=[];
-    if(diasFinde>0) omitidos.push(diasFinde+' fin de semana');
-    if(diasFestivos>0) omitidos.push(diasFestivos+' festivo'+(diasFestivos>1?'s':''));
-    if(diasDuplicados>0) omitidos.push(diasDuplicados+' ya existía'+(diasDuplicados>1?'n':''));
-    if(omitidos.length>0) msg+=' (omitidos: '+omitidos.join(', ')+')';
-    mostrarAlerta('success',msg);
-  }else{
-    let msg='ℹ️ No se han añadido días lectivos de vacaciones';
-    const motivos=[];
-    if(diasFinde>0) motivos.push(diasFinde+' eran fin de semana');
-    if(diasFestivos>0) motivos.push(diasFestivos+' eran festivos');
-    if(diasDuplicados>0) motivos.push(diasDuplicados+' ya existían');
-    if(motivos.length>0) msg+=' ('+motivos.join(', ')+')';
-    mostrarAlerta('info',msg);
-  }
-  guardarEnNube('✅ Vacaciones añadidas y guardadas en la nube');
-}
-function confirmarEliminarVacacion(idx){
-  const vacacion=VACACIONES[idx];const fecha=pad(vacacion.d)+'/'+pad(vacacion.m)+'/'+vacacion.y;
-  abrirModalConfirmacion('Eliminar día de vacaciones','¿Seguro que quieres eliminar el día <strong>'+fecha+'</strong> de vacaciones?\n\nEsta acción no se puede deshacer.',function(){
-    VACACIONES.splice(idx,1);renderListaVacaciones();renderEstadisticasConfig();generarCalendarioEntrada();actualizarContadoresConfig();
-    guardarEnNube('✅ Vacación eliminada y cambios guardados en la nube');
-  });
-}
+function renderListaAlumnos(){const lista=document.getElementById('listaAlumnos');lista.innerHTML='';if(ALUMNOS.length===0){lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay alumnos</p>';return;}ALUMNOS.forEach(function(alumno,idx){lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+alumno+'</strong></div><div class="config-item-actions"><button class="btn b1 action-btn" onclick="abrirEditarAlumno('+idx+')">✏️ Editar</button><button class="btn b3 action-btn" onclick="confirmarEliminarAlumno('+idx+')">🗑️ Eliminar</button></div></div>';});}
+function agregarAlumno(){const nombre=document.getElementById('nuevoAlumno').value.trim();if(!nombre){mostrarAlerta('warning','Introduce un nombre');return;}if(ALUMNOS.includes(nombre)){mostrarAlerta('error','Ya existe');return;}ALUMNOS.push(nombre);document.getElementById('nuevoAlumno').value='';renderListaAlumnos();actualizarSelectoresAlumnos();renderAll();actualizarContadoresConfig();guardarEnNube('✅ Alumno añadido');}
+function abrirEditarAlumno(idx){indiceAlumnoEditar=idx;document.getElementById('inputNuevoNombreAlumno').value=ALUMNOS[idx];document.getElementById('modalEditarAlumno').classList.add('show');}
+function cerrarModalEditarAlumno(){document.getElementById('modalEditarAlumno').classList.remove('show');indiceAlumnoEditar=null;}
+function confirmarEdicionAlumno(){const nuevoNombre=document.getElementById('inputNuevoNombreAlumno').value.trim();if(!nuevoNombre){mostrarAlerta('warning','El nombre no puede estar vacío');return;}if(nuevoNombre===ALUMNOS[indiceAlumnoEditar]){cerrarModalEditarAlumno();return;}if(ALUMNOS.includes(nuevoNombre)){mostrarAlerta('error','Ya existe');return;}const nombreAnterior=ALUMNOS[indiceAlumnoEditar];ALUMNOS[indiceAlumnoEditar]=nuevoNombre;[...historicalRecords,...userRecords].forEach(r=>{if(r.alumno===nombreAnterior) r.alumno=nuevoNombre;});cerrarModalEditarAlumno();renderListaAlumnos();actualizarSelectoresAlumnos();renderAll();actualizarContadoresConfig();guardarEnNube('✅ Alumno actualizado');}
+function confirmarEliminarAlumno(idx){const alumno=ALUMNOS[idx];abrirModalConfirmacion('Eliminar alumno','¿Seguro que quieres eliminar a <strong>'+alumno+'</strong>?\n\nSe perderán todos sus registros.',function(){ALUMNOS.splice(idx,1);historicalRecords=historicalRecords.filter(r=>r.alumno!==alumno);userRecords=userRecords.filter(r=>r.alumno!==alumno);renderListaAlumnos();actualizarSelectoresAlumnos();renderAll();renderEstadisticasConfig();actualizarContadoresConfig();guardarEnNube('✅ Alumno eliminado');});}
+function actualizarSelectoresAlumnos(){const fMaq=document.getElementById('fMaq');const valorActual=fMaq.value;fMaq.innerHTML='<option value="TODOS">Todos los alumnos</option>';ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;fMaq.appendChild(o);});if(ALUMNOS.includes(valorActual)) fMaq.value=valorActual;const calFiltroAlumno=document.getElementById('calFiltroAlumno');const valorCal=calFiltroAlumno.value;calFiltroAlumno.innerHTML='<option value="TODOS">Todos los alumnos</option>';ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;calFiltroAlumno.appendChild(o);});if(ALUMNOS.includes(valorCal)) calFiltroAlumno.value=valorCal;}
+function renderListaFestivos(){const lista=document.getElementById('listaFestivos');lista.innerHTML='';if(FESTIVOS.length===0){lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay festivos</p>';return;}FESTIVOS.sort((a,b)=>{if(a.y!==b.y) return a.y-b.y;if(a.m!==b.m) return a.m-b.m;return a.d-b.d;});FESTIVOS.forEach(function(festivo,idx){const fecha=pad(festivo.d)+'/'+pad(festivo.m)+'/'+festivo.y;lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+fecha+'</strong> - '+festivo.nombre+'</div><div class="config-item-actions"><button class="btn b3 action-btn" onclick="confirmarEliminarFestivo('+idx+')">🗑️ Eliminar</button></div></div>';});}
+function agregarFestivo(){const dia=parseInt(document.getElementById('nuevoFestivoDia').value);const mes=parseInt(document.getElementById('nuevoFestivoMes').value);const anio=parseInt(document.getElementById('nuevoFestivoAnio').value);const nombre=document.getElementById('nuevoFestivoNombre').value.trim();if(!dia||!mes||!anio||!nombre){mostrarAlerta('warning','Completa todos los campos');return;}const existe=FESTIVOS.find(f=>f.y===anio&&f.m===mes&&f.d===dia);if(existe){mostrarAlerta('error','Ya existe un festivo en esa fecha');return;}FESTIVOS.push({y:anio,m:mes,d:dia,nombre:nombre});document.getElementById('nuevoFestivoDia').value='';document.getElementById('nuevoFestivoNombre').value='';renderListaFestivos();renderEstadisticasConfig();generarCalendarioEntrada();actualizarContadoresConfig();guardarEnNube('✅ Festivo añadido');}
+function confirmarEliminarFestivo(idx){const festivo=FESTIVOS[idx];const fecha=pad(festivo.d)+'/'+pad(festivo.m)+'/'+festivo.y;abrirModalConfirmacion('Eliminar festivo','¿Seguro que quieres eliminar el festivo del <strong>'+fecha+'</strong> ('+festivo.nombre+')?',function(){FESTIVOS.splice(idx,1);renderListaFestivos();renderEstadisticasConfig();generarCalendarioEntrada();actualizarContadoresConfig();guardarEnNube('✅ Festivo eliminado');});}
+function renderListaVacaciones(){const lista=document.getElementById('listaVacaciones');lista.innerHTML='';if(VACACIONES.length===0){lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay vacaciones</p>';return;}VACACIONES.sort((a,b)=>{if(a.y!==b.y) return a.y-b.y;if(a.m!==b.m) return a.m-b.m;return a.d-b.d;});VACACIONES.forEach(function(vacacion,idx){const fecha=pad(vacacion.d)+'/'+pad(vacacion.m)+'/'+vacacion.y;lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+fecha+'</strong></div><div class="config-item-actions"><button class="btn b3 action-btn" onclick="confirmarEliminarVacacion('+idx+')">🗑️ Eliminar</button></div></div>';});}
+function agregarVacacion(){const diaIni=parseInt(document.getElementById('nuevaVacacionDiaIni').value);const mesIni=parseInt(document.getElementById('nuevaVacacionMesIni').value);const anioIni=parseInt(document.getElementById('nuevaVacacionAnioIni').value);const diaFin=parseInt(document.getElementById('nuevaVacacionDiaFin').value);const mesFin=parseInt(document.getElementById('nuevaVacacionMesFin').value);const anioFin=parseInt(document.getElementById('nuevaVacacionAnioFin').value);if(!diaIni||!mesIni||!anioIni||!diaFin||!mesFin||!anioFin){mostrarAlerta('warning','Completa todos los campos');return;}const fechaIni=new Date(anioIni,mesIni-1,diaIni);const fechaFin=new Date(anioFin,mesFin-1,diaFin);if(fechaIni.getDate()!==diaIni||fechaIni.getMonth()!==mesIni-1){mostrarAlerta('error','Fecha inicio no válida');return;}if(fechaFin.getDate()!==diaFin||fechaFin.getMonth()!==mesFin-1){mostrarAlerta('error','Fecha final no válida');return;}if(fechaFin<fechaIni){mostrarAlerta('error','La fecha final debe ser posterior');return;}let diasAñadidos=0,diasDuplicados=0,diasFinde=0,diasFestivos=0;const fechaActual=new Date(fechaIni);while(fechaActual<=fechaFin){const y=fechaActual.getFullYear();const m=fechaActual.getMonth()+1;const d=fechaActual.getDate();const diaSemana=fechaActual.getDay();if(diaSemana===0||diaSemana===6){diasFinde++;fechaActual.setDate(fechaActual.getDate()+1);continue;}const esFestivo=FESTIVOS.find(f=>f.y===y&&f.m===m&&f.d===d);if(esFestivo){diasFestivos++;fechaActual.setDate(fechaActual.getDate()+1);continue;}const existe=VACACIONES.find(v=>v.y===y&&v.m===m&&v.d===d);if(!existe){VACACIONES.push({y:y,m:m,d:d});diasAñadidos++;}else{diasDuplicados++;}fechaActual.setDate(fechaActual.getDate()+1);}document.getElementById('nuevaVacacionDiaIni').value='';document.getElementById('nuevaVacacionDiaFin').value='';renderListaVacaciones();renderEstadisticasConfig();generarCalendarioEntrada();actualizarContadoresConfig();if(diasAñadidos>0){let msg='✅ Añadidos '+diasAñadidos+' día'+(diasAñadidos>1?'s':'')+' lectivo'+(diasAñadidos>1?'s':'')+' de vacaciones';const omitidos=[];if(diasFinde>0) omitidos.push(diasFinde+' fin de semana');if(diasFestivos>0) omitidos.push(diasFestivos+' festivo'+(diasFestivos>1?'s':''));if(diasDuplicados>0) omitidos.push(diasDuplicados+' ya existía'+(diasDuplicados>1?'n':''));if(omitidos.length>0) msg+=' (omitidos: '+omitidos.join(', ')+')';mostrarAlerta('success',msg);}else{mostrarAlerta('info','ℹ️ No se han añadido días lectivos');}guardarEnNube('✅ Vacaciones añadidas');}
+function confirmarEliminarVacacion(idx){const vacacion=VACACIONES[idx];const fecha=pad(vacacion.d)+'/'+pad(vacacion.m)+'/'+vacacion.y;abrirModalConfirmacion('Eliminar vacaciones','¿Seguro que quieres eliminar el día <strong>'+fecha+'</strong> de vacaciones?',function(){VACACIONES.splice(idx,1);renderListaVacaciones();renderEstadisticasConfig();generarCalendarioEntrada();actualizarContadoresConfig();guardarEnNube('✅ Vacación eliminada');});}
 
-// ✅ FUNCIÓN DE BACKUP (incluye notas)
 function exportarBackup(){
   const inicioStr=pad(INICIO_CURSO.d)+'/'+pad(INICIO_CURSO.m)+'/'+INICIO_CURSO.y;
   const finStr=pad(FIN_CURSO.d)+'/'+pad(FIN_CURSO.m)+'/'+FIN_CURSO.y;
   const cursoAnio=INICIO_CURSO.y+'/'+String(FIN_CURSO.y).slice(-2);
-  
   const R=getAll();
   const totalPresentes=R.filter(r=>r.estado==='presente').length;
   const totalAusentes=R.filter(r=>r.estado==='ausente').length;
@@ -2475,214 +1747,38 @@ function exportarBackup(){
   const totalCitasMedicas=R.filter(r=>r.estado==='cita_medica').length;
   const totalConciliaciones=R.filter(r=>r.estado==='conciliacion').length;
   const totalBajas=R.filter(r=>r.estado==='baja').length;
-  
-  let html=`<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Backup Control de Alumnos - Curso ${cursoAnio}</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f5f7fa;color:#1f2937;padding:20px;line-height:1.6}
-.wrap{max-width:1200px;margin:0 auto;background:#fff;padding:40px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
-h1{color:#1e3a8a;margin-bottom:10px;font-size:28px}
-h2{color:#1e3a8a;margin:30px 0 15px 0;font-size:22px;border-bottom:2px solid #e5e7eb;padding-bottom:8px}
-h3{color:#374151;margin:20px 0 10px 0;font-size:18px}
-.info-curso{background:linear-gradient(135deg,#dbeafe,#bfdbfe);padding:20px;border-radius:8px;margin-bottom:30px}
-.info-curso p{margin:5px 0;font-size:14px}
-.info-curso strong{color:#1e40af}
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0}
-.stat-box{background:#f9fafb;padding:15px;border-radius:8px;text-align:center;border-left:4px solid #3b82f6}
-.stat-box .num{font-size:24px;font-weight:700;color:#1e3a8a}
-.stat-box .lbl{font-size:12px;color:#6b7280;margin-top:4px}
-table{width:100%;border-collapse:collapse;margin:15px 0;font-size:13px}
-th{background:#f3f4f6;padding:10px;text-align:left;font-weight:600;color:#374151;border-bottom:2px solid #d1d5db}
-td{padding:8px 10px;border-bottom:1px solid #e5e7eb}
-tr:hover{background:#f9fafb}
-.estado-presente{color:#166534;font-weight:600}
-.estado-ausente{color:#dc2626;font-weight:600}
-.estado-entrada_tarde{color:#d97706;font-weight:600}
-.estado-salida_pronto{color:#db2777;font-weight:600}
-.estado-cita_medica{color:#2563eb;font-weight:600}
-.estado-conciliacion{color:#7c3aed;font-weight:600}
-.estado-baja{color:#dc2626;font-weight:600}
-.alumno-card{background:#f9fafb;padding:20px;border-radius:8px;margin:15px 0;border-left:4px solid #3b82f6}
-.alumno-card h3{margin-top:0;color:#1e3a8a}
-.nota-dia{background:#fef3c7;border-left:4px solid #f59e0b;padding:10px;border-radius:6px;margin:10px 0;font-style:italic;color:#92400e}
-.footer{margin-top:40px;padding-top:20px;border-top:2px solid #e5e7eb;text-align:center;color:#6b7280;font-size:12px}
-@media print{body{background:#fff;padding:0}.wrap{box-shadow:none;padding:20px}}
-</style>
-</head>
-<body>
-<div class="wrap">
-<h1>📚 Control de Alumnos - Backup del Curso</h1>
-<div class="info-curso">
-<p><strong>Curso:</strong> ${inicioStr} - ${finStr}</p>
-<p><strong>Fecha de generación:</strong> ${new Date().toLocaleDateString('es-ES')}</p>
-<p><strong>Total de alumnos:</strong> ${ALUMNOS.length}</p>
-</div>
-
-<h2>📊 Resumen General del Curso</h2>
-<div class="stats-grid">
-<div class="stat-box"><div class="num">${totalPresentes}</div><div class="lbl">Presentes</div></div>
-<div class="stat-box"><div class="num">${totalAusentes}</div><div class="lbl">Ausencias</div></div>
-<div class="stat-box"><div class="num">${totalEntradasTarde}</div><div class="lbl">Entradas Tarde</div></div>
-<div class="stat-box"><div class="num">${totalSalidasPronto}</div><div class="lbl">Salidas Pronto</div></div>
-<div class="stat-box"><div class="num">${totalCitasMedicas}</div><div class="lbl">Citas Médicas</div></div>
-<div class="stat-box"><div class="num">${totalConciliaciones}</div><div class="lbl">Conciliaciones</div></div>
-<div class="stat-box"><div class="num">${totalBajas}</div><div class="lbl">Bajas</div></div>
-</div>
-
-<h2>👥 Lista de Alumnos</h2>
-<table>
-<thead><tr><th>Alumno</th><th>Presentes</th><th>Ausencias</th><th>Entradas Tarde</th><th>Salidas Pronto</th><th>Citas Médicas</th><th>Conciliaciones</th><th>Bajas</th></tr></thead>
-<tbody>`;
-
-  const sm={};
-  ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
+  let html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Backup Control de Alumnos - Curso ${cursoAnio}</title><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',system-ui,sans-serif;background:#f5f7fa;color:#1f2937;padding:20px;line-height:1.6}.wrap{max-width:1200px;margin:0 auto;background:#fff;padding:40px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1)}h1{color:#1e3a8a;margin-bottom:10px;font-size:28px}h2{color:#1e3a8a;margin:30px 0 15px 0;font-size:22px;border-bottom:2px solid #e5e7eb;padding-bottom:8px}h3{color:#374151;margin:20px 0 10px 0;font-size:18px}.info-curso{background:linear-gradient(135deg,#dbeafe,#bfdbfe);padding:20px;border-radius:8px;margin-bottom:30px}.info-curso p{margin:5px 0;font-size:14px}.info-curso strong{color:#1e40af}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0}.stat-box{background:#f9fafb;padding:15px;border-radius:8px;text-align:center;border-left:4px solid #3b82f6}.stat-box .num{font-size:24px;font-weight:700;color:#1e3a8a}.stat-box .lbl{font-size:12px;color:#6b7280;margin-top:4px}table{width:100%;border-collapse:collapse;margin:15px 0;font-size:13px}th{background:#f3f4f6;padding:10px;text-align:left;font-weight:600;color:#374151;border-bottom:2px solid #d1d5db}td{padding:8px 10px;border-bottom:1px solid #e5e7eb}tr:hover{background:#f9fafb}.alumno-card{background:#f9fafb;padding:20px;border-radius:8px;margin:15px 0;border-left:4px solid #3b82f6}.alumno-card h3{margin-top:0;color:#1e3a8a}.footer{margin-top:40px;padding-top:20px;border-top:2px solid #e5e7eb;text-align:center;color:#6b7280;font-size:12px}@media print{body{background:#fff;padding:0}.wrap{box-shadow:none;padding:20px}}</style></head><body><div class="wrap"><h1>📚 Control de Alumnos - Backup</h1><div class="info-curso"><p><strong>Curso:</strong> ${inicioStr} - ${finStr}</p><p><strong>Fecha de generación:</strong> ${new Date().toLocaleDateString('es-ES')}</p><p><strong>Total de alumnos:</strong> ${ALUMNOS.length}</p></div><h2>📊 Resumen General</h2><div class="stats-grid"><div class="stat-box"><div class="num">${totalPresentes}</div><div class="lbl">Presentes</div></div><div class="stat-box"><div class="num">${totalAusentes}</div><div class="lbl">Ausencias</div></div><div class="stat-box"><div class="num">${totalEntradasTarde}</div><div class="lbl">Entradas Tarde</div></div><div class="stat-box"><div class="num">${totalSalidasPronto}</div><div class="lbl">Salidas Pronto</div></div><div class="stat-box"><div class="num">${totalCitasMedicas}</div><div class="lbl">Citas Médicas</div></div><div class="stat-box"><div class="num">${totalConciliaciones}</div><div class="lbl">Conciliaciones</div></div><div class="stat-box"><div class="num">${totalBajas}</div><div class="lbl">Bajas</div></div></div><h2>👥 Lista de Alumnos</h2><table><thead><tr><th>Alumno</th><th>Presentes</th><th>Ausencias</th><th>Entradas Tarde</th><th>Salidas Pronto</th><th>Citas Médicas</th><th>Conciliaciones</th><th>Bajas</th></tr></thead><tbody>`;
+  const sm={};ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
   R.forEach(r=>{if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++;});
-  
-  ALUMNOS.forEach(alumno=>{
-    const s=sm[alumno];
-    html+=`<tr><td><strong>${alumno}</strong></td><td>${s.presente}</td><td>${s.ausente}</td><td>${s.entrada_tarde}</td><td>${s.salida_pronto}</td><td>${s.cita_medica}</td><td>${s.conciliacion}</td><td>${s.baja}</td></tr>`;
-  });
-  
-  html+=`</tbody></table>
-
-<h2>📅 Calendario Detallado Día a Día</h2>
-`;
-
+  ALUMNOS.forEach(alumno=>{const s=sm[alumno];html+=`<tr><td><strong>${alumno}</strong></td><td>${s.presente}</td><td>${s.ausente}</td><td>${s.entrada_tarde}</td><td>${s.salida_pronto}</td><td>${s.cita_medica}</td><td>${s.conciliacion}</td><td>${s.baja}</td></tr>`;});
+  html+=`</tbody></table><h2> Calendario Detallado</h2>`;
   const periodos=generarPeriodos();
-  periodos.forEach(periodo=>{
-    const registrosPeriodo=R.filter(r=>r.y===periodo.y&&r.m===periodo.m);
-    html+=`<h3>${periodo.label}</h3>
-    <table>
-    <thead><tr><th>Fecha</th><th>Día</th>`;
-    ALUMNOS.forEach(a=>{html+=`<th>${a.split(',')[0]}</th>`;});
-    html+=`<th>Nota</th></tr></thead><tbody>`;
-    
-    const last=new Date(periodo.y,periodo.m,0);
-    for(let d=1;d<=last.getDate();d++){
-      const fecha=new Date(periodo.y,periodo.m-1,d);
-      const diaSemana=DIAS_SEMANA[fecha.getDay()];
-      const fechaStr=pad(d)+'/'+pad(periodo.m)+'/'+periodo.y;
-      const claveNota = periodo.y+'-'+periodo.m+'-'+d;
-      const nota = notasPorDia[claveNota] || '';
-      html+=`<tr><td>${fechaStr}</td><td>${diaSemana}</td>`;
-      
-      ALUMNOS.forEach(alumno=>{
-        const reg=registrosPeriodo.find(r=>r.d===d&&r.alumno===alumno);
-        if(reg){
-          let estadoTxt = LABELS_ESTADOS[reg.estado]||reg.estado;
-          if(reg.justificada) estadoTxt += ' ✓';
-          if(reg.causa) estadoTxt += ' ('+reg.causa+')';
-          html+=`<td class="estado-${reg.estado}">${estadoTxt}</td>`;
-        }else{
-          html+=`<td style="color:#9ca3af">-</td>`;
-        }
-      });
-      html+=`<td style="font-size:11px;color:#92400e">${nota}</td>`;
-      html+=`</tr>`;
-    }
-    html+=`</tbody></table>`;
-  });
-
-  if(FESTIVOS.length>0){
-    html+=`<h2>🎉 Festivos Configurados</h2>
-    <table><thead><tr><th>Fecha</th><th>Nombre</th></tr></thead><tbody>`;
-    FESTIVOS.forEach(f=>{
-      html+=`<tr><td>${pad(f.d)}/${pad(f.m)}/${f.y}</td><td>${f.nombre}</td></tr>`;
-    });
-    html+=`</tbody></table>`;
-  }
-
-  if(VACACIONES.length>0){
-    html+=`<h2>🏖️ Vacaciones Registradas</h2>
-    <table><thead><tr><th>Fecha</th></tr></thead><tbody>`;
-    VACACIONES.forEach(v=>{
-      html+=`<tr><td>${pad(v.d)}/${pad(v.m)}/${v.y}</td></tr>`;
-    });
-    html+=`</tbody></table>`;
-  }
-
-  html+=`<h2>📈 Resumen Final por Alumno</h2>
-  <p style="margin-bottom:15px;color:#6b7280">Estadísticas completas de cada alumno durante todo el curso:</p>`;
-  
-  ALUMNOS.forEach(alumno=>{
-    const s=sm[alumno];
-    const totalRegistros=Object.values(s).reduce((a,b)=>a+b,0);
-    const porcentajeAsistencia=totalRegistros>0?Math.round((s.presente/totalRegistros)*100):0;
-    
-    // Ausencias justificadas vs no justificadas
-    const ausenciasAlumno = R.filter(r=>r.alumno===alumno&&r.estado==='ausente');
-    const justificadas = ausenciasAlumno.filter(r=>r.justificada).length;
-    const noJustificadas = ausenciasAlumno.length - justificadas;
-    
-    html+=`<div class="alumno-card">
-    <h3>${alumno}</h3>
-    <div class="stats-grid">
-    <div class="stat-box"><div class="num">${s.presente}</div><div class="lbl">Presentes</div></div>
-    <div class="stat-box"><div class="num">${s.ausente}</div><div class="lbl">Ausencias (${justificadas}✓ / ${noJustificadas}✗)</div></div>
-    <div class="stat-box"><div class="num">${s.entrada_tarde}</div><div class="lbl">Entradas Tarde</div></div>
-    <div class="stat-box"><div class="num">${s.salida_pronto}</div><div class="lbl">Salidas Pronto</div></div>
-    <div class="stat-box"><div class="num">${s.cita_medica}</div><div class="lbl">Citas Médicas</div></div>
-    <div class="stat-box"><div class="num">${s.conciliacion}</div><div class="lbl">Conciliaciones</div></div>
-    <div class="stat-box"><div class="num">${s.baja}</div><div class="lbl">Bajas</div></div>
-    </div>
-    <p style="margin-top:10px"><strong>Total registros:</strong> ${totalRegistros} | <strong>Porcentaje de asistencia:</strong> ${porcentajeAsistencia}%</p>
-    </div>`;
-  });
-
-  html+=`<div class="footer">
-  <p>Backup generado automáticamente por Control de Alumnos</p>
-  <p>Curso ${cursoAnio} | Generado el ${new Date().toLocaleDateString('es-ES')} a las ${new Date().toLocaleTimeString('es-ES')}</p>
-  </div>
-</div>
-</body>
-</html>`;
-  
-  const blob=new Blob([html],{type:'text/html'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  a.href=url;
-  a.download=`backup_curso_${cursoAnio.replace('/','_')}.html`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-  mostrarAlerta('success','✅ Backup exportado correctamente');
+  periodos.forEach(periodo=>{const registrosPeriodo=R.filter(r=>r.y===periodo.y&&r.m===periodo.m);html+=`<h3>${periodo.label}</h3><table><thead><tr><th>Fecha</th><th>Día</th>`;ALUMNOS.forEach(a=>{html+=`<th>${a.split(',')[0]}</th>`;});html+=`<th>Nota</th></tr></thead><tbody>`;const last=new Date(periodo.y,periodo.m,0);for(let d=1;d<=last.getDate();d++){const fecha=new Date(periodo.y,periodo.m-1,d);const diaSemana=DIAS_SEMANA[fecha.getDay()];const fechaStr=pad(d)+'/'+pad(periodo.m)+'/'+periodo.y;const claveNota=periodo.y+'-'+periodo.m+'-'+d;const nota=notasPorDia[claveNota]||'';html+=`<tr><td>${fechaStr}</td><td>${diaSemana}</td>`;ALUMNOS.forEach(alumno=>{const reg=registrosPeriodo.find(r=>r.d===d&&r.alumno===alumno);if(reg){let estadoTxt=LABELS_ESTADOS[reg.estado]||reg.estado;if(reg.justificada) estadoTxt+=' ✓';if(reg.causa) estadoTxt+=' ('+reg.causa+')';html+=`<td>${estadoTxt}</td>`;}else{html+=`<td style="color:#9ca3af">-</td>`;}});html+=`<td style="font-size:11px;color:#92400e">${nota}</td></tr>`;}html+=`</tbody></table>`;});
+  if(FESTIVOS.length>0){html+=`<h2> Festivos</h2><table><thead><tr><th>Fecha</th><th>Nombre</th></tr></thead><tbody>`;FESTIVOS.forEach(f=>{html+=`<tr><td>${pad(f.d)}/${pad(f.m)}/${f.y}</td><td>${f.nombre}</td></tr>`;});html+=`</tbody></table>`;}
+  if(VACACIONES.length>0){html+=`<h2>🏖️ Vacaciones</h2><table><thead><tr><th>Fecha</th></tr></thead><tbody>`;VACACIONES.forEach(v=>{html+=`<tr><td>${pad(v.d)}/${pad(v.m)}/${v.y}</td></tr>`;});html+=`</tbody></table>`;}
+  html+=`<h2>📈 Resumen Final por Alumno</h2>`;
+  ALUMNOS.forEach(alumno=>{const s=sm[alumno];const totalRegistros=Object.values(s).reduce((a,b)=>a+b,0);const porcentajeAsistencia=totalRegistros>0?Math.round((s.presente/totalRegistros)*100):0;const ausenciasAlumno=R.filter(r=>r.alumno===alumno&&r.estado==='ausente');const justificadas=ausenciasAlumno.filter(r=>r.justificada).length;const noJustificadas=ausenciasAlumno.length-justificadas;html+=`<div class="alumno-card"><h3>${alumno}</h3><div class="stats-grid"><div class="stat-box"><div class="num">${s.presente}</div><div class="lbl">Presentes</div></div><div class="stat-box"><div class="num">${s.ausente}</div><div class="lbl">Ausencias (${justificadas}✓/${noJustificadas}✗)</div></div><div class="stat-box"><div class="num">${s.entrada_tarde}</div><div class="lbl">Entradas Tarde</div></div><div class="stat-box"><div class="num">${s.salida_pronto}</div><div class="lbl">Salidas Pronto</div></div><div class="stat-box"><div class="num">${s.cita_medica}</div><div class="lbl">Citas Médicas</div></div><div class="stat-box"><div class="num">${s.conciliacion}</div><div class="lbl">Conciliaciones</div></div><div class="stat-box"><div class="num">${s.baja}</div><div class="lbl">Bajas</div></div></div><p style="margin-top:10px"><strong>Total registros:</strong> ${totalRegistros} | <strong>Asistencia:</strong> ${porcentajeAsistencia}%</p></div>`;});
+  html+=`<div class="footer"><p>Backup generado automáticamente</p><p>Curso ${cursoAnio} | ${new Date().toLocaleDateString('es-ES')} ${new Date().toLocaleTimeString('es-ES')}</p></div></div></body></html>`;
+  const blob=new Blob([html],{type:'text/html'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`backup_curso_${cursoAnio.replace('/','_')}.html`;document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);mostrarAlerta('success','✅ Backup exportado');
 }
 
 document.getElementById('fPeriodo').addEventListener('change',renderTiempo);
-document.getElementById('todayDate').textContent = '📅 Hoy: '+DIA_HOY+'/'+pad(MES_HOY)+'/'+ANIO_HOY;
+document.getElementById('todayDate').textContent='📅 Hoy: '+DIA_HOY+'/'+pad(MES_HOY)+'/'+ANIO_HOY;
 
-// INICIALIZAR SISTEMA DE LOGIN
 async function iniciarSistema(){
-  // Esperar a que Firebase esté listo
-  let intentos = 0;
-  while (!window.firebaseRef && intentos < 50) {
-    await new Promise(r => setTimeout(r, 100));
-    intentos++;
-  }
-  
-  if (!window.firebaseRef) {
-    console.error('Firebase no se cargó correctamente');
-    document.getElementById('loginOverlay').style.display = 'flex';
-    document.getElementById('loginPassword').focus();
+  let intentos=0;
+  while(!window.firebaseRef&&intentos<50){await new Promise(r=>setTimeout(r,100));intentos++;}
+  const usuarioGuardado=sessionStorage.getItem('ca_usuarioActual');
+  if(usuarioGuardado) usuarioActual=JSON.parse(usuarioGuardado);
+  if(verificarSesionActiva()&&usuarioActual){
+    document.getElementById('loginOverlay').style.display='none';
     inicializarApp();
-    return;
-  }
-  
-  if(verificarSesionActiva()){
-    document.getElementById('loginOverlay').style.display = 'none';
-    inicializarApp();
+    actualizarSaludoUsuario();
     cargarDatosNube();
   }else{
-    document.getElementById('loginOverlay').style.display = 'flex';
-    document.getElementById('loginPassword').focus();
+    document.getElementById('loginOverlay').style.display='flex';
+    document.getElementById('loginUsuario').focus();
     inicializarApp();
-    cargarDatosNube();
   }
 }
 
