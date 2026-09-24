@@ -10,7 +10,6 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f5f7fa 0%,#e4e8ec 100%);color:#1f2937;padding:16px;min-height:100vh}
 .wrap{max-width:1280px;margin:0 auto}
-
 .login-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 100%);z-index:10000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px)}
 .login-box{background:#fff;border-radius:16px;padding:40px;max-width:450px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.3);animation:slideIn 0.3s ease}
 @keyframes slideIn{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
@@ -26,7 +25,6 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:linear
 .login-box .error-msg.show{display:block}
 .login-box .info{background:#f0f9ff;border-left:4px solid #3b82f6;padding:12px;border-radius:6px;margin-top:20px;font-size:12px;color:#64748b}
 .login-box .info strong{color:#0369a1}
-
 .inactivity-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);z-index:9999;display:none;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
 .inactivity-overlay.show{display:flex}
 .inactivity-box{background:#fff;border-radius:16px;padding:40px;max-width:400px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.5);animation:slideIn 0.3s ease}
@@ -34,17 +32,10 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:linear
 .inactivity-box h2{color:#1e3a8a;margin-bottom:12px}
 .inactivity-box p{color:#6b7280;margin-bottom:20px}
 .inactivity-box .timer{font-size:32px;font-weight:700;color:#dc2626;margin:16px 0}
-
 .header{background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 100%);border-radius:14px;padding:16px 24px;color:#fff;box-shadow:0 6px 20px rgba(30,58,138,0.25);margin-bottom:16px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px}
 .header-left h1{font-size:26px;font-weight:700;letter-spacing:-0.3px}
 .header-left .sub{font-size:20px;opacity:1;margin-top:4px;font-weight:600;color:#e0e7ff}
-.header-center{
-  text-align:center;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:12px
-}
+.header-center{text-align:center;display:flex;align-items:center;justify-content:center;gap:12px}
 .header-center .fecha-hoy{background:rgba(255,255,255,0.2);backdrop-filter:blur(10px);padding:14px 28px;border-radius:10px;font-weight:700;font-size:22px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.3);height:65px}
 .header-right{display:flex;flex-direction:row;gap:12px;align-items:stretch;justify-content:flex-end;height:50px}
 .curso-mini{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:10px;padding:10px 16px;text-align:center;border:1px solid rgba(255,255,255,0.2);min-width:180px;display:flex;flex-direction:column;justify-content:center}
@@ -54,7 +45,6 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:linear
 .indicador-mini{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);border-radius:10px;padding:10px 12px;text-align:center;min-width:70px;display:flex;flex-direction:column;justify-content:center}
 .indicador-mini .ind-num{font-size:20px;font-weight:700;line-height:1}
 .indicador-mini .ind-label{font-size:9px;opacity:0.9;text-transform:uppercase;letter-spacing:0.3px;font-weight:600;margin-top:3px}
-
 .tabs-container{background:#fff;border-radius:12px 12px 0 0;padding:16px 16px 0 16px;border:1px solid #e5e7eb;border-bottom:none;box-shadow:0 4px 12px rgba(0,0,0,0.06)}
 .tabs{display:flex;gap:4px;margin-bottom:0;align-items:center}
 .tb{padding:14px 28px;border:none;cursor:pointer;font-size:16px;font-weight:600;border-radius:10px 10px 0 0;background:linear-gradient(135deg,#e5e7eb,#d1d5db);color:#6b7280;transition:all 0.3s;display:flex;align-items:center;gap:8px;position:relative;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
@@ -71,47 +61,20 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:linear
 .tb-config.on{background:linear-gradient(135deg,#1f2937,#111827);box-shadow:0 6px 20px rgba(0,0,0,0.3)}
 .origen-bar{background:#fff;border-radius:8px;padding:8px 14px;margin-top:8px;display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#6b7280;box-shadow:0 2px 6px rgba(0,0,0,0.05);border:1px solid #e5e7eb}
 .origen-bar strong{color:#2563eb}
-
 .pnl{background:#fff;padding:24px;border-radius:0 0 12px 12px;box-shadow:0 4px 12px rgba(0,0,0,0.06);display:none;border:1px solid #e5e7eb;border-top:none;animation:fadeIn 0.3s ease}
 .pnl.on{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .pnl h2{margin-bottom:18px;font-size:20px;color:#1f2937;display:flex;align-items:center;gap:10px}
-
 .mes-selector{display:flex;align-items:center;gap:12px;margin:0}
 .mes-selector label{font-size:14px;font-weight:600;color:#1f2937;margin:0}
 .mes-selector .sel{max-width:280px}
-
 .subtabs-inline{display:none;gap:4px;padding:0;background:transparent;border-radius:0;margin:0;margin-left:8px}
 .subtabs-inline.visible{display:flex}
 .subtb{padding:10px 18px;border:none;cursor:pointer;font-size:14px;font-weight:600;border-radius:8px 8px 0 0;background:#e5e7eb;color:#6b7280;transition:all 0.3s;display:flex;align-items:center;gap:6px}
 .subtb:hover{background:#d1d5db;color:#1f2937}
 .subtb.on{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;box-shadow:0 4px 12px rgba(102,126,234,0.3)}
-
-
-
-.btn-cerrar-sesion{
-background:#dc2626;
-border:1px solid #b91c1c;
-color:#fff;
-padding:10px 16px;
-border-radius:8px;
-cursor:pointer;
-font-size:13px;
-font-weight:600;
-transition:all 0.3s;
-display:flex;
-align-items:center;
-gap:6px;
-margin-right:12px;
-}
-.btn-cerrar-sesion:hover{
-background:#991b1b;
-transform:translateY(-2px);
-box-shadow:0 4px 12px rgba(220,38,38,0.4);
-}
-
-
-
+.btn-cerrar-sesion{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:10px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.3s;display:flex;align-items:center;gap:6px;backdrop-filter:blur(10px);margin-right:12px}
+.btn-cerrar-sesion:hover{background:rgba(239,68,68,0.8);border-color:rgba(239,68,68,1);transform:translateY(-2px);box-shadow:0 4px 12px rgba(239,68,68,0.3)}
 .btn{padding:10px 20px;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700;color:#fff;margin-right:5px;margin-bottom:5px;transition:all 0.3s;display:inline-flex;align-items:center;gap:6px;position:relative;overflow:hidden;text-transform:uppercase;letter-spacing:0.5px;box-shadow:0 4px 12px rgba(0,0,0,0.15)}
 .btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);transition:left 0.5s}
 .btn:hover::before{left:100%}
@@ -125,17 +88,14 @@ box-shadow:0 4px 12px rgba(220,38,38,0.4);
 .b6{background:linear-gradient(135deg,#8b5cf6,#7c3aed)}
 .b7{background:linear-gradient(135deg,#f97316,#ea580c)}
 .b8{background:linear-gradient(135deg,#f59e0b,#d97706)}
-
 table{width:100%;border-collapse:collapse;margin-top:12px;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
 th{background:linear-gradient(135deg,#f9fafb,#f3f4f6);text-align:left;padding:10px 12px;font-size:11px;text-transform:uppercase;color:#6b7280;font-weight:700;letter-spacing:0.5px;border-bottom:2px solid #e5e7eb}
 th.r,td.r{text-align:center}
 td{padding:10px 12px;border-bottom:1px solid #f3f4f6;font-size:13px}
 tr:hover{background:#f9fafb}
 tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
-
 .alumno-link{color:#3b82f6;cursor:pointer;text-decoration:none;font-weight:600;transition:color 0.2s}
 .alumno-link:hover{color:#1d4ed8;text-decoration:underline}
-
 .calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:16px}
 .cal-header{background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:8px;text-align:center;font-weight:700;font-size:11px;border-radius:6px}
 .cal-day{background:#fff;border:2px solid #e5e7eb;padding:6px;min-height:75px;cursor:pointer;border-radius:6px;position:relative;transition:all 0.2s}
@@ -155,12 +115,10 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 .cal-day.status-weekend:hover{transform:none;box-shadow:none;border-color:#e5e7eb}
 .cal-day.status-future{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);border-color:#d1d5db;opacity:0.7;cursor:pointer}
 .cal-day.status-future:hover{opacity:1;border-color:#3b82f6}
-
 .informe-container{background:#fff;border-radius:10px;padding:20px;border:1px solid #e5e7eb;box-shadow:0 2px 8px rgba(0,0,0,0.04);margin-top:16px}
 .informe-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid #f3f4f6}
 .informe-header h2{margin:0;font-size:18px}
 .informe-botones{display:flex;gap:8px}
-
 .config-dashboard{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
 .config-card{background:#fff;border:2px solid #e5e7eb;border-radius:12px;padding:24px;cursor:pointer;transition:all 0.3s;text-align:center;position:relative;overflow:hidden}
 .config-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
@@ -174,24 +132,19 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 .config-card .card-desc{font-size:12px;color:#6b7280;line-height:1.4}
 .config-card .card-count{margin-top:12px;padding-top:12px;border-top:1px solid #e5e7eb;font-size:13px;color:#6b7280}
 .config-card .card-count strong{color:#1f2937;font-size:18px}
-
 .config-volver{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;color:#374151;margin-bottom:16px;transition:all 0.2s}
 .config-volver:hover{background:#e5e7eb;color:#1f2937}
-
 .config-panel{display:none}
 .config-panel.active{display:block;animation:fadeIn 0.3s ease}
-
 .backup-section{background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:2px solid #7dd3fc;border-radius:12px;padding:24px;margin-bottom:24px;text-align:center}
 .backup-section h3{color:#0369a1;margin-bottom:10px;font-size:18px;display:flex;align-items:center;justify-content:center;gap:8px}
 .backup-section p{color:#64748b;font-size:13px;margin-bottom:16px}
 .backup-section .btn{padding:12px 28px;font-size:15px}
 .backup-section .backup-info{color:#94a3b8;font-size:11px;margin-top:10px}
-
 .reset-section{margin-top:32px;padding:24px;background:linear-gradient(135deg,#fef2f2,#fee2e2);border:2px solid #fca5a5;border-radius:12px;text-align:center;box-shadow:0 4px 12px rgba(239,68,68,0.1)}
 .reset-section h3{color:#dc2626;font-size:18px;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:8px}
 .reset-section p{color:#6b7280;font-size:13px;margin-bottom:16px}
 .reset-section .btn{padding:12px 28px;font-size:15px;margin:5px}
-
 .config-section{margin-bottom:24px;padding:20px;background:#f9fafb;border-radius:10px;border:1px solid #e5e7eb}
 .config-section h3{margin-bottom:14px;color:#1e3a8a;font-size:17px;display:flex;align-items:center;gap:8px}
 .config-form{display:flex;gap:10px;flex-wrap:wrap;align-items:end;margin-bottom:14px}
@@ -204,14 +157,12 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 .config-item-info{flex:1}
 .config-item-actions{display:flex;gap:6px}
 .action-btn{padding:5px 10px;font-size:11px;border-radius:5px}
-
 .rango-fechas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px}
 .rango-box{flex:1;min-width:260px;padding:14px;background:#fff;border-radius:9px;border:2px solid #fdba74}
 .rango-box h4{color:#9a3412;margin-bottom:10px;font-size:14px;display:flex;align-items:center;gap:6px}
 .rango-box .rango-inputs{display:flex;gap:8px}
 .rango-box .rango-inputs .filter-group{flex:1;min-width:0}
 .rango-box .rango-inputs input,.rango-box .rango-inputs select{width:100%;padding:7px;border:1px solid #d1d5db;border-radius:6px;font-size:13px}
-
 .stats-config{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:20px}
 .stats-group{background:#fff;padding:16px;border-radius:10px;border:2px solid #e5e7eb;transition:all 0.3s}
 .stats-group:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
@@ -227,7 +178,6 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 .stat-item.total .stat-value{color:#1e3a8a}
 .stat-item.consumidos .stat-value{color:#059669}
 .stat-item.pendientes .stat-value{color:#dc2626}
-
 .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(4px)}
 .modal-overlay.show{display:flex}
 .modal{background:#fff;border-radius:14px;padding:24px;max-width:700px;width:90%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3);animation:modalIn 0.3s ease}
@@ -237,32 +187,26 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 .modal-header h3{color:#1f2937;font-size:18px}
 .modal-close{background:none;border:none;font-size:26px;cursor:pointer;color:#9ca3af;padding:0 8px;transition:color 0.2s}
 .modal-close:hover{color:#1f2937}
-
 .alumno-row{display:grid;grid-template-columns:1fr 260px;gap:10px;align-items:start;padding:12px;background:#f9fafb;border-radius:8px;margin-bottom:8px;transition:background 0.2s}
 .alumno-row:hover{background:#f3f4f6}
 .alumno-name{font-weight:600;color:#1f2937;padding-top:6px;font-size:13px}
 .alumno-select{padding:8px;border:1px solid #d1d5db;border-radius:7px;font-size:13px;width:100%;transition:border-color 0.2s}
 .alumno-select:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,0.1)}
 .alumno-select:disabled{background:#f3f4f6;color:#9ca3af;cursor:not-allowed}
-
 .aviso-futuro{background:#fef3c7;border:1px solid #fcd34d;border-radius:6px;padding:10px 14px;margin-bottom:14px;font-size:13px;color:#92400e;display:flex;align-items:center;gap:8px}
-
 .campos-hora{display:flex;flex-direction:column;gap:5px;margin-top:5px}
 .campos-hora .hora-fila{display:flex;align-items:center;gap:6px}
 .campos-hora label{font-size:11px;color:#6b7280;min-width:60px;font-weight:500}
 .campos-hora input[type="time"]{padding:6px 8px;border:1px solid #d1d5db;border-radius:5px;font-size:12px;flex:1;max-width:130px}
 .campos-hora.hora-unica{flex-direction:row;flex-wrap:wrap}
 .campos-hora.hora-unica label{min-width:85px}
-
 .modal-footer{margin-top:20px;padding-top:14px;border-top:2px solid #e5e7eb;display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap}
-
 .day-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
 .day-detail-item{padding:10px;background:#f9fafb;border-radius:7px;font-size:12px;transition:all 0.2s}
 .day-detail-item:hover{box-shadow:0 2px 8px rgba(0,0,0,0.06)}
 .day-detail-item .nombre{font-weight:600;color:#1f2937}
 .day-detail-item .estado{font-size:11px;margin-top:3px}
 .day-detail-item .hora{font-size:10px;color:#6b7280;margin-top:3px}
-
 .estado-presente{color:#166534}
 .estado-ausente{color:#991b1b}
 .estado-entrada_tarde{color:#92400e}
@@ -270,25 +214,20 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 .estado-cita_medica{color:#1e40af}
 .estado-conciliacion{color:#3730a3}
 .estado-baja{color:#991b1b}
-
 .cal-filtros{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;padding:12px;background:#f9fafb;border-radius:8px}
 .cal-filtros .filter-group{display:flex;flex-direction:column;gap:3px}
 .cal-filtros label{font-size:11px;font-weight:600;color:#374151}
 .cal-filtros select{padding:8px 10px;border:1px solid #d1d5db;border-radius:7px;font-size:13px;min-width:140px}
-
 #loader{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.95);z-index:3000;display:flex;justify-content:center;align-items:center;font-size:18px;color:#2563eb;font-weight:bold;flex-direction:column;gap:12px;backdrop-filter:blur(4px)}
 #loader.hidden{display:none}
 .spinner{border:4px solid #f3f3f3;border-top:4px solid #3b82f6;border-radius:50%;width:44px;height:44px;animation:spin 1s linear infinite}
 @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-
 .filter-group{display:flex;flex-direction:column;gap:3px}
 .filter-group label{font-size:11px;font-weight:600;color:#374151}
 .sel{padding:8px 10px;border:1px solid #d1d5db;border-radius:7px;font-size:13px}
-
 .leyenda{display:flex;gap:10px;flex-wrap:nowrap;font-size:11px;padding:8px 12px;background:#f9fafb;border-radius:7px;overflow-x:auto;white-space:nowrap}
 .leyenda-item{display:flex;align-items:center;gap:5px;flex-shrink:0}
 .leyenda-color{width:14px;height:14px;border-radius:3px;border:1px solid #d1d5db;flex-shrink:0}
-
 .alert-container{position:fixed;top:20px;right:20px;z-index:10000;max-width:380px}
 .alert{padding:14px 18px;border-radius:8px;margin-bottom:8px;font-size:13px;display:flex;align-items:center;gap:10px;box-shadow:0 6px 20px rgba(0,0,0,0.15);animation:slideInRight 0.3s ease;cursor:pointer;transition:all 0.3s}
 .alert:hover{transform:translateX(-5px)}
@@ -297,9 +236,7 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 .alert-success{background:#dcfce7;color:#166534;border-left:4px solid #22c55e}
 .alert-warning{background:#fef3c7;color:#92400e;border-left:4px solid #f59e0b}
 @keyframes slideInRight{from{opacity:0;transform:translateX(100%)}to{opacity:1;transform:translateX(0)}}
-
 .print-area{display:none}
-
 .detalle-alumno{padding:10px}
 .detalle-alumno h4{color:#1e3a8a;margin:16px 0 8px 0;font-size:14px;border-bottom:2px solid #e5e7eb;padding-bottom:6px}
 .detalle-alumno h4:first-child{margin-top:0}
@@ -308,7 +245,6 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 .detalle-alumno table td{padding:8px;font-size:12px;border-bottom:1px solid #f3f4f6}
 .detalle-alumno .hora-detalle{color:#6b7280;font-size:11px}
 .detalle-alumno .causa-detalle{color:#92400e;font-size:11px;font-style:italic}
-
 .pdf-detalle-section{margin-top:16px;padding:12px;background:#f9fafb;border-radius:8px;border-left:4px solid #3b82f6}
 .pdf-detalle-section h4{color:#1e3a8a;margin-bottom:8px;font-size:14px}
 .pdf-detalle-list{list-style:none;padding:0}
@@ -321,7 +257,6 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 .pdf-detalle-list li.conciliacion{border-left-color:#8b5cf6}
 .pdf-detalle-list li.baja{border-left-color:#dc2626}
 .pdf-detalle-list li .hora-info{color:#6b7280;font-size:11px;margin-left:8px}
-
 .pdf-content{font-family:Arial,sans-serif;padding:20px}
 .pdf-content h1{color:#1e3a8a;margin-bottom:10px;font-size:24px}
 .pdf-content h2{color:#1f2937;margin-bottom:20px;font-size:18px}
@@ -334,36 +269,34 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 .pdf-content .pdf-stat-box{flex:1;min-width:100px;padding:12px;border-radius:6px;text-align:center}
 .pdf-content .pdf-stat-box .num{font-size:22px;font-weight:700}
 .pdf-content .pdf-stat-box .lbl{font-size:11px;margin-top:4px}
-
 @media print{body *{visibility:hidden}.print-area,.print-area *{visibility:visible}.print-area{position:absolute;left:0;top:0;display:block;width:100%}.no-print{display:none!important}}
 @media(max-width:768px){
-  .calendar{grid-template-columns:repeat(7,1fr);gap:3px}
-  .cal-day{min-height:55px;padding:4px}
-  .alumno-row{grid-template-columns:1fr;gap:8px}
-  .modal{width:95%;padding:16px}
-  .alert-container{left:20px;right:20px;max-width:none}
-  .stats-config{grid-template-columns:1fr}
-  .config-form{flex-direction:column}
-  .rango-fechas{flex-direction:column}
-  .rango-box .rango-inputs{flex-direction:column}
-  .header{grid-template-columns:1fr;text-align:center;gap:12px}
-  .header-right{justify-content:center;flex-wrap:wrap;height:auto}
-  .subtabs-inline{flex-direction:column;margin-left:0}
-  .subtb{width:100%}
-  .tabs{flex-wrap:wrap}
-  .tb{font-size:14px;padding:10px 16px}
-  .tb-config{margin-left:0;width:100%;justify-content:center}
-  .config-dashboard{grid-template-columns:repeat(2,1fr)}
-  .leyenda{flex-wrap:wrap}
+.calendar{grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-day{min-height:55px;padding:4px}
+.alumno-row{grid-template-columns:1fr;gap:8px}
+.modal{width:95%;padding:16px}
+.alert-container{left:20px;right:20px;max-width:none}
+.stats-config{grid-template-columns:1fr}
+.config-form{flex-direction:column}
+.rango-fechas{flex-direction:column}
+.rango-box .rango-inputs{flex-direction:column}
+.header{grid-template-columns:1fr;text-align:center;gap:12px}
+.header-right{justify-content:center;flex-wrap:wrap;height:auto}
+.subtabs-inline{flex-direction:column;margin-left:0}
+.subtb{width:100%}
+.tabs{flex-wrap:wrap}
+.tb{font-size:14px;padding:10px 16px}
+.tb-config{margin-left:0;width:100%;justify-content:center}
+.config-dashboard{grid-template-columns:repeat(2,1fr)}
+.leyenda{flex-wrap:wrap}
 }
 @media(max-width:480px){
-  .config-dashboard{grid-template-columns:1fr}
-  .header-center .fecha-hoy{font-size:16px;padding:10px 16px}
+.config-dashboard{grid-template-columns:1fr}
+.header-center .fecha-hoy{font-size:16px;padding:10px 16px}
 }
 </style>
 </head>
 <body>
-
 <div class="login-overlay" id="loginOverlay">
 <div class="login-box">
 <h1>🔐 Control de Alumnos</h1>
@@ -371,7 +304,7 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 <div class="error-msg" id="loginError"></div>
 <div class="input-group">
 <label for="loginUsuario">Usuario:</label>
-<input type="text" id="loginUsuario" placeholder="Número de usuario " maxlength="6" onkeypress="if(event.key==='Enter')document.getElementById('loginPassword').focus()">
+<input type="text" id="loginUsuario" placeholder="Número de usuario" maxlength="6" onkeypress="if(event.key==='Enter')document.getElementById('loginPassword').focus()">
 </div>
 <div class="input-group">
 <label for="loginPassword">Contraseña:</label>
@@ -384,36 +317,32 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 </div>
-
 <div class="inactivity-overlay" id="inactivityOverlay">
-  <div class="inactivity-box">
-    <div class="icono">⏰</div>
-    <h2>Sesión expirada</h2>
-    <p>Por seguridad, la sesión se ha cerrado tras 5 minutos de inactividad.</p>
-    <div class="timer" id="inactivityTimer">00:00</div>
-    <p style="font-size:13px;color:#9ca3af;margin-bottom:20px">Introduce tu contraseña para continuar</p>
-    <input type="password" id="inactivityPassword" placeholder="Contraseña" style="width:100%;padding:12px;border:2px solid #e5e7eb;border-radius:8px;font-size:15px;margin-bottom:12px" onkeypress="if(event.key==='Enter')reanudarSesion()">
-    <div id="inactivityError" style="background:#fee2e2;color:#991b1b;padding:10px;border-radius:6px;margin-bottom:12px;display:none;font-size:13px"></div>
-    <button class="btn b1" onclick="reanudarSesion()" style="width:100%;padding:12px;font-size:15px">🔓 Reanudar sesión</button>
-  </div>
+<div class="inactivity-box">
+<div class="icono">⏰</div>
+<h2>Sesión expirada</h2>
+<p>Por seguridad, la sesión se ha cerrado tras 5 minutos de inactividad.</p>
+<div class="timer" id="inactivityTimer">00:00</div>
+<p style="font-size:13px;color:#9ca3af;margin-bottom:20px">Introduce tu contraseña para continuar</p>
+<input type="password" id="inactivityPassword" placeholder="Contraseña" style="width:100%;padding:12px;border:2px solid #e5e7eb;border-radius:8px;font-size:15px;margin-bottom:12px" onkeypress="if(event.key==='Enter')reanudarSesion()">
+<div id="inactivityError" style="background:#fee2e2;color:#991b1b;padding:10px;border-radius:6px;margin-bottom:12px;display:none;font-size:13px"></div>
+<button class="btn b1" onclick="reanudarSesion()" style="width:100%;padding:12px;font-size:15px"> Reanudar sesión</button>
 </div>
-
+</div>
 <div id="loader"><div class="spinner"></div>Cargando datos desde la nube...</div>
-
 <div class="wrap">
-
 <div class="header">
 <div class="header-left">
 <h1>📚 Control de Alumnos</h1>
 <p class="sub">Seguimiento de asistencias</p>
 </div>
 <div class="header-center">
-  <button class="btn-cerrar-sesion" onclick="cerrarSesionManual()"> Cerrar sesión</button>
-  <div class="fecha-hoy" id="todayDate">-</div>
+<button class="btn-cerrar-sesion" onclick="cerrarSesionManual()">🚪 Cerrar sesión</button>
+<div class="fecha-hoy" id="todayDate">-</div>
 </div>
 <div class="header-right">
 <div class="curso-mini">
-<div class="label">📅 Curso actual</div>
+<div class="label"> Curso actual</div>
 <div class="fechas" id="cursoInfoTextoGlobal">01/03/2026 - 28/02/2027</div>
 </div>
 <div class="indicadores">
@@ -423,25 +352,22 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 </div>
-
 <div id="alertContainer" class="alert-container"></div>
-
 <div class="tabs-container">
 <div class="tabs">
 <button class="tb on" data-t="p7">📝 Entrada de Datos</button>
-<button class="tb" data-t="p9">🔍 Consultas</button>
+<button class="tb" data-t="p9"> Consultas</button>
 <div class="subtabs-inline" id="subtabsConsultas">
-<button class="subtb on" data-st="p2">👤 Por Alumno</button>
+<button class="subtb on" data-st="p2"> Por Alumno</button>
 <button class="subtb" data-st="p3">📊 Por Mes/Año</button>
 <button class="subtb" data-st="p4">🗓️ Calendario</button>
 </div>
 <div style="display:flex;flex-direction:row;align-items:center;gap:10px;margin-left:auto">
 <div class="origen-bar">📂 Conectado: <strong id="dataSource">Cargando...</strong></div>
-<button class="tb-config" id="btnConfig" onclick="toggleConfig()">⚙️ Configuración</button>
+<button class="tb-config" id="btnConfig" onclick="toggleConfig()">️ Configuración</button>
 </div>
 </div>
 </div>
-
 <div id="p7" class="pnl on">
 <div style="display:flex;align-items:center;gap:16px;margin-bottom:18px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:8px">
 <div class="mes-selector" style="margin:0;flex-shrink:0">
@@ -463,7 +389,6 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 <div id="calendarioEntrada" class="calendar"></div>
 </div>
-
 <div id="p9" class="pnl">
 <div id="p2" class="pnl on" style="box-shadow:none;border:none;padding:0">
 <div class="informe-container">
@@ -495,7 +420,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 <div id="p4" class="pnl" style="box-shadow:none;border:none;padding:0">
 <div class="informe-container">
-<h2>️ Calendario de Asistencias</h2>
+<h2>🗓️ Calendario de Asistencias</h2>
 <p style="color:#6b7280;margin-bottom:14px;font-size:12px">Visualiza rápidamente el estado de cada día. Haz clic en un día para ver el detalle completo.</p>
 <div class="cal-filtros">
 <div class="filter-group"><label>Periodo</label><select id="calPeriodo" onchange="actualizarCalendarioDesdePeriodo()" class="sel"></select></div>
@@ -515,10 +440,8 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 </div>
-
 <div id="p8" class="pnl" style="box-shadow:none;border:none;margin-top:16px;display:none">
-<h2>️ Configuración</h2>
-
+<h2>⚙️ Configuración</h2>
 <div id="configDashboard" class="config-dashboard">
 <div class="config-card card-alumnos" onclick="mostrarPanelConfig('alumnos')">
 <div class="card-icono">👥</div>
@@ -545,7 +468,6 @@ Si olvidaste la contraseña, contacta con el administrador.
 <div class="card-count" id="countFechas"><strong>01/03/2026</strong> - <strong>28/02/2027</strong></div>
 </div>
 </div>
-
 <div id="panelFechas" class="config-panel">
 <button class="config-volver" onclick="volverDashboardConfig()">← Volver a Configuración</button>
 <div class="config-section" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-color:#86efac">
@@ -572,7 +494,6 @@ Si olvidaste la contraseña, contacta con el administrador.
 <button class="btn b2" onclick="guardarFechasCurso()" style="padding:10px 22px">💾 Guardar fechas</button>
 </div>
 </div>
-
 <div id="panelAlumnos" class="config-panel">
 <button class="config-volver" onclick="volverDashboardConfig()">← Volver</button>
 <div class="config-section">
@@ -584,7 +505,6 @@ Si olvidaste la contraseña, contacta con el administrador.
 <div class="config-list" id="listaAlumnos"></div>
 </div>
 </div>
-
 <div id="panelFestivos" class="config-panel">
 <button class="config-volver" onclick="volverDashboardConfig()">← Volver</button>
 <div class="config-section">
@@ -599,11 +519,10 @@ Si olvidaste la contraseña, contacta con el administrador.
 <div class="config-list" id="listaFestivos"></div>
 </div>
 </div>
-
 <div id="panelVacaciones" class="config-panel">
 <button class="config-volver" onclick="volverDashboardConfig()">← Volver</button>
 <div class="config-section">
-<h3>️ Gestión de Vacaciones</h3>
+<h3>🏖️ Gestión de Vacaciones</h3>
 <p style="color:#6b7280;font-size:12px;margin-bottom:10px">Introduce fecha inicio y final. Se añadirán solo días lectivos.</p>
 <div class="rango-fechas">
 <div class="rango-box">
@@ -615,7 +534,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 <div class="rango-box">
-<h4> Fecha final</h4>
+<h4>📅 Fecha final</h4>
 <div class="rango-inputs">
 <div class="filter-group"><label>Día</label><select id="nuevaVacacionDiaFin"></select></div>
 <div class="filter-group"><label>Mes</label><select id="nuevaVacacionMesFin"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
@@ -627,7 +546,6 @@ Si olvidaste la contraseña, contacta con el administrador.
 <div class="config-list" id="listaVacaciones"></div>
 </div>
 </div>
-
 <div class="stats-config" id="statsConfig">
 <div class="stats-group vacaciones">
 <h4>🏖️ Vacaciones</h4>
@@ -646,33 +564,28 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 </div>
-
 <div class="backup-section">
 <h3>💾 Backup del Curso</h3>
 <p>Exporta todos los datos a un archivo HTML.</p>
-<button class="btn b1" onclick="exportarBackup()" style="padding:12px 28px;font-size:15px">📤 Exportar backup</button>
+<button class="btn b1" onclick="exportarBackup()" style="padding:12px 28px;font-size:15px"> Exportar backup</button>
 <p class="backup-info">Se guardará como: <strong id="backupFilename">backup_curso_2026_27.html</strong></p>
 </div>
-
 <div class="backup-section" style="background:linear-gradient(135deg,#f5f3ff,#ede9fe);border-color:#a78bfa" id="seccionCambiarClave">
 <h3>🔑 Cambiar contraseña</h3>
 <p>Modifica tu contraseña de acceso. Tu número de usuario no puede cambiarse.</p>
-<button class="btn b6" onclick="abrirModalCambioClave()" style="padding:12px 28px;font-size:15px">🔐 Cambiar contraseña</button>
+<button class="btn b6" onclick="abrirModalCambioClave()" style="padding:12px 28px;font-size:15px"> Cambiar contraseña</button>
 </div>
-
 <div class="reset-section">
-<h3>⚠️ Zona de peligro</h3>
+<h3>️ Zona de peligro</h3>
 <p>Estas acciones son irreversibles.</p>
 <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
 <button class="btn b8" onclick="confirmarVaciarActividades()">🧹 Vaciar actividades</button>
-<button class="btn b3" onclick="confirmarResetear()">️ Resetear todo</button>
+<button class="btn b3" onclick="confirmarResetear()">🗑️ Resetear todo</button>
 </div>
 </div>
 </div>
-
 </div>
 </div>
-
 <div class="modal-overlay" id="modalAsistencia">
 <div class="modal">
 <div class="modal-header">
@@ -686,7 +599,6 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 </div>
-
 <div class="modal-overlay" id="modalDetalle">
 <div class="modal">
 <div class="modal-header">
@@ -700,7 +612,6 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 </div>
-
 <div class="modal-overlay" id="modalDetalleAlumno">
 <div class="modal modal-grande">
 <div class="modal-header">
@@ -715,7 +626,6 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 </div>
-
 <div class="modal-overlay" id="modalConfirmacion">
 <div class="modal" style="max-width:500px">
 <div class="modal-header">
@@ -729,7 +639,6 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 </div>
-
 <div class="modal-overlay" id="modalEditarAlumno">
 <div class="modal" style="max-width:500px">
 <div class="modal-header">
@@ -746,11 +655,10 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 </div>
-
 <div class="modal-overlay" id="modalCambioClave">
 <div class="modal" style="max-width:500px">
 <div class="modal-header">
-<h3>🔑 Cambiar contraseña</h3>
+<h3> Cambiar contraseña</h3>
 <button class="modal-close" onclick="cerrarModalCambioClave()">×</button>
 </div>
 <div style="padding:10px 0">
@@ -767,14 +675,14 @@ Si olvidaste la contraseña, contacta con el administrador.
 <input type="password" id="nuevaClave" placeholder="Introduce la nueva contraseña" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:6px;font-size:13px">
 </div>
 <div id="requisitosClave" style="background:#f0f9ff;border-left:4px solid #3b82f6;padding:10px;border-radius:6px;margin-top:8px;font-size:12px;display:none">
-  <strong style="color:#0369a1">Requisitos:</strong>
-  <ul style="margin:8px 0 0 20px;color:#64748b">
-    <li id="req-longitud">⚪ Mínimo 6 caracteres</li>
-    <li id="req-mayus"> Al menos 1 mayúscula</li>
-    <li id="req-minus">⚪ Al menos 1 minúscula</li>
-    <li id="req-numero">⚪ Al menos 1 número</li>
-    <li id="req-especial">⚪ Al menos 1 carácter especial</li>
-  </ul>
+<strong style="color:#0369a1">Requisitos:</strong>
+<ul style="margin:8px 0 0 20px;color:#64748b">
+<li id="req-longitud"> Mínimo 6 caracteres</li>
+<li id="req-mayus">⚪ Al menos 1 mayúscula</li>
+<li id="req-minus">⚪ Al menos 1 minúscula</li>
+<li id="req-numero">⚪ Al menos 1 número</li>
+<li id="req-especial"> Al menos 1 carácter especial</li>
+</ul>
 </div>
 <div class="input-group" style="margin-top:12px">
 <label for="confirmarClave">Confirmar nueva contraseña:</label>
@@ -788,35 +696,28 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 </div>
-
 <div id="printArea" class="print-area"></div>
-
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
 const firebaseConfig = {
-  apiKey: "AIzaSyA1L8umeuKcx8sWbLtnI40tszJps55t8s",
-  authDomain: "control-de-alumnos-e70f1.firebaseapp.com",
-  databaseURL: "https://control-de-alumnos-e70f1-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "control-de-alumnos-e70f1",
-  storageBucket: "control-de-alumnos-e70f1.appspot.com",
-  messagingSenderId: "316224417401",
-  appId: "1:316224417401:web:9b6f2dd7789c0718edaea8"
+apiKey: "AIzaSyA1L8umeuKcx8sWbLtnI40tszJps55t8s",
+authDomain: "control-de-alumnos-e70f1.firebaseapp.com",
+databaseURL: "https://control-de-alumnos-e70f1-default-rtdb.europe-west1.firebasedatabase.app",
+projectId: "control-de-alumnos-e70f1",
+storageBucket: "control-de-alumnos-e70f1.appspot.com",
+messagingSenderId: "316224417401",
+appId: "1:316224417401:web:9b6f2dd7789c0718edaea8"
 };
-
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-
 window.firebaseDB = db;
 window.firebaseRef = ref;
 window.firebaseSet = set;
 window.firebaseGet = get;
 window.firebaseChild = child;
-
 console.log('✅ Firebase inicializado');
 </script>
-
 <script>
 const ALUMNOS_BASE=["AMEZ FUERTES, RAUL","BLANCO FRANCO, SANTIAGO ANDRÉS","FERNÁNDEZ MACAYO, M. ISABEL","MAIQUEZ DOMINGUEZ, HECTOR JOSÉ","MALLO RODRÍGUEZ, MIGUEL","MUÑIZ CAÑIBANO, MARÍA BELÉN"];
 const DIAS=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
@@ -824,7 +725,6 @@ const MESES_NOMBRES=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","A
 const DIAS_SEMANA=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
 const ANIO_MIN_DESPLEGABLE=2026;
 const ANIO_MAX_DESPLEGABLE=2035;
-
 let INICIO_CURSO={y:2026,m:3,d:1};
 let FIN_CURSO={y:2027,m:2,d:28};
 let FESTIVOS=[];
@@ -843,953 +743,886 @@ let indiceAlumnoEditar=null;
 let alumnoDetalleActual=null;
 let configVisible=false;
 let esDiaFuturo=false;
-
-// USUARIOS DEL SISTEMA
 const USUARIOS_SISTEMA={
-  '206704':{nombre:'Leticia',rol:'profesora',claveFija:false},
-  '200732':{nombre:'Marina',rol:'profesora',claveFija:false},
-  'admin':{nombre:'Administrador',rol:'admin',claveFija:true}
+'206704':{nombre:'Leticia',rol:'profesora',claveFija:false},
+'200732':{nombre:'Marina',rol:'profesora',claveFija:false},
+'admin':{nombre:'Administrador',rol:'admin',claveFija:true}
 };
 const CLAVE_ADMIN_FIJA="Sancayetano.2026";
 const CLAVE_PROFESORA_DEFAULT={'206704':"206704.Leticia",'200732':"200732.Marina"};
 let usuarioActual=null;
-
-// INACTIVIDAD
 let inactivityTimer;
 const INACTIVITY_TIMEOUT=5*60*1000;
 let inactivityCountdown;
 let secondsRemaining=0;
-
 const FECHA_HOY=new Date();
 FECHA_HOY.setHours(0,0,0,0);
 const DIA_HOY=FECHA_HOY.getDate();
 const MES_HOY=FECHA_HOY.getMonth()+1;
 const ANIO_HOY=FECHA_HOY.getFullYear();
 
+// FUNCIÓN AUXILIAR: ¿Es presente?
+function esPresente(estado) {
+  return estado === 'presente' || 
+         estado === 'entrada_tarde' || 
+         estado === 'salida_pronto' || 
+         estado === 'cita_medica' || 
+         estado === 'conciliacion';
+}
+
 async function hashSHA256(texto){
-  const encoder=new TextEncoder();
-  const data=encoder.encode(texto);
-  const hashBuffer=await crypto.subtle.digest('SHA-256',data);
-  const hashArray=Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b=>b.toString(16).padStart(2,'0')).join('');
+const encoder=new TextEncoder();
+const data=encoder.encode(texto);
+const hashBuffer=await crypto.subtle.digest('SHA-256',data);
+const hashArray=Array.from(new Uint8Array(hashBuffer));
+return hashArray.map(b=>b.toString(16).padStart(2,'0')).join('');
 }
-
 function validarComplejidadClave(clave){
-  const errores=[];
-  if(clave.length<6) errores.push('mínimo 6 caracteres');
-  if(!/[A-Z]/.test(clave)) errores.push('al menos 1 mayúscula (A-Z)');
-  if(!/[a-z]/.test(clave)) errores.push('al menos 1 minúscula (a-z)');
-  if(!/[0-9]/.test(clave)) errores.push('al menos 1 número (0-9)');
-  if(!/[.,$%&!@#^*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(clave)) errores.push('al menos 1 carácter especial (.,$%&!@#...)');
-  return errores;
+const errores=[];
+if(clave.length<6) errores.push('mínimo 6 caracteres');
+if(!/[A-Z]/.test(clave)) errores.push('al menos 1 mayúscula (A-Z)');
+if(!/[a-z]/.test(clave)) errores.push('al menos 1 minúscula (a-z)');
+if(!/[0-9]/.test(clave)) errores.push('al menos 1 número (0-9)');
+if(!/[.,$%&!@#^*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(clave)) errores.push('al menos 1 carácter especial (.,$%&!@#...)');
+return errores;
 }
-
 function actualizarRequisitosClave(){
-  const clave=document.getElementById('nuevaClave').value;
-  const cont=document.getElementById('requisitosClave');
-  cont.style.display=clave?'block':'none';
-  const checks={'req-longitud':clave.length>=6,'req-mayus':/[A-Z]/.test(clave),'req-minus':/[a-z]/.test(clave),'req-numero':/[0-9]/.test(clave),'req-especial':/[.,$%&!@#^*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(clave)};
-  Object.keys(checks).forEach(id=>{
-    const el=document.getElementById(id);
-    el.textContent=(checks[id]?'✅ ':'⚪ ')+el.textContent.substring(2);
-    el.style.color=checks[id]?'#166534':'#64748b';
-    el.style.fontWeight=checks[id]?'600':'400';
-  });
+const clave=document.getElementById('nuevaClave').value;
+const cont=document.getElementById('requisitosClave');
+cont.style.display=clave?'block':'none';
+const checks={'req-longitud':clave.length>=6,'req-mayus':/[A-Z]/.test(clave),'req-minus':/[a-z]/.test(clave),'req-numero':/[0-9]/.test(clave),'req-especial':/[.,$%&!@#^*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(clave)};
+Object.keys(checks).forEach(id=>{
+const el=document.getElementById(id);
+el.textContent=(checks[id]?'✅ ':'⚪ ')+el.textContent.substring(2);
+el.style.color=checks[id]?'#166534':'#64748b';
+el.style.fontWeight=checks[id]?'600':'400';
+});
 }
-
 async function obtenerClaveUsuario(usuario){
-  try{
-    const db=window.firebaseDB;
-    const dbRef=window.firebaseRef(db);
-    const snapshot=await window.firebaseGet(window.firebaseChild(dbRef,'config/claves/'+usuario));
-    if(snapshot.exists()) return snapshot.val();
-  }catch(e){console.error('Error Firebase:',e);}
-  const localClave=localStorage.getItem('ca_clave_'+usuario);
-  if(localClave) return localClave;
-  if(CLAVE_PROFESORA_DEFAULT[usuario]) return await hashSHA256(CLAVE_PROFESORA_DEFAULT[usuario]);
-  return await hashSHA256(CLAVE_ADMIN_FIJA);
+try{
+const db=window.firebaseDB;
+const dbRef=window.firebaseRef(db);
+const snapshot=await window.firebaseGet(window.firebaseChild(dbRef,'config/claves/'+usuario));
+if(snapshot.exists()) return snapshot.val();
+}catch(e){console.error('Error Firebase:',e);}
+const localClave=localStorage.getItem('ca_clave_'+usuario);
+if(localClave) return localClave;
+if(CLAVE_PROFESORA_DEFAULT[usuario]) return await hashSHA256(CLAVE_PROFESORA_DEFAULT[usuario]);
+return await hashSHA256(CLAVE_ADMIN_FIJA);
 }
-
 async function guardarClaveUsuario(usuario,hashClave){
-  try{
-    const db=window.firebaseDB;
-    const dbRef=window.firebaseRef(db,'config/claves/'+usuario);
-    await window.firebaseSet(dbRef,hashClave);
-  }catch(e){console.error('Error Firebase:',e);}
-  localStorage.setItem('ca_clave_'+usuario,hashClave);
+try{
+const db=window.firebaseDB;
+const dbRef=window.firebaseRef(db,'config/claves/'+usuario);
+await window.firebaseSet(dbRef,hashClave);
+}catch(e){console.error('Error Firebase:',e);}
+localStorage.setItem('ca_clave_'+usuario,hashClave);
 }
-
 function verificarSesionActiva(){return sessionStorage.getItem('ca_sesionActiva')==='true';}
-
 function iniciarSesion(){
-  sessionStorage.setItem('ca_sesionActiva','true');
-  document.getElementById('loginOverlay').style.display='none';
-  actualizarSaludoUsuario();
-  actualizarFechaHoy(); // ← AÑADIR ESTA LÍNEA
-  resetInactivityTimer();
+sessionStorage.setItem('ca_sesionActiva','true');
+document.getElementById('loginOverlay').style.display='none';
+actualizarSaludoUsuario();
+actualizarFechaHoy();
+resetInactivityTimer();
 }
-
-
+function actualizarFechaHoy(){
+document.getElementById('todayDate').textContent='📅 Hoy: '+DIA_HOY+'/'+pad(MES_HOY)+'/'+ANIO_HOY;
+}
+function actualizarSaludoUsuario(){
+if(!usuarioActual) return;
+const hora=new Date().getHours();
+const saludo=hora<13?'Buenos días':'Buenas tardes';
+const subHeader=document.querySelector('.header-left .sub');
+if(subHeader) subHeader.textContent=saludo+', '+usuarioActual.nombre;
+}
+async function verificarLogin(){
+const usuarioInput=document.getElementById('loginUsuario').value.trim().toLowerCase();
+const claveInput=document.getElementById('loginPassword').value;
+const errorMsg=document.getElementById('loginError');
+if(!usuarioInput){errorMsg.textContent='⚠️ Introduce un usuario';errorMsg.classList.add('show');return;}
+if(!USUARIOS_SISTEMA[usuarioInput]){errorMsg.textContent='❌ Usuario no válido';errorMsg.classList.add('show');return;}
+if(!claveInput){errorMsg.textContent='⚠️ Introduce una contraseña';errorMsg.classList.add('show');return;}
+const claveHash=await obtenerClaveUsuario(usuarioInput);
+const claveIntroducidaHash=await hashSHA256(claveInput);
+if(claveIntroducidaHash===claveHash){
+usuarioActual={id:usuarioInput,nombre:USUARIOS_SISTEMA[usuarioInput].nombre,rol:USUARIOS_SISTEMA[usuarioInput].rol};
+sessionStorage.setItem('ca_usuarioActual',JSON.stringify(usuarioActual));
+iniciarSesion();
+errorMsg.classList.remove('show');
+document.getElementById('loginUsuario').value='';
+document.getElementById('loginPassword').value='';
+}else{
+errorMsg.textContent='❌ Contraseña incorrecta';
+errorMsg.classList.add('show');
+document.getElementById('loginPassword').value='';
+document.getElementById('loginPassword').focus();
+}
+}
 function cerrarSesionManual() {
-  // Limpiar sesión
   sessionStorage.removeItem('ca_sesionActiva');
   sessionStorage.removeItem('ca_usuarioActual');
   usuarioActual = null;
-  
-  // Limpiar timer de inactividad
   clearTimeout(inactivityTimer);
   clearInterval(inactivityCountdown);
-  
-  // Mostrar login
   document.getElementById('loginOverlay').style.display = 'flex';
   document.getElementById('loginUsuario').value = '';
   document.getElementById('loginPassword').value = '';
   document.getElementById('loginUsuario').focus();
-  
-  // Ocultar contenido principal
-  document.getElementById('todayDate').textContent = '-';
-  
-  mostrarAlerta('info', ' Sesión cerrada correctamente');
+  mostrarAlerta('info', '🚪 Sesión cerrada correctamente');
 }
-
-
-
-function actualizarSaludoUsuario(){
-  if(!usuarioActual) return;
-  const hora=new Date().getHours();
-  const saludo=hora<13?'Buenos días':'Buenas tardes';
-  const subHeader=document.querySelector('.header-left .sub');
-  if(subHeader) subHeader.textContent=saludo+', '+usuarioActual.nombre;
-}
-
-function actualizarFechaHoy(){
-  document.getElementById('todayDate').textContent=' Hoy: '+DIA_HOY+'/'+pad(MES_HOY)+'/'+ANIO_HOY;
-}
-
-
-async function verificarLogin(){
-  const usuarioInput=document.getElementById('loginUsuario').value.trim().toLowerCase();
-  const claveInput=document.getElementById('loginPassword').value;
-  const errorMsg=document.getElementById('loginError');
-  
-  if(!usuarioInput){errorMsg.textContent='️ Introduce un usuario';errorMsg.classList.add('show');return;}
-  if(!USUARIOS_SISTEMA[usuarioInput]){errorMsg.textContent='❌ Usuario no válido';errorMsg.classList.add('show');return;}
-  if(!claveInput){errorMsg.textContent='⚠️ Introduce una contraseña';errorMsg.classList.add('show');return;}
-  
-  const claveHash=await obtenerClaveUsuario(usuarioInput);
-  const claveIntroducidaHash=await hashSHA256(claveInput);
-  
-  if(claveIntroducidaHash===claveHash){
-    usuarioActual={id:usuarioInput,nombre:USUARIOS_SISTEMA[usuarioInput].nombre,rol:USUARIOS_SISTEMA[usuarioInput].rol};
-    sessionStorage.setItem('ca_usuarioActual',JSON.stringify(usuarioActual));
-    iniciarSesion();
-    errorMsg.classList.remove('show');
-    document.getElementById('loginUsuario').value='';
-    document.getElementById('loginPassword').value='';
-  }else{
-    errorMsg.textContent='❌ Contraseña incorrecta';
-    errorMsg.classList.add('show');
-    document.getElementById('loginPassword').value='';
-    document.getElementById('loginPassword').focus();
-  }
-}
-
 function resetInactivityTimer(){
-  clearTimeout(inactivityTimer);
-  clearInterval(inactivityCountdown);
-  secondsRemaining=INACTIVITY_TIMEOUT/1000;
-  inactivityTimer=setTimeout(()=>{bloquearPorInactividad();},INACTIVITY_TIMEOUT);
+clearTimeout(inactivityTimer);
+clearInterval(inactivityCountdown);
+secondsRemaining=INACTIVITY_TIMEOUT/1000;
+inactivityTimer=setTimeout(()=>{bloquearPorInactividad();},INACTIVITY_TIMEOUT);
 }
-
 function bloquearPorInactividad(){
-  document.getElementById('inactivityOverlay').classList.add('show');
-  document.getElementById('inactivityPassword').value='';
-  document.getElementById('inactivityError').style.display='none';
-  document.getElementById('inactivityPassword').focus();
-  secondsRemaining=60;
-  actualizarTimerInactividad();
-  inactivityCountdown=setInterval(()=>{secondsRemaining++;actualizarTimerInactividad();},1000);
+document.getElementById('inactivityOverlay').classList.add('show');
+document.getElementById('inactivityPassword').value='';
+document.getElementById('inactivityError').style.display='none';
+document.getElementById('inactivityPassword').focus();
+secondsRemaining=60;
+actualizarTimerInactividad();
+inactivityCountdown=setInterval(()=>{secondsRemaining++;actualizarTimerInactividad();},1000);
 }
-
 function actualizarTimerInactividad(){
-  const mins=Math.floor(secondsRemaining/60);
-  const secs=secondsRemaining%60;
-  document.getElementById('inactivityTimer').textContent=String(mins).padStart(2,'0')+':'+String(secs).padStart(2,'0');
+const mins=Math.floor(secondsRemaining/60);
+const secs=secondsRemaining%60;
+document.getElementById('inactivityTimer').textContent=String(mins).padStart(2,'0')+':'+String(secs).padStart(2,'0');
 }
-
 async function reanudarSesion(){
-  if(!usuarioActual){
-    document.getElementById('inactivityOverlay').classList.remove('show');
-    document.getElementById('loginOverlay').style.display='flex';
-    return;
-  }
-  const clave=document.getElementById('inactivityPassword').value.trim();
-  const errorMsg=document.getElementById('inactivityError');
-  if(!clave){errorMsg.textContent='⚠️ Introduce tu contraseña';errorMsg.style.display='block';return;}
-  const claveHash=await obtenerClaveUsuario(usuarioActual.id);
-  const claveIntroducidaHash=await hashSHA256(clave);
-  if(claveIntroducidaHash===claveHash){
-    clearInterval(inactivityCountdown);
-    document.getElementById('inactivityOverlay').classList.remove('show');
-    resetInactivityTimer();
-    mostrarAlerta('success','✅ Sesión reanudada');
-  }else{
-    errorMsg.textContent='❌ Contraseña incorrecta';
-    errorMsg.style.display='block';
-  }
+if(!usuarioActual){
+document.getElementById('inactivityOverlay').classList.remove('show');
+document.getElementById('loginOverlay').style.display='flex';
+return;
 }
-
+const clave=document.getElementById('inactivityPassword').value.trim();
+const errorMsg=document.getElementById('inactivityError');
+if(!clave){errorMsg.textContent='⚠️ Introduce tu contraseña';errorMsg.style.display='block';return;}
+const claveHash=await obtenerClaveUsuario(usuarioActual.id);
+const claveIntroducidaHash=await hashSHA256(clave);
+if(claveIntroducidaHash===claveHash){
+clearInterval(inactivityCountdown);
+document.getElementById('inactivityOverlay').classList.remove('show');
+resetInactivityTimer();
+mostrarAlerta('success','✅ Sesión reanudada');
+}else{
+errorMsg.textContent='❌ Contraseña incorrecta';
+errorMsg.style.display='block';
+}
+}
 ['click','keypress','mousemove','scroll','touchstart','keydown'].forEach(evt=>{
-  document.addEventListener(evt,resetInactivityTimer,{passive:true});
+document.addEventListener(evt,resetInactivityTimer,{passive:true});
 });
-
 async function abrirModalCambioClave(){
-  if(!usuarioActual) return;
-  document.getElementById('usuarioActualDisplay').textContent=usuarioActual.id;
-  document.getElementById('nombreUsuarioDisplay').textContent=usuarioActual.nombre;
-  document.getElementById('claveActual').value='';
-  document.getElementById('nuevaClave').value='';
-  document.getElementById('confirmarClave').value='';
-  document.getElementById('mensajeErrorClave').style.display='none';
-  document.getElementById('requisitosClave').style.display='none';
-  
-  if(usuarioActual.rol==='admin'){
-    document.getElementById('mensajeErrorClave').textContent=' La contraseña de administrador no se puede cambiar';
-    document.getElementById('mensajeErrorClave').style.display='block';
-  }
-  
-  document.getElementById('modalCambioClave').classList.add('show');
-  actualizarRequisitosClave();
+if(!usuarioActual) return;
+document.getElementById('usuarioActualDisplay').textContent=usuarioActual.id;
+document.getElementById('nombreUsuarioDisplay').textContent=usuarioActual.nombre;
+document.getElementById('claveActual').value='';
+document.getElementById('nuevaClave').value='';
+document.getElementById('confirmarClave').value='';
+document.getElementById('mensajeErrorClave').style.display='none';
+document.getElementById('requisitosClave').style.display='none';
+if(usuarioActual.rol==='admin'){
+document.getElementById('mensajeErrorClave').textContent='❌ La contraseña de administrador no se puede cambiar';
+document.getElementById('mensajeErrorClave').style.display='block';
 }
-
+document.getElementById('modalCambioClave').classList.add('show');
+actualizarRequisitosClave();
+}
 function cerrarModalCambioClave(){document.getElementById('modalCambioClave').classList.remove('show');}
-
 async function cambiarClave(){
-  if(!usuarioActual||usuarioActual.rol==='admin') return;
-  const claveActual=document.getElementById('claveActual').value.trim();
-  const nuevaClave=document.getElementById('nuevaClave').value;
-  const confirmarClave=document.getElementById('confirmarClave').value;
-  const mensajeError=document.getElementById('mensajeErrorClave');
-  
-  if(!claveActual){mensajeError.textContent=' Debes introducir la contraseña actual';mensajeError.style.display='block';return;}
-  if(!nuevaClave){mensajeError.textContent='❌ Debes introducir una nueva contraseña';mensajeError.style.display='block';return;}
-  const errores=validarComplejidadClave(nuevaClave);
-  if(errores.length>0){mensajeError.innerHTML='❌ La contraseña no cumple los requisitos:<br>• '+errores.join('<br>• ');mensajeError.style.display='block';return;}
-  if(nuevaClave!==confirmarClave){mensajeError.textContent='❌ Las contraseñas no coinciden';mensajeError.style.display='block';return;}
-  
-  const claveActualHash=await obtenerClaveUsuario(usuarioActual.id);
-  const claveIntroducidaHash=await hashSHA256(claveActual);
-  if(claveIntroducidaHash!==claveActualHash){mensajeError.textContent='❌ La contraseña actual es incorrecta';mensajeError.style.display='block';return;}
-  
-  const nuevaClaveHash=await hashSHA256(nuevaClave);
-  await guardarClaveUsuario(usuarioActual.id,nuevaClaveHash);
-  cerrarModalCambioClave();
-  mostrarAlerta('success','✅ Contraseña cambiada correctamente');
+if(!usuarioActual||usuarioActual.rol==='admin') return;
+const claveActual=document.getElementById('claveActual').value.trim();
+const nuevaClave=document.getElementById('nuevaClave').value;
+const confirmarClave=document.getElementById('confirmarClave').value;
+const mensajeError=document.getElementById('mensajeErrorClave');
+if(!claveActual){mensajeError.textContent=' Debes introducir la contraseña actual';mensajeError.style.display='block';return;}
+if(!nuevaClave){mensajeError.textContent='❌ Debes introducir una nueva contraseña';mensajeError.style.display='block';return;}
+const errores=validarComplejidadClave(nuevaClave);
+if(errores.length>0){mensajeError.innerHTML='❌ La contraseña no cumple los requisitos:<br>• '+errores.join('<br>• ');mensajeError.style.display='block';return;}
+if(nuevaClave!==confirmarClave){mensajeError.textContent='❌ Las contraseñas no coinciden';mensajeError.style.display='block';return;}
+const claveActualHash=await obtenerClaveUsuario(usuarioActual.id);
+const claveIntroducidaHash=await hashSHA256(claveActual);
+if(claveIntroducidaHash!==claveActualHash){mensajeError.textContent='❌ La contraseña actual es incorrecta';mensajeError.style.display='block';return;}
+const nuevaClaveHash=await hashSHA256(nuevaClave);
+await guardarClaveUsuario(usuarioActual.id,nuevaClaveHash);
+cerrarModalCambioClave();
+mostrarAlerta('success','✅ Contraseña cambiada correctamente');
 }
-
 function getPeriodoLabel(year,month){return MESES_NOMBRES[month-1]+" "+year;}
 function getDayType(year,month,day){
-  const fecha=new Date(year,month-1,day);
-  const diaSemana=fecha.getDay();
-  if(diaSemana===0||diaSemana===6) return {type:'weekend',label:'Fin de semana'};
-  const fechaInicio=new Date(INICIO_CURSO.y,INICIO_CURSO.m-1,INICIO_CURSO.d);
-  const fechaActual=new Date(year,month-1,day);
-  if(fechaActual<fechaInicio) return {type:'before-course',label:'Antes del curso'};
-  const fechaFin=new Date(FIN_CURSO.y,FIN_CURSO.m-1,FIN_CURSO.d);
-  if(fechaActual>fechaFin) return {type:'after-course',label:'Después del curso'};
-  for(const f of FESTIVOS){if(f.y===year&&f.m===month&&f.d===day) return {type:'holiday',label:f.nombre};}
-  for(const v of VACACIONES){if(v.y===year&&v.m===month&&v.d===day) return {type:'vacation',label:'Vacaciones'};}
-  return {type:'lectivo',label:'Día lectivo'};
+const fecha=new Date(year,month-1,day);
+const diaSemana=fecha.getDay();
+if(diaSemana===0||diaSemana===6) return {type:'weekend',label:'Fin de semana'};
+const fechaInicio=new Date(INICIO_CURSO.y,INICIO_CURSO.m-1,INICIO_CURSO.d);
+const fechaActual=new Date(year,month-1,day);
+if(fechaActual<fechaInicio) return {type:'before-course',label:'Antes del curso'};
+const fechaFin=new Date(FIN_CURSO.y,FIN_CURSO.m-1,FIN_CURSO.d);
+if(fechaActual>fechaFin) return {type:'after-course',label:'Después del curso'};
+for(const f of FESTIVOS){if(f.y===year&&f.m===month&&f.d===day) return {type:'holiday',label:f.nombre};}
+for(const v of VACACIONES){if(v.y===year&&v.m===month&&v.d===day) return {type:'vacation',label:'Vacaciones'};}
+return {type:'lectivo',label:'Día lectivo'};
 }
-
 function generarPeriodos(){
-  const periodos=[];
-  let year=INICIO_CURSO.y,month=INICIO_CURSO.m;
-  const endYear=FIN_CURSO.y,endMonth=FIN_CURSO.m;
-  while(year<endYear||(year===endYear&&month<=endMonth)){
-    periodos.push({y:year,m:month,label:getPeriodoLabel(year,month)});
-    month++;if(month>12){month=1;year++;}
-  }
-  return periodos;
+const periodos=[];
+let year=INICIO_CURSO.y,month=INICIO_CURSO.m;
+const endYear=FIN_CURSO.y,endMonth=FIN_CURSO.m;
+while(year<endYear||(year===endYear&&month<=endMonth)){
+periodos.push({y:year,m:month,label:getPeriodoLabel(year,month)});
+month++;if(month>12){month=1;year++;}
 }
-
+return periodos;
+}
 function calcularAnioParaMes(mes){return mes>=INICIO_CURSO.m?INICIO_CURSO.y:INICIO_CURSO.y+1;}
-
 function llenarSelectDias(selectId,valorSeleccionado){
-  const select=document.getElementById(selectId);select.innerHTML='';
-  for(let d=1;d<=31;d++){const o=document.createElement('option');o.value=d;o.textContent=d;if(d===valorSeleccionado) o.selected=true;select.appendChild(o);}
+const select=document.getElementById(selectId);select.innerHTML='';
+for(let d=1;d<=31;d++){const o=document.createElement('option');o.value=d;o.textContent=d;if(d===valorSeleccionado) o.selected=true;select.appendChild(o);}
 }
-
 function llenarSelectAnios(selectId,valorSeleccionado){
-  const select=document.getElementById(selectId);select.innerHTML='';
-  for(let y=ANIO_MIN_DESPLEGABLE;y<=ANIO_MAX_DESPLEGABLE;y++){const o=document.createElement('option');o.value=y;o.textContent=y;if(y===valorSeleccionado) o.selected=true;select.appendChild(o);}
+const select=document.getElementById(selectId);select.innerHTML='';
+for(let y=ANIO_MIN_DESPLEGABLE;y<=ANIO_MAX_DESPLEGABLE;y++){const o=document.createElement('option');o.value=y;o.textContent=y;if(y===valorSeleccionado) o.selected=true;select.appendChild(o);}
 }
-
 function mostrarAlerta(tipo,mensaje,duracion=5000){
-  const cont=document.getElementById('alertContainer');
-  const iconos={info:'ℹ️',error:'❌',success:'✅',warning:'️'};
-  const alertDiv=document.createElement('div');
-  alertDiv.className='alert alert-'+tipo;
-  alertDiv.innerHTML='<span style="font-size:18px">'+(iconos[tipo]||'')+'</span><span>'+mensaje+'</span>';
-  alertDiv.onclick=function(){this.remove();};
-  cont.appendChild(alertDiv);
-  if(duracion>0){setTimeout(function(){alertDiv.style.opacity='0';alertDiv.style.transform='translateX(100%)';setTimeout(function(){alertDiv.remove();},300);},duracion);}
+const cont=document.getElementById('alertContainer');
+const iconos={info:'ℹ️',error:'❌',success:'✅',warning:'⚠️'};
+const alertDiv=document.createElement('div');
+alertDiv.className='alert alert-'+tipo;
+alertDiv.innerHTML='<span style="font-size:18px">'+(iconos[tipo]||'')+'</span><span>'+mensaje+'</span>';
+alertDiv.onclick=function(){this.remove();};
+cont.appendChild(alertDiv);
+if(duracion>0){setTimeout(function(){alertDiv.style.opacity='0';alertDiv.style.transform='translateX(100%)';setTimeout(function(){alertDiv.remove();},300);},duracion);}
 }
-
 async function guardarEnNube(mensajeExito){
-  try{
-    const payload={alumnos:ALUMNOS,registros:[...historicalRecords,...userRecords],festivos:FESTIVOS,vacaciones:VACACIONES,inicioCurso:INICIO_CURSO,finCurso:FIN_CURSO,notasPorDia:notasPorDia};
-    const db=window.firebaseDB;
-    const dbRef=window.firebaseRef(db,'datos');
-    await window.firebaseSet(dbRef,payload);
-    if(mensajeExito) mostrarAlerta('success',mensajeExito);
-    return true;
-  }catch(e){console.error('Error:',e);mostrarAlerta('error','❌ Error al guardar: '+e.message);return false;}
+try{
+const payload={alumnos:ALUMNOS,registros:[...historicalRecords,...userRecords],festivos:FESTIVOS,vacaciones:VACACIONES,inicioCurso:INICIO_CURSO,finCurso:FIN_CURSO,notasPorDia:notasPorDia};
+const db=window.firebaseDB;
+const dbRef=window.firebaseRef(db,'datos');
+await window.firebaseSet(dbRef,payload);
+if(mensajeExito) mostrarAlerta('success',mensajeExito);
+return true;
+}catch(e){console.error('Error:',e);mostrarAlerta('error','❌ Error al guardar: '+e.message);return false;}
 }
-
 async function cargarDatosNube(){
-  document.getElementById('loader').classList.remove('hidden');
-  try{
-    const db=window.firebaseDB;
-    const dbRef=window.firebaseRef(db);
-    const snapshot=await window.firebaseGet(window.firebaseChild(dbRef,'datos'));
-    if(snapshot.exists()){
-      const datos=snapshot.val();
-      if(datos.alumnos&&datos.alumnos.length>0) ALUMNOS=datos.alumnos;
-      if(datos.registros&&datos.registros.length>0){historicalRecords=datos.registros.filter(r=>r.hist===true);userRecords=datos.registros.filter(r=>r.hist!==true);}
-      else{historicalRecords=[];userRecords=[];}
-      if(datos.festivos) FESTIVOS=datos.festivos.map(f=>({y:parseInt(f.y),m:parseInt(f.m),d:parseInt(f.d),nombre:f.nombre}));
-      if(datos.vacaciones) VACACIONES=datos.vacaciones.map(v=>({y:parseInt(v.y),m:parseInt(v.m),d:parseInt(v.d)}));
-      if(datos.notasPorDia) notasPorDia=datos.notasPorDia;
-      if(datos.inicioCurso) INICIO_CURSO={y:parseInt(datos.inicioCurso.y),m:parseInt(datos.inicioCurso.m),d:parseInt(datos.inicioCurso.d)};
-      if(datos.finCurso) FIN_CURSO={y:parseInt(datos.finCurso.y),m:parseInt(datos.finCurso.m),d:parseInt(datos.finCurso.d)};
-      document.getElementById('dataSource').textContent="☁️ Nube";
-      saveUser();
-      inicializarApp();
-      renderAll();
-      renderConfiguracion();
-      actualizarInfoCurso();
-    }else{
-      document.getElementById('dataSource').textContent="Local";
-      inicializarApp();
-      renderAll();
-      renderConfiguracion();
-      actualizarInfoCurso();
-    }
-  }catch(e){console.error('Error:',e);mostrarAlerta('error','Error al conectar: '+e.message);}
-  finally{document.getElementById('loader').classList.add('hidden');}
+document.getElementById('loader').classList.remove('hidden');
+try{
+const db=window.firebaseDB;
+const dbRef=window.firebaseRef(db);
+const snapshot=await window.firebaseGet(window.firebaseChild(dbRef,'datos'));
+if(snapshot.exists()){
+const datos=snapshot.val();
+if(datos.alumnos&&datos.alumnos.length>0) ALUMNOS=datos.alumnos;
+if(datos.registros&&datos.registros.length>0){historicalRecords=datos.registros.filter(r=>r.hist===true);userRecords=datos.registros.filter(r=>r.hist!==true);}
+else{historicalRecords=[];userRecords=[];}
+if(datos.festivos) FESTIVOS=datos.festivos.map(f=>({y:parseInt(f.y),m:parseInt(f.m),d:parseInt(f.d),nombre:f.nombre}));
+if(datos.vacaciones) VACACIONES=datos.vacaciones.map(v=>({y:parseInt(v.y),m:parseInt(v.m),d:parseInt(v.d)}));
+if(datos.notasPorDia) notasPorDia=datos.notasPorDia;
+if(datos.inicioCurso) INICIO_CURSO={y:parseInt(datos.inicioCurso.y),m:parseInt(datos.inicioCurso.m),d:parseInt(datos.inicioCurso.d)};
+if(datos.finCurso) FIN_CURSO={y:parseInt(datos.finCurso.y),m:parseInt(datos.finCurso.m),d:parseInt(datos.finCurso.d)};
+document.getElementById('dataSource').textContent="☁️ Nube";
+saveUser();
+inicializarApp();
+renderAll();
+renderConfiguracion();
+actualizarInfoCurso();
+}else{
+document.getElementById('dataSource').textContent="Local";
+inicializarApp();
+renderAll();
+renderConfiguracion();
+actualizarInfoCurso();
 }
-
+}catch(e){console.error('Error:',e);mostrarAlerta('error','Error al conectar: '+e.message);}
+finally{document.getElementById('loader').classList.add('hidden');}
+}
 function actualizarInfoCurso(){
-  const inicioStr=pad(INICIO_CURSO.d)+'/'+pad(INICIO_CURSO.m)+'/'+INICIO_CURSO.y;
-  const finStr=pad(FIN_CURSO.d)+'/'+pad(FIN_CURSO.m)+'/'+FIN_CURSO.y;
-  document.getElementById('cursoInfoTextoGlobal').textContent=inicioStr+' - '+finStr;
-  const countFechas=document.getElementById('countFechas');
-  if(countFechas) countFechas.innerHTML='<strong>'+inicioStr+'</strong> - <strong>'+finStr+'</strong>';
-  const backupFilename=document.getElementById('backupFilename');
-  if(backupFilename){const cursoAnio=INICIO_CURSO.y+'/'+String(FIN_CURSO.y).slice(-2);backupFilename.textContent='backup_curso_'+cursoAnio.replace('/','_')+'.html';}
+const inicioStr=pad(INICIO_CURSO.d)+'/'+pad(INICIO_CURSO.m)+'/'+INICIO_CURSO.y;
+const finStr=pad(FIN_CURSO.d)+'/'+pad(FIN_CURSO.m)+'/'+FIN_CURSO.y;
+document.getElementById('cursoInfoTextoGlobal').textContent=inicioStr+' - '+finStr;
+const countFechas=document.getElementById('countFechas');
+if(countFechas) countFechas.innerHTML='<strong>'+inicioStr+'</strong> - <strong>'+finStr+'</strong>';
+const backupFilename=document.getElementById('backupFilename');
+if(backupFilename){const cursoAnio=INICIO_CURSO.y+'/'+String(FIN_CURSO.y).slice(-2);backupFilename.textContent='backup_curso_'+cursoAnio.replace('/','_')+'.html';}
 }
-
 function inicializarApp(){
-  document.getElementById('todayDate').textContent='📅 Hoy: '+DIA_HOY+'/'+pad(MES_HOY)+'/'+ANIO_HOY;
-  const periodos=generarPeriodos();
-  const erMes=document.getElementById('erMes');erMes.innerHTML='';
-  periodos.forEach(function(p){const o=document.createElement('option');o.value=p.m;o.textContent=p.label;erMes.appendChild(o);});
-  const periodoActual=periodos.find(p=>p.y===ANIO_HOY&&p.m===MES_HOY);
-  if(periodoActual){erMes.value=periodoActual.m;}
-  else{let mejorPeriodo=periodos[0];let mejorDiff=Infinity;periodos.forEach(p=>{const fechaPeriodo=new Date(p.y,p.m-1,1);const diff=Math.abs(fechaPeriodo-FECHA_HOY);if(diff<mejorDiff){mejorDiff=diff;mejorPeriodo=p;}});erMes.value=mejorPeriodo.m;}
-  onMesSeleccionado();
-  const fPeriodo=document.getElementById('fPeriodo');fPeriodo.innerHTML='<option value="ALL">Todo el curso</option>';
-  periodos.forEach(function(p){const o=document.createElement('option');o.value=p.y+'-'+p.m;o.textContent=p.label;fPeriodo.appendChild(o);});
-  const periodoActualIdx=periodos.findIndex(p=>p.y===ANIO_HOY&&p.m===MES_HOY);
-  if(periodoActualIdx>=0) fPeriodo.value=periodos[periodoActualIdx].y+'-'+periodos[periodoActualIdx].m;
-  const fMaq=document.getElementById('fMaq');fMaq.innerHTML='<option value="TODOS">Todos los alumnos</option>';
-  ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;fMaq.appendChild(o);});
-  const calPeriodo=document.getElementById('calPeriodo');calPeriodo.innerHTML='';
-  periodos.forEach(function(p){const o=document.createElement('option');o.value=p.y+'-'+p.m;o.textContent=p.label;calPeriodo.appendChild(o);});
-  if(periodoActualIdx>=0) calPeriodo.value=periodos[periodoActualIdx].y+'-'+periodos[periodoActualIdx].m;
-  const calFiltroAlumno=document.getElementById('calFiltroAlumno');
-  calFiltroAlumno.innerHTML='<option value="TODOS">Todos los alumnos</option>';
-  ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;calFiltroAlumno.appendChild(o);});
-  renderAll();
-  generarCalendarioEntrada();
+document.getElementById('todayDate').textContent='📅 Hoy: '+DIA_HOY+'/'+pad(MES_HOY)+'/'+ANIO_HOY;
+const periodos=generarPeriodos();
+const erMes=document.getElementById('erMes');erMes.innerHTML='';
+periodos.forEach(function(p){const o=document.createElement('option');o.value=p.m;o.textContent=p.label;erMes.appendChild(o);});
+const periodoActual=periodos.find(p=>p.y===ANIO_HOY&&p.m===MES_HOY);
+if(periodoActual){erMes.value=periodoActual.m;}
+else{let mejorPeriodo=periodos[0];let mejorDiff=Infinity;periodos.forEach(p=>{const fechaPeriodo=new Date(p.y,p.m-1,1);const diff=Math.abs(fechaPeriodo-FECHA_HOY);if(diff<mejorDiff){mejorDiff=diff;mejorPeriodo=p;}});erMes.value=mejorPeriodo.m;}
+onMesSeleccionado();
+const fPeriodo=document.getElementById('fPeriodo');fPeriodo.innerHTML='<option value="ALL">Todo el curso</option>';
+periodos.forEach(function(p){const o=document.createElement('option');o.value=p.y+'-'+p.m;o.textContent=p.label;fPeriodo.appendChild(o);});
+const periodoActualIdx=periodos.findIndex(p=>p.y===ANIO_HOY&&p.m===MES_HOY);
+if(periodoActualIdx>=0) fPeriodo.value=periodos[periodoActualIdx].y+'-'+periodos[periodoActualIdx].m;
+const fMaq=document.getElementById('fMaq');fMaq.innerHTML='<option value="TODOS">Todos los alumnos</option>';
+ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;fMaq.appendChild(o);});
+const calPeriodo=document.getElementById('calPeriodo');calPeriodo.innerHTML='';
+periodos.forEach(function(p){const o=document.createElement('option');o.value=p.y+'-'+p.m;o.textContent=p.label;calPeriodo.appendChild(o);});
+if(periodoActualIdx>=0) calPeriodo.value=periodos[periodoActualIdx].y+'-'+periodos[periodoActualIdx].m;
+const calFiltroAlumno=document.getElementById('calFiltroAlumno');
+calFiltroAlumno.innerHTML='<option value="TODOS">Todos los alumnos</option>';
+ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;calFiltroAlumno.appendChild(o);});
+renderAll();
+generarCalendarioEntrada();
 }
-
 function onMesSeleccionado(){const mes=parseInt(document.getElementById('erMes').value);const anio=calcularAnioParaMes(mes);mesSeleccionado=mes;anioSeleccionado=anio;generarCalendarioEntrada();}
 function getAll(){return[...historicalRecords,...userRecords];}
 function saveUser(){localStorage.setItem('ca_cache',JSON.stringify({alumnos:ALUMNOS,registros:[...historicalRecords,...userRecords],festivos:FESTIVOS,vacaciones:VACACIONES,inicioCurso:INICIO_CURSO,finCurso:FIN_CURSO,notasPorDia:notasPorDia}));}
 function pad(n){return n<10?'0'+n:''+n;}
-
 function toggleConfig(){
-  configVisible=!configVisible;
-  const pnl=document.getElementById('p8');
-  const btn=document.getElementById('btnConfig');
-  if(configVisible){
-    pnl.style.display='block';pnl.classList.add('on');btn.classList.add('on');
-    volverDashboardConfig();renderConfiguracion();
-    const seccionClave=document.getElementById('seccionCambiarClave');
-    if(seccionClave) seccionClave.style.display=(usuarioActual&&usuarioActual.rol!=='admin')?'block':'none';
-    setTimeout(()=>{pnl.scrollIntoView({behavior:'smooth',block:'start'});},100);
-  }else{pnl.style.display='none';pnl.classList.remove('on');btn.classList.remove('on');}
+configVisible=!configVisible;
+const pnl=document.getElementById('p8');
+const btn=document.getElementById('btnConfig');
+if(configVisible){
+pnl.style.display='block';pnl.classList.add('on');btn.classList.add('on');
+volverDashboardConfig();renderConfiguracion();
+const seccionClave=document.getElementById('seccionCambiarClave');
+if(seccionClave) seccionClave.style.display=(usuarioActual&&usuarioActual.rol!=='admin')?'block':'none';
+setTimeout(()=>{pnl.scrollIntoView({behavior:'smooth',block:'start'});},100);
+}else{pnl.style.display='none';pnl.classList.remove('on');btn.classList.remove('on');}
 }
-
 function mostrarPanelConfig(panel){document.getElementById('configDashboard').style.display='none';document.querySelectorAll('.config-panel').forEach(p=>p.classList.remove('active'));document.getElementById('panel'+panel.charAt(0).toUpperCase()+panel.slice(1)).classList.add('active');}
 function volverDashboardConfig(){document.querySelectorAll('.config-panel').forEach(p=>p.classList.remove('active'));document.getElementById('configDashboard').style.display='grid';}
-
 function showTab(id){
-  document.querySelectorAll('.pnl').forEach(p=>{if(p.id!=='p8') p.classList.remove('on');});
-  document.querySelectorAll('.tb').forEach(t=>t.classList.remove('on'));
-  if(id!=='p8') document.getElementById(id).classList.add('on');
-  const btn=document.querySelector('[data-t="'+id+'"]');if(btn) btn.classList.add('on');
-  const subtabs=document.getElementById('subtabsConsultas');
-  if(id==='p9'){subtabs.classList.add('visible');showSubTab('p2');}else{subtabs.classList.remove('visible');}
-  if(configVisible&&id!=='p8'){configVisible=false;document.getElementById('p8').style.display='none';document.getElementById('p8').classList.remove('on');document.getElementById('btnConfig').classList.remove('on');}
-  if(id==='p7') setTimeout(generarCalendarioEntrada,100);
+document.querySelectorAll('.pnl').forEach(p=>{if(p.id!=='p8') p.classList.remove('on');});
+document.querySelectorAll('.tb').forEach(t=>t.classList.remove('on'));
+if(id!=='p8') document.getElementById(id).classList.add('on');
+const btn=document.querySelector('[data-t="'+id+'"]');if(btn) btn.classList.add('on');
+const subtabs=document.getElementById('subtabsConsultas');
+if(id==='p9'){subtabs.classList.add('visible');showSubTab('p2');}else{subtabs.classList.remove('visible');}
+if(configVisible&&id!=='p8'){configVisible=false;document.getElementById('p8').style.display='none';document.getElementById('p8').classList.remove('on');document.getElementById('btnConfig').classList.remove('on');}
+if(id==='p7') setTimeout(generarCalendarioEntrada,100);
 }
-
 function showSubTab(id){
-  const subtabsContainer=document.getElementById('subtabsConsultas');
-  subtabsContainer.querySelectorAll('.subtb').forEach(t=>t.classList.remove('on'));
-  const btn=subtabsContainer.querySelector('[data-st="'+id+'"]');if(btn) btn.classList.add('on');
-  const p9=document.getElementById('p9');p9.querySelectorAll('.pnl').forEach(p=>p.classList.remove('on'));
-  document.getElementById(id).classList.add('on');
-  if(id==='p2') renderMaquinas();if(id==='p3') renderTiempo();if(id==='p4') setTimeout(actualizarCalendarioDesdePeriodo,100);
+const subtabsContainer=document.getElementById('subtabsConsultas');
+subtabsContainer.querySelectorAll('.subtb').forEach(t=>t.classList.remove('on'));
+const btn=subtabsContainer.querySelector('[data-st="'+id+'"]');if(btn) btn.classList.add('on');
+const p9=document.getElementById('p9');p9.querySelectorAll('.pnl').forEach(p=>p.classList.remove('on'));
+document.getElementById(id).classList.add('on');
+if(id==='p2') renderMaquinas();if(id==='p3') renderTiempo();if(id==='p4') setTimeout(actualizarCalendarioDesdePeriodo,100);
 }
-
 document.querySelectorAll('.tb').forEach(b=>b.addEventListener('click',function(){showTab(this.getAttribute('data-t'));}));
 document.querySelectorAll('#subtabsConsultas .subtb').forEach(b=>b.addEventListener('click',function(){showSubTab(this.getAttribute('data-st'));}));
-
 function renderAll(){
-  const R=getAll();
-  const totalPresentes=R.filter(r=>r.estado==='presente').length;
-  const totalAusentes=R.filter(r=>r.estado==='ausente').length;
-  const alumnosConRegistros=new Set(R.map(r=>r.alumno)).size;
-  const alumnosActivos=alumnosConRegistros>0?alumnosConRegistros:ALUMNOS.length;
-  document.getElementById('sP').textContent=totalPresentes;
-  document.getElementById('sH').textContent=totalAusentes;
-  document.getElementById('sC').textContent=alumnosActivos;
-  renderMaquinas();renderTiempo();
+const R=getAll();
+const totalPresentes=R.filter(r=>esPresente(r.estado)).length;
+const totalAusentes=R.filter(r=>r.estado==='ausente'||r.estado==='baja').length;
+const alumnosConRegistros=new Set(R.map(r=>r.alumno)).size;
+const alumnosActivos=alumnosConRegistros>0?alumnosConRegistros:ALUMNOS.length;
+document.getElementById('sP').textContent=totalPresentes;
+document.getElementById('sH').textContent=totalAusentes;
+document.getElementById('sC').textContent=alumnosActivos;
+renderMaquinas();renderTiempo();
 }
-
 function renderMaquinas(){
-  const R=getAll();const tb=document.getElementById('t2');tb.innerHTML='';
-  const sm={};ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
-  R.forEach(r=>{if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++;});
-  let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
-  ALUMNOS.forEach(m=>{
-    const s=sm[m];
-    totales.presente+=s.presente;totales.ausente+=s.ausente;totales.entrada_tarde+=s.entrada_tarde;
-    totales.salida_pronto+=s.salida_pronto;totales.cita_medica+=s.cita_medica;totales.conciliacion+=s.conciliacion;
-    totales.baja+=s.baja;
-    tb.innerHTML+='<tr><td><a class="alumno-link" onclick="abrirDetalleAlumno(\''+m.replace(/'/g,"\\'")+'\')">'+m+'</a></td><td class="r">'+s.presente+'</td><td class="r">'+s.ausente+'</td><td class="r">'+s.entrada_tarde+'</td><td class="r">'+s.salida_pronto+'</td><td class="r">'+s.cita_medica+'</td><td class="r">'+s.conciliacion+'</td><td class="r">'+s.baja+'</td></tr>';
-  });
-  tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.cita_medica+'</td><td class="r">'+totales.conciliacion+'</td><td class="r">'+totales.baja+'</td></tr>';
+const R=getAll();const tb=document.getElementById('t2');tb.innerHTML='';
+const sm={};ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
+R.forEach(r=>{
+  if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++;
+  if(esPresente(r.estado)) sm[r.alumno].presente++;
+});
+let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
+ALUMNOS.forEach(m=>{
+const s=sm[m];
+totales.presente+=s.presente;totales.ausente+=s.ausente;totales.entrada_tarde+=s.entrada_tarde;
+totales.salida_pronto+=s.salida_pronto;totales.cita_medica+=s.cita_medica;totales.conciliacion+=s.conciliacion;
+totales.baja+=s.baja;
+tb.innerHTML+='<tr><td><a class="alumno-link" onclick="abrirDetalleAlumno(\''+m.replace(/'/g,"\\'")+'\')">'+m+'</a></td><td class="r">'+s.presente+'</td><td class="r">'+s.ausente+'</td><td class="r">'+s.entrada_tarde+'</td><td class="r">'+s.salida_pronto+'</td><td class="r">'+s.cita_medica+'</td><td class="r">'+s.conciliacion+'</td><td class="r">'+s.baja+'</td></tr>';
+});
+tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.cita_medica+'</td><td class="r">'+totales.conciliacion+'</td><td class="r">'+totales.baja+'</td></tr>';
 }
-
 function renderTiempo(){
-  const R=getAll();const fPeriodo=document.getElementById('fPeriodo').value;const falumno=document.getElementById('fMaq').value;
-  const tb=document.getElementById('t3');tb.innerHTML='';
-  let filt=R;
-  if(fPeriodo!=='ALL'){const parts=fPeriodo.split('-');filt=filt.filter(r=>r.y===parseInt(parts[0])&&r.m===parseInt(parts[1]));}
-  if(falumno!=='TODOS') filt=filt.filter(r=>r.alumno===falumno);
-  const ag={};
-  filt.forEach(r=>{const k=getPeriodoLabel(r.y,r.m);if(!ag[k]) ag[k]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};if(ag[k][r.estado]!==undefined) ag[k][r.estado]++;});
-  const ks=Object.keys(ag).sort((a,b)=>{const partsA=a.split(' '),monthA=MESES_NOMBRES.indexOf(partsA[0]),yearA=parseInt(partsA[1]);const partsB=b.split(' '),monthB=MESES_NOMBRES.indexOf(partsB[0]),yearB=parseInt(partsB[1]);if(yearA!==yearB) return yearA-yearB;return monthA-monthB;});
-  let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};
-  if(ks.length===0){tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:#9ca3af">Sin registros</td></tr>';}
-  else{ks.forEach(k=>{totales.presente+=ag[k].presente;totales.ausente+=ag[k].ausente;totales.entrada_tarde+=ag[k].entrada_tarde;totales.salida_pronto+=ag[k].salida_pronto;totales.baja+=ag[k].baja;tb.innerHTML+='<tr><td>'+k+'</td><td class="r">'+ag[k].presente+'</td><td class="r">'+ag[k].ausente+'</td><td class="r">'+ag[k].entrada_tarde+'</td><td class="r">'+ag[k].salida_pronto+'</td><td class="r">'+ag[k].baja+'</td></tr>';});
-    tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.baja+'</td></tr>';}
+const R=getAll();const fPeriodo=document.getElementById('fPeriodo').value;const falumno=document.getElementById('fMaq').value;
+const tb=document.getElementById('t3');tb.innerHTML='';
+let filt=R;
+if(fPeriodo!=='ALL'){const parts=fPeriodo.split('-');filt=filt.filter(r=>r.y===parseInt(parts[0])&&r.m===parseInt(parts[1]));}
+if(falumno!=='TODOS') filt=filt.filter(r=>r.alumno===falumno);
+const ag={};
+filt.forEach(r=>{
+  const k=getPeriodoLabel(r.y,r.m);
+  if(!ag[k]) ag[k]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};
+  if(ag[k][r.estado]!==undefined) ag[k][r.estado]++;
+  if(esPresente(r.estado)) ag[k].presente++;
+});
+const ks=Object.keys(ag).sort((a,b)=>{const partsA=a.split(' '),monthA=MESES_NOMBRES.indexOf(partsA[0]),yearA=parseInt(partsA[1]);const partsB=b.split(' '),monthB=MESES_NOMBRES.indexOf(partsB[0]),yearB=parseInt(partsB[1]);if(yearA!==yearB) return yearA-yearB;return monthA-monthB;});
+let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};
+if(ks.length===0){tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:#9ca3af">Sin registros</td></tr>';}
+else{ks.forEach(k=>{totales.presente+=ag[k].presente;totales.ausente+=ag[k].ausente;totales.entrada_tarde+=ag[k].entrada_tarde;totales.salida_pronto+=ag[k].salida_pronto;totales.baja+=ag[k].baja;tb.innerHTML+='<tr><td>'+k+'</td><td class="r">'+ag[k].presente+'</td><td class="r">'+ag[k].ausente+'</td><td class="r">'+ag[k].entrada_tarde+'</td><td class="r">'+ag[k].salida_pronto+'</td><td class="r">'+ag[k].baja+'</td></tr>';});
+tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.baja+'</td></tr>';}
 }
-
 function abrirDetalleAlumno(alumno){
-  alumnoDetalleActual=alumno;
-  const registros=getAll().filter(r=>r.alumno===alumno).sort((a,b)=>{if(a.y!==b.y) return a.y-b.y;if(a.m!==b.m) return a.m-b.m;return a.d-b.d;});
-  document.getElementById('modalDetalleAlumnoTitulo').textContent='📋 Detalle de: '+alumno;
-  const ausencias=registros.filter(r=>r.estado==='ausente');
-  const entradasTarde=registros.filter(r=>r.estado==='entrada_tarde');
-  const salidasPronto=registros.filter(r=>r.estado==='salida_pronto');
-  const citasMedicas=registros.filter(r=>r.estado==='cita_medica');
-  const conciliaciones=registros.filter(r=>r.estado==='conciliacion');
-  const bajas=registros.filter(r=>r.estado==='baja');
-  let html='';
-  html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:18px">';
-  html+='<div style="padding:10px;background:#fee2e2;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#991b1b">'+ausencias.length+'</div><div style="font-size:11px;color:#991b1b">Ausencias</div></div>';
-  html+='<div style="padding:10px;background:#fef3c7;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#92400e">'+entradasTarde.length+'</div><div style="font-size:11px;color:#92400e">Entradas tarde</div></div>';
-  html+='<div style="padding:10px;background:#fce7f3;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#9d174d">'+salidasPronto.length+'</div><div style="font-size:11px;color:#9d174d">Salidas pronto</div></div>';
-  html+='<div style="padding:10px;background:#dbeafe;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#1e40af">'+citasMedicas.length+'</div><div style="font-size:11px;color:#1e40af">Citas médicas</div></div>';
-  html+='<div style="padding:10px;background:#e0e7ff;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#3730a3">'+conciliaciones.length+'</div><div style="font-size:11px;color:#3730a3">Conciliaciones</div></div>';
-  html+='<div style="padding:10px;background:#fecaca;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#991b1b">'+bajas.length+'</div><div style="font-size:11px;color:#991b1b">Bajas</div></div>';
-  html+='</div>';
-  function generarTabla(registros,titulo,icono){
-    if(registros.length===0) return '';
-    let t='<h4>'+icono+' '+titulo+' ('+registros.length+')</h4>';
-    t+='<table><thead><tr><th>Fecha</th><th>Día</th><th>Horario</th><th>Detalles</th></tr></thead><tbody>';
-    registros.forEach(r=>{
-      const fecha=pad(r.d)+'/'+pad(r.m)+'/'+r.y;
-      const fechaObj=new Date(r.y,r.m-1,r.d);
-      const diaSemana=DIAS_SEMANA[fechaObj.getDay()];
-      let horario='-';
-      if(r.horaUnica) horario='🕐 '+r.horaUnica;
-      else if(r.horaSalida&&r.horaLlegada) horario='🕐 '+r.horaSalida+' - '+r.horaLlegada;
-      let detalles='';
-      if(r.justificada) detalles='<span style="color:#166534;font-weight:600">✓ Justificada</span>';
-      else if(r.estado==='ausente') detalles='<span style="color:#dc2626"> No justificada</span>';
-      if(r.causa) detalles+=(detalles?'<br>':'')+'<span class="causa-detalle"> '+r.causa+'</span>';
-      t+='<tr><td><strong>'+fecha+'</strong></td><td>'+diaSemana+'</td><td class="hora-detalle">'+horario+'</td><td>'+(detalles||'-')+'</td></tr>';
-    });
-    t+='</tbody></table>';return t;
-  }
-  html+=generarTabla(ausencias,'Ausencias','❌');
-  html+=generarTabla(entradasTarde,'Entradas tarde','⏰');
-  html+=generarTabla(salidasPronto,'Salidas pronto','📤');
-  html+=generarTabla(citasMedicas,'Citas médicas','🏥');
-  html+=generarTabla(conciliaciones,'Conciliaciones','👨‍‍👧');
-  html+=generarTabla(bajas,'Bajas','🤒');
-  if(registros.filter(r=>r.estado!=='presente').length===0){
-    html='<div style="padding:40px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px">✅</p><p style="font-size:16px">Este alumno no tiene incidencias registradas</p></div>';
-  }
-  document.getElementById('modalDetalleAlumnoContenido').innerHTML=html;
-  document.getElementById('modalDetalleAlumno').classList.add('show');
+alumnoDetalleActual=alumno;
+const registros=getAll().filter(r=>r.alumno===alumno).sort((a,b)=>{if(a.y!==b.y) return a.y-b.y;if(a.m!==b.m) return a.m-b.m;return a.d-b.d;});
+document.getElementById('modalDetalleAlumnoTitulo').textContent=' Detalle de: '+alumno;
+const ausencias=registros.filter(r=>r.estado==='ausente');
+const entradasTarde=registros.filter(r=>r.estado==='entrada_tarde');
+const salidasPronto=registros.filter(r=>r.estado==='salida_pronto');
+const citasMedicas=registros.filter(r=>r.estado==='cita_medica');
+const conciliaciones=registros.filter(r=>r.estado==='conciliacion');
+const bajas=registros.filter(r=>r.estado==='baja');
+let html='';
+html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:18px">';
+html+='<div style="padding:10px;background:#fee2e2;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#991b1b">'+ausencias.length+'</div><div style="font-size:11px;color:#991b1b">Ausencias</div></div>';
+html+='<div style="padding:10px;background:#fef3c7;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#92400e">'+entradasTarde.length+'</div><div style="font-size:11px;color:#92400e">Entradas tarde</div></div>';
+html+='<div style="padding:10px;background:#fce7f3;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#9d174d">'+salidasPronto.length+'</div><div style="font-size:11px;color:#9d174d">Salidas pronto</div></div>';
+html+='<div style="padding:10px;background:#dbeafe;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#1e40af">'+citasMedicas.length+'</div><div style="font-size:11px;color:#1e40af">Citas médicas</div></div>';
+html+='<div style="padding:10px;background:#e0e7ff;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#3730a3">'+conciliaciones.length+'</div><div style="font-size:11px;color:#3730a3">Conciliaciones</div></div>';
+html+='<div style="padding:10px;background:#fecaca;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#991b1b">'+bajas.length+'</div><div style="font-size:11px;color:#991b1b">Bajas</div></div>';
+html+='</div>';
+function generarTabla(registros,titulo,icono){
+if(registros.length===0) return '';
+let t='<h4>'+icono+' '+titulo+' ('+registros.length+')</h4>';
+t+='<table><thead><tr><th>Fecha</th><th>Día</th><th>Horario</th><th>Detalles</th></tr></thead><tbody>';
+registros.forEach(r=>{
+const fecha=pad(r.d)+'/'+pad(r.m)+'/'+r.y;
+const fechaObj=new Date(r.y,r.m-1,r.d);
+const diaSemana=DIAS_SEMANA[fechaObj.getDay()];
+let horario='-';
+if(r.horaUnica) horario='🕐 '+r.horaUnica;
+else if(r.horaSalida&&r.horaLlegada) horario=' '+r.horaSalida+' - '+r.horaLlegada;
+let detalles='';
+if(r.justificada) detalles='<span style="color:#166534;font-weight:600">✓ Justificada</span>';
+else if(r.estado==='ausente') detalles='<span style="color:#dc2626">✗ No justificada</span>';
+if(r.causa) detalles+=(detalles?'<br>':'')+'<span class="causa-detalle">📝 '+r.causa+'</span>';
+t+='<tr><td><strong>'+fecha+'</strong></td><td>'+diaSemana+'</td><td class="hora-detalle">'+horario+'</td><td>'+(detalles||'-')+'</td></tr>';
+});
+t+='</tbody></table>';return t;
 }
-
+html+=generarTabla(ausencias,'Ausencias','❌');
+html+=generarTabla(entradasTarde,'Entradas tarde','⏰');
+html+=generarTabla(salidasPronto,'Salidas pronto','📤');
+html+=generarTabla(citasMedicas,'Citas médicas','🏥');
+html+=generarTabla(conciliaciones,'Conciliaciones','👨‍👩👧');
+html+=generarTabla(bajas,'Bajas','🤒');
+if(registros.filter(r=>!esPresente(r.estado)).length===0){
+html='<div style="padding:40px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px">✅</p><p style="font-size:16px">Este alumno no tiene incidencias registradas</p></div>';
+}
+document.getElementById('modalDetalleAlumnoContenido').innerHTML=html;
+document.getElementById('modalDetalleAlumno').classList.add('show');
+}
 function cerrarModalDetalleAlumno(){document.getElementById('modalDetalleAlumno').classList.remove('show');alumnoDetalleActual=null;}
 function imprimirDetalleAlumno(){if(!alumnoDetalleActual) return;const contenido=document.getElementById('modalDetalleAlumnoContenido').innerHTML;const area=document.getElementById('printArea');area.innerHTML='<div style="padding:20px"><h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Detalle de: '+alumnoDetalleActual+'</h2><p style="color:#6b7280;margin-bottom:20px">Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>'+contenido+'</div>';window.print();setTimeout(()=>{area.innerHTML='';},1000);}
-
 function crearPDFDetalleAlumno(){
-  if(!alumnoDetalleActual) return;
-  mostrarAlerta('info','Generando PDF...');
-  const registros=getAll().filter(r=>r.alumno===alumnoDetalleActual).sort((a,b)=>{if(a.y!==b.y) return a.y-b.y;if(a.m!==b.m) return a.m-b.m;return a.d-b.d;});
-  const ausencias=registros.filter(r=>r.estado==='ausente');
-  const entradasTarde=registros.filter(r=>r.estado==='entrada_tarde');
-  const salidasPronto=registros.filter(r=>r.estado==='salida_pronto');
-  const citasMedicas=registros.filter(r=>r.estado==='cita_medica');
-  const conciliaciones=registros.filter(r=>r.estado==='conciliacion');
-  const bajas=registros.filter(r=>r.estado==='baja');
-  let html='<div class="pdf-content">';
-  html+='<h1>📚 Control de Alumnos</h1>';
-  html+='<h2>Detalle de: '+alumnoDetalleActual+'</h2>';
-  html+='<p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>';
-  html+='<div class="pdf-stats">';
-  html+='<div class="pdf-stat-box" style="background:#fee2e2"><div class="num" style="color:#991b1b">'+ausencias.length+'</div><div class="lbl">Ausencias</div></div>';
-  html+='<div class="pdf-stat-box" style="background:#fef3c7"><div class="num" style="color:#92400e">'+entradasTarde.length+'</div><div class="lbl">Entradas tarde</div></div>';
-  html+='<div class="pdf-stat-box" style="background:#fce7f3"><div class="num" style="color:#9d174d">'+salidasPronto.length+'</div><div class="lbl">Salidas pronto</div></div>';
-  html+='<div class="pdf-stat-box" style="background:#dbeafe"><div class="num" style="color:#1e40af">'+citasMedicas.length+'</div><div class="lbl">Citas médicas</div></div>';
-  html+='<div class="pdf-stat-box" style="background:#e0e7ff"><div class="num" style="color:#3730a3">'+conciliaciones.length+'</div><div class="lbl">Conciliaciones</div></div>';
-  html+='<div class="pdf-stat-box" style="background:#fecaca"><div class="num" style="color:#991b1b">'+bajas.length+'</div><div class="lbl">Bajas</div></div>';
-  html+='</div>';
-  function genTablaPDF(regs,titulo,icono,color){
-    if(regs.length===0) return '';
-    let t='<h3 style="color:'+color+'">'+icono+' '+titulo+' ('+regs.length+')</h3>';
-    t+='<table><thead><tr><th>Fecha</th><th>Día</th><th>Horario</th><th>Detalles</th></tr></thead><tbody>';
-    regs.forEach(r=>{
-      const fecha=pad(r.d)+'/'+pad(r.m)+'/'+r.y;
-      const fechaObj=new Date(r.y,r.m-1,r.d);
-      const diaSemana=DIAS_SEMANA[fechaObj.getDay()];
-      let horario='-';
-      if(r.horaUnica) horario='🕐 '+r.horaUnica;
-      else if(r.horaSalida&&r.horaLlegada) horario='🕐 '+r.horaSalida+' - '+r.horaLlegada;
-      let detalles='';
-      if(r.justificada) detalles+='✓ Justificada ';
-      if(r.causa) detalles+=' '+r.causa;
-      t+='<tr><td><strong>'+fecha+'</strong></td><td>'+diaSemana+'</td><td>'+horario+'</td><td>'+(detalles||'-')+'</td></tr>';
-    });
-    t+='</tbody></table>';return t;
-  }
-  html+=genTablaPDF(ausencias,'Ausencias','','#991b1b');
-  html+=genTablaPDF(entradasTarde,'Entradas tarde','⏰','#92400e');
-  html+=genTablaPDF(salidasPronto,'Salidas pronto','📤','#9d174d');
-  html+=genTablaPDF(citasMedicas,'Citas médicas','🏥','#1e40af');
-  html+=genTablaPDF(conciliaciones,'Conciliaciones','👨‍👩‍','#3730a3');
-  html+=genTablaPDF(bajas,'Bajas','','#991b1b');
-  html+='</div>';
-  const element=document.createElement('div');element.innerHTML=html;document.body.appendChild(element);
-  const opt={margin:10,filename:'detalle_'+alumnoDetalleActual.replace(/[^a-zA-Z0-9]/g,'_')+'.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
-  html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(element);mostrarAlerta('success','PDF generado');}).catch(err=>{document.body.removeChild(element);mostrarAlerta('error','Error: '+err.message);});
-}
-
-function generarListaDetalladaPeriodo(registros,estado,icono){
-  const alumnosEstado=registros.filter(r=>r.estado===estado);
-  if(alumnosEstado.length===0) return '';
-  const porAlumno={};
-  alumnosEstado.forEach(r=>{if(!porAlumno[r.alumno]) porAlumno[r.alumno]=[];porAlumno[r.alumno].push(r);});
-  let html='<div class="pdf-detalle-section">';
-  html+='<h4>'+icono+' '+LABELS_ESTADOS[estado]+' ('+alumnosEstado.length+')</h4>';
-  html+='<ul class="pdf-detalle-list">';
-  Object.keys(porAlumno).sort().forEach(alumno=>{
-    const regs=porAlumno[alumno];
-    regs.forEach(r=>{
-      const fecha=pad(r.d)+'/'+pad(r.m)+'/'+r.y;
-      let horaInfo='';if(r.horaUnica) horaInfo='<span class="hora-info">🕐 '+r.horaUnica+'</span>';else if(r.horaSalida&&r.horaLlegada) horaInfo='<span class="hora-info">🕐 '+r.horaSalida+' - '+r.horaLlegada+'</span>';
-      let justInfo='';if(r.justificada) justInfo=' <span style="color:#166534">✓ Justificada</span>';
-      let causaInfo='';if(r.causa) causaInfo=' <em>('+r.causa+')</em>';
-      html+='<li class="'+estado+'"><strong>'+alumno+'</strong> - '+fecha+horaInfo+justInfo+causaInfo+'</li>';
-    });
-  });
-  html+='</ul></div>';return html;
-}
-
-function crearPDF(tipo){
-  mostrarAlerta('info','Generando PDF...');
-  if(tipo==='maquinas'){
-    const R=getAll();let detallesHTML='';
-    const iconos={presente:'✅',ausente:'',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'',conciliacion:'👨‍👩‍👧',baja:'🤒'};
-    ['presente','ausente','entrada_tarde','salida_pronto','cita_medica','conciliacion','baja'].forEach(estado=>{detallesHTML+=generarListaDetalladaPeriodo(R,estado,iconos[estado]);});
-    let html='<div class="pdf-content"><h1>📚 Control de Alumnos</h1><h2>Total por Alumno</h2><p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>';
-    html+=document.getElementById('tablaMaquinasTbl').outerHTML;
-    if(detallesHTML){html+='<h3>📋 Detalle por estado</h3>'+detallesHTML;}
-    html+='</div>';
-    const element=document.createElement('div');element.innerHTML=html;document.body.appendChild(element);
-    const opt={margin:10,filename:'total_por_alumno.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
-    html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(element);mostrarAlerta('success','PDF generado');}).catch(err=>{document.body.removeChild(element);mostrarAlerta('error','Error: '+err.message);});
-  }else if(tipo==='tiempo'){
-    const R=getAll();const fPeriodo=document.getElementById('fPeriodo').value;const falumno=document.getElementById('fMaq').value;
-    let filt=R;
-    if(fPeriodo!=='ALL'){const parts=fPeriodo.split('-');filt=filt.filter(r=>r.y===parseInt(parts[0])&&r.m===parseInt(parts[1]));}
-    if(falumno!=='TODOS') filt=filt.filter(r=>r.alumno===falumno);
-    let detallesHTML='';const periodosData={};
-    filt.forEach(r=>{const k=getPeriodoLabel(r.y,r.m);if(!periodosData[k]) periodosData[k]=[];periodosData[k].push(r);});
-    const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'🏥',conciliacion:'👨👩‍👧',baja:'🤒'};
-    Object.keys(periodosData).sort().forEach(periodo=>{detallesHTML+='<h3 style="margin-top:20px;color:#1e3a8a;border-bottom:2px solid #e5e7eb;padding-bottom:8px">📅 '+periodo+'</h3>';['presente','ausente','entrada_tarde','salida_pronto','cita_medica','conciliacion','baja'].forEach(estado=>{detallesHTML+=generarListaDetalladaPeriodo(periodosData[periodo],estado,iconos[estado]);});});
-    let html='<div class="pdf-content"><h1>📚 Control de Alumnos</h1><h2>Resumen por Periodo</h2><p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>';
-    if(falumno!=='TODOS') html+='<p>Alumno: <strong>'+falumno+'</strong></p>';
-    html+=document.getElementById('tablaTiempoTbl').outerHTML;
-    if(detallesHTML){html+='<h3>📋 Detalle</h3>'+detallesHTML;}
-    html+='</div>';
-    const element=document.createElement('div');element.innerHTML=html;document.body.appendChild(element);
-    const opt={margin:10,filename:'resumen_periodo.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
-    html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(element);mostrarAlerta('success','PDF generado');}).catch(err=>{document.body.removeChild(element);mostrarAlerta('error','Error: '+err.message);});
-  }
-}
-
-function generarCalendarioEntrada(){
-  mesSeleccionado=parseInt(document.getElementById('erMes').value);
-  anioSeleccionado=calcularAnioParaMes(mesSeleccionado);
-  const cont=document.getElementById('calendarioEntrada');cont.innerHTML='';
-  DIAS.forEach(d=>{const h=document.createElement('div');h.className='cal-header';h.textContent=d;cont.appendChild(h);});
-  const first=new Date(anioSeleccionado,mesSeleccionado-1,1);
-  const last=new Date(anioSeleccionado,mesSeleccionado,0);
-  const start=first.getDay()||7;
-  for(let i=1;i<start;i++){const e=document.createElement('div');e.className='cal-day empty';cont.appendChild(e);}
-  for(let d=1;d<=last.getDate();d++){
-    const fecha=new Date(anioSeleccionado,mesSeleccionado-1,d);
-    fecha.setHours(0,0,0,0);
-    const diaSemana=fecha.getDay();
-    const esFinde=(diaSemana===0||diaSemana===6);
-    const dayInfo=getDayType(anioSeleccionado,mesSeleccionado,d);
-    const esFuturo=fecha>FECHA_HOY;
-    const e=document.createElement('div');e.className='cal-day';
-    if(dayInfo.type==='holiday') e.classList.add('status-holiday');
-    else if(dayInfo.type==='vacation') e.classList.add('status-vacation');
-    else if(esFinde) e.classList.add('status-weekend');
-    else if(esFuturo) e.classList.add('status-future');
-    const registrosDia=getAll().filter(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===d);
-    let html='<div class="day-num">'+d+'</div>';
-    if(dayInfo.type==='holiday'||dayInfo.type==='vacation') html+='<div class="day-info">'+dayInfo.label+'</div>';
-    else if(dayInfo.type==='before-course'||dayInfo.type==='after-course'){html+='<div class="day-info">Fuera del curso</div>';e.style.opacity='0.4';}
-    else if(esFinde) html+='<div class="day-info">Fin de semana</div>';
-    else if(esFuturo) html+='<div class="day-info">🔒 Futuro</div>';
-    else{const completado=registrosDia.length===ALUMNOS.length;html+='<div class="day-info">'+registrosDia.length+'/'+ALUMNOS.length+(completado?' ✅':'')+'</div>';}
-    e.innerHTML=html;
-    const claveNota=anioSeleccionado+'-'+mesSeleccionado+'-'+d;
-    if(notasPorDia[claveNota]){const iconoNota=document.createElement('div');iconoNota.style.cssText='position:absolute;top:3px;right:3px;font-size:10px;cursor:help';iconoNota.textContent='';iconoNota.title=notasPorDia[claveNota];e.appendChild(iconoNota);}
-    if(!esFinde&&dayInfo.type==='lectivo'){e.onclick=(function(dia,futuro){return function(){esDiaFuturo=futuro;abrirModalAsistencia(dia);};})(d,esFuturo);}
-    cont.appendChild(e);
-  }
-}
-
-function abrirModalAsistencia(dia){
-  diaSeleccionado=dia;
-  const registrosDia=getAll().filter(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===dia);
-  document.getElementById('modalTitulo').textContent='✏️ Asistencia del '+pad(dia)+'/'+pad(mesSeleccionado)+'/'+anioSeleccionado;
-  let html='';
-  if(esDiaFuturo) html+='<div class="aviso-futuro">⚠️ Día futuro. Solo se permite registrar <strong>Bajas</strong>.</div>';
-  html+='<div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">';
-  html+='<button class="btn b6" onclick="copiarDiaAnterior()" style="padding:8px 14px;font-size:12px">📋 Copiar día anterior</button>';
-  html+='<button class="btn b2" onclick="marcarTodosPresentes()" style="padding:8px 14px;font-size:12px">✅ Todos presentes</button>';
-  html+='<button class="btn b4" onclick="limpiarTodos()" style="padding:8px 14px;font-size:12px">🔄 Limpiar</button>';
-  html+='</div>';
-  html+='<div style="margin-bottom:16px;padding:12px;background:#fef3c7;border-radius:6px;border-left:4px solid #f59e0b">';
-  html+='<label style="display:block;font-size:13px;font-weight:600;color:#92400e;margin-bottom:6px">📝 Notas del día:</label>';
-  html+='<textarea id="notaDelDia" placeholder="Ej: Excursión, examen..." style="width:100%;padding:8px;border:1px solid #fcd34d;border-radius:6px;font-size:13px;resize:vertical;min-height:60px;font-family:inherit"></textarea>';
-  html+='</div>';
-  html+='<div style="margin-bottom:16px;padding:12px;background:#f0f9ff;border-radius:6px;border-left:4px solid #2563eb">';
-  html+='<strong>'+registrosDia.length+'</strong> de <strong>'+ALUMNOS.length+'</strong> alumnos registrados';
-  html+='</div>';
-  ALUMNOS.forEach(alumno=>{
-    const registro=registrosDia.find(r=>r.alumno===alumno);
-    const estadoActual=registro?registro.estado:'';
-    const horaUnica=registro?registro.horaUnica||'':'';
-    const horaSalida=registro?registro.horaSalida||'':'';
-    const horaLlegada=registro?registro.horaLlegada||'':'';
-    const justificada=registro?registro.justificada:false;
-    const causa=registro?registro.causa||'':'';
-    html+='<div class="alumno-row" data-alumno="'+alumno+'">';
-    html+='<div class="alumno-name">'+alumno+'</div>';
-    html+='<div style="display:flex;flex-direction:column;gap:6px">';
-    html+='<select class="alumno-select" data-alumno="'+alumno+'" onchange="toggleCamposHora(this)">';
-    Object.keys(LABELS_ESTADOS).forEach(key=>{
-      if(esDiaFuturo&&key!==''&&key!=='baja') html+='<option value="'+key+'" '+(estadoActual===key?'selected':'')+' disabled>'+LABELS_ESTADOS[key]+' (no disponible)</option>';
-      else html+='<option value="'+key+'" '+(estadoActual===key?'selected':'')+'>'+LABELS_ESTADOS[key]+'</option>';
-    });
-    html+='</select>';
-    html+='<div class="campos-hora hora-unica" data-alumno="'+alumno+'" style="display:'+(estadoActual==='entrada_tarde'||estadoActual==='salida_pronto'?'flex':'none')+'">';
-    html+='<div class="hora-fila"><label>'+(estadoActual==='entrada_tarde'?'Hora entrada:':'Hora salida:')+'</label><input type="time" class="hora-unica-input" value="'+horaUnica+'"></div>';
-    html+='</div>';
-    html+='<div class="campos-hora hora-rango" data-alumno="'+alumno+'" style="display:'+(estadoActual==='cita_medica'||estadoActual==='conciliacion'?'flex':'none')+'">';
-    html+='<div class="hora-fila"><label>Salida:</label><input type="time" class="hora-salida-input" value="'+horaSalida+'"></div>';
-    html+='<div class="hora-fila"><label>Llegada:</label><input type="time" class="hora-llegada-input" value="'+horaLlegada+'"></div>';
-    html+='</div>';
-    html+='<div class="campos-ausencia" data-alumno="'+alumno+'" style="display:'+(estadoActual==='ausente'?'block':'none')+';margin-top:6px;padding:8px;background:#fee2e2;border-radius:6px">';
-    html+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">';
-    html+='<input type="checkbox" class="chk-justificada" '+(justificada?'checked':'')+' style="width:16px;height:16px">';
-    html+='<label style="font-size:12px;color:#991b1b;font-weight:600">Ausencia justificada</label>';
-    html+='</div>';
-    html+='<textarea class="txt-causa" placeholder="Motivo..." style="width:100%;padding:6px;border:1px solid #fca5a5;border-radius:5px;font-size:12px;resize:vertical;min-height:50px;font-family:inherit">'+causa+'</textarea>';
-    html+='</div>';
-    html+='</div></div>';
-  });
-  document.getElementById('modalContenido').innerHTML=html;
-  const claveNota=anioSeleccionado+'-'+mesSeleccionado+'-'+dia;
-  document.getElementById('notaDelDia').value=notasPorDia[claveNota]||'';
-  document.getElementById('modalAsistencia').classList.add('show');
-}
-
-function toggleCamposHora(select){
-  const fila=select.closest('.alumno-row');
-  const horaUnica=fila.querySelector('.hora-unica');
-  const horaRango=fila.querySelector('.hora-rango');
-  const ausenciaDiv=fila.querySelector('.campos-ausencia');
-  const labelHoraUnica=fila.querySelector('.hora-unica label');
-  horaUnica.style.display='none';horaRango.style.display='none';
-  if(ausenciaDiv) ausenciaDiv.style.display='none';
-  const estado=select.value;
-  if(estado==='entrada_tarde'){horaUnica.style.display='flex';labelHoraUnica.textContent='Hora entrada:';}
-  else if(estado==='salida_pronto'){horaUnica.style.display='flex';labelHoraUnica.textContent='Hora salida:';}
-  else if(estado==='cita_medica'||estado==='conciliacion') horaRango.style.display='flex';
-  else if(estado==='ausente'){if(ausenciaDiv) ausenciaDiv.style.display='block';}
-}
-
-function cerrarModalAsistencia(){document.getElementById('modalAsistencia').classList.remove('show');diaSeleccionado=null;esDiaFuturo=false;}
-
-function guardarAsistenciaDia(){
-  if(!diaSeleccionado){mostrarAlerta('warning','No hay día seleccionado');return;}
-  const filas=document.querySelectorAll('.alumno-row');
-  let guardados=0;
-  filas.forEach(fila=>{
-    const select=fila.querySelector('.alumno-select');
-    const alumno=select.getAttribute('data-alumno');
-    const estado=select.value;
-    let horaUnica='',horaSalida='',horaLlegada='';
-    let justificada=false,causa='';
-    if(estado==='entrada_tarde'||estado==='salida_pronto'){const inputHoraUnica=fila.querySelector('.hora-unica-input');if(inputHoraUnica) horaUnica=inputHoraUnica.value;}
-    else if(estado==='cita_medica'||estado==='conciliacion'){const inputSalida=fila.querySelector('.hora-salida-input');const inputLlegada=fila.querySelector('.hora-llegada-input');if(inputSalida) horaSalida=inputSalida.value;if(inputLlegada) horaLlegada=inputLlegada.value;}
-    else if(estado==='ausente'){const chkJust=fila.querySelector('.chk-justificada');const txtCausa=fila.querySelector('.txt-causa');if(chkJust) justificada=chkJust.checked;if(txtCausa) causa=txtCausa.value.trim();}
-    const idx=userRecords.findIndex(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===diaSeleccionado&&r.alumno===alumno);
-    if(idx>=0) userRecords.splice(idx,1);
-    const idxH=historicalRecords.findIndex(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===diaSeleccionado&&r.alumno===alumno);
-    if(idxH>=0) historicalRecords.splice(idxH,1);
-    if(estado){userRecords.push({y:anioSeleccionado,m:mesSeleccionado,d:diaSeleccionado,alumno:alumno,estado:estado,causa:causa,justificada:justificada,horaSalida:horaSalida,horaLlegada:horaLlegada,horaUnica:horaUnica,hist:false});guardados++;}
-  });
-  const claveNota=anioSeleccionado+'-'+mesSeleccionado+'-'+diaSeleccionado;
-  const nota=document.getElementById('notaDelDia').value.trim();
-  if(nota) notasPorDia[claveNota]=nota;else delete notasPorDia[claveNota];
-  saveUser();renderAll();generarCalendarioEntrada();cerrarModalAsistencia();
-  mostrarAlerta('success','✅ Guardados '+guardados+' registros del día '+pad(diaSeleccionado)+'/'+pad(mesSeleccionado)+'/'+anioSeleccionado);
-  guardarEnNube('✅ Asistencia guardada');
-}
-
-function copiarDiaAnterior(){
-  let diaAnt=diaSeleccionado-1;let mesAnt=mesSeleccionado;let anioAnt=anioSeleccionado;
-  let intentos=0;
-  while(intentos<400){
-    if(diaAnt<1){mesAnt--;if(mesAnt<1){mesAnt=12;anioAnt--;}diaAnt=new Date(anioAnt,mesAnt,0).getDate();}
-    const tipo=getDayType(anioAnt,mesAnt,diaAnt);
-    if(tipo.type==='lectivo') break;
-    diaAnt--;intentos++;
-  }
-  if(intentos>=400){mostrarAlerta('warning','⚠️ No se encontró día lectivo anterior');return;}
-  const registrosAnt=getAll().filter(r=>r.y===anioAnt&&r.m===mesAnt&&r.d===diaAnt);
-  const filas=document.querySelectorAll('.alumno-row');
-  let copiados=0;
-  filas.forEach(fila=>{
-    const select=fila.querySelector('.alumno-select');
-    const alumno=select.getAttribute('data-alumno');
-    const regAnt=registrosAnt.find(r=>r.alumno===alumno);
-    if(regAnt){
-      if(!(esDiaFuturo&&regAnt.estado!==''&&regAnt.estado!=='baja')){
-        select.value=regAnt.estado;toggleCamposHora(select);
-        if(regAnt.horaUnica){const input=fila.querySelector('.hora-unica-input');if(input) input.value=regAnt.horaUnica;}
-        if(regAnt.horaSalida){const input=fila.querySelector('.hora-salida-input');if(input) input.value=regAnt.horaSalida;}
-        if(regAnt.horaLlegada){const input=fila.querySelector('.hora-llegada-input');if(input) input.value=regAnt.horaLlegada;}
-        if(regAnt.justificada!==undefined){const chk=fila.querySelector('.chk-justificada');if(chk) chk.checked=regAnt.justificada;}
-        if(regAnt.causa){const txt=fila.querySelector('.txt-causa');if(txt) txt.value=regAnt.causa;}
-        copiados++;
-      }
-    }
-  });
-  mostrarAlerta('success',' Copiados '+copiados+' registros del día '+pad(diaAnt)+'/'+pad(mesAnt)+'/'+anioAnt);
-}
-
-function marcarTodosPresentes(){const filas=document.querySelectorAll('.alumno-row');filas.forEach(fila=>{const select=fila.querySelector('.alumno-select');select.value='presente';toggleCamposHora(select);});mostrarAlerta('success','✅ Todos marcados como presentes');}
-function limpiarTodos(){const filas=document.querySelectorAll('.alumno-row');filas.forEach(fila=>{const select=fila.querySelector('.alumno-select');select.value='';toggleCamposHora(select);const chk=fila.querySelector('.chk-justificada');if(chk) chk.checked=false;const txt=fila.querySelector('.txt-causa');if(txt) txt.value='';});mostrarAlerta('info','🔄 Registros limpiados');}
-
-function navegarDia(dir){
-  const erMes=document.getElementById('erMes');
-  let m=parseInt(erMes.value);let y=calcularAnioParaMes(m);
-  const ultimoDia=new Date(y,m,0).getDate();
-  let d=diaSeleccionado||DIA_HOY;d+=dir;
-  if(d>ultimoDia){m++;if(m>12){m=1;y++;}d=1;erMes.value=m;onMesSeleccionado();}
-  else if(d<1){m--;if(m<1){m=12;y--;}d=new Date(y,m,0).getDate();erMes.value=m;onMesSeleccionado();}
-  const tipo=getDayType(y,m,d);
-  if(tipo.type==='lectivo'){const fecha=new Date(y,m-1,d);fecha.setHours(0,0,0,0);esDiaFuturo=fecha>FECHA_HOY;setTimeout(()=>abrirModalAsistencia(d),100);}
-  else mostrarAlerta('info','ℹ️ '+tipo.label);
-}
-
-document.addEventListener('keydown',function(e){
-  if(e.ctrlKey&&e.key==='s'){e.preventDefault();if(document.getElementById('modalAsistencia').classList.contains('show')) guardarAsistenciaDia();}
-  if(e.key==='Escape'){
-    if(document.getElementById('modalAsistencia').classList.contains('show')) cerrarModalAsistencia();
-    if(document.getElementById('modalDetalle').classList.contains('show')) cerrarModalDetalle();
-    if(document.getElementById('modalDetalleAlumno').classList.contains('show')) cerrarModalDetalleAlumno();
-    if(document.getElementById('modalConfirmacion').classList.contains('show')) cerrarModalConfirmacion();
-    if(document.getElementById('modalEditarAlumno').classList.contains('show')) cerrarModalEditarAlumno();
-    if(document.getElementById('modalCambioClave').classList.contains('show')) cerrarModalCambioClave();
-  }
-  if(!document.querySelector('.modal-overlay.show')&&!document.getElementById('inactivityOverlay').classList.contains('show')){
-    const p7=document.getElementById('p7');
-    if(p7&&p7.classList.contains('on')){if(e.key==='ArrowLeft'){e.preventDefault();navegarDia(-1);}if(e.key==='ArrowRight'){e.preventDefault();navegarDia(1);}}
-  }
+if(!alumnoDetalleActual) return;
+mostrarAlerta('info','Generando PDF...');
+const registros=getAll().filter(r=>r.alumno===alumnoDetalleActual).sort((a,b)=>{if(a.y!==b.y) return a.y-b.y;if(a.m!==b.m) return a.m-b.m;return a.d-b.d;});
+const ausencias=registros.filter(r=>r.estado==='ausente');
+const entradasTarde=registros.filter(r=>r.estado==='entrada_tarde');
+const salidasPronto=registros.filter(r=>r.estado==='salida_pronto');
+const citasMedicas=registros.filter(r=>r.estado==='cita_medica');
+const conciliaciones=registros.filter(r=>r.estado==='conciliacion');
+const bajas=registros.filter(r=>r.estado==='baja');
+let html='<div class="pdf-content">';
+html+='<h1>📚 Control de Alumnos</h1>';
+html+='<h2>Detalle de: '+alumnoDetalleActual+'</h2>';
+html+='<p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>';
+html+='<div class="pdf-stats">';
+html+='<div class="pdf-stat-box" style="background:#fee2e2"><div class="num" style="color:#991b1b">'+ausencias.length+'</div><div class="lbl">Ausencias</div></div>';
+html+='<div class="pdf-stat-box" style="background:#fef3c7"><div class="num" style="color:#92400e">'+entradasTarde.length+'</div><div class="lbl">Entradas tarde</div></div>';
+html+='<div class="pdf-stat-box" style="background:#fce7f3"><div class="num" style="color:#9d174d">'+salidasPronto.length+'</div><div class="lbl">Salidas pronto</div></div>';
+html+='<div class="pdf-stat-box" style="background:#dbeafe"><div class="num" style="color:#1e40af">'+citasMedicas.length+'</div><div class="lbl">Citas médicas</div></div>';
+html+='<div class="pdf-stat-box" style="background:#e0e7ff"><div class="num" style="color:#3730a3">'+conciliaciones.length+'</div><div class="lbl">Conciliaciones</div></div>';
+html+='<div class="pdf-stat-box" style="background:#fecaca"><div class="num" style="color:#991b1b">'+bajas.length+'</div><div class="lbl">Bajas</div></div>';
+html+='</div>';
+function genTablaPDF(regs,titulo,icono,color){
+if(regs.length===0) return '';
+let t='<h3 style="color:'+color+'">'+icono+' '+titulo+' ('+regs.length+')</h3>';
+t+='<table><thead><tr><th>Fecha</th><th>Día</th><th>Horario</th><th>Detalles</th></tr></thead><tbody>';
+regs.forEach(r=>{
+const fecha=pad(r.d)+'/'+pad(r.m)+'/'+r.y;
+const fechaObj=new Date(r.y,r.m-1,r.d);
+const diaSemana=DIAS_SEMANA[fechaObj.getDay()];
+let horario='-';
+if(r.horaUnica) horario='🕐 '+r.horaUnica;
+else if(r.horaSalida&&r.horaLlegada) horario='🕐 '+r.horaSalida+' - '+r.horaLlegada;
+let detalles='';
+if(r.justificada) detalles+='✓ Justificada ';
+if(r.causa) detalles+='📝 '+r.causa;
+t+='<tr><td><strong>'+fecha+'</strong></td><td>'+diaSemana+'</td><td>'+horario+'</td><td>'+(detalles||'-')+'</td></tr>';
 });
-
+t+='</tbody></table>';return t;
+}
+html+=genTablaPDF(ausencias,'Ausencias','❌','#991b1b');
+html+=genTablaPDF(entradasTarde,'Entradas tarde','⏰','#92400e');
+html+=genTablaPDF(salidasPronto,'Salidas pronto','📤','#9d174d');
+html+=genTablaPDF(citasMedicas,'Citas médicas','🏥','#1e40af');
+html+=genTablaPDF(conciliaciones,'Conciliaciones','‍👩‍👧','#3730a3');
+html+=genTablaPDF(bajas,'Bajas','🤒','#991b1b');
+html+='</div>';
+const element=document.createElement('div');element.innerHTML=html;document.body.appendChild(element);
+const opt={margin:10,filename:'detalle_'+alumnoDetalleActual.replace(/[^a-zA-Z0-9]/g,'_')+'.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
+html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(element);mostrarAlerta('success','PDF generado');}).catch(err=>{document.body.removeChild(element);mostrarAlerta('error','Error: '+err.message);});
+}
+function generarListaDetalladaPeriodo(registros,estado,icono){
+const alumnosEstado=registros.filter(r=>r.estado===estado);
+if(alumnosEstado.length===0) return '';
+const porAlumno={};
+alumnosEstado.forEach(r=>{if(!porAlumno[r.alumno]) porAlumno[r.alumno]=[];porAlumno[r.alumno].push(r);});
+let html='<div class="pdf-detalle-section">';
+html+='<h4>'+icono+' '+LABELS_ESTADOS[estado]+' ('+alumnosEstado.length+')</h4>';
+html+='<ul class="pdf-detalle-list">';
+Object.keys(porAlumno).sort().forEach(alumno=>{
+const regs=porAlumno[alumno];
+regs.forEach(r=>{
+const fecha=pad(r.d)+'/'+pad(r.m)+'/'+r.y;
+let horaInfo='';if(r.horaUnica) horaInfo='<span class="hora-info">🕐 '+r.horaUnica+'</span>';else if(r.horaSalida&&r.horaLlegada) horaInfo='<span class="hora-info">🕐 '+r.horaSalida+' - '+r.horaLlegada+'</span>';
+let justInfo='';if(r.justificada) justInfo=' <span style="color:#166534">✓ Justificada</span>';
+let causaInfo='';if(r.causa) causaInfo=' <em>('+r.causa+')</em>';
+html+='<li class="'+estado+'"><strong>'+alumno+'</strong> - '+fecha+horaInfo+justInfo+causaInfo+'</li>';
+});
+});
+html+='</ul></div>';return html;
+}
+function crearPDF(tipo){
+mostrarAlerta('info','Generando PDF...');
+if(tipo==='maquinas'){
+const R=getAll();let detallesHTML='';
+const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'🏥',conciliacion:'‍👩‍👧',baja:'🤒'};
+['presente','ausente','entrada_tarde','salida_pronto','cita_medica','conciliacion','baja'].forEach(estado=>{detallesHTML+=generarListaDetalladaPeriodo(R,estado,iconos[estado]);});
+let html='<div class="pdf-content"><h1>📚 Control de Alumnos</h1><h2>Total por Alumno</h2><p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>';
+html+=document.getElementById('tablaMaquinasTbl').outerHTML;
+if(detallesHTML){html+='<h3>📋 Detalle por estado</h3>'+detallesHTML;}
+html+='</div>';
+const element=document.createElement('div');element.innerHTML=html;document.body.appendChild(element);
+const opt={margin:10,filename:'total_por_alumno.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
+html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(element);mostrarAlerta('success','PDF generado');}).catch(err=>{document.body.removeChild(element);mostrarAlerta('error','Error: '+err.message);});
+}else if(tipo==='tiempo'){
+const R=getAll();const fPeriodo=document.getElementById('fPeriodo').value;const falumno=document.getElementById('fMaq').value;
+let filt=R;
+if(fPeriodo!=='ALL'){const parts=fPeriodo.split('-');filt=filt.filter(r=>r.y===parseInt(parts[0])&&r.m===parseInt(parts[1]));}
+if(falumno!=='TODOS') filt=filt.filter(r=>r.alumno===falumno);
+let detallesHTML='';const periodosData={};
+filt.forEach(r=>{const k=getPeriodoLabel(r.y,r.m);if(!periodosData[k]) periodosData[k]=[];periodosData[k].push(r);});
+const iconos={presente:'✅',ausente:'',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'',conciliacion:'👨‍👩‍👧',baja:'🤒'};
+Object.keys(periodosData).sort().forEach(periodo=>{detallesHTML+='<h3 style="margin-top:20px;color:#1e3a8a;border-bottom:2px solid #e5e7eb;padding-bottom:8px">📅 '+periodo+'</h3>';['presente','ausente','entrada_tarde','salida_pronto','cita_medica','conciliacion','baja'].forEach(estado=>{detallesHTML+=generarListaDetalladaPeriodo(periodosData[periodo],estado,iconos[estado]);});});
+let html='<div class="pdf-content"><h1>📚 Control de Alumnos</h1><h2>Resumen por Periodo</h2><p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>';
+if(falumno!=='TODOS') html+='<p>Alumno: <strong>'+falumno+'</strong></p>';
+html+=document.getElementById('tablaTiempoTbl').outerHTML;
+if(detallesHTML){html+='<h3>📋 Detalle</h3>'+detallesHTML;}
+html+='</div>';
+const element=document.createElement('div');element.innerHTML=html;document.body.appendChild(element);
+const opt={margin:10,filename:'resumen_periodo.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
+html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(element);mostrarAlerta('success','PDF generado');}).catch(err=>{document.body.removeChild(element);mostrarAlerta('error','Error: '+err.message);});
+}
+}
+function generarCalendarioEntrada(){
+mesSeleccionado=parseInt(document.getElementById('erMes').value);
+anioSeleccionado=calcularAnioParaMes(mesSeleccionado);
+const cont=document.getElementById('calendarioEntrada');cont.innerHTML='';
+DIAS.forEach(d=>{const h=document.createElement('div');h.className='cal-header';h.textContent=d;cont.appendChild(h);});
+const first=new Date(anioSeleccionado,mesSeleccionado-1,1);
+const last=new Date(anioSeleccionado,mesSeleccionado,0);
+const start=first.getDay()||7;
+for(let i=1;i<start;i++){const e=document.createElement('div');e.className='cal-day empty';cont.appendChild(e);}
+for(let d=1;d<=last.getDate();d++){
+const fecha=new Date(anioSeleccionado,mesSeleccionado-1,d);
+fecha.setHours(0,0,0,0);
+const diaSemana=fecha.getDay();
+const esFinde=(diaSemana===0||diaSemana===6);
+const dayInfo=getDayType(anioSeleccionado,mesSeleccionado,d);
+const esFuturo=fecha>FECHA_HOY;
+const e=document.createElement('div');e.className='cal-day';
+if(dayInfo.type==='holiday') e.classList.add('status-holiday');
+else if(dayInfo.type==='vacation') e.classList.add('status-vacation');
+else if(esFinde) e.classList.add('status-weekend');
+else if(esFuturo) e.classList.add('status-future');
+const registrosDia=getAll().filter(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===d);
+let html='<div class="day-num">'+d+'</div>';
+if(dayInfo.type==='holiday'||dayInfo.type==='vacation') html+='<div class="day-info">'+dayInfo.label+'</div>';
+else if(dayInfo.type==='before-course'||dayInfo.type==='after-course'){html+='<div class="day-info">Fuera del curso</div>';e.style.opacity='0.4';}
+else if(esFinde) html+='<div class="day-info">Fin de semana</div>';
+else if(esFuturo) html+='<div class="day-info">🔒 Futuro</div>';
+else{const completado=registrosDia.length===ALUMNOS.length;html+='<div class="day-info">'+registrosDia.length+'/'+ALUMNOS.length+(completado?' ✅':'')+'</div>';}
+e.innerHTML=html;
+const claveNota=anioSeleccionado+'-'+mesSeleccionado+'-'+d;
+if(notasPorDia[claveNota]){const iconoNota=document.createElement('div');iconoNota.style.cssText='position:absolute;top:3px;right:3px;font-size:10px;cursor:help';iconoNota.textContent='';iconoNota.title=notasPorDia[claveNota];e.appendChild(iconoNota);}
+if(!esFinde&&dayInfo.type==='lectivo'){e.onclick=(function(dia,futuro){return function(){esDiaFuturo=futuro;abrirModalAsistencia(dia);};})(d,esFuturo);}
+cont.appendChild(e);
+}
+}
+function abrirModalAsistencia(dia){
+diaSeleccionado=dia;
+const registrosDia=getAll().filter(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===dia);
+document.getElementById('modalTitulo').textContent='✏️ Asistencia del '+pad(dia)+'/'+pad(mesSeleccionado)+'/'+anioSeleccionado;
+let html='';
+if(esDiaFuturo) html+='<div class="aviso-futuro">⚠️ Día futuro. Solo se permite registrar <strong>Bajas</strong>.</div>';
+html+='<div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">';
+html+='<button class="btn b6" onclick="copiarDiaAnterior()" style="padding:8px 14px;font-size:12px">📋 Copiar día anterior</button>';
+html+='<button class="btn b2" onclick="marcarTodosPresentes()" style="padding:8px 14px;font-size:12px">✅ Todos presentes</button>';
+html+='<button class="btn b4" onclick="limpiarTodos()" style="padding:8px 14px;font-size:12px"> Limpiar</button>';
+html+='</div>';
+html+='<div style="margin-bottom:16px;padding:12px;background:#fef3c7;border-radius:6px;border-left:4px solid #f59e0b">';
+html+='<label style="display:block;font-size:13px;font-weight:600;color:#92400e;margin-bottom:6px">📝 Notas del día:</label>';
+html+='<textarea id="notaDelDia" placeholder="Ej: Excursión, examen..." style="width:100%;padding:8px;border:1px solid #fcd34d;border-radius:6px;font-size:13px;resize:vertical;min-height:60px;font-family:inherit"></textarea>';
+html+='</div>';
+html+='<div style="margin-bottom:16px;padding:12px;background:#f0f9ff;border-radius:6px;border-left:4px solid #2563eb">';
+html+='<strong>'+registrosDia.length+'</strong> de <strong>'+ALUMNOS.length+'</strong> alumnos registrados';
+html+='</div>';
+ALUMNOS.forEach(alumno=>{
+const registro=registrosDia.find(r=>r.alumno===alumno);
+const estadoActual=registro?registro.estado:'';
+const horaUnica=registro?registro.horaUnica||'':'';
+const horaSalida=registro?registro.horaSalida||'':'';
+const horaLlegada=registro?registro.horaLlegada||'':'';
+const justificada=registro?registro.justificada:false;
+const causa=registro?registro.causa||'':'';
+html+='<div class="alumno-row" data-alumno="'+alumno+'">';
+html+='<div class="alumno-name">'+alumno+'</div>';
+html+='<div style="display:flex;flex-direction:column;gap:6px">';
+html+='<select class="alumno-select" data-alumno="'+alumno+'" onchange="toggleCamposHora(this)">';
+Object.keys(LABELS_ESTADOS).forEach(key=>{
+if(esDiaFuturo&&key!==''&&key!=='baja') html+='<option value="'+key+'" '+(estadoActual===key?'selected':'')+' disabled>'+LABELS_ESTADOS[key]+' (no disponible)</option>';
+else html+='<option value="'+key+'" '+(estadoActual===key?'selected':'')+'>'+LABELS_ESTADOS[key]+'</option>';
+});
+html+='</select>';
+html+='<div class="campos-hora hora-unica" data-alumno="'+alumno+'" style="display:'+(estadoActual==='entrada_tarde'||estadoActual==='salida_pronto'?'flex':'none')+'">';
+html+='<div class="hora-fila"><label>'+(estadoActual==='entrada_tarde'?'Hora entrada:':'Hora salida:')+'</label><input type="time" class="hora-unica-input" value="'+horaUnica+'"></div>';
+html+='</div>';
+html+='<div class="campos-hora hora-rango" data-alumno="'+alumno+'" style="display:'+(estadoActual==='cita_medica'||estadoActual==='conciliacion'?'flex':'none')+'">';
+html+='<div class="hora-fila"><label>Salida:</label><input type="time" class="hora-salida-input" value="'+horaSalida+'"></div>';
+html+='<div class="hora-fila"><label>Llegada:</label><input type="time" class="hora-llegada-input" value="'+horaLlegada+'"></div>';
+html+='</div>';
+html+='<div class="campos-ausencia" data-alumno="'+alumno+'" style="display:'+(estadoActual==='ausente'?'block':'none')+';margin-top:6px;padding:8px;background:#fee2e2;border-radius:6px">';
+html+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">';
+html+='<input type="checkbox" class="chk-justificada" '+(justificada?'checked':'')+' style="width:16px;height:16px">';
+html+='<label style="font-size:12px;color:#991b1b;font-weight:600">Ausencia justificada</label>';
+html+='</div>';
+html+='<textarea class="txt-causa" placeholder="Motivo..." style="width:100%;padding:6px;border:1px solid #fca5a5;border-radius:5px;font-size:12px;resize:vertical;min-height:50px;font-family:inherit">'+causa+'</textarea>';
+html+='</div>';
+html+='</div></div>';
+});
+document.getElementById('modalContenido').innerHTML=html;
+const claveNota=anioSeleccionado+'-'+mesSeleccionado+'-'+dia;
+document.getElementById('notaDelDia').value=notasPorDia[claveNota]||'';
+document.getElementById('modalAsistencia').classList.add('show');
+}
+function toggleCamposHora(select){
+const fila=select.closest('.alumno-row');
+const horaUnica=fila.querySelector('.hora-unica');
+const horaRango=fila.querySelector('.hora-rango');
+const ausenciaDiv=fila.querySelector('.campos-ausencia');
+const labelHoraUnica=fila.querySelector('.hora-unica label');
+horaUnica.style.display='none';horaRango.style.display='none';
+if(ausenciaDiv) ausenciaDiv.style.display='none';
+const estado=select.value;
+if(estado==='entrada_tarde'){horaUnica.style.display='flex';labelHoraUnica.textContent='Hora entrada:';}
+else if(estado==='salida_pronto'){horaUnica.style.display='flex';labelHoraUnica.textContent='Hora salida:';}
+else if(estado==='cita_medica'||estado==='conciliacion') horaRango.style.display='flex';
+else if(estado==='ausente'){if(ausenciaDiv) ausenciaDiv.style.display='block';}
+}
+function cerrarModalAsistencia(){document.getElementById('modalAsistencia').classList.remove('show');diaSeleccionado=null;esDiaFuturo=false;}
+function guardarAsistenciaDia(){
+if(!diaSeleccionado){mostrarAlerta('warning','No hay día seleccionado');return;}
+const filas=document.querySelectorAll('.alumno-row');
+let guardados=0;
+filas.forEach(fila=>{
+const select=fila.querySelector('.alumno-select');
+const alumno=select.getAttribute('data-alumno');
+const estado=select.value;
+let horaUnica='',horaSalida='',horaLlegada='';
+let justificada=false,causa='';
+if(estado==='entrada_tarde'||estado==='salida_pronto'){const inputHoraUnica=fila.querySelector('.hora-unica-input');if(inputHoraUnica) horaUnica=inputHoraUnica.value;}
+else if(estado==='cita_medica'||estado==='conciliacion'){const inputSalida=fila.querySelector('.hora-salida-input');const inputLlegada=fila.querySelector('.hora-llegada-input');if(inputSalida) horaSalida=inputSalida.value;if(inputLlegada) horaLlegada=inputLlegada.value;}
+else if(estado==='ausente'){const chkJust=fila.querySelector('.chk-justificada');const txtCausa=fila.querySelector('.txt-causa');if(chkJust) justificada=chkJust.checked;if(txtCausa) causa=txtCausa.value.trim();}
+const idx=userRecords.findIndex(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===diaSeleccionado&&r.alumno===alumno);
+if(idx>=0) userRecords.splice(idx,1);
+const idxH=historicalRecords.findIndex(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===diaSeleccionado&&r.alumno===alumno);
+if(idxH>=0) historicalRecords.splice(idxH,1);
+if(estado){userRecords.push({y:anioSeleccionado,m:mesSeleccionado,d:diaSeleccionado,alumno:alumno,estado:estado,causa:causa,justificada:justificada,horaSalida:horaSalida,horaLlegada:horaLlegada,horaUnica:horaUnica,hist:false});guardados++;}
+});
+const claveNota=anioSeleccionado+'-'+mesSeleccionado+'-'+diaSeleccionado;
+const nota=document.getElementById('notaDelDia').value.trim();
+if(nota) notasPorDia[claveNota]=nota;else delete notasPorDia[claveNota];
+saveUser();renderAll();generarCalendarioEntrada();cerrarModalAsistencia();
+mostrarAlerta('success','✅ Guardados '+guardados+' registros del día '+pad(diaSeleccionado)+'/'+pad(mesSeleccionado)+'/'+anioSeleccionado);
+guardarEnNube('✅ Asistencia guardada');
+}
+function copiarDiaAnterior(){
+let diaAnt=diaSeleccionado-1;let mesAnt=mesSeleccionado;let anioAnt=anioSeleccionado;
+let intentos=0;
+while(intentos<400){
+if(diaAnt<1){mesAnt--;if(mesAnt<1){mesAnt=12;anioAnt--;}diaAnt=new Date(anioAnt,mesAnt,0).getDate();}
+const tipo=getDayType(anioAnt,mesAnt,diaAnt);
+if(tipo.type==='lectivo') break;
+diaAnt--;intentos++;
+}
+if(intentos>=400){mostrarAlerta('warning','⚠️ No se encontró día lectivo anterior');return;}
+const registrosAnt=getAll().filter(r=>r.y===anioAnt&&r.m===mesAnt&&r.d===diaAnt);
+const filas=document.querySelectorAll('.alumno-row');
+let copiados=0;
+filas.forEach(fila=>{
+const select=fila.querySelector('.alumno-select');
+const alumno=select.getAttribute('data-alumno');
+const regAnt=registrosAnt.find(r=>r.alumno===alumno);
+if(regAnt){
+if(!(esDiaFuturo&&regAnt.estado!==''&&regAnt.estado!=='baja')){
+select.value=regAnt.estado;toggleCamposHora(select);
+if(regAnt.horaUnica){const input=fila.querySelector('.hora-unica-input');if(input) input.value=regAnt.horaUnica;}
+if(regAnt.horaSalida){const input=fila.querySelector('.hora-salida-input');if(input) input.value=regAnt.horaSalida;}
+if(regAnt.horaLlegada){const input=fila.querySelector('.hora-llegada-input');if(input) input.value=regAnt.horaLlegada;}
+if(regAnt.justificada!==undefined){const chk=fila.querySelector('.chk-justificada');if(chk) chk.checked=regAnt.justificada;}
+if(regAnt.causa){const txt=fila.querySelector('.txt-causa');if(txt) txt.value=regAnt.causa;}
+copiados++;
+}
+}
+});
+mostrarAlerta('success','📋 Copiados '+copiados+' registros del día '+pad(diaAnt)+'/'+pad(mesAnt)+'/'+anioAnt);
+}
+function marcarTodosPresentes(){const filas=document.querySelectorAll('.alumno-row');filas.forEach(fila=>{const select=fila.querySelector('.alumno-select');select.value='presente';toggleCamposHora(select);});mostrarAlerta('success','✅ Todos marcados como presentes');}
+function limpiarTodos(){const filas=document.querySelectorAll('.alumno-row');filas.forEach(fila=>{const select=fila.querySelector('.alumno-select');select.value='';toggleCamposHora(select);const chk=fila.querySelector('.chk-justificada');if(chk) chk.checked=false;const txt=fila.querySelector('.txt-causa');if(txt) txt.value='';});mostrarAlerta('info',' Registros limpiados');}
+function navegarDia(dir){
+const erMes=document.getElementById('erMes');
+let m=parseInt(erMes.value);let y=calcularAnioParaMes(m);
+const ultimoDia=new Date(y,m,0).getDate();
+let d=diaSeleccionado||DIA_HOY;d+=dir;
+if(d>ultimoDia){m++;if(m>12){m=1;y++;}d=1;erMes.value=m;onMesSeleccionado();}
+else if(d<1){m--;if(m<1){m=12;y--;}d=new Date(y,m,0).getDate();erMes.value=m;onMesSeleccionado();}
+const tipo=getDayType(y,m,d);
+if(tipo.type==='lectivo'){const fecha=new Date(y,m-1,d);fecha.setHours(0,0,0,0);esDiaFuturo=fecha>FECHA_HOY;setTimeout(()=>abrirModalAsistencia(d),100);}
+else mostrarAlerta('info','ℹ️ '+tipo.label);
+}
+document.addEventListener('keydown',function(e){
+if(e.ctrlKey&&e.key==='s'){e.preventDefault();if(document.getElementById('modalAsistencia').classList.contains('show')) guardarAsistenciaDia();}
+if(e.key==='Escape'){
+if(document.getElementById('modalAsistencia').classList.contains('show')) cerrarModalAsistencia();
+if(document.getElementById('modalDetalle').classList.contains('show')) cerrarModalDetalle();
+if(document.getElementById('modalDetalleAlumno').classList.contains('show')) cerrarModalDetalleAlumno();
+if(document.getElementById('modalConfirmacion').classList.contains('show')) cerrarModalConfirmacion();
+if(document.getElementById('modalEditarAlumno').classList.contains('show')) cerrarModalEditarAlumno();
+if(document.getElementById('modalCambioClave').classList.contains('show')) cerrarModalCambioClave();
+}
+if(!document.querySelector('.modal-overlay.show')&&!document.getElementById('inactivityOverlay').classList.contains('show')){
+const p7=document.getElementById('p7');
+if(p7&&p7.classList.contains('on')){if(e.key==='ArrowLeft'){e.preventDefault();navegarDia(-1);}if(e.key==='ArrowRight'){e.preventDefault();navegarDia(1);}}
+}
+});
 document.getElementById('nuevaClave').addEventListener('input',actualizarRequisitosClave);
-
 function actualizarCalendarioDesdePeriodo(){const periodoVal=document.getElementById('calPeriodo').value;const parts=periodoVal.split('-');actualizarCalendario(parseInt(parts[0]),parseInt(parts[1]));}
 function actualizarCalendario(y,m){
-  const cal=document.getElementById('calendar');cal.innerHTML='';
-  DIAS.forEach(d=>{const h=document.createElement('div');h.className='cal-header';h.textContent=d;cal.appendChild(h);});
-  const first=new Date(y,m-1,1);const last=new Date(y,m,0);const start=first.getDay()||7;
-  for(let i=1;i<start;i++){const e=document.createElement('div');e.className='cal-day empty';cal.appendChild(e);}
-  const filtroAlumno=document.getElementById('calFiltroAlumno').value;
-  const filtroEstado=document.getElementById('calFiltroEstado').value;
-  let R=getAll().filter(r=>r.y===y&&r.m===m);
-  if(filtroAlumno!=='TODOS') R=R.filter(r=>r.alumno===filtroAlumno);
-  if(filtroEstado!=='TODOS') R=R.filter(r=>r.estado===filtroEstado);
-  const byDay={};
-  R.forEach(r=>{if(!byDay[r.d]) byDay[r.d]={counts:{presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0}};byDay[r.d].counts[r.estado]++;});
-  for(let d=1;d<=last.getDate();d++){
-    const dayInfo=getDayType(y,m,d);
-    const e=document.createElement('div');e.className='cal-day';
-    const counts=byDay[d]?byDay[d].counts:null;
-    if(dayInfo.type==='holiday') e.classList.add('status-holiday');
-    else if(dayInfo.type==='vacation') e.classList.add('status-vacation');
-    else if(dayInfo.type==='weekend') e.classList.add('status-weekend');
-    else if(dayInfo.type==='before-course'||dayInfo.type==='after-course') e.classList.add('status-weekend');
-    else if(counts){if(counts.ausente>0) e.classList.add('status-absent');else if(counts.entrada_tarde>0||counts.salida_pronto>0) e.classList.add('status-late');else if(counts.cita_medica>0||counts.conciliacion>0||counts.baja>0) e.classList.add('status-mixed');else if(counts.presente>0) e.classList.add('status-all-present');}
-    let html='<div class="day-num">'+d+'</div>';
-    if(dayInfo.type==='holiday'||dayInfo.type==='vacation') html+='<div class="day-info">'+dayInfo.label+'</div>';
-    else if(dayInfo.type==='weekend') html+='<div class="day-info">Fin de semana</div>';
-    else if(dayInfo.type==='before-course'||dayInfo.type==='after-course'){html+='<div class="day-info">Fuera del curso</div>';e.style.opacity='0.4';}
-    else if(counts){const stats=[];if(counts.presente>0) stats.push('✓'+counts.presente);if(counts.ausente>0) stats.push('✗'+counts.ausente);if(counts.entrada_tarde>0) stats.push('⏰'+counts.entrada_tarde);if(counts.salida_pronto>0) stats.push('📤'+counts.salida_pronto);if(counts.cita_medica>0) stats.push('🏥'+counts.cita_medica);if(counts.conciliacion>0) stats.push('👨‍👩‍👧'+counts.conciliacion);if(counts.baja>0) stats.push('🤒'+counts.baja);html+='<div class="day-stats">'+stats.join(' ')+'</div>';}
-    else html+='<div class="day-info">Sin registros</div>';
-    e.innerHTML=html;
-    if(dayInfo.type==='lectivo'){e.style.cursor='pointer';e.onclick=(function(dia){return function(){abrirModalDetalle(y,m,dia);};})(d);}
-    cal.appendChild(e);
-  }
+const cal=document.getElementById('calendar');cal.innerHTML='';
+DIAS.forEach(d=>{const h=document.createElement('div');h.className='cal-header';h.textContent=d;cal.appendChild(h);});
+const first=new Date(y,m-1,1);const last=new Date(y,m,0);const start=first.getDay()||7;
+for(let i=1;i<start;i++){const e=document.createElement('div');e.className='cal-day empty';cal.appendChild(e);}
+const filtroAlumno=document.getElementById('calFiltroAlumno').value;
+const filtroEstado=document.getElementById('calFiltroEstado').value;
+let R=getAll().filter(r=>r.y===y&&r.m===m);
+if(filtroAlumno!=='TODOS') R=R.filter(r=>r.alumno===filtroAlumno);
+if(filtroEstado!=='TODOS') R=R.filter(r=>r.estado===filtroEstado);
+const byDay={};
+R.forEach(r=>{if(!byDay[r.d]) byDay[r.d]={counts:{presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0}};byDay[r.d].counts[r.estado]++;});
+for(let d=1;d<=last.getDate();d++){
+const dayInfo=getDayType(y,m,d);
+const e=document.createElement('div');e.className='cal-day';
+const counts=byDay[d]?byDay[d].counts:null;
+if(dayInfo.type==='holiday') e.classList.add('status-holiday');
+else if(dayInfo.type==='vacation') e.classList.add('status-vacation');
+else if(dayInfo.type==='weekend') e.classList.add('status-weekend');
+else if(dayInfo.type==='before-course'||dayInfo.type==='after-course') e.classList.add('status-weekend');
+else if(counts){
+  const totalPresentesReal = counts.presente + counts.entrada_tarde + counts.salida_pronto + counts.cita_medica + counts.conciliacion;
+  if(counts.ausente>0 || counts.baja>0) e.classList.add('status-absent');
+  else if(counts.entrada_tarde>0 || counts.salida_pronto>0) e.classList.add('status-late');
+  else if(counts.cita_medica>0 || counts.conciliacion>0) e.classList.add('status-mixed');
+  else if(totalPresentesReal>0) e.classList.add('status-all-present');
 }
-
+let html='<div class="day-num">'+d+'</div>';
+if(dayInfo.type==='holiday'||dayInfo.type==='vacation') html+='<div class="day-info">'+dayInfo.label+'</div>';
+else if(dayInfo.type==='weekend') html+='<div class="day-info">Fin de semana</div>';
+else if(dayInfo.type==='before-course'||dayInfo.type==='after-course'){html+='<div class="day-info">Fuera del curso</div>';e.style.opacity='0.4';}
+else if(counts){const stats=[];const totalPresentesReal = counts.presente + counts.entrada_tarde + counts.salida_pronto + counts.cita_medica + counts.conciliacion;if(totalPresentesReal>0) stats.push('✓'+totalPresentesReal);if(counts.ausente>0) stats.push('✗'+counts.ausente);if(counts.entrada_tarde>0) stats.push('⏰'+counts.entrada_tarde);if(counts.salida_pronto>0) stats.push('📤'+counts.salida_pronto);if(counts.cita_medica>0) stats.push('🏥'+counts.cita_medica);if(counts.conciliacion>0) stats.push('👨‍👩‍👧'+counts.conciliacion);if(counts.baja>0) stats.push(''+counts.baja);html+='<div class="day-stats">'+stats.join(' ')+'</div>';}
+else html+='<div class="day-info">Sin registros</div>';
+e.innerHTML=html;
+if(dayInfo.type==='lectivo'){e.style.cursor='pointer';e.onclick=(function(dia){return function(){abrirModalDetalle(y,m,dia);};})(d);}
+cal.appendChild(e);
+}
+}
 function abrirModalDetalle(y,m,d){
-  diaDetalleSeleccionado={y,m,d};
-  const registros=getAll().filter(r=>r.y===y&&r.m===m&&r.d===d);
-  document.getElementById('modalDetalleTitulo').textContent=' Detalle del '+pad(d)+'/'+pad(m)+'/'+y;
-  let html='';
-  const claveNota=y+'-'+m+'-'+d;
-  const notaDia=notasPorDia[claveNota];
-  if(notaDia) html+='<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:12px;border-radius:6px;margin-bottom:16px"><strong style="color:#92400e">📝 Nota del día:</strong><p style="color:#92400e;margin-top:6px;font-style:italic">'+notaDia+'</p></div>';
-  if(registros.length===0){html+='<div style="padding:20px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px"></p><p>No hay registros</p><p style="margin-top:12px"><button class="btn b2" onclick="cerrarModalDetalle();abrirModalAsistenciaDesdeDetalle('+d+')">➕ Añadir</button></p></div>';}
-  else{
-    const counts={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
-    registros.forEach(r=>{if(counts[r.estado]!==undefined) counts[r.estado]++;});
-    const porcentajeAsistencia=Math.round((counts.presente/ALUMNOS.length)*100);
-    html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:18px">';
-    html+='<div style="padding:10px;background:#dcfce7;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#166534">'+counts.presente+'</div><div style="font-size:11px;color:#166534">Presentes</div></div>';
-    html+='<div style="padding:10px;background:#fee2e2;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#991b1b">'+counts.ausente+'</div><div style="font-size:11px;color:#991b1b">Ausentes</div></div>';
-    html+='<div style="padding:10px;background:#fef3c7;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#92400e">'+counts.entrada_tarde+'</div><div style="font-size:11px;color:#92400e">Tarde</div></div>';
-    html+='<div style="padding:10px;background:#dbeafe;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#1e40af">'+porcentajeAsistencia+'%</div><div style="font-size:11px;color:#1e40af">Asistencia</div></div>';
-    html+='</div>';
-    html+='<h4 style="margin-bottom:10px;color:#1f2937">Detalle por alumno:</h4>';
-    html+='<div class="day-detail-grid">';
-    ALUMNOS.forEach(alumno=>{
-      const reg=registros.find(r=>r.alumno===alumno);
-      if(reg){html+='<div class="day-detail-item"><div class="nombre">'+alumno+'</div><div class="estado estado-'+reg.estado+'">'+(LABELS_ESTADOS[reg.estado]||reg.estado)+'</div>';if(reg.justificada) html+='<div class="hora" style="color:#166534">✓ Justificada</div>';if(reg.horaUnica) html+='<div class="hora">🕐 '+reg.horaUnica+'</div>';if(reg.horaSalida&&reg.horaLlegada) html+='<div class="hora"> '+reg.horaSalida+' - '+reg.horaLlegada+'</div>';if(reg.causa) html+='<div class="hora"> '+reg.causa+'</div>';html+='</div>';}
-      else html+='<div class="day-detail-item" style="opacity:0.5"><div class="nombre">'+alumno+'</div><div class="estado" style="color:#9ca3af">Sin registrar</div></div>';
-    });
-    html+='</div>';
-  }
-  document.getElementById('modalDetalleContenido').innerHTML=html;
-  document.getElementById('modalDetalle').classList.add('show');
+diaDetalleSeleccionado={y,m,d};
+const registros=getAll().filter(r=>r.y===y&&r.m===m&&r.d===d);
+document.getElementById('modalDetalleTitulo').textContent='📋 Detalle del '+pad(d)+'/'+pad(m)+'/'+y;
+let html='';
+const claveNota=y+'-'+m+'-'+d;
+const notaDia=notasPorDia[claveNota];
+if(notaDia) html+='<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:12px;border-radius:6px;margin-bottom:16px"><strong style="color:#92400e">📝 Nota del día:</strong><p style="color:#92400e;margin-top:6px;font-style:italic">'+notaDia+'</p></div>';
+if(registros.length===0){html+='<div style="padding:20px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px">📭</p><p>No hay registros</p><p style="margin-top:12px"><button class="btn b2" onclick="cerrarModalDetalle();abrirModalAsistenciaDesdeDetalle('+d+')">➕ Añadir</button></p></div>';}
+else{
+const counts={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
+registros.forEach(r=>{if(counts[r.estado]!==undefined) counts[r.estado]++;});
+const totalPresentesReal = counts.presente + counts.entrada_tarde + counts.salida_pronto + counts.cita_medica + counts.conciliacion;
+const porcentajeAsistencia=Math.round((totalPresentesReal/ALUMNOS.length)*100);
+html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:18px">';
+html+='<div style="padding:10px;background:#dcfce7;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#166534">'+totalPresentesReal+'</div><div style="font-size:11px;color:#166534">Presentes</div></div>';
+html+='<div style="padding:10px;background:#fee2e2;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#991b1b">'+counts.ausente+'</div><div style="font-size:11px;color:#991b1b">Ausentes</div></div>';
+html+='<div style="padding:10px;background:#fef3c7;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#92400e">'+counts.entrada_tarde+'</div><div style="font-size:11px;color:#92400e">Tarde</div></div>';
+html+='<div style="padding:10px;background:#dbeafe;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#1e40af">'+porcentajeAsistencia+'%</div><div style="font-size:11px;color:#1e40af">Asistencia</div></div>';
+html+='</div>';
+html+='<h4 style="margin-bottom:10px;color:#1f2937">Detalle por alumno:</h4>';
+html+='<div class="day-detail-grid">';
+ALUMNOS.forEach(alumno=>{
+const reg=registros.find(r=>r.alumno===alumno);
+if(reg){html+='<div class="day-detail-item"><div class="nombre">'+alumno+'</div><div class="estado estado-'+reg.estado+'">'+(LABELS_ESTADOS[reg.estado]||reg.estado)+'</div>';if(reg.justificada) html+='<div class="hora" style="color:#166534">✓ Justificada</div>';if(reg.horaUnica) html+='<div class="hora">🕐 '+reg.horaUnica+'</div>';if(reg.horaSalida&&reg.horaLlegada) html+='<div class="hora">🕐 '+reg.horaSalida+' - '+reg.horaLlegada+'</div>';if(reg.causa) html+='<div class="hora">📝 '+reg.causa+'</div>';html+='</div>';}
+else html+='<div class="day-detail-item" style="opacity:0.5"><div class="nombre">'+alumno+'</div><div class="estado" style="color:#9ca3af">Sin registrar</div></div>';
+});
+html+='</div>';
 }
-
+document.getElementById('modalDetalleContenido').innerHTML=html;
+document.getElementById('modalDetalle').classList.add('show');
+}
 function cerrarModalDetalle(){document.getElementById('modalDetalle').classList.remove('show');diaDetalleSeleccionado=null;}
 function abrirModalAsistenciaDesdeDetalle(d){const periodoVal=document.getElementById('calPeriodo').value;const parts=periodoVal.split('-');mesSeleccionado=parseInt(parts[1]);anioSeleccionado=parseInt(parts[0]);const fecha=new Date(anioSeleccionado,mesSeleccionado-1,d);fecha.setHours(0,0,0,0);esDiaFuturo=fecha>FECHA_HOY;showTab('p7');setTimeout(()=>abrirModalAsistencia(d),200);}
 function editarDiaDesdeDetalle(){if(diaDetalleSeleccionado){abrirModalAsistenciaDesdeDetalle(diaDetalleSeleccionado.d);cerrarModalDetalle();}}
-
 function imprimir(tipo){const area=document.getElementById('printArea');let contenido='';if(tipo==='maquinas') contenido='<h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Total por Alumno</h2><p style="color:#6b7280;margin-bottom:20px">Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>'+document.getElementById('tablaMaquinasTbl').outerHTML;else if(tipo==='tiempo') contenido='<h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Resumen por Periodo</h2><p style="color:#6b7280;margin-bottom:20px">Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>'+document.getElementById('tablaTiempoTbl').outerHTML;area.innerHTML='<div style="padding:20px">'+contenido+'</div>';window.print();setTimeout(()=>{area.innerHTML='';},1000);}
-
-function confirmarResetear(){abrirModalConfirmacion('⚠️ Haz un backup primero','<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:15px;border-radius:6px;margin-bottom:15px"><strong>💡 Recomendación:</strong> Exporta un backup antes de borrar.</div><p>¿Seguro que quieres resetear TODOS los datos?</p><ul style="text-align:left;margin-left:20px;margin-bottom:15px"><li>Todos los alumnos</li><li>Todos los registros</li><li>Festivos y vacaciones</li><li>Fechas del curso</li></ul><p style="color:#dc2626;font-weight:600">Esta acción NO se puede deshacer.</p>',function(){abrirModalConfirmacion('️ ÚLTIMA CONFIRMACIÓN','¿REALMENTE ESTÁS SEGURO?\n\nSe borrarán TODOS los datos.',function(){localStorage.removeItem('ca_cache');const db=window.firebaseDB;const dbRef=window.firebaseRef(db,'datos');window.firebaseSet(dbRef,null).then(()=>{mostrarAlerta('success','Datos eliminados');setTimeout(()=>{location.reload();},1500);}).catch(err=>{console.error('Error:',err);mostrarAlerta('error','Error: '+err.message);});});});}
-
-function confirmarVaciarActividades(){abrirModalConfirmacion('️ Haz un backup primero','<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:15px;border-radius:6px;margin-bottom:15px"><strong>💡 Recomendación:</strong> Exporta un backup antes.</div><p>¿Seguro que quieres borrar <strong>TODOS los registros de asistencia</strong>?</p><p style="background:#dcfce7;padding:10px;border-radius:6px;margin-bottom:15px"><strong>Se mantendrán:</strong><br>• Alumnos<br>• Festivos<br>• Vacaciones<br>• Fechas del curso</p>',function(){historicalRecords=[];userRecords=[];saveUser();renderAll();generarCalendarioEntrada();renderConfiguracion();guardarEnNube('✅ Actividades vaciadas');});}
-
+function confirmarResetear(){abrirModalConfirmacion('⚠️ Haz un backup primero','<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:15px;border-radius:6px;margin-bottom:15px"><strong>💡 Recomendación:</strong> Exporta un backup antes de borrar.</div><p>¿Seguro que quieres resetear TODOS los datos?</p><ul style="text-align:left;margin-left:20px;margin-bottom:15px"><li>Todos los alumnos</li><li>Todos los registros</li><li>Festivos y vacaciones</li><li>Fechas del curso</li></ul><p style="color:#dc2626;font-weight:600">Esta acción NO se puede deshacer.</p>',function(){abrirModalConfirmacion('⚠️ ÚLTIMA CONFIRMACIÓN','¿REALMENTE ESTÁS SEGURO?\nSe borrarán TODOS los datos.',function(){localStorage.removeItem('ca_cache');const db=window.firebaseDB;const dbRef=window.firebaseRef(db,'datos');window.firebaseSet(dbRef,null).then(()=>{mostrarAlerta('success','Datos eliminados');setTimeout(()=>{location.reload();},1500);}).catch(err=>{console.error('Error:',err);mostrarAlerta('error','Error: '+err.message);});});});}
+function confirmarVaciarActividades(){abrirModalConfirmacion('⚠️ Haz un backup primero','<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:15px;border-radius:6px;margin-bottom:15px"><strong>💡 Recomendación:</strong> Exporta un backup antes.</div><p>¿Seguro que quieres borrar <strong>TODOS los registros de asistencia</strong>?</p><p style="background:#dcfce7;padding:10px;border-radius:6px;margin-bottom:15px"><strong>Se mantendrán:</strong><br>• Alumnos<br>• Festivos<br>• Vacaciones<br>• Fechas del curso</p>',function(){historicalRecords=[];userRecords=[];saveUser();renderAll();generarCalendarioEntrada();renderConfiguracion();guardarEnNube('✅ Actividades vaciadas');});}
 function abrirModalConfirmacion(titulo,contenido,callback){confirmacionCallback=callback;document.getElementById('modalConfirmacionTitulo').textContent=titulo;document.getElementById('modalConfirmacionContenido').innerHTML='<div style="padding:20px;background:#fef3c7;border-radius:8px;border-left:4px solid #f59e0b;margin-bottom:16px"><p style="white-space:pre-line;color:#92400e;line-height:1.6">'+contenido+'</p></div>';document.getElementById('btnConfirmarAccion').onclick=function(){if(confirmacionCallback) confirmacionCallback();cerrarModalConfirmacion();};document.getElementById('modalConfirmacion').classList.add('show');}
 function cerrarModalConfirmacion(){document.getElementById('modalConfirmacion').classList.remove('show');confirmacionCallback=null;}
-
 function guardarFechasCurso(){
-  const diaIni=parseInt(document.getElementById('cursoInicioDia').value);const mesIni=parseInt(document.getElementById('cursoInicioMes').value);const anioIni=parseInt(document.getElementById('cursoInicioAnio').value);
-  const diaFin=parseInt(document.getElementById('cursoFinDia').value);const mesFin=parseInt(document.getElementById('cursoFinMes').value);const anioFin=parseInt(document.getElementById('cursoFinAnio').value);
-  if(!diaIni||!mesIni||!anioIni||!diaFin||!mesFin||!anioFin){mostrarAlerta('warning','Completa todos los campos');return;}
-  const fechaIni=new Date(anioIni,mesIni-1,diaIni);const fechaFin=new Date(anioFin,mesFin-1,diaFin);
-  if(fechaIni.getDate()!==diaIni||fechaIni.getMonth()!==mesIni-1){mostrarAlerta('error','Fecha inicio no válida');return;}
-  if(fechaFin.getDate()!==diaFin||fechaFin.getMonth()!==mesFin-1){mostrarAlerta('error','Fecha final no válida');return;}
-  if(fechaFin<=fechaIni){mostrarAlerta('error','La fecha final debe ser posterior');return;}
-  const diffMeses=(anioFin-anioIni)*12+(mesFin-mesIni);
-  if(diffMeses>24){if(!confirm('El curso es muy largo ('+diffMeses+' meses). ¿Seguro?')) return;}
-  INICIO_CURSO={y:anioIni,m:mesIni,d:diaIni};FIN_CURSO={y:anioFin,m:mesFin,d:diaFin};
-  actualizarInfoCurso();inicializarApp();renderConfiguracion();guardarEnNube('✅ Fechas actualizadas');
+const diaIni=parseInt(document.getElementById('cursoInicioDia').value);const mesIni=parseInt(document.getElementById('cursoInicioMes').value);const anioIni=parseInt(document.getElementById('cursoInicioAnio').value);
+const diaFin=parseInt(document.getElementById('cursoFinDia').value);const mesFin=parseInt(document.getElementById('cursoFinMes').value);const anioFin=parseInt(document.getElementById('cursoFinAnio').value);
+if(!diaIni||!mesIni||!anioIni||!diaFin||!mesFin||!anioFin){mostrarAlerta('warning','Completa todos los campos');return;}
+const fechaIni=new Date(anioIni,mesIni-1,diaIni);const fechaFin=new Date(anioFin,mesFin-1,diaFin);
+if(fechaIni.getDate()!==diaIni||fechaIni.getMonth()!==mesIni-1){mostrarAlerta('error','Fecha inicio no válida');return;}
+if(fechaFin.getDate()!==diaFin||fechaFin.getMonth()!==mesFin-1){mostrarAlerta('error','Fecha final no válida');return;}
+if(fechaFin<=fechaIni){mostrarAlerta('error','La fecha final debe ser posterior');return;}
+const diffMeses=(anioFin-anioIni)*12+(mesFin-mesIni);
+if(diffMeses>24){if(!confirm('El curso es muy largo ('+diffMeses+' meses). ¿Seguro?')) return;}
+INICIO_CURSO={y:anioIni,m:mesIni,d:diaIni};FIN_CURSO={y:anioFin,m:mesFin,d:diaFin};
+actualizarInfoCurso();inicializarApp();renderConfiguracion();guardarEnNube('✅ Fechas actualizadas');
 }
-
 function renderConfiguracion(){
-  const inicioDia=INICIO_CURSO.d||DIA_HOY;const inicioMes=INICIO_CURSO.m||MES_HOY;const inicioAnio=INICIO_CURSO.y||ANIO_HOY;
-  const finDia=FIN_CURSO.d||DIA_HOY;const finMes=FIN_CURSO.m||MES_HOY;const finAnio=FIN_CURSO.y||ANIO_HOY;
-  llenarSelectDias('cursoInicioDia',inicioDia);llenarSelectAnios('cursoInicioAnio',inicioAnio);document.getElementById('cursoInicioMes').value=inicioMes;
-  llenarSelectDias('cursoFinDia',finDia);llenarSelectAnios('cursoFinAnio',finAnio);document.getElementById('cursoFinMes').value=finMes;
-  llenarSelectDias('nuevoFestivoDia',DIA_HOY);llenarSelectAnios('nuevoFestivoAnio',ANIO_HOY);document.getElementById('nuevoFestivoMes').value=MES_HOY;
-  llenarSelectDias('nuevaVacacionDiaIni',DIA_HOY);llenarSelectAnios('nuevaVacacionAnioIni',ANIO_HOY);document.getElementById('nuevaVacacionMesIni').value=MES_HOY;
-  llenarSelectDias('nuevaVacacionDiaFin',DIA_HOY);llenarSelectAnios('nuevaVacacionAnioFin',ANIO_HOY);document.getElementById('nuevaVacacionMesFin').value=MES_HOY;
-  actualizarSelectoresAnioCurso();renderEstadisticasConfig();renderListaAlumnos();renderListaFestivos();renderListaVacaciones();actualizarInfoCurso();actualizarContadoresConfig();
+const inicioDia=INICIO_CURSO.d||DIA_HOY;const inicioMes=INICIO_CURSO.m||MES_HOY;const inicioAnio=INICIO_CURSO.y||ANIO_HOY;
+const finDia=FIN_CURSO.d||DIA_HOY;const finMes=FIN_CURSO.m||MES_HOY;const finAnio=FIN_CURSO.y||ANIO_HOY;
+llenarSelectDias('cursoInicioDia',inicioDia);llenarSelectAnios('cursoInicioAnio',inicioAnio);document.getElementById('cursoInicioMes').value=inicioMes;
+llenarSelectDias('cursoFinDia',finDia);llenarSelectAnios('cursoFinAnio',finAnio);document.getElementById('cursoFinMes').value=finMes;
+llenarSelectDias('nuevoFestivoDia',DIA_HOY);llenarSelectAnios('nuevoFestivoAnio',ANIO_HOY);document.getElementById('nuevoFestivoMes').value=MES_HOY;
+llenarSelectDias('nuevaVacacionDiaIni',DIA_HOY);llenarSelectAnios('nuevaVacacionAnioIni',ANIO_HOY);document.getElementById('nuevaVacacionMesIni').value=MES_HOY;
+llenarSelectDias('nuevaVacacionDiaFin',DIA_HOY);llenarSelectAnios('nuevaVacacionAnioFin',ANIO_HOY);document.getElementById('nuevaVacacionMesFin').value=MES_HOY;
+actualizarSelectoresAnioCurso();renderEstadisticasConfig();renderListaAlumnos();renderListaFestivos();renderListaVacaciones();actualizarInfoCurso();actualizarContadoresConfig();
 }
-
 function actualizarContadoresConfig(){document.getElementById('countAlumnos').textContent=ALUMNOS.length;document.getElementById('countFestivos').textContent=FESTIVOS.length;document.getElementById('countVacaciones').textContent=VACACIONES.length;}
-
 function actualizarSelectoresAnioCurso(){
-  const selectsAnio=['nuevoFestivoAnio','nuevaVacacionAnioIni','nuevaVacacionAnioFin'];
-  selectsAnio.forEach(id=>{const select=document.getElementById(id);if(!select) return;const valorActual=select.value;select.innerHTML='';for(let y=ANIO_MIN_DESPLEGABLE;y<=ANIO_MAX_DESPLEGABLE;y++){const o=document.createElement('option');o.value=y;o.textContent=y;select.appendChild(o);}if(valorActual>=ANIO_MIN_DESPLEGABLE&&valorActual<=ANIO_MAX_DESPLEGABLE) select.value=valorActual;else select.value=ANIO_HOY>=ANIO_MIN_DESPLEGABLE&&ANIO_HOY<=ANIO_MAX_DESPLEGABLE?ANIO_HOY:INICIO_CURSO.y;});
+const selectsAnio=['nuevoFestivoAnio','nuevaVacacionAnioIni','nuevaVacacionAnioFin'];
+selectsAnio.forEach(id=>{const select=document.getElementById(id);if(!select) return;const valorActual=select.value;select.innerHTML='';for(let y=ANIO_MIN_DESPLEGABLE;y<=ANIO_MAX_DESPLEGABLE;y++){const o=document.createElement('option');o.value=y;o.textContent=y;select.appendChild(o);}if(valorActual>=ANIO_MIN_DESPLEGABLE&&valorActual<=ANIO_MAX_DESPLEGABLE) select.value=valorActual;else select.value=ANIO_HOY>=ANIO_MIN_DESPLEGABLE&&ANIO_HOY<=ANIO_MAX_DESPLEGABLE?ANIO_HOY:INICIO_CURSO.y;});
 }
-
 function renderEstadisticasConfig(){
-  const hoy=new Date();hoy.setHours(0,0,0,0);
-  const vacTotal=VACACIONES.length;let vacConsumidas=0,vacPendientes=0;
-  VACACIONES.forEach(v=>{const fechaVac=new Date(v.y,v.m-1,v.d);if(fechaVac<hoy) vacConsumidas++;else vacPendientes++;});
-  document.getElementById('statVacTotal').textContent=vacTotal;document.getElementById('statVacConsumidas').textContent=vacConsumidas;document.getElementById('statVacPendientes').textContent=vacPendientes;
-  const festTotal=FESTIVOS.length;let festConsumidos=0,festPendientes=0;
-  FESTIVOS.forEach(f=>{const fechaFest=new Date(f.y,f.m-1,f.d);if(fechaFest<hoy) festConsumidos++;else festPendientes++;});
-  document.getElementById('statFestTotal').textContent=festTotal;document.getElementById('statFestConsumidos').textContent=festConsumidos;document.getElementById('statFestPendientes').textContent=festPendientes;
+const hoy=new Date();hoy.setHours(0,0,0,0);
+const vacTotal=VACACIONES.length;let vacConsumidas=0,vacPendientes=0;
+VACACIONES.forEach(v=>{const fechaVac=new Date(v.y,v.m-1,v.d);if(fechaVac<hoy) vacConsumidas++;else vacPendientes++;});
+document.getElementById('statVacTotal').textContent=vacTotal;document.getElementById('statVacConsumidas').textContent=vacConsumidas;document.getElementById('statVacPendientes').textContent=vacPendientes;
+const festTotal=FESTIVOS.length;let festConsumidos=0,festPendientes=0;
+FESTIVOS.forEach(f=>{const fechaFest=new Date(f.y,f.m-1,f.d);if(fechaFest<hoy) festConsumidos++;else festPendientes++;});
+document.getElementById('statFestTotal').textContent=festTotal;document.getElementById('statFestConsumidos').textContent=festConsumidos;document.getElementById('statFestPendientes').textContent=festPendientes;
 }
-
 function renderListaAlumnos(){const lista=document.getElementById('listaAlumnos');lista.innerHTML='';if(ALUMNOS.length===0){lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay alumnos</p>';return;}ALUMNOS.forEach(function(alumno,idx){lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+alumno+'</strong></div><div class="config-item-actions"><button class="btn b1 action-btn" onclick="abrirEditarAlumno('+idx+')">✏️ Editar</button><button class="btn b3 action-btn" onclick="confirmarEliminarAlumno('+idx+')">🗑️ Eliminar</button></div></div>';});}
 function agregarAlumno(){const nombre=document.getElementById('nuevoAlumno').value.trim();if(!nombre){mostrarAlerta('warning','Introduce un nombre');return;}if(ALUMNOS.includes(nombre)){mostrarAlerta('error','Ya existe');return;}ALUMNOS.push(nombre);document.getElementById('nuevoAlumno').value='';renderListaAlumnos();actualizarSelectoresAlumnos();renderAll();actualizarContadoresConfig();guardarEnNube('✅ Alumno añadido');}
 function abrirEditarAlumno(idx){indiceAlumnoEditar=idx;document.getElementById('inputNuevoNombreAlumno').value=ALUMNOS[idx];document.getElementById('modalEditarAlumno').classList.add('show');}
 function cerrarModalEditarAlumno(){document.getElementById('modalEditarAlumno').classList.remove('show');indiceAlumnoEditar=null;}
 function confirmarEdicionAlumno(){const nuevoNombre=document.getElementById('inputNuevoNombreAlumno').value.trim();if(!nuevoNombre){mostrarAlerta('warning','El nombre no puede estar vacío');return;}if(nuevoNombre===ALUMNOS[indiceAlumnoEditar]){cerrarModalEditarAlumno();return;}if(ALUMNOS.includes(nuevoNombre)){mostrarAlerta('error','Ya existe');return;}const nombreAnterior=ALUMNOS[indiceAlumnoEditar];ALUMNOS[indiceAlumnoEditar]=nuevoNombre;[...historicalRecords,...userRecords].forEach(r=>{if(r.alumno===nombreAnterior) r.alumno=nuevoNombre;});cerrarModalEditarAlumno();renderListaAlumnos();actualizarSelectoresAlumnos();renderAll();actualizarContadoresConfig();guardarEnNube('✅ Alumno actualizado');}
-function confirmarEliminarAlumno(idx){const alumno=ALUMNOS[idx];abrirModalConfirmacion('Eliminar alumno','¿Seguro que quieres eliminar a <strong>'+alumno+'</strong>?\n\nSe perderán todos sus registros.',function(){ALUMNOS.splice(idx,1);historicalRecords=historicalRecords.filter(r=>r.alumno!==alumno);userRecords=userRecords.filter(r=>r.alumno!==alumno);renderListaAlumnos();actualizarSelectoresAlumnos();renderAll();renderEstadisticasConfig();actualizarContadoresConfig();guardarEnNube('✅ Alumno eliminado');});}
+function confirmarEliminarAlumno(idx){const alumno=ALUMNOS[idx];abrirModalConfirmacion('Eliminar alumno','¿Seguro que quieres eliminar a <strong>'+alumno+'</strong>?\nSe perderán todos sus registros.',function(){ALUMNOS.splice(idx,1);historicalRecords=historicalRecords.filter(r=>r.alumno!==alumno);userRecords=userRecords.filter(r=>r.alumno!==alumno);renderListaAlumnos();actualizarSelectoresAlumnos();renderAll();renderEstadisticasConfig();actualizarContadoresConfig();guardarEnNube('✅ Alumno eliminado');});}
 function actualizarSelectoresAlumnos(){const fMaq=document.getElementById('fMaq');const valorActual=fMaq.value;fMaq.innerHTML='<option value="TODOS">Todos los alumnos</option>';ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;fMaq.appendChild(o);});if(ALUMNOS.includes(valorActual)) fMaq.value=valorActual;const calFiltroAlumno=document.getElementById('calFiltroAlumno');const valorCal=calFiltroAlumno.value;calFiltroAlumno.innerHTML='<option value="TODOS">Todos los alumnos</option>';ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;calFiltroAlumno.appendChild(o);});if(ALUMNOS.includes(valorCal)) calFiltroAlumno.value=valorCal;}
 function renderListaFestivos(){const lista=document.getElementById('listaFestivos');lista.innerHTML='';if(FESTIVOS.length===0){lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay festivos</p>';return;}FESTIVOS.sort((a,b)=>{if(a.y!==b.y) return a.y-b.y;if(a.m!==b.m) return a.m-b.m;return a.d-b.d;});FESTIVOS.forEach(function(festivo,idx){const fecha=pad(festivo.d)+'/'+pad(festivo.m)+'/'+festivo.y;lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+fecha+'</strong> - '+festivo.nombre+'</div><div class="config-item-actions"><button class="btn b3 action-btn" onclick="confirmarEliminarFestivo('+idx+')">🗑️ Eliminar</button></div></div>';});}
 function agregarFestivo(){const dia=parseInt(document.getElementById('nuevoFestivoDia').value);const mes=parseInt(document.getElementById('nuevoFestivoMes').value);const anio=parseInt(document.getElementById('nuevoFestivoAnio').value);const nombre=document.getElementById('nuevoFestivoNombre').value.trim();if(!dia||!mes||!anio||!nombre){mostrarAlerta('warning','Completa todos los campos');return;}const existe=FESTIVOS.find(f=>f.y===anio&&f.m===mes&&f.d===dia);if(existe){mostrarAlerta('error','Ya existe un festivo en esa fecha');return;}FESTIVOS.push({y:anio,m:mes,d:dia,nombre:nombre});document.getElementById('nuevoFestivoDia').value='';document.getElementById('nuevoFestivoNombre').value='';renderListaFestivos();renderEstadisticasConfig();generarCalendarioEntrada();actualizarContadoresConfig();guardarEnNube('✅ Festivo añadido');}
@@ -1797,54 +1630,50 @@ function confirmarEliminarFestivo(idx){const festivo=FESTIVOS[idx];const fecha=p
 function renderListaVacaciones(){const lista=document.getElementById('listaVacaciones');lista.innerHTML='';if(VACACIONES.length===0){lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay vacaciones</p>';return;}VACACIONES.sort((a,b)=>{if(a.y!==b.y) return a.y-b.y;if(a.m!==b.m) return a.m-b.m;return a.d-b.d;});VACACIONES.forEach(function(vacacion,idx){const fecha=pad(vacacion.d)+'/'+pad(vacacion.m)+'/'+vacacion.y;lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+fecha+'</strong></div><div class="config-item-actions"><button class="btn b3 action-btn" onclick="confirmarEliminarVacacion('+idx+')">🗑️ Eliminar</button></div></div>';});}
 function agregarVacacion(){const diaIni=parseInt(document.getElementById('nuevaVacacionDiaIni').value);const mesIni=parseInt(document.getElementById('nuevaVacacionMesIni').value);const anioIni=parseInt(document.getElementById('nuevaVacacionAnioIni').value);const diaFin=parseInt(document.getElementById('nuevaVacacionDiaFin').value);const mesFin=parseInt(document.getElementById('nuevaVacacionMesFin').value);const anioFin=parseInt(document.getElementById('nuevaVacacionAnioFin').value);if(!diaIni||!mesIni||!anioIni||!diaFin||!mesFin||!anioFin){mostrarAlerta('warning','Completa todos los campos');return;}const fechaIni=new Date(anioIni,mesIni-1,diaIni);const fechaFin=new Date(anioFin,mesFin-1,diaFin);if(fechaIni.getDate()!==diaIni||fechaIni.getMonth()!==mesIni-1){mostrarAlerta('error','Fecha inicio no válida');return;}if(fechaFin.getDate()!==diaFin||fechaFin.getMonth()!==mesFin-1){mostrarAlerta('error','Fecha final no válida');return;}if(fechaFin<fechaIni){mostrarAlerta('error','La fecha final debe ser posterior');return;}let diasAñadidos=0,diasDuplicados=0,diasFinde=0,diasFestivos=0;const fechaActual=new Date(fechaIni);while(fechaActual<=fechaFin){const y=fechaActual.getFullYear();const m=fechaActual.getMonth()+1;const d=fechaActual.getDate();const diaSemana=fechaActual.getDay();if(diaSemana===0||diaSemana===6){diasFinde++;fechaActual.setDate(fechaActual.getDate()+1);continue;}const esFestivo=FESTIVOS.find(f=>f.y===y&&f.m===m&&f.d===d);if(esFestivo){diasFestivos++;fechaActual.setDate(fechaActual.getDate()+1);continue;}const existe=VACACIONES.find(v=>v.y===y&&v.m===m&&v.d===d);if(!existe){VACACIONES.push({y:y,m:m,d:d});diasAñadidos++;}else{diasDuplicados++;}fechaActual.setDate(fechaActual.getDate()+1);}document.getElementById('nuevaVacacionDiaIni').value='';document.getElementById('nuevaVacacionDiaFin').value='';renderListaVacaciones();renderEstadisticasConfig();generarCalendarioEntrada();actualizarContadoresConfig();if(diasAñadidos>0){let msg='✅ Añadidos '+diasAñadidos+' día'+(diasAñadidos>1?'s':'')+' lectivo'+(diasAñadidos>1?'s':'')+' de vacaciones';const omitidos=[];if(diasFinde>0) omitidos.push(diasFinde+' fin de semana');if(diasFestivos>0) omitidos.push(diasFestivos+' festivo'+(diasFestivos>1?'s':''));if(diasDuplicados>0) omitidos.push(diasDuplicados+' ya existía'+(diasDuplicados>1?'n':''));if(omitidos.length>0) msg+=' (omitidos: '+omitidos.join(', ')+')';mostrarAlerta('success',msg);}else{mostrarAlerta('info','ℹ️ No se han añadido días lectivos');}guardarEnNube('✅ Vacaciones añadidas');}
 function confirmarEliminarVacacion(idx){const vacacion=VACACIONES[idx];const fecha=pad(vacacion.d)+'/'+pad(vacacion.m)+'/'+vacacion.y;abrirModalConfirmacion('Eliminar vacaciones','¿Seguro que quieres eliminar el día <strong>'+fecha+'</strong> de vacaciones?',function(){VACACIONES.splice(idx,1);renderListaVacaciones();renderEstadisticasConfig();generarCalendarioEntrada();actualizarContadoresConfig();guardarEnNube('✅ Vacación eliminada');});}
-
 function exportarBackup(){
-  const inicioStr=pad(INICIO_CURSO.d)+'/'+pad(INICIO_CURSO.m)+'/'+INICIO_CURSO.y;
-  const finStr=pad(FIN_CURSO.d)+'/'+pad(FIN_CURSO.m)+'/'+FIN_CURSO.y;
-  const cursoAnio=INICIO_CURSO.y+'/'+String(FIN_CURSO.y).slice(-2);
-  const R=getAll();
-  const totalPresentes=R.filter(r=>r.estado==='presente').length;
-  const totalAusentes=R.filter(r=>r.estado==='ausente').length;
-  const totalEntradasTarde=R.filter(r=>r.estado==='entrada_tarde').length;
-  const totalSalidasPronto=R.filter(r=>r.estado==='salida_pronto').length;
-  const totalCitasMedicas=R.filter(r=>r.estado==='cita_medica').length;
-  const totalConciliaciones=R.filter(r=>r.estado==='conciliacion').length;
-  const totalBajas=R.filter(r=>r.estado==='baja').length;
-  let html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Backup Control de Alumnos - Curso ${cursoAnio}</title><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',system-ui,sans-serif;background:#f5f7fa;color:#1f2937;padding:20px;line-height:1.6}.wrap{max-width:1200px;margin:0 auto;background:#fff;padding:40px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1)}h1{color:#1e3a8a;margin-bottom:10px;font-size:28px}h2{color:#1e3a8a;margin:30px 0 15px 0;font-size:22px;border-bottom:2px solid #e5e7eb;padding-bottom:8px}h3{color:#374151;margin:20px 0 10px 0;font-size:18px}.info-curso{background:linear-gradient(135deg,#dbeafe,#bfdbfe);padding:20px;border-radius:8px;margin-bottom:30px}.info-curso p{margin:5px 0;font-size:14px}.info-curso strong{color:#1e40af}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0}.stat-box{background:#f9fafb;padding:15px;border-radius:8px;text-align:center;border-left:4px solid #3b82f6}.stat-box .num{font-size:24px;font-weight:700;color:#1e3a8a}.stat-box .lbl{font-size:12px;color:#6b7280;margin-top:4px}table{width:100%;border-collapse:collapse;margin:15px 0;font-size:13px}th{background:#f3f4f6;padding:10px;text-align:left;font-weight:600;color:#374151;border-bottom:2px solid #d1d5db}td{padding:8px 10px;border-bottom:1px solid #e5e7eb}tr:hover{background:#f9fafb}.alumno-card{background:#f9fafb;padding:20px;border-radius:8px;margin:15px 0;border-left:4px solid #3b82f6}.alumno-card h3{margin-top:0;color:#1e3a8a}.footer{margin-top:40px;padding-top:20px;border-top:2px solid #e5e7eb;text-align:center;color:#6b7280;font-size:12px}@media print{body{background:#fff;padding:0}.wrap{box-shadow:none;padding:20px}}</style></head><body><div class="wrap"><h1>📚 Control de Alumnos - Backup</h1><div class="info-curso"><p><strong>Curso:</strong> ${inicioStr} - ${finStr}</p><p><strong>Fecha de generación:</strong> ${new Date().toLocaleDateString('es-ES')}</p><p><strong>Total de alumnos:</strong> ${ALUMNOS.length}</p></div><h2>📊 Resumen General</h2><div class="stats-grid"><div class="stat-box"><div class="num">${totalPresentes}</div><div class="lbl">Presentes</div></div><div class="stat-box"><div class="num">${totalAusentes}</div><div class="lbl">Ausencias</div></div><div class="stat-box"><div class="num">${totalEntradasTarde}</div><div class="lbl">Entradas Tarde</div></div><div class="stat-box"><div class="num">${totalSalidasPronto}</div><div class="lbl">Salidas Pronto</div></div><div class="stat-box"><div class="num">${totalCitasMedicas}</div><div class="lbl">Citas Médicas</div></div><div class="stat-box"><div class="num">${totalConciliaciones}</div><div class="lbl">Conciliaciones</div></div><div class="stat-box"><div class="num">${totalBajas}</div><div class="lbl">Bajas</div></div></div><h2>👥 Lista de Alumnos</h2><table><thead><tr><th>Alumno</th><th>Presentes</th><th>Ausencias</th><th>Entradas Tarde</th><th>Salidas Pronto</th><th>Citas Médicas</th><th>Conciliaciones</th><th>Bajas</th></tr></thead><tbody>`;
-  const sm={};ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
-  R.forEach(r=>{if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++;});
-  ALUMNOS.forEach(alumno=>{const s=sm[alumno];html+=`<tr><td><strong>${alumno}</strong></td><td>${s.presente}</td><td>${s.ausente}</td><td>${s.entrada_tarde}</td><td>${s.salida_pronto}</td><td>${s.cita_medica}</td><td>${s.conciliacion}</td><td>${s.baja}</td></tr>`;});
-  html+=`</tbody></table><h2> Calendario Detallado</h2>`;
-  const periodos=generarPeriodos();
-  periodos.forEach(periodo=>{const registrosPeriodo=R.filter(r=>r.y===periodo.y&&r.m===periodo.m);html+=`<h3>${periodo.label}</h3><table><thead><tr><th>Fecha</th><th>Día</th>`;ALUMNOS.forEach(a=>{html+=`<th>${a.split(',')[0]}</th>`;});html+=`<th>Nota</th></tr></thead><tbody>`;const last=new Date(periodo.y,periodo.m,0);for(let d=1;d<=last.getDate();d++){const fecha=new Date(periodo.y,periodo.m-1,d);const diaSemana=DIAS_SEMANA[fecha.getDay()];const fechaStr=pad(d)+'/'+pad(periodo.m)+'/'+periodo.y;const claveNota=periodo.y+'-'+periodo.m+'-'+d;const nota=notasPorDia[claveNota]||'';html+=`<tr><td>${fechaStr}</td><td>${diaSemana}</td>`;ALUMNOS.forEach(alumno=>{const reg=registrosPeriodo.find(r=>r.d===d&&r.alumno===alumno);if(reg){let estadoTxt=LABELS_ESTADOS[reg.estado]||reg.estado;if(reg.justificada) estadoTxt+=' ✓';if(reg.causa) estadoTxt+=' ('+reg.causa+')';html+=`<td>${estadoTxt}</td>`;}else{html+=`<td style="color:#9ca3af">-</td>`;}});html+=`<td style="font-size:11px;color:#92400e">${nota}</td></tr>`;}html+=`</tbody></table>`;});
-  if(FESTIVOS.length>0){html+=`<h2> Festivos</h2><table><thead><tr><th>Fecha</th><th>Nombre</th></tr></thead><tbody>`;FESTIVOS.forEach(f=>{html+=`<tr><td>${pad(f.d)}/${pad(f.m)}/${f.y}</td><td>${f.nombre}</td></tr>`;});html+=`</tbody></table>`;}
-  if(VACACIONES.length>0){html+=`<h2>🏖️ Vacaciones</h2><table><thead><tr><th>Fecha</th></tr></thead><tbody>`;VACACIONES.forEach(v=>{html+=`<tr><td>${pad(v.d)}/${pad(v.m)}/${v.y}</td></tr>`;});html+=`</tbody></table>`;}
-  html+=`<h2>📈 Resumen Final por Alumno</h2>`;
-  ALUMNOS.forEach(alumno=>{const s=sm[alumno];const totalRegistros=Object.values(s).reduce((a,b)=>a+b,0);const porcentajeAsistencia=totalRegistros>0?Math.round((s.presente/totalRegistros)*100):0;const ausenciasAlumno=R.filter(r=>r.alumno===alumno&&r.estado==='ausente');const justificadas=ausenciasAlumno.filter(r=>r.justificada).length;const noJustificadas=ausenciasAlumno.length-justificadas;html+=`<div class="alumno-card"><h3>${alumno}</h3><div class="stats-grid"><div class="stat-box"><div class="num">${s.presente}</div><div class="lbl">Presentes</div></div><div class="stat-box"><div class="num">${s.ausente}</div><div class="lbl">Ausencias (${justificadas}✓/${noJustificadas}✗)</div></div><div class="stat-box"><div class="num">${s.entrada_tarde}</div><div class="lbl">Entradas Tarde</div></div><div class="stat-box"><div class="num">${s.salida_pronto}</div><div class="lbl">Salidas Pronto</div></div><div class="stat-box"><div class="num">${s.cita_medica}</div><div class="lbl">Citas Médicas</div></div><div class="stat-box"><div class="num">${s.conciliacion}</div><div class="lbl">Conciliaciones</div></div><div class="stat-box"><div class="num">${s.baja}</div><div class="lbl">Bajas</div></div></div><p style="margin-top:10px"><strong>Total registros:</strong> ${totalRegistros} | <strong>Asistencia:</strong> ${porcentajeAsistencia}%</p></div>`;});
-  html+=`<div class="footer"><p>Backup generado automáticamente</p><p>Curso ${cursoAnio} | ${new Date().toLocaleDateString('es-ES')} ${new Date().toLocaleTimeString('es-ES')}</p></div></div></body></html>`;
-  const blob=new Blob([html],{type:'text/html'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`backup_curso_${cursoAnio.replace('/','_')}.html`;document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);mostrarAlerta('success','✅ Backup exportado');
+const inicioStr=pad(INICIO_CURSO.d)+'/'+pad(INICIO_CURSO.m)+'/'+INICIO_CURSO.y;
+const finStr=pad(FIN_CURSO.d)+'/'+pad(FIN_CURSO.m)+'/'+FIN_CURSO.y;
+const cursoAnio=INICIO_CURSO.y+'/'+String(FIN_CURSO.y).slice(-2);
+const R=getAll();
+const totalPresentes=R.filter(r=>esPresente(r.estado)).length;
+const totalAusentes=R.filter(r=>r.estado==='ausente'||r.estado==='baja').length;
+const totalEntradasTarde=R.filter(r=>r.estado==='entrada_tarde').length;
+const totalSalidasPronto=R.filter(r=>r.estado==='salida_pronto').length;
+const totalCitasMedicas=R.filter(r=>r.estado==='cita_medica').length;
+const totalConciliaciones=R.filter(r=>r.estado==='conciliacion').length;
+const totalBajas=R.filter(r=>r.estado==='baja').length;
+let html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Backup Control de Alumnos - Curso ${cursoAnio}</title><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',system-ui,sans-serif;background:#f5f7fa;color:#1f2937;padding:20px;line-height:1.6}.wrap{max-width:1200px;margin:0 auto;background:#fff;padding:40px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1)}h1{color:#1e3a8a;margin-bottom:10px;font-size:28px}h2{color:#1e3a8a;margin:30px 0 15px 0;font-size:22px;border-bottom:2px solid #e5e7eb;padding-bottom:8px}h3{color:#374151;margin:20px 0 10px 0;font-size:18px}.info-curso{background:linear-gradient(135deg,#dbeafe,#bfdbfe);padding:20px;border-radius:8px;margin-bottom:30px}.info-curso p{margin:5px 0;font-size:14px}.info-curso strong{color:#1e40af}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0}.stat-box{background:#f9fafb;padding:15px;border-radius:8px;text-align:center;border-left:4px solid #3b82f6}.stat-box .num{font-size:24px;font-weight:700;color:#1e3a8a}.stat-box .lbl{font-size:12px;color:#6b7280;margin-top:4px}table{width:100%;border-collapse:collapse;margin:15px 0;font-size:13px}th{background:#f3f4f6;padding:10px;text-align:left;font-weight:600;color:#374151;border-bottom:2px solid #d1d5db}td{padding:8px 10px;border-bottom:1px solid #e5e7eb}tr:hover{background:#f9fafb}.alumno-card{background:#f9fafb;padding:20px;border-radius:8px;margin:15px 0;border-left:4px solid #3b82f6}.alumno-card h3{margin-top:0;color:#1e3a8a}.footer{margin-top:40px;padding-top:20px;border-top:2px solid #e5e7eb;text-align:center;color:#6b7280;font-size:12px}@media print{body{background:#fff;padding:0}.wrap{box-shadow:none;padding:20px}}</style></head><body><div class="wrap"><h1>📚 Control de Alumnos - Backup</h1><div class="info-curso"><p><strong>Curso:</strong> ${inicioStr} - ${finStr}</p><p><strong>Fecha de generación:</strong> ${new Date().toLocaleDateString('es-ES')}</p><p><strong>Total de alumnos:</strong> ${ALUMNOS.length}</p></div><h2>📊 Resumen General</h2><div class="stats-grid"><div class="stat-box"><div class="num">${totalPresentes}</div><div class="lbl">Presentes</div></div><div class="stat-box"><div class="num">${totalAusentes}</div><div class="lbl">Ausencias</div></div><div class="stat-box"><div class="num">${totalEntradasTarde}</div><div class="lbl">Entradas Tarde</div></div><div class="stat-box"><div class="num">${totalSalidasPronto}</div><div class="lbl">Salidas Pronto</div></div><div class="stat-box"><div class="num">${totalCitasMedicas}</div><div class="lbl">Citas Médicas</div></div><div class="stat-box"><div class="num">${totalConciliaciones}</div><div class="lbl">Conciliaciones</div></div><div class="stat-box"><div class="num">${totalBajas}</div><div class="lbl">Bajas</div></div></div><h2>👥 Lista de Alumnos</h2><table><thead><tr><th>Alumno</th><th>Presentes</th><th>Ausencias</th><th>Entradas Tarde</th><th>Salidas Pronto</th><th>Citas Médicas</th><th>Conciliaciones</th><th>Bajas</th></tr></thead><tbody>`;
+const sm={};ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
+R.forEach(r=>{if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++;if(esPresente(r.estado)) sm[r.alumno].presente++;});
+ALUMNOS.forEach(alumno=>{const s=sm[alumno];html+=`<tr><td><strong>${alumno}</strong></td><td>${s.presente}</td><td>${s.ausente}</td><td>${s.entrada_tarde}</td><td>${s.salida_pronto}</td><td>${s.cita_medica}</td><td>${s.conciliacion}</td><td>${s.baja}</td></tr>`;});
+html+=`</tbody></table><h2>📅 Calendario Detallado</h2>`;
+const periodos=generarPeriodos();
+periodos.forEach(periodo=>{const registrosPeriodo=R.filter(r=>r.y===periodo.y&&r.m===periodo.m);html+=`<h3>${periodo.label}</h3><table><thead><tr><th>Fecha</th><th>Día</th>`;ALUMNOS.forEach(a=>{html+=`<th>${a.split(',')[0]}</th>`;});html+=`<th>Nota</th></tr></thead><tbody>`;const last=new Date(periodo.y,periodo.m,0);for(let d=1;d<=last.getDate();d++){const fecha=new Date(periodo.y,periodo.m-1,d);const diaSemana=DIAS_SEMANA[fecha.getDay()];const fechaStr=pad(d)+'/'+pad(periodo.m)+'/'+periodo.y;const claveNota=periodo.y+'-'+periodo.m+'-'+d;const nota=notasPorDia[claveNota]||'';html+=`<tr><td>${fechaStr}</td><td>${diaSemana}</td>`;ALUMNOS.forEach(alumno=>{const reg=registrosPeriodo.find(r=>r.d===d&&r.alumno===alumno);if(reg){let estadoTxt=LABELS_ESTADOS[reg.estado]||reg.estado;if(reg.justificada) estadoTxt+=' ✓';if(reg.causa) estadoTxt+=' ('+reg.causa+')';html+=`<td>${estadoTxt}</td>`;}else{html+=`<td style="color:#9ca3af">-</td>`;}});html+=`<td style="font-size:11px;color:#92400e">${nota}</td></tr>`;}html+=`</tbody></table>`;});
+if(FESTIVOS.length>0){html+=`<h2>🎉 Festivos</h2><table><thead><tr><th>Fecha</th><th>Nombre</th></tr></thead><tbody>`;FESTIVOS.forEach(f=>{html+=`<tr><td>${pad(f.d)}/${pad(f.m)}/${f.y}</td><td>${f.nombre}</td></tr>`;});html+=`</tbody></table>`;}
+if(VACACIONES.length>0){html+=`<h2>🏖️ Vacaciones</h2><table><thead><tr><th>Fecha</th></tr></thead><tbody>`;VACACIONES.forEach(v=>{html+=`<tr><td>${pad(v.d)}/${pad(v.m)}/${v.y}</td></tr>`;});html+=`</tbody></table>`;}
+html+=`<h2>📈 Resumen Final por Alumno</h2>`;
+ALUMNOS.forEach(alumno=>{const s=sm[alumno];const totalRegistros=Object.values(s).reduce((a,b)=>a+b,0);const porcentajeAsistencia=totalRegistros>0?Math.round((s.presente/totalRegistros)*100):0;const ausenciasAlumno=R.filter(r=>r.alumno===alumno&&r.estado==='ausente');const justificadas=ausenciasAlumno.filter(r=>r.justificada).length;const noJustificadas=ausenciasAlumno.length-justificadas;html+=`<div class="alumno-card"><h3>${alumno}</h3><div class="stats-grid"><div class="stat-box"><div class="num">${s.presente}</div><div class="lbl">Presentes</div></div><div class="stat-box"><div class="num">${s.ausente}</div><div class="lbl">Ausencias (${justificadas}✓/${noJustificadas}✗)</div></div><div class="stat-box"><div class="num">${s.entrada_tarde}</div><div class="lbl">Entradas Tarde</div></div><div class="stat-box"><div class="num">${s.salida_pronto}</div><div class="lbl">Salidas Pronto</div></div><div class="stat-box"><div class="num">${s.cita_medica}</div><div class="lbl">Citas Médicas</div></div><div class="stat-box"><div class="num">${s.conciliacion}</div><div class="lbl">Conciliaciones</div></div><div class="stat-box"><div class="num">${s.baja}</div><div class="lbl">Bajas</div></div></div><p style="margin-top:10px"><strong>Total registros:</strong> ${totalRegistros} | <strong>Asistencia:</strong> ${porcentajeAsistencia}%</p></div>`;});
+html+=`<div class="footer"><p>Backup generado automáticamente</p><p>Curso ${cursoAnio} | ${new Date().toLocaleDateString('es-ES')} ${new Date().toLocaleTimeString('es-ES')}</p></div></div></body></html>`;
+const blob=new Blob([html],{type:'text/html'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`backup_curso_${cursoAnio.replace('/','_')}.html`;document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);mostrarAlerta('success','✅ Backup exportado');
 }
-
 document.getElementById('fPeriodo').addEventListener('change',renderTiempo);
 document.getElementById('todayDate').textContent='📅 Hoy: '+DIA_HOY+'/'+pad(MES_HOY)+'/'+ANIO_HOY;
-
 async function iniciarSistema(){
-  let intentos=0;
-  while(!window.firebaseRef&&intentos<50){await new Promise(r=>setTimeout(r,100));intentos++;}
-  const usuarioGuardado=sessionStorage.getItem('ca_usuarioActual');
-  if(usuarioGuardado) usuarioActual=JSON.parse(usuarioGuardado);
-  if(verificarSesionActiva()&&usuarioActual){
-    document.getElementById('loginOverlay').style.display='none';
-    inicializarApp();
-    actualizarSaludoUsuario();
-    cargarDatosNube();
-  }else{
-    document.getElementById('loginOverlay').style.display='flex';
-    document.getElementById('loginUsuario').focus();
-    inicializarApp();
-  }
+let intentos=0;
+while(!window.firebaseRef&&intentos<50){await new Promise(r=>setTimeout(r,100));intentos++;}
+const usuarioGuardado=sessionStorage.getItem('ca_usuarioActual');
+if(usuarioGuardado) usuarioActual=JSON.parse(usuarioGuardado);
+if(verificarSesionActiva()&&usuarioActual){
+document.getElementById('loginOverlay').style.display='none';
+inicializarApp();
+actualizarSaludoUsuario();
+cargarDatosNube();
+}else{
+document.getElementById('loginOverlay').style.display='flex';
+document.getElementById('loginUsuario').focus();
+inicializarApp();
 }
-
+}
 iniciarSistema();
 </script>
 </body>
