@@ -358,12 +358,12 @@ Si olvidaste la contraseña, contacta con el administrador.
 <button class="tb on" data-t="p7">📝 Entrada de Datos</button>
 <button class="tb" data-t="p9">🔍 Consultas</button>
 <div class="subtabs-inline" id="subtabsConsultas">
-<button class="subtb on" data-st="p2"> Por Alumno</button>
+<button class="subtb on" data-st="p2">👤 Por Alumno</button>
 <button class="subtb" data-st="p3">📊 Por Mes/Año</button>
 <button class="subtb" data-st="p4">🗓️ Calendario</button>
 </div>
 <div style="display:flex;flex-direction:row;align-items:center;gap:10px;margin-left:auto">
-<div class="origen-bar">📂 Conectado: <strong id="dataSource">Cargando...</strong></div>
+<div class="origen-bar"> Conectado: <strong id="dataSource">Cargando...</strong></div>
 <button class="tb-config" id="btnConfig" onclick="toggleConfig()">⚙️ Configuración</button>
 </div>
 </div>
@@ -393,9 +393,9 @@ Si olvidaste la contraseña, contacta con el administrador.
 <div id="p2" class="pnl on" style="box-shadow:none;border:none;padding:0">
 <div class="informe-container">
 <div class="informe-header">
-<h2> Total por Alumno</h2>
+<h2>👤 Total por Alumno</h2>
 <div class="informe-botones">
-<button class="btn b4" onclick="imprimir('maquinas')">️ Imprimir</button>
+<button class="btn b4" onclick="imprimir('maquinas')">🖨️ Imprimir</button>
 <button class="btn b7" onclick="crearPDF('maquinas')"> Crear PDF</button>
 </div>
 </div>
@@ -405,10 +405,10 @@ Si olvidaste la contraseña, contacta con el administrador.
 <div id="p3" class="pnl" style="box-shadow:none;border:none;padding:0">
 <div class="informe-container">
 <div class="informe-header">
-<h2> Resumen por Periodo</h2>
+<h2>📊 Resumen por Periodo</h2>
 <div class="informe-botones">
-<button class="btn b4" onclick="imprimir('tiempo')">️ Imprimir</button>
-<button class="btn b7" onclick="crearPDF('tiempo')"> Crear PDF</button>
+<button class="btn b4" onclick="imprimir('tiempo')">🖨️ Imprimir</button>
+<button class="btn b7" onclick="crearPDF('tiempo')">📄 Crear PDF</button>
 </div>
 </div>
 <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap">
@@ -441,7 +441,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 <div id="p8" class="pnl" style="box-shadow:none;border:none;margin-top:16px;display:none">
-<h2>⚙️ Configuración</h2>
+<h2>️ Configuración</h2>
 <div id="configDashboard" class="config-dashboard">
 <div class="config-card card-alumnos" onclick="mostrarPanelConfig('alumnos')">
 <div class="card-icono">👥</div>
@@ -491,13 +491,13 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 </div>
-<button class="btn b2" onclick="guardarFechasCurso()" style="padding:10px 22px"> Guardar fechas</button>
+<button class="btn b2" onclick="guardarFechasCurso()" style="padding:10px 22px">💾 Guardar fechas</button>
 </div>
 </div>
 <div id="panelAlumnos" class="config-panel">
 <button class="config-volver" onclick="volverDashboardConfig()">← Volver</button>
 <div class="config-section">
-<h3> Gestión de Alumnos</h3>
+<h3>👥 Gestión de Alumnos</h3>
 <div class="config-form">
 <div class="filter-group"><label>Nombre del alumno</label><input type="text" id="nuevoAlumno" placeholder="Ej: GARCÍA LÓPEZ, JUAN"></div>
 <button class="btn b2" onclick="agregarAlumno()">➕ Añadir</button>
@@ -514,7 +514,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 <div class="filter-group"><label>Mes</label><select id="nuevoFestivoMes"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
 <div class="filter-group"><label>Año</label><select id="nuevoFestivoAnio"></select></div>
 <div class="filter-group"><label>Nombre</label><input type="text" id="nuevoFestivoNombre" placeholder="Ej: Día del Trabajo"></div>
-<button class="btn b2" onclick="agregarFestivo()">➕ Añadir</button>
+<button class="btn b2" onclick="agregarFestivo()"> Añadir</button>
 </div>
 <div class="config-list" id="listaFestivos"></div>
 </div>
@@ -526,7 +526,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 <p style="color:#6b7280;font-size:12px;margin-bottom:10px">Introduce fecha inicio y final. Se añadirán solo días lectivos.</p>
 <div class="rango-fechas">
 <div class="rango-box">
-<h4>📅 Fecha inicio</h4>
+<h4> Fecha inicio</h4>
 <div class="rango-inputs">
 <div class="filter-group"><label>Día</label><select id="nuevaVacacionDiaIni"></select></div>
 <div class="filter-group"><label>Mes</label><select id="nuevaVacacionMesIni"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
@@ -658,7 +658,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 <div class="modal-overlay" id="modalCambioClave">
 <div class="modal" style="max-width:500px">
 <div class="modal-header">
-<h3>🔑 Cambiar contraseña</h3>
+<h3> Cambiar contraseña</h3>
 <button class="modal-close" onclick="cerrarModalCambioClave()">×</button>
 </div>
 <div style="padding:10px 0">
@@ -677,8 +677,8 @@ Si olvidaste la contraseña, contacta con el administrador.
 <div id="requisitosClave" style="background:#f0f9ff;border-left:4px solid #3b82f6;padding:10px;border-radius:6px;margin-top:8px;font-size:12px;display:none">
 <strong style="color:#0369a1">Requisitos:</strong>
 <ul style="margin:8px 0 0 20px;color:#64748b">
-<li id="req-longitud">⚪ Mínimo 6 caracteres</li>
-<li id="req-mayus"> Al menos 1 mayúscula</li>
+<li id="req-longitud"> Mínimo 6 caracteres</li>
+<li id="req-mayus">⚪ Al menos 1 mayúscula</li>
 <li id="req-minus">⚪ Al menos 1 minúscula</li>
 <li id="req-numero">⚪ Al menos 1 número</li>
 <li id="req-especial">⚪ Al menos 1 carácter especial</li>
@@ -692,7 +692,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 <div class="modal-footer">
 <button class="btn b4" onclick="cerrarModalCambioClave()">Cancelar</button>
-<button class="btn b6" onclick="cambiarClave()"> Cambiar</button>
+<button class="btn b6" onclick="cambiarClave()">🔐 Cambiar</button>
 </div>
 </div>
 </div>
@@ -762,12 +762,20 @@ const MES_HOY=FECHA_HOY.getMonth()+1;
 const ANIO_HOY=FECHA_HOY.getFullYear();
 
 // FUNCIÓN AUXILIAR: ¿Es presente? (incluye incidencias)
-function esPresente(estado) {
-  return estado === 'presente' || 
-         estado === 'entrada_tarde' || 
-         estado === 'salida_pronto' || 
-         estado === 'cita_medica' || 
-         estado === 'conciliacion';
+function esPresente(estado){
+return estado==='presente'||estado==='entrada_tarde'||estado==='salida_pronto'||estado==='cita_medica'||estado==='conciliacion';
+}
+
+// Buscar último día lectivo anterior
+function buscarUltimoDiaLectivoAnterior(y,m,d){
+let diaAnt=d-1;let mesAnt=m;let anioAnt=y;let intentos=0;
+while(intentos<400){
+if(diaAnt<1){mesAnt--;if(mesAnt<1){mesAnt=12;anioAnt--;}diaAnt=new Date(anioAnt,mesAnt,0).getDate();}
+const tipo=getDayType(anioAnt,mesAnt,diaAnt);
+if(tipo.type==='lectivo') return {y:anioAnt,m:mesAnt,d:diaAnt};
+diaAnt--;intentos++;
+}
+return null;
 }
 
 async function hashSHA256(texto){
@@ -859,17 +867,17 @@ document.getElementById('loginPassword').value='';
 document.getElementById('loginPassword').focus();
 }
 }
-function cerrarSesionManual() {
-  sessionStorage.removeItem('ca_sesionActiva');
-  sessionStorage.removeItem('ca_usuarioActual');
-  usuarioActual = null;
-  clearTimeout(inactivityTimer);
-  clearInterval(inactivityCountdown);
-  document.getElementById('loginOverlay').style.display = 'flex';
-  document.getElementById('loginUsuario').value = '';
-  document.getElementById('loginPassword').value = '';
-  document.getElementById('loginUsuario').focus();
-  mostrarAlerta('info', '🚪 Sesión cerrada correctamente');
+function cerrarSesionManual(){
+sessionStorage.removeItem('ca_sesionActiva');
+sessionStorage.removeItem('ca_usuarioActual');
+usuarioActual=null;
+clearTimeout(inactivityTimer);
+clearInterval(inactivityCountdown);
+document.getElementById('loginOverlay').style.display='flex';
+document.getElementById('loginUsuario').value='';
+document.getElementById('loginPassword').value='';
+document.getElementById('loginUsuario').focus();
+mostrarAlerta('info','🚪 Sesión cerrada correctamente');
 }
 function resetInactivityTimer(){
 clearTimeout(inactivityTimer);
@@ -941,7 +949,7 @@ const mensajeError=document.getElementById('mensajeErrorClave');
 if(!claveActual){mensajeError.textContent='❌ Debes introducir la contraseña actual';mensajeError.style.display='block';return;}
 if(!nuevaClave){mensajeError.textContent='❌ Debes introducir una nueva contraseña';mensajeError.style.display='block';return;}
 const errores=validarComplejidadClave(nuevaClave);
-if(errores.length>0){mensajeError.innerHTML=' La contraseña no cumple los requisitos:<br>• '+errores.join('<br>• ');mensajeError.style.display='block';return;}
+if(errores.length>0){mensajeError.innerHTML='❌ La contraseña no cumple los requisitos:<br>• '+errores.join('<br>• ');mensajeError.style.display='block';return;}
 if(nuevaClave!==confirmarClave){mensajeError.textContent='❌ Las contraseñas no coinciden';mensajeError.style.display='block';return;}
 const claveActualHash=await obtenerClaveUsuario(usuarioActual.id);
 const claveIntroducidaHash=await hashSHA256(claveActual);
@@ -1046,7 +1054,7 @@ const backupFilename=document.getElementById('backupFilename');
 if(backupFilename){const cursoAnio=INICIO_CURSO.y+'/'+String(FIN_CURSO.y).slice(-2);backupFilename.textContent='backup_curso_'+cursoAnio.replace('/','_')+'.html';}
 }
 function inicializarApp(){
-document.getElementById('todayDate').textContent=' Hoy: '+DIA_HOY+'/'+pad(MES_HOY)+'/'+ANIO_HOY;
+document.getElementById('todayDate').textContent='📅 Hoy: '+DIA_HOY+'/'+pad(MES_HOY)+'/'+ANIO_HOY;
 const periodos=generarPeriodos();
 const erMes=document.getElementById('erMes');erMes.innerHTML='';
 periodos.forEach(function(p){const o=document.createElement('option');o.value=p.m;o.textContent=p.label;erMes.appendChild(o);});
@@ -1122,8 +1130,8 @@ function renderMaquinas(){
 const R=getAll();const tb=document.getElementById('t2');tb.innerHTML='';
 const sm={};ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
 R.forEach(r=>{
-  if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++;
-  if(esPresente(r.estado) && r.estado!=='presente') sm[r.alumno].presente++;
+if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++;
+if(esPresente(r.estado)&&r.estado!=='presente') sm[r.alumno].presente++;
 });
 let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
 ALUMNOS.forEach(m=>{
@@ -1143,10 +1151,10 @@ if(fPeriodo!=='ALL'){const parts=fPeriodo.split('-');filt=filt.filter(r=>r.y===p
 if(falumno!=='TODOS') filt=filt.filter(r=>r.alumno===falumno);
 const ag={};
 filt.forEach(r=>{
-  const k=getPeriodoLabel(r.y,r.m);
-  if(!ag[k]) ag[k]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};
-  if(ag[k][r.estado]!==undefined) ag[k][r.estado]++;
-  if(esPresente(r.estado) && r.estado!=='presente') ag[k].presente++;
+const k=getPeriodoLabel(r.y,r.m);
+if(!ag[k]) ag[k]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};
+if(ag[k][r.estado]!==undefined) ag[k][r.estado]++;
+if(esPresente(r.estado)&&r.estado!=='presente') ag[k].presente++;
 });
 const ks=Object.keys(ag).sort((a,b)=>{const partsA=a.split(' '),monthA=MESES_NOMBRES.indexOf(partsA[0]),yearA=parseInt(partsA[1]);const partsB=b.split(' '),monthB=MESES_NOMBRES.indexOf(partsB[0]),yearB=parseInt(partsB[1]);if(yearA!==yearB) return yearA-yearB;return monthA-monthB;});
 let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};
@@ -1157,7 +1165,7 @@ tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'<
 function abrirDetalleAlumno(alumno){
 alumnoDetalleActual=alumno;
 const registros=getAll().filter(r=>r.alumno===alumno).sort((a,b)=>{if(a.y!==b.y) return a.y-b.y;if(a.m!==b.m) return a.m-b.m;return a.d-b.d;});
-document.getElementById('modalDetalleAlumnoTitulo').textContent=' Detalle de: '+alumno;
+document.getElementById('modalDetalleAlumnoTitulo').textContent='📋 Detalle de: '+alumno;
 const ausencias=registros.filter(r=>r.estado==='ausente');
 const entradasTarde=registros.filter(r=>r.estado==='entrada_tarde');
 const salidasPronto=registros.filter(r=>r.estado==='salida_pronto');
@@ -1196,8 +1204,8 @@ html+=generarTabla(ausencias,'Ausencias','❌');
 html+=generarTabla(entradasTarde,'Entradas tarde','');
 html+=generarTabla(salidasPronto,'Salidas pronto','📤');
 html+=generarTabla(citasMedicas,'Citas médicas','🏥');
-html+=generarTabla(conciliaciones,'Conciliaciones','👨‍👩‍👧');
-html+=generarTabla(bajas,'Bajas','');
+html+=generarTabla(conciliaciones,'Conciliaciones','‍👩‍👧');
+html+=generarTabla(bajas,'Bajas','🤒');
 if(registros.filter(r=>!esPresente(r.estado)).length===0){
 html='<div style="padding:40px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px">✅</p><p style="font-size:16px">Este alumno no tiene incidencias registradas</p></div>';
 }
@@ -1241,16 +1249,16 @@ if(r.horaUnica) horario='🕐 '+r.horaUnica;
 else if(r.horaSalida&&r.horaLlegada) horario='🕐 '+r.horaSalida+' - '+r.horaLlegada;
 let detalles='';
 if(r.justificada) detalles+='✓ Justificada ';
-if(r.causa) detalles+='📝 '+r.causa;
+if(r.causa) detalles+=' '+r.causa;
 t+='<tr><td><strong>'+fecha+'</strong></td><td>'+diaSemana+'</td><td>'+horario+'</td><td>'+(detalles||'-')+'</td></tr>';
 });
 t+='</tbody></table>';return t;
 }
 html+=genTablaPDF(ausencias,'Ausencias','❌','#991b1b');
-html+=genTablaPDF(entradasTarde,'Entradas tarde','⏰','#92400e');
+html+=genTablaPDF(entradasTarde,'Entradas tarde','','#92400e');
 html+=genTablaPDF(salidasPronto,'Salidas pronto','📤','#9d174d');
 html+=genTablaPDF(citasMedicas,'Citas médicas','🏥','#1e40af');
-html+=genTablaPDF(conciliaciones,'Conciliaciones','‍👩‍👧','#3730a3');
+html+=genTablaPDF(conciliaciones,'Conciliaciones','👨‍👩‍👧','#3730a3');
 html+=genTablaPDF(bajas,'Bajas','🤒','#991b1b');
 html+='</div>';
 const element=document.createElement('div');element.innerHTML=html;document.body.appendChild(element);
@@ -1281,7 +1289,7 @@ function crearPDF(tipo){
 mostrarAlerta('info','Generando PDF...');
 if(tipo==='maquinas'){
 const R=getAll();let detallesHTML='';
-const iconos={presente:'✅',ausente:'❌',entrada_tarde:'',salida_pronto:'📤',cita_medica:'🏥',conciliacion:'‍👩‍👧',baja:'🤒'};
+const iconos={presente:'✅',ausente:'',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'',conciliacion:'👨‍👩‍👧',baja:'🤒'};
 ['presente','ausente','entrada_tarde','salida_pronto','cita_medica','conciliacion','baja'].forEach(estado=>{detallesHTML+=generarListaDetalladaPeriodo(R,estado,iconos[estado]);});
 let html='<div class="pdf-content"><h1>📚 Control de Alumnos</h1><h2>Total por Alumno</h2><p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>';
 html+=document.getElementById('tablaMaquinasTbl').outerHTML;
@@ -1297,12 +1305,12 @@ if(fPeriodo!=='ALL'){const parts=fPeriodo.split('-');filt=filt.filter(r=>r.y===p
 if(falumno!=='TODOS') filt=filt.filter(r=>r.alumno===falumno);
 let detallesHTML='';const periodosData={};
 filt.forEach(r=>{const k=getPeriodoLabel(r.y,r.m);if(!periodosData[k]) periodosData[k]=[];periodosData[k].push(r);});
-const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'🏥',conciliacion:'👨‍‍👧',baja:''};
+const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'',cita_medica:'🏥',conciliacion:'👨‍👩👧',baja:'🤒'};
 Object.keys(periodosData).sort().forEach(periodo=>{detallesHTML+='<h3 style="margin-top:20px;color:#1e3a8a;border-bottom:2px solid #e5e7eb;padding-bottom:8px">📅 '+periodo+'</h3>';['presente','ausente','entrada_tarde','salida_pronto','cita_medica','conciliacion','baja'].forEach(estado=>{detallesHTML+=generarListaDetalladaPeriodo(periodosData[periodo],estado,iconos[estado]);});});
 let html='<div class="pdf-content"><h1>📚 Control de Alumnos</h1><h2>Resumen por Periodo</h2><p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>';
 if(falumno!=='TODOS') html+='<p>Alumno: <strong>'+falumno+'</strong></p>';
 html+=document.getElementById('tablaTiempoTbl').outerHTML;
-if(detallesHTML){html+='<h3>📋 Detalle</h3>'+detallesHTML;}
+if(detallesHTML){html+='<h3> Detalle</h3>'+detallesHTML;}
 html+='</div>';
 const element=document.createElement('div');element.innerHTML=html;document.body.appendChild(element);
 const opt={margin:10,filename:'resumen_periodo.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
@@ -1353,7 +1361,7 @@ if(esDiaFuturo) html+='<div class="aviso-futuro">⚠️ Día futuro. Solo se per
 html+='<div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">';
 html+='<button class="btn b6" onclick="copiarDiaAnterior()" style="padding:8px 14px;font-size:12px">📋 Copiar día anterior</button>';
 html+='<button class="btn b2" onclick="marcarTodosPresentes()" style="padding:8px 14px;font-size:12px">✅ Todos presentes</button>';
-html+='<button class="btn b4" onclick="limpiarTodos()" style="padding:8px 14px;font-size:12px">🔄 Limpiar</button>';
+html+='<button class="btn b4" onclick="limpiarTodos()" style="padding:8px 14px;font-size:12px"> Limpiar</button>';
 html+='</div>';
 html+='<div style="margin-bottom:16px;padding:12px;background:#fef3c7;border-radius:6px;border-left:4px solid #f59e0b">';
 html+='<label style="display:block;font-size:13px;font-weight:600;color:#92400e;margin-bottom:6px">📝 Notas del día:</label>';
@@ -1364,7 +1372,16 @@ html+='<strong>'+registrosDia.length+'</strong> de <strong>'+ALUMNOS.length+'</s
 html+='</div>';
 ALUMNOS.forEach(alumno=>{
 const registro=registrosDia.find(r=>r.alumno===alumno);
-const estadoActual=registro?registro.estado:'';
+let estadoActual=registro?registro.estado:'';
+// ✅ AUTO-PRESENTE para días pasados sin registro
+if(!registro&&!esDiaFuturo){
+const diaAnt=buscarUltimoDiaLectivoAnterior(anioSeleccionado,mesSeleccionado,dia);
+if(diaAnt){
+const registrosDiaAnt=getAll().filter(r=>r.y===diaAnt.y&&r.m===diaAnt.m&&r.d===diaAnt.d);
+const regAnt=registrosDiaAnt.find(r=>r.alumno===alumno);
+if(!regAnt) estadoActual='presente';
+}
+}
 const horaUnica=registro?registro.horaUnica||'':'';
 const horaSalida=registro?registro.horaSalida||'':'';
 const horaLlegada=registro?registro.horaLlegada||'':'';
@@ -1523,17 +1540,17 @@ else if(dayInfo.type==='vacation') e.classList.add('status-vacation');
 else if(dayInfo.type==='weekend') e.classList.add('status-weekend');
 else if(dayInfo.type==='before-course'||dayInfo.type==='after-course') e.classList.add('status-weekend');
 else if(counts){
-  const totalPresentesReal = counts.presente + counts.entrada_tarde + counts.salida_pronto + counts.cita_medica + counts.conciliacion;
-  if(counts.ausente>0 || counts.baja>0) e.classList.add('status-absent');
-  else if(counts.entrada_tarde>0 || counts.salida_pronto>0) e.classList.add('status-late');
-  else if(counts.cita_medica>0 || counts.conciliacion>0) e.classList.add('status-mixed');
-  else if(totalPresentesReal>0) e.classList.add('status-all-present');
+const totalPresentesReal=counts.presente+counts.entrada_tarde+counts.salida_pronto+counts.cita_medica+counts.conciliacion;
+if(counts.ausente>0||counts.baja>0) e.classList.add('status-absent');
+else if(counts.entrada_tarde>0||counts.salida_pronto>0) e.classList.add('status-late');
+else if(counts.cita_medica>0||counts.conciliacion>0) e.classList.add('status-mixed');
+else if(totalPresentesReal>0) e.classList.add('status-all-present');
 }
 let html='<div class="day-num">'+d+'</div>';
 if(dayInfo.type==='holiday'||dayInfo.type==='vacation') html+='<div class="day-info">'+dayInfo.label+'</div>';
 else if(dayInfo.type==='weekend') html+='<div class="day-info">Fin de semana</div>';
 else if(dayInfo.type==='before-course'||dayInfo.type==='after-course'){html+='<div class="day-info">Fuera del curso</div>';e.style.opacity='0.4';}
-else if(counts){const stats=[];const totalPresentesReal = counts.presente + counts.entrada_tarde + counts.salida_pronto + counts.cita_medica + counts.conciliacion;if(totalPresentesReal>0) stats.push('✓'+totalPresentesReal);if(counts.ausente>0) stats.push('✗'+counts.ausente);if(counts.entrada_tarde>0) stats.push('⏰'+counts.entrada_tarde);if(counts.salida_pronto>0) stats.push('📤'+counts.salida_pronto);if(counts.cita_medica>0) stats.push('🏥'+counts.cita_medica);if(counts.conciliacion>0) stats.push('👨‍👩‍'+counts.conciliacion);if(counts.baja>0) stats.push('🤒'+counts.baja);html+='<div class="day-stats">'+stats.join(' ')+'</div>';}
+else if(counts){const stats=[];const totalPresentesReal=counts.presente+counts.entrada_tarde+counts.salida_pronto+counts.cita_medica+counts.conciliacion;if(totalPresentesReal>0) stats.push('✓'+totalPresentesReal);if(counts.ausente>0) stats.push('✗'+counts.ausente);if(counts.entrada_tarde>0) stats.push('⏰'+counts.entrada_tarde);if(counts.salida_pronto>0) stats.push('📤'+counts.salida_pronto);if(counts.cita_medica>0) stats.push('🏥'+counts.cita_medica);if(counts.conciliacion>0) stats.push('👨👩‍👧'+counts.conciliacion);if(counts.baja>0) stats.push('🤒'+counts.baja);html+='<div class="day-stats">'+stats.join(' ')+'</div>';}
 else html+='<div class="day-info">Sin registros</div>';
 e.innerHTML=html;
 if(dayInfo.type==='lectivo'){e.style.cursor='pointer';e.onclick=(function(dia){return function(){abrirModalDetalle(y,m,dia);};})(d);}
@@ -1552,7 +1569,7 @@ if(registros.length===0){html+='<div style="padding:20px;text-align:center;color
 else{
 const counts={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
 registros.forEach(r=>{if(counts[r.estado]!==undefined) counts[r.estado]++;});
-const totalPresentesReal = counts.presente + counts.entrada_tarde + counts.salida_pronto + counts.cita_medica + counts.conciliacion;
+const totalPresentesReal=counts.presente+counts.entrada_tarde+counts.salida_pronto+counts.cita_medica+counts.conciliacion;
 const porcentajeAsistencia=Math.round((totalPresentesReal/ALUMNOS.length)*100);
 html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:18px">';
 html+='<div style="padding:10px;background:#dcfce7;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#166534">'+totalPresentesReal+'</div><div style="font-size:11px;color:#166534">Presentes</div></div>';
@@ -1642,14 +1659,14 @@ const totalSalidasPronto=R.filter(r=>r.estado==='salida_pronto').length;
 const totalCitasMedicas=R.filter(r=>r.estado==='cita_medica').length;
 const totalConciliaciones=R.filter(r=>r.estado==='conciliacion').length;
 const totalBajas=R.filter(r=>r.estado==='baja').length;
-let html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Backup Control de Alumnos - Curso ${cursoAnio}</title><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',system-ui,sans-serif;background:#f5f7fa;color:#1f2937;padding:20px;line-height:1.6}.wrap{max-width:1200px;margin:0 auto;background:#fff;padding:40px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1)}h1{color:#1e3a8a;margin-bottom:10px;font-size:28px}h2{color:#1e3a8a;margin:30px 0 15px 0;font-size:22px;border-bottom:2px solid #e5e7eb;padding-bottom:8px}h3{color:#374151;margin:20px 0 10px 0;font-size:18px}.info-curso{background:linear-gradient(135deg,#dbeafe,#bfdbfe);padding:20px;border-radius:8px;margin-bottom:30px}.info-curso p{margin:5px 0;font-size:14px}.info-curso strong{color:#1e40af}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0}.stat-box{background:#f9fafb;padding:15px;border-radius:8px;text-align:center;border-left:4px solid #3b82f6}.stat-box .num{font-size:24px;font-weight:700;color:#1e3a8a}.stat-box .lbl{font-size:12px;color:#6b7280;margin-top:4px}table{width:100%;border-collapse:collapse;margin:15px 0;font-size:13px}th{background:#f3f4f6;padding:10px;text-align:left;font-weight:600;color:#374151;border-bottom:2px solid #d1d5db}td{padding:8px 10px;border-bottom:1px solid #e5e7eb}tr:hover{background:#f9fafb}.alumno-card{background:#f9fafb;padding:20px;border-radius:8px;margin:15px 0;border-left:4px solid #3b82f6}.alumno-card h3{margin-top:0;color:#1e3a8a}.footer{margin-top:40px;padding-top:20px;border-top:2px solid #e5e7eb;text-align:center;color:#6b7280;font-size:12px}@media print{body{background:#fff;padding:0}.wrap{box-shadow:none;padding:20px}}</style></head><body><div class="wrap"><h1>📚 Control de Alumnos - Backup</h1><div class="info-curso"><p><strong>Curso:</strong> ${inicioStr} - ${finStr}</p><p><strong>Fecha de generación:</strong> ${new Date().toLocaleDateString('es-ES')}</p><p><strong>Total de alumnos:</strong> ${ALUMNOS.length}</p></div><h2>📊 Resumen General</h2><div class="stats-grid"><div class="stat-box"><div class="num">${totalPresentes}</div><div class="lbl">Presentes</div></div><div class="stat-box"><div class="num">${totalAusentes}</div><div class="lbl">Ausencias</div></div><div class="stat-box"><div class="num">${totalEntradasTarde}</div><div class="lbl">Entradas Tarde</div></div><div class="stat-box"><div class="num">${totalSalidasPronto}</div><div class="lbl">Salidas Pronto</div></div><div class="stat-box"><div class="num">${totalCitasMedicas}</div><div class="lbl">Citas Médicas</div></div><div class="stat-box"><div class="num">${totalConciliaciones}</div><div class="lbl">Conciliaciones</div></div><div class="stat-box"><div class="num">${totalBajas}</div><div class="lbl">Bajas</div></div></div><h2> Lista de Alumnos</h2><table><thead><tr><th>Alumno</th><th>Presentes</th><th>Ausencias</th><th>Entradas Tarde</th><th>Salidas Pronto</th><th>Citas Médicas</th><th>Conciliaciones</th><th>Bajas</th></tr></thead><tbody>`;
+let html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Backup Control de Alumnos - Curso ${cursoAnio}</title><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',system-ui,sans-serif;background:#f5f7fa;color:#1f2937;padding:20px;line-height:1.6}.wrap{max-width:1200px;margin:0 auto;background:#fff;padding:40px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1)}h1{color:#1e3a8a;margin-bottom:10px;font-size:28px}h2{color:#1e3a8a;margin:30px 0 15px 0;font-size:22px;border-bottom:2px solid #e5e7eb;padding-bottom:8px}h3{color:#374151;margin:20px 0 10px 0;font-size:18px}.info-curso{background:linear-gradient(135deg,#dbeafe,#bfdbfe);padding:20px;border-radius:8px;margin-bottom:30px}.info-curso p{margin:5px 0;font-size:14px}.info-curso strong{color:#1e40af}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0}.stat-box{background:#f9fafb;padding:15px;border-radius:8px;text-align:center;border-left:4px solid #3b82f6}.stat-box .num{font-size:24px;font-weight:700;color:#1e3a8a}.stat-box .lbl{font-size:12px;color:#6b7280;margin-top:4px}table{width:100%;border-collapse:collapse;margin:15px 0;font-size:13px}th{background:#f3f4f6;padding:10px;text-align:left;font-weight:600;color:#374151;border-bottom:2px solid #d1d5db}td{padding:8px 10px;border-bottom:1px solid #e5e7eb}tr:hover{background:#f9fafb}.alumno-card{background:#f9fafb;padding:20px;border-radius:8px;margin:15px 0;border-left:4px solid #3b82f6}.alumno-card h3{margin-top:0;color:#1e3a8a}.footer{margin-top:40px;padding-top:20px;border-top:2px solid #e5e7eb;text-align:center;color:#6b7280;font-size:12px}@media print{body{background:#fff;padding:0}.wrap{box-shadow:none;padding:20px}}</style></head><body><div class="wrap"><h1>📚 Control de Alumnos - Backup</h1><div class="info-curso"><p><strong>Curso:</strong> ${inicioStr} - ${finStr}</p><p><strong>Fecha de generación:</strong> ${new Date().toLocaleDateString('es-ES')}</p><p><strong>Total de alumnos:</strong> ${ALUMNOS.length}</p></div><h2>📊 Resumen General</h2><div class="stats-grid"><div class="stat-box"><div class="num">${totalPresentes}</div><div class="lbl">Presentes</div></div><div class="stat-box"><div class="num">${totalAusentes}</div><div class="lbl">Ausencias</div></div><div class="stat-box"><div class="num">${totalEntradasTarde}</div><div class="lbl">Entradas Tarde</div></div><div class="stat-box"><div class="num">${totalSalidasPronto}</div><div class="lbl">Salidas Pronto</div></div><div class="stat-box"><div class="num">${totalCitasMedicas}</div><div class="lbl">Citas Médicas</div></div><div class="stat-box"><div class="num">${totalConciliaciones}</div><div class="lbl">Conciliaciones</div></div><div class="stat-box"><div class="num">${totalBajas}</div><div class="lbl">Bajas</div></div></div><h2>👥 Lista de Alumnos</h2><table><thead><tr><th>Alumno</th><th>Presentes</th><th>Ausencias</th><th>Entradas Tarde</th><th>Salidas Pronto</th><th>Citas Médicas</th><th>Conciliaciones</th><th>Bajas</th></tr></thead><tbody>`;
 const sm={};ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
-R.forEach(r=>{if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++;if(esPresente(r.estado) && r.estado!=='presente') sm[r.alumno].presente++;});
+R.forEach(r=>{if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++;if(esPresente(r.estado)&&r.estado!=='presente') sm[r.alumno].presente++;});
 ALUMNOS.forEach(alumno=>{const s=sm[alumno];html+=`<tr><td><strong>${alumno}</strong></td><td>${s.presente}</td><td>${s.ausente}</td><td>${s.entrada_tarde}</td><td>${s.salida_pronto}</td><td>${s.cita_medica}</td><td>${s.conciliacion}</td><td>${s.baja}</td></tr>`;});
 html+=`</tbody></table><h2>📅 Calendario Detallado</h2>`;
 const periodos=generarPeriodos();
 periodos.forEach(periodo=>{const registrosPeriodo=R.filter(r=>r.y===periodo.y&&r.m===periodo.m);html+=`<h3>${periodo.label}</h3><table><thead><tr><th>Fecha</th><th>Día</th>`;ALUMNOS.forEach(a=>{html+=`<th>${a.split(',')[0]}</th>`;});html+=`<th>Nota</th></tr></thead><tbody>`;const last=new Date(periodo.y,periodo.m,0);for(let d=1;d<=last.getDate();d++){const fecha=new Date(periodo.y,periodo.m-1,d);const diaSemana=DIAS_SEMANA[fecha.getDay()];const fechaStr=pad(d)+'/'+pad(periodo.m)+'/'+periodo.y;const claveNota=periodo.y+'-'+periodo.m+'-'+d;const nota=notasPorDia[claveNota]||'';html+=`<tr><td>${fechaStr}</td><td>${diaSemana}</td>`;ALUMNOS.forEach(alumno=>{const reg=registrosPeriodo.find(r=>r.d===d&&r.alumno===alumno);if(reg){let estadoTxt=LABELS_ESTADOS[reg.estado]||reg.estado;if(reg.justificada) estadoTxt+=' ✓';if(reg.causa) estadoTxt+=' ('+reg.causa+')';html+=`<td>${estadoTxt}</td>`;}else{html+=`<td style="color:#9ca3af">-</td>`;}});html+=`<td style="font-size:11px;color:#92400e">${nota}</td></tr>`;}html+=`</tbody></table>`;});
-if(FESTIVOS.length>0){html+=`<h2>🎉 Festivos</h2><table><thead><tr><th>Fecha</th><th>Nombre</th></tr></thead><tbody>`;FESTIVOS.forEach(f=>{html+=`<tr><td>${pad(f.d)}/${pad(f.m)}/${f.y}</td><td>${f.nombre}</td></tr>`;});html+=`</tbody></table>`;}
+if(FESTIVOS.length>0){html+=`<h2> Festivos</h2><table><thead><tr><th>Fecha</th><th>Nombre</th></tr></thead><tbody>`;FESTIVOS.forEach(f=>{html+=`<tr><td>${pad(f.d)}/${pad(f.m)}/${f.y}</td><td>${f.nombre}</td></tr>`;});html+=`</tbody></table>`;}
 if(VACACIONES.length>0){html+=`<h2>🏖️ Vacaciones</h2><table><thead><tr><th>Fecha</th></tr></thead><tbody>`;VACACIONES.forEach(v=>{html+=`<tr><td>${pad(v.d)}/${pad(v.m)}/${v.y}</td></tr>`;});html+=`</tbody></table>`;}
 html+=`<h2>📈 Resumen Final por Alumno</h2>`;
 ALUMNOS.forEach(alumno=>{const s=sm[alumno];const totalRegistros=Object.values(s).reduce((a,b)=>a+b,0);const porcentajeAsistencia=totalRegistros>0?Math.round((s.presente/totalRegistros)*100):0;const ausenciasAlumno=R.filter(r=>r.alumno===alumno&&r.estado==='ausente');const justificadas=ausenciasAlumno.filter(r=>r.justificada).length;const noJustificadas=ausenciasAlumno.length-justificadas;html+=`<div class="alumno-card"><h3>${alumno}</h3><div class="stats-grid"><div class="stat-box"><div class="num">${s.presente}</div><div class="lbl">Presentes</div></div><div class="stat-box"><div class="num">${s.ausente}</div><div class="lbl">Ausencias (${justificadas}✓/${noJustificadas}✗)</div></div><div class="stat-box"><div class="num">${s.entrada_tarde}</div><div class="lbl">Entradas Tarde</div></div><div class="stat-box"><div class="num">${s.salida_pronto}</div><div class="lbl">Salidas Pronto</div></div><div class="stat-box"><div class="num">${s.cita_medica}</div><div class="lbl">Citas Médicas</div></div><div class="stat-box"><div class="num">${s.conciliacion}</div><div class="lbl">Conciliaciones</div></div><div class="stat-box"><div class="num">${s.baja}</div><div class="lbl">Bajas</div></div></div><p style="margin-top:10px"><strong>Total registros:</strong> ${totalRegistros} | <strong>Asistencia:</strong> ${porcentajeAsistencia}%</p></div>`;});
