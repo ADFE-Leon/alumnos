@@ -307,8 +307,10 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 .resumen-dia-card .dia-semana{font-size:10px;color:#6b7280;text-transform:uppercase}
 .resumen-dia-card .dia-presentes{font-size:11px;color:#166534;font-weight:600}
 .resumen-dia-card .dia-ausentes{font-size:11px;color:#dc2626;font-weight:600}
+.resumen-dia-card .dia-no-lectivo{font-size:10px;color:#9ca3af;font-style:italic;margin-top:4px}
 .resumen-dia-card.fin-de-semana{background:#f9fafb;opacity:0.7}
 .resumen-dia-card.festivo{background:#faf5ff;border-color:#d8b4fe}
+.resumen-dia-card.vacaciones{background:#fff7ed;border-color:#fdba74;opacity:0.8}
 
 @media print{body *{visibility:hidden}.print-area,.print-area *{visibility:visible}.print-area{position:absolute;left:0;top:0;display:block;width:100%}.no-print{display:none!important}}
 @media(max-width:768px){
@@ -340,7 +342,7 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 <body>
 <div class="login-overlay" id="loginOverlay">
 <div class="login-box">
-<h1>🔐 Control de Alumnos</h1>
+<h1> Control de Alumnos</h1>
 <p class="subtitle">Introduce tus credenciales</p>
 <div class="error-msg" id="loginError"></div>
 <div class="input-group">
@@ -353,7 +355,7 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 </div>
 <button class="btn-login" onclick="verificarLogin()">🔓 ENTRAR</button>
 <div class="info">
-<strong> Información:</strong><br>
+<strong>💡 Información:</strong><br>
 Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
@@ -468,9 +470,9 @@ Si olvidaste la contraseña, contacta con el administrador.
 <div id="p4" class="pnl" style="box-shadow:none;border:none;padding:0">
 <div class="informe-container">
 <div class="informe-header">
-<h2>️ Calendario de Control</h2>
+<h2>🗓️ Calendario de Control</h2>
 <div class="informe-botones">
-<button class="btn b4" onclick="imprimir('calendario')">🖨️ Imprimir</button>
+<button class="btn b4" onclick="imprimir('calendario')">️ Imprimir</button>
 <button class="btn b7" onclick="crearPDF('calendario')">📄 Crear PDF</button>
 </div>
 </div>
@@ -553,7 +555,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 <div id="panelAlumnos" class="config-panel">
 <button class="config-volver" onclick="volverDashboardConfig()">← Volver</button>
 <div class="config-section">
-<h3> Gestión de Alumnos</h3>
+<h3>👥 Gestión de Alumnos</h3>
 <div class="config-form">
 <div class="filter-group"><label>Nombre del alumno</label><input type="text" id="nuevoAlumno" placeholder="Ej: GARCÍA LÓPEZ, JUAN"></div>
 <button class="btn b2" onclick="agregarAlumno()">➕ Añadir</button>
@@ -564,7 +566,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 <div id="panelFestivos" class="config-panel">
 <button class="config-volver" onclick="volverDashboardConfig()">← Volver</button>
 <div class="config-section">
-<h3> Gestión de Festivos</h3>
+<h3>🎉 Gestión de Festivos</h3>
 <div class="config-form">
 <div class="filter-group"><label>Día</label><select id="nuevoFestivoDia"></select></div>
 <div class="filter-group"><label>Mes</label><select id="nuevoFestivoMes"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
@@ -590,7 +592,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 <div class="rango-box">
-<h4>📅 Fecha final</h4>
+<h4> Fecha final</h4>
 <div class="rango-inputs">
 <div class="filter-group"><label>Día</label><select id="nuevaVacacionDiaFin"></select></div>
 <div class="filter-group"><label>Mes</label><select id="nuevaVacacionMesFin"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
@@ -598,7 +600,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 </div>
-<button class="btn b2" onclick="agregarVacacion()">➕ Añadir Rango</button>
+<button class="btn b2" onclick="agregarVacacion()"> Añadir Rango</button>
 <div class="config-list" id="listaVacaciones"></div>
 </div>
 </div>
@@ -627,7 +629,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 <p class="backup-info">Se guardará como: <strong id="backupFilename">backup_curso_2026_27.html</strong></p>
 </div>
 <div class="backup-section" style="background:linear-gradient(135deg,#f5f3ff,#ede9fe);border-color:#a78bfa" id="seccionCambiarClave">
-<h3> Cambiar contraseña</h3>
+<h3>🔑 Cambiar contraseña</h3>
 <p>Modifica tu contraseña de acceso. Tu número de usuario no puede cambiarse.</p>
 <button class="btn b6" onclick="abrirModalCambioClave()" style="padding:12px 28px;font-size:15px">🔐 Cambiar contraseña</button>
 </div>
@@ -676,8 +678,8 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 <div id="modalDetalleAlumnoContenido" class="detalle-alumno"></div>
 <div class="modal-footer">
-<button class="btn b4" onclick="imprimirDetalleAlumno()">🖨️ Imprimir</button>
-<button class="btn b7" onclick="crearPDFDetalleAlumno()">📄 PDF</button>
+<button class="btn b4" onclick="imprimirDetalleAlumno()">️ Imprimir</button>
+<button class="btn b7" onclick="crearPDFDetalleAlumno()"> PDF</button>
 <button class="btn b1" onclick="cerrarModalDetalleAlumno()">Cerrar</button>
 </div>
 </div>
@@ -734,8 +736,8 @@ Si olvidaste la contraseña, contacta con el administrador.
 <strong style="color:#0369a1">Requisitos:</strong>
 <ul style="margin:8px 0 0 20px;color:#64748b">
 <li id="req-longitud">⚪ Mínimo 6 caracteres</li>
-<li id="req-mayus">⚪ Al menos 1 mayúscula</li>
-<li id="req-minus"> Al menos 1 minúscula</li>
+<li id="req-mayus"> Al menos 1 mayúscula</li>
+<li id="req-minus">⚪ Al menos 1 minúscula</li>
 <li id="req-numero">⚪ Al menos 1 número</li>
 <li id="req-especial">⚪ Al menos 1 carácter especial</li>
 </ul>
@@ -748,7 +750,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 <div class="modal-footer">
 <button class="btn b4" onclick="cerrarModalCambioClave()">Cancelar</button>
-<button class="btn b6" onclick="cambiarClave()">🔐 Cambiar</button>
+<button class="btn b6" onclick="cambiarClave()"> Cambiar</button>
 </div>
 </div>
 </div>
@@ -818,12 +820,10 @@ const DIA_HOY=FECHA_HOY.getDate();
 const MES_HOY=FECHA_HOY.getMonth()+1;
 const ANIO_HOY=FECHA_HOY.getFullYear();
 
-// FUNCIÓN AUXILIAR: ¿Es presente? (incluye incidencias)
 function esPresente(estado){
 return estado==='presente'||estado==='entrada_tarde'||estado==='salida_pronto'||estado==='cita_medica'||estado==='conciliacion';
 }
 
-// Buscar último día lectivo anterior
 function buscarUltimoDiaLectivoAnterior(y,m,d){
 let diaAnt=d-1;let mesAnt=m;let anioAnt=y;let intentos=0;
 while(intentos<400){
@@ -934,7 +934,7 @@ document.getElementById('loginOverlay').style.display='flex';
 document.getElementById('loginUsuario').value='';
 document.getElementById('loginPassword').value='';
 document.getElementById('loginUsuario').focus();
-mostrarAlerta('info','🚪 Sesión cerrada correctamente');
+mostrarAlerta('info',' Sesión cerrada correctamente');
 }
 function resetInactivityTimer(){
 clearTimeout(inactivityTimer);
@@ -1051,7 +1051,7 @@ for(let y=ANIO_MIN_DESPLEGABLE;y<=ANIO_MAX_DESPLEGABLE;y++){const o=document.cre
 }
 function mostrarAlerta(tipo,mensaje,duracion=5000){
 const cont=document.getElementById('alertContainer');
-const iconos={info:'ℹ️',error:'',success:'✅',warning:'⚠️'};
+const iconos={info:'ℹ️',error:'❌',success:'✅',warning:'⚠️'};
 const alertDiv=document.createElement('div');
 alertDiv.className='alert alert-'+tipo;
 alertDiv.innerHTML='<span style="font-size:18px">'+(iconos[tipo]||'')+'</span><span>'+mensaje+'</span>';
@@ -1203,9 +1203,7 @@ tb.innerHTML+='<tr><td><a class="alumno-link" onclick="abrirDetalleAlumno(\''+m.
 tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.cita_medica+'</td><td class="r">'+totales.conciliacion+'</td><td class="r">'+totales.baja+'</td></tr>';
 }
 function renderTiempo(){
-const R=getAll();
-const fPeriodo=document.getElementById('fPeriodo').value;
-const falumno=document.getElementById('fMaq').value;
+const R=getAll();const fPeriodo=document.getElementById('fPeriodo').value;const falumno=document.getElementById('fMaq').value;
 const tb=document.getElementById('t3');
 const tbDetalle=document.getElementById('t3Detalle');
 const tablaTiempoContainer=document.getElementById('tablaTiempoContainer');
@@ -1285,21 +1283,21 @@ const fechaObj=new Date(r.y,r.m-1,r.d);
 const diaSemana=DIAS_SEMANA[fechaObj.getDay()];
 let horario='-';
 if(r.horaUnica) horario='🕐 '+r.horaUnica;
-else if(r.horaSalida&&r.horaLlegada) horario='🕐 '+r.horaSalida+' - '+r.horaLlegada;
+else if(r.horaSalida&&r.horaLlegada) horario=' '+r.horaSalida+' - '+r.horaLlegada;
 let detalles='';
 if(r.justificada) detalles='<span style="color:#166534;font-weight:600">✓ Justificada</span>';
 else if(r.estado==='ausente') detalles='<span style="color:#dc2626">✗ No justificada</span>';
-if(r.causa) detalles+=(detalles?'<br>':'')+'<span class="causa-detalle"> '+r.causa+'</span>';
+if(r.causa) detalles+=(detalles?'<br>':'')+'<span class="causa-detalle">📝 '+r.causa+'</span>';
 t+='<tr><td><strong>'+fecha+'</strong></td><td>'+diaSemana+'</td><td class="hora-detalle">'+horario+'</td><td>'+(detalles||'-')+'</td></tr>';
 });
 t+='</tbody></table>';return t;
 }
 html+=generarTabla(ausencias,'Ausencias','❌');
-html+=generarTabla(entradasTarde,'Entradas tarde','');
+html+=generarTabla(entradasTarde,'Entradas tarde','⏰');
 html+=generarTabla(salidasPronto,'Salidas pronto','📤');
 html+=generarTabla(citasMedicas,'Citas médicas','🏥');
-html+=generarTabla(conciliaciones,'Conciliaciones','👨‍👩‍👧');
-html+=generarTabla(bajas,'Bajas','');
+html+=generarTabla(conciliaciones,'Conciliaciones','👨‍👩‍');
+html+=generarTabla(bajas,'Bajas','🤒');
 if(registros.filter(r=>!esPresente(r.estado)).length===0){
 html='<div style="padding:40px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px">✅</p><p style="font-size:16px">Este alumno no tiene incidencias registradas</p></div>';
 }
@@ -1339,7 +1337,7 @@ const fecha=pad(r.d)+'/'+pad(r.m)+'/'+r.y;
 const fechaObj=new Date(r.y,r.m-1,r.d);
 const diaSemana=DIAS_SEMANA[fechaObj.getDay()];
 let horario='-';
-if(r.horaUnica) horario=' '+r.horaUnica;
+if(r.horaUnica) horario='🕐 '+r.horaUnica;
 else if(r.horaSalida&&r.horaLlegada) horario='🕐 '+r.horaSalida+' - '+r.horaLlegada;
 let detalles='';
 if(r.justificada) detalles+='✓ Justificada ';
@@ -1349,10 +1347,10 @@ t+='<tr><td><strong>'+fecha+'</strong></td><td>'+diaSemana+'</td><td>'+horario+'
 t+='</tbody></table>';return t;
 }
 html+=genTablaPDF(ausencias,'Ausencias','❌','#991b1b');
-html+=genTablaPDF(entradasTarde,'Entradas tarde','','#92400e');
+html+=genTablaPDF(entradasTarde,'Entradas tarde','⏰','#92400e');
 html+=genTablaPDF(salidasPronto,'Salidas pronto','📤','#9d174d');
-html+=genTablaPDF(citasMedicas,'Citas médicas','🏥','#1e40af');
-html+=genTablaPDF(conciliaciones,'Conciliaciones','👨‍‍👧','#3730a3');
+html+=genTablaPDF(citasMedicas,'Citas médicas','','#1e40af');
+html+=genTablaPDF(conciliaciones,'Conciliaciones','👨‍👩‍','#3730a3');
 html+=genTablaPDF(bajas,'Bajas','🤒','#991b1b');
 html+='</div>';
 const element=document.createElement('div');element.innerHTML=html;document.body.appendChild(element);
@@ -1371,7 +1369,7 @@ Object.keys(porAlumno).sort().forEach(alumno=>{
 const regs=porAlumno[alumno];
 regs.forEach(r=>{
 const fecha=pad(r.d)+'/'+pad(r.m)+'/'+r.y;
-let horaInfo='';if(r.horaUnica) horaInfo='<span class="hora-info"> '+r.horaUnica+'</span>';else if(r.horaSalida&&r.horaLlegada) horaInfo='<span class="hora-info"> '+r.horaSalida+' - '+r.horaLlegada+'</span>';
+let horaInfo='';if(r.horaUnica) horaInfo='<span class="hora-info">🕐 '+r.horaUnica+'</span>';else if(r.horaSalida&&r.horaLlegada) horaInfo='<span class="hora-info">🕐 '+r.horaSalida+' - '+r.horaLlegada+'</span>';
 let justInfo='';if(r.justificada) justInfo=' <span style="color:#166534">✓ Justificada</span>';
 let causaInfo='';if(r.causa) causaInfo=' <em>('+r.causa+')</em>';
 html+='<li class="'+estado+'"><strong>'+alumno+'</strong> - '+fecha+horaInfo+justInfo+causaInfo+'</li>';
@@ -1383,9 +1381,9 @@ function crearPDF(tipo){
 mostrarAlerta('info','Generando PDF...');
 if(tipo==='maquinas'){
 const R=getAll();let detallesHTML='';
-const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'🏥',conciliacion:'👨‍👩‍',baja:'🤒'};
+const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'🏥',conciliacion:'👨‍‍👧',baja:''};
 ['presente','ausente','entrada_tarde','salida_pronto','cita_medica','conciliacion','baja'].forEach(estado=>{detallesHTML+=generarListaDetalladaPeriodo(R,estado,iconos[estado]);});
-let html='<div class="pdf-content"><h1>📚 Control de Alumnos</h1><h2>Total por Alumno</h2><p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>';
+let html='<div class="pdf-content"><h1> Control de Alumnos</h1><h2>Total por Alumno</h2><p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>';
 html+=document.getElementById('tablaMaquinasTbl').outerHTML;
 if(detallesHTML){html+='<h3>📋 Detalle por estado</h3>'+detallesHTML;}
 html+='</div>';
@@ -1393,9 +1391,7 @@ const element=document.createElement('div');element.innerHTML=html;document.body
 const opt={margin:10,filename:'total_por_alumno.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
 html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(element);mostrarAlerta('success','PDF generado');}).catch(err=>{document.body.removeChild(element);mostrarAlerta('error','Error: '+err.message);});
 }else if(tipo==='tiempo'){
-const R=getAll();
-const fPeriodo=document.getElementById('fPeriodo').value;
-const falumno=document.getElementById('fMaq').value;
+const R=getAll();const fPeriodo=document.getElementById('fPeriodo').value;const falumno=document.getElementById('fMaq').value;
 const tablaDetalleMesContainer=document.getElementById('tablaDetalleMesContainer');
 let filt=R;
 if(fPeriodo!=='ALL'){const parts=fPeriodo.split('-');filt=filt.filter(r=>r.y===parseInt(parts[0])&&r.m===parseInt(parts[1]));}
@@ -1412,7 +1408,7 @@ html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(ele
 }else{
 let detallesHTML='';const periodosData={};
 filt.forEach(r=>{const k=getPeriodoLabel(r.y,r.m);if(!periodosData[k]) periodosData[k]=[];periodosData[k].push(r);});
-const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'',cita_medica:'🏥',conciliacion:'👨‍👩👧',baja:'🤒'};
+const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'',conciliacion:'👨‍‍👧',baja:''};
 Object.keys(periodosData).sort().forEach(periodo=>{detallesHTML+='<h3 style="margin-top:20px;color:#1e3a8a;border-bottom:2px solid #e5e7eb;padding-bottom:8px">📅 '+periodo+'</h3>';['presente','ausente','entrada_tarde','salida_pronto','cita_medica','conciliacion','baja'].forEach(estado=>{detallesHTML+=generarListaDetalladaPeriodo(periodosData[periodo],estado,iconos[estado]);});});
 let html='<div class="pdf-content"><h1>📚 Control de Alumnos</h1><h2>Resumen por Periodo</h2><p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>';
 if(falumno!=='TODOS') html+='<p>Alumno: <strong>'+falumno+'</strong></p>';
@@ -1426,9 +1422,7 @@ html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(ele
 }else if(tipo==='calendario'){
 const periodoVal=document.getElementById('calPeriodo').value;
 const parts=periodoVal.split('-');
-const y=parseInt(parts[0]);
-const m=parseInt(parts[1]);
-const nombreMes=getPeriodoLabel(y,m);
+const nombreMes=getPeriodoLabel(parseInt(parts[0]),parseInt(parts[1]));
 let html='<div class="pdf-content"><h1>📚 Control de Alumnos</h1>';
 html+='<h2>Calendario de Control - '+nombreMes+'</h2>';
 html+='<p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>';
@@ -1468,7 +1462,7 @@ else if(dayInfo.type==='holiday') clase='festivo';
 html+=`<th class="${clase}">${d}</th>`;
 }
 html+='<th class="col-resumen" title="Presentes">✓</th>';
-html+='<th class="col-resumen" title="Ausencias/Incidencias"></th>';
+html+='<th class="col-resumen" title="Ausencias/Incidencias">✗</th>';
 html+='</tr>';
 html+='<tr><th class="col-alumno"></th>';
 for(let d=1;d<=ultimoDia;d++){
@@ -1504,7 +1498,7 @@ else if(esFuturo){clase+='estado-celda-futuro';}
 else if(reg){
 clase+='estado-celda-'+reg.estado;
 if(reg.estado==='presente'){contenido='✓';presentes++;}
-else if(reg.estado==='ausente'){contenido='✗';ausencias++;}
+else if(reg.estado==='ausente'){contenido='';ausencias++;}
 else if(reg.estado==='entrada_tarde'){contenido='T';presentes++;}
 else if(reg.estado==='salida_pronto'){contenido='S';presentes++;}
 else if(reg.estado==='cita_medica'){contenido='C';presentes++;}
@@ -1530,12 +1524,25 @@ function renderResumenDiario(y,m,ultimoDia){
 const R=getAll().filter(r=>r.y===y&&r.m===m);
 const diasSemanaNombres=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
 const mesesNombres=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
-let html='<h3> Resumen diario</h3><div class="resumen-diario-grid">';
+let html='<h3>📅 Resumen diario</h3><div class="resumen-diario-grid">';
 for(let d=1;d<=ultimoDia;d++){
 const fecha=new Date(y,m-1,d);
 const diaSem=fecha.getDay();
 const esFinde=(diaSem===0||diaSem===6);
 const dayInfo=getDayType(y,m,d);
+const esFestivo=(dayInfo.type==='holiday');
+const esVacaciones=(dayInfo.type==='vacation');
+if(esFinde||esFestivo||esVacaciones){
+let clase='resumen-dia-card';
+if(esFinde) clase+=' fin-de-semana';
+else if(esFestivo) clase+=' festivo';
+else if(esVacaciones) clase+=' vacaciones';
+html+=`<div class="${clase}">`;
+html+=`<div class="dia-num">${d}</div>`;
+html+=`<div class="dia-semana">${diasSemanaNombres[diaSem]} · ${mesesNombres[m-1]}</div>`;
+html+=`<div class="dia-no-lectivo">${esFinde?'Fin de semana':(esFestivo?dayInfo.label:'Vacaciones')}</div>`;
+html+=`</div>`;
+}else{
 const registrosDia=R.filter(r=>r.d===d);
 let presentes=0;
 let ausencias=0;
@@ -1544,14 +1551,13 @@ if(esPresente(r.estado)) presentes++;
 else ausencias++;
 });
 let clase='resumen-dia-card';
-if(esFinde) clase+=' fin-de-semana';
-if(dayInfo.type==='holiday') clase+=' festivo';
 html+=`<div class="${clase}">`;
 html+=`<div class="dia-num">${d}</div>`;
 html+=`<div class="dia-semana">${diasSemanaNombres[diaSem]} · ${mesesNombres[m-1]}</div>`;
 html+=`<div class="dia-presentes">✓ ${presentes}</div>`;
 html+=`<div class="dia-ausentes">✗ ${ausencias}</div>`;
 html+=`</div>`;
+}
 }
 html+='</div>';
 document.getElementById('resumenDiarioContainer').innerHTML=html;
@@ -1604,7 +1610,7 @@ html+='<button class="btn b2" onclick="marcarTodosPresentes()" style="padding:8p
 html+='<button class="btn b4" onclick="limpiarTodos()" style="padding:8px 14px;font-size:12px">🔄 Limpiar</button>';
 html+='</div>';
 html+='<div style="margin-bottom:16px;padding:12px;background:#fef3c7;border-radius:6px;border-left:4px solid #f59e0b">';
-html+='<label style="display:block;font-size:13px;font-weight:600;color:#92400e;margin-bottom:6px">📝 Notas del día:</label>';
+html+='<label style="display:block;font-size:13px;font-weight:600;color:#92400e;margin-bottom:6px"> Notas del día:</label>';
 html+='<textarea id="notaDelDia" placeholder="Ej: Excursión, examen..." style="width:100%;padding:8px;border:1px solid #fcd34d;border-radius:6px;font-size:13px;resize:vertical;min-height:60px;font-family:inherit"></textarea>';
 html+='</div>';
 html+='<div style="margin-bottom:16px;padding:12px;background:#f0f9ff;border-radius:6px;border-left:4px solid #2563eb">';
@@ -1726,7 +1732,7 @@ copiados++;
 }
 }
 });
-mostrarAlerta('success',' Copiados '+copiados+' registros del día '+pad(diaAnt)+'/'+pad(mesAnt)+'/'+anioAnt);
+mostrarAlerta('success','📋 Copiados '+copiados+' registros del día '+pad(diaAnt)+'/'+pad(mesAnt)+'/'+anioAnt);
 }
 function marcarTodosPresentes(){const filas=document.querySelectorAll('.alumno-row');filas.forEach(fila=>{const select=fila.querySelector('.alumno-select');select.value='presente';toggleCamposHora(select);});mostrarAlerta('success','✅ Todos marcados como presentes');}
 function limpiarTodos(){const filas=document.querySelectorAll('.alumno-row');filas.forEach(fila=>{const select=fila.querySelector('.alumno-select');select.value='';toggleCamposHora(select);const chk=fila.querySelector('.chk-justificada');if(chk) chk.checked=false;const txt=fila.querySelector('.txt-causa');if(txt) txt.value='';});mostrarAlerta('info','🔄 Registros limpiados');}
@@ -1760,7 +1766,7 @@ document.getElementById('nuevaClave').addEventListener('input',actualizarRequisi
 function abrirModalDetalle(y,m,d){
 diaDetalleSeleccionado={y,m,d};
 const registros=getAll().filter(r=>r.y===y&&r.m===m&&r.d===d);
-document.getElementById('modalDetalleTitulo').textContent='📋 Detalle del '+pad(d)+'/'+pad(m)+'/'+y;
+document.getElementById('modalDetalleTitulo').textContent=' Detalle del '+pad(d)+'/'+pad(m)+'/'+y;
 let html='';
 const claveNota=y+'-'+m+'-'+d;
 const notaDia=notasPorDia[claveNota];
@@ -1856,14 +1862,14 @@ const festTotal=FESTIVOS.length;let festConsumidos=0,festPendientes=0;
 FESTIVOS.forEach(f=>{const fechaFest=new Date(f.y,f.m-1,f.d);if(fechaFest<hoy) festConsumidos++;else festPendientes++;});
 document.getElementById('statFestTotal').textContent=festTotal;document.getElementById('statFestConsumidos').textContent=festConsumidos;document.getElementById('statFestPendientes').textContent=festPendientes;
 }
-function renderListaAlumnos(){const lista=document.getElementById('listaAlumnos');lista.innerHTML='';if(ALUMNOS.length===0){lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay alumnos</p>';return;}ALUMNOS.forEach(function(alumno,idx){lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+alumno+'</strong></div><div class="config-item-actions"><button class="btn b1 action-btn" onclick="abrirEditarAlumno('+idx+')">✏️ Editar</button><button class="btn b3 action-btn" onclick="confirmarEliminarAlumno('+idx+')">🗑️ Eliminar</button></div></div>';});}
+function renderListaAlumnos(){const lista=document.getElementById('listaAlumnos');lista.innerHTML='';if(ALUMNOS.length===0){lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay alumnos</p>';return;}ALUMNOS.forEach(function(alumno,idx){lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+alumno+'</strong></div><div class="config-item-actions"><button class="btn b1 action-btn" onclick="abrirEditarAlumno('+idx+')">️ Editar</button><button class="btn b3 action-btn" onclick="confirmarEliminarAlumno('+idx+')">🗑️ Eliminar</button></div></div>';});}
 function agregarAlumno(){const nombre=document.getElementById('nuevoAlumno').value.trim();if(!nombre){mostrarAlerta('warning','Introduce un nombre');return;}if(ALUMNOS.includes(nombre)){mostrarAlerta('error','Ya existe');return;}ALUMNOS.push(nombre);document.getElementById('nuevoAlumno').value='';renderListaAlumnos();actualizarSelectoresAlumnos();renderAll();actualizarContadoresConfig();guardarEnNube('✅ Alumno añadido');}
 function abrirEditarAlumno(idx){indiceAlumnoEditar=idx;document.getElementById('inputNuevoNombreAlumno').value=ALUMNOS[idx];document.getElementById('modalEditarAlumno').classList.add('show');}
 function cerrarModalEditarAlumno(){document.getElementById('modalEditarAlumno').classList.remove('show');indiceAlumnoEditar=null;}
 function confirmarEdicionAlumno(){const nuevoNombre=document.getElementById('inputNuevoNombreAlumno').value.trim();if(!nuevoNombre){mostrarAlerta('warning','El nombre no puede estar vacío');return;}if(nuevoNombre===ALUMNOS[indiceAlumnoEditar]){cerrarModalEditarAlumno();return;}if(ALUMNOS.includes(nuevoNombre)){mostrarAlerta('error','Ya existe');return;}const nombreAnterior=ALUMNOS[indiceAlumnoEditar];ALUMNOS[indiceAlumnoEditar]=nuevoNombre;[...historicalRecords,...userRecords].forEach(r=>{if(r.alumno===nombreAnterior) r.alumno=nuevoNombre;});cerrarModalEditarAlumno();renderListaAlumnos();actualizarSelectoresAlumnos();renderAll();actualizarContadoresConfig();guardarEnNube('✅ Alumno actualizado');}
 function confirmarEliminarAlumno(idx){const alumno=ALUMNOS[idx];abrirModalConfirmacion('Eliminar alumno','¿Seguro que quieres eliminar a <strong>'+alumno+'</strong>?\nSe perderán todos sus registros.',function(){ALUMNOS.splice(idx,1);historicalRecords=historicalRecords.filter(r=>r.alumno!==alumno);userRecords=userRecords.filter(r=>r.alumno!==alumno);renderListaAlumnos();actualizarSelectoresAlumnos();renderAll();renderEstadisticasConfig();actualizarContadoresConfig();guardarEnNube('✅ Alumno eliminado');});}
 function actualizarSelectoresAlumnos(){const fMaq=document.getElementById('fMaq');const valorActual=fMaq.value;fMaq.innerHTML='<option value="TODOS">Todos los alumnos</option>';ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;fMaq.appendChild(o);});if(ALUMNOS.includes(valorActual)) fMaq.value=valorActual;const calFiltroAlumno=document.getElementById('calFiltroAlumno');const valorCal=calFiltroAlumno.value;calFiltroAlumno.innerHTML='<option value="TODOS">Todos los alumnos</option>';ALUMNOS.forEach(function(m){const o=document.createElement('option');o.value=m;o.textContent=m;calFiltroAlumno.appendChild(o);});if(ALUMNOS.includes(valorCal)) calFiltroAlumno.value=valorCal;}
-function renderListaFestivos(){const lista=document.getElementById('listaFestivos');lista.innerHTML='';if(FESTIVOS.length===0){lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay festivos</p>';return;}FESTIVOS.sort((a,b)=>{if(a.y!==b.y) return a.y-b.y;if(a.m!==b.m) return a.m-b.m;return a.d-b.d;});FESTIVOS.forEach(function(festivo,idx){const fecha=pad(festivo.d)+'/'+pad(festivo.m)+'/'+festivo.y;lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+fecha+'</strong> - '+festivo.nombre+'</div><div class="config-item-actions"><button class="btn b3 action-btn" onclick="confirmarEliminarFestivo('+idx+')">🗑️ Eliminar</button></div></div>';});}
+function renderListaFestivos(){const lista=document.getElementById('listaFestivos');lista.innerHTML='';if(FESTIVOS.length===0){lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay festivos</p>';return;}FESTIVOS.sort((a,b)=>{if(a.y!==b.y) return a.y-b.y;if(a.m!==b.m) return a.m-b.m;return a.d-b.d;});FESTIVOS.forEach(function(festivo,idx){const fecha=pad(festivo.d)+'/'+pad(festivo.m)+'/'+festivo.y;lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+fecha+'</strong> - '+festivo.nombre+'</div><div class="config-item-actions"><button class="btn b3 action-btn" onclick="confirmarEliminarFestivo('+idx+')">️ Eliminar</button></div></div>';});}
 function agregarFestivo(){const dia=parseInt(document.getElementById('nuevoFestivoDia').value);const mes=parseInt(document.getElementById('nuevoFestivoMes').value);const anio=parseInt(document.getElementById('nuevoFestivoAnio').value);const nombre=document.getElementById('nuevoFestivoNombre').value.trim();if(!dia||!mes||!anio||!nombre){mostrarAlerta('warning','Completa todos los campos');return;}const existe=FESTIVOS.find(f=>f.y===anio&&f.m===mes&&f.d===dia);if(existe){mostrarAlerta('error','Ya existe un festivo en esa fecha');return;}FESTIVOS.push({y:anio,m:mes,d:dia,nombre:nombre});document.getElementById('nuevoFestivoDia').value='';document.getElementById('nuevoFestivoNombre').value='';renderListaFestivos();renderEstadisticasConfig();generarCalendarioEntrada();actualizarContadoresConfig();guardarEnNube('✅ Festivo añadido');}
 function confirmarEliminarFestivo(idx){const festivo=FESTIVOS[idx];const fecha=pad(festivo.d)+'/'+pad(festivo.m)+'/'+festivo.y;abrirModalConfirmacion('Eliminar festivo','¿Seguro que quieres eliminar el festivo del <strong>'+fecha+'</strong> ('+festivo.nombre+')?',function(){FESTIVOS.splice(idx,1);renderListaFestivos();renderEstadisticasConfig();generarCalendarioEntrada();actualizarContadoresConfig();guardarEnNube('✅ Festivo eliminado');});}
 function renderListaVacaciones(){const lista=document.getElementById('listaVacaciones');lista.innerHTML='';if(VACACIONES.length===0){lista.innerHTML='<p style="color:#6b7280;font-style:italic;padding:12px">No hay vacaciones</p>';return;}VACACIONES.sort((a,b)=>{if(a.y!==b.y) return a.y-b.y;if(a.m!==b.m) return a.m-b.m;return a.d-b.d;});VACACIONES.forEach(function(vacacion,idx){const fecha=pad(vacacion.d)+'/'+pad(vacacion.m)+'/'+vacacion.y;lista.innerHTML+='<div class="config-item"><div class="config-item-info"><strong>'+fecha+'</strong></div><div class="config-item-actions"><button class="btn b3 action-btn" onclick="confirmarEliminarVacacion('+idx+')">🗑️ Eliminar</button></div></div>';});}
@@ -1881,7 +1887,7 @@ const totalSalidasPronto=R.filter(r=>r.estado==='salida_pronto').length;
 const totalCitasMedicas=R.filter(r=>r.estado==='cita_medica').length;
 const totalConciliaciones=R.filter(r=>r.estado==='conciliacion').length;
 const totalBajas=R.filter(r=>r.estado==='baja').length;
-let html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Backup Control de Alumnos - Curso ${cursoAnio}</title><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',system-ui,sans-serif;background:#f5f7fa;color:#1f2937;padding:20px;line-height:1.6}.wrap{max-width:1200px;margin:0 auto;background:#fff;padding:40px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1)}h1{color:#1e3a8a;margin-bottom:10px;font-size:28px}h2{color:#1e3a8a;margin:30px 0 15px 0;font-size:22px;border-bottom:2px solid #e5e7eb;padding-bottom:8px}h3{color:#374151;margin:20px 0 10px 0;font-size:18px}.info-curso{background:linear-gradient(135deg,#dbeafe,#bfdbfe);padding:20px;border-radius:8px;margin-bottom:30px}.info-curso p{margin:5px 0;font-size:14px}.info-curso strong{color:#1e40af}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0}.stat-box{background:#f9fafb;padding:15px;border-radius:8px;text-align:center;border-left:4px solid #3b82f6}.stat-box .num{font-size:24px;font-weight:700;color:#1e3a8a}.stat-box .lbl{font-size:12px;color:#6b7280;margin-top:4px}table{width:100%;border-collapse:collapse;margin:15px 0;font-size:13px}th{background:#f3f4f6;padding:10px;text-align:left;font-weight:600;color:#374151;border-bottom:2px solid #d1d5db}td{padding:8px 10px;border-bottom:1px solid #e5e7eb}tr:hover{background:#f9fafb}.alumno-card{background:#f9fafb;padding:20px;border-radius:8px;margin:15px 0;border-left:4px solid #3b82f6}.alumno-card h3{margin-top:0;color:#1e3a8a}.footer{margin-top:40px;padding-top:20px;border-top:2px solid #e5e7eb;text-align:center;color:#6b7280;font-size:12px}@media print{body{background:#fff;padding:0}.wrap{box-shadow:none;padding:20px}}</style></head><body><div class="wrap"><h1>📚 Control de Alumnos - Backup</h1><div class="info-curso"><p><strong>Curso:</strong> ${inicioStr} - ${finStr}</p><p><strong>Fecha de generación:</strong> ${new Date().toLocaleDateString('es-ES')}</p><p><strong>Total de alumnos:</strong> ${ALUMNOS.length}</p></div><h2>📊 Resumen General</h2><div class="stats-grid"><div class="stat-box"><div class="num">${totalPresentes}</div><div class="lbl">Presentes</div></div><div class="stat-box"><div class="num">${totalAusentes}</div><div class="lbl">Ausencias</div></div><div class="stat-box"><div class="num">${totalEntradasTarde}</div><div class="lbl">Entradas Tarde</div></div><div class="stat-box"><div class="num">${totalSalidasPronto}</div><div class="lbl">Salidas Pronto</div></div><div class="stat-box"><div class="num">${totalCitasMedicas}</div><div class="lbl">Citas Médicas</div></div><div class="stat-box"><div class="num">${totalConciliaciones}</div><div class="lbl">Conciliaciones</div></div><div class="stat-box"><div class="num">${totalBajas}</div><div class="lbl">Bajas</div></div></div><h2>👥 Lista de Alumnos</h2><table><thead><tr><th>Alumno</th><th>Presentes</th><th>Ausencias</th><th>Entradas Tarde</th><th>Salidas Pronto</th><th>Citas Médicas</th><th>Conciliaciones</th><th>Bajas</th></tr></thead><tbody>`;
+let html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Backup Control de Alumnos - Curso ${cursoAnio}</title><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',system-ui,sans-serif;background:#f5f7fa;color:#1f2937;padding:20px;line-height:1.6}.wrap{max-width:1200px;margin:0 auto;background:#fff;padding:40px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1)}h1{color:#1e3a8a;margin-bottom:10px;font-size:28px}h2{color:#1e3a8a;margin:30px 0 15px 0;font-size:22px;border-bottom:2px solid #e5e7eb;padding-bottom:8px}h3{color:#374151;margin:20px 0 10px 0;font-size:18px}.info-curso{background:linear-gradient(135deg,#dbeafe,#bfdbfe);padding:20px;border-radius:8px;margin-bottom:30px}.info-curso p{margin:5px 0;font-size:14px}.info-curso strong{color:#1e40af}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0}.stat-box{background:#f9fafb;padding:15px;border-radius:8px;text-align:center;border-left:4px solid #3b82f6}.stat-box .num{font-size:24px;font-weight:700;color:#1e3a8a}.stat-box .lbl{font-size:12px;color:#6b7280;margin-top:4px}table{width:100%;border-collapse:collapse;margin:15px 0;font-size:13px}th{background:#f3f4f6;padding:10px;text-align:left;font-weight:600;color:#374151;border-bottom:2px solid #d1d5db}td{padding:8px 10px;border-bottom:1px solid #e5e7eb}tr:hover{background:#f9fafb}.alumno-card{background:#f9fafb;padding:20px;border-radius:8px;margin:15px 0;border-left:4px solid #3b82f6}.alumno-card h3{margin-top:0;color:#1e3a8a}.footer{margin-top:40px;padding-top:20px;border-top:2px solid #e5e7eb;text-align:center;color:#6b7280;font-size:12px}@media print{body{background:#fff;padding:0}.wrap{box-shadow:none;padding:20px}}</style></head><body><div class="wrap"><h1>📚 Control de Alumnos - Backup</h1><div class="info-curso"><p><strong>Curso:</strong> ${inicioStr} - ${finStr}</p><p><strong>Fecha de generación:</strong> ${new Date().toLocaleDateString('es-ES')}</p><p><strong>Total de alumnos:</strong> ${ALUMNOS.length}</p></div><h2>📊 Resumen General</h2><div class="stats-grid"><div class="stat-box"><div class="num">${totalPresentes}</div><div class="lbl">Presentes</div></div><div class="stat-box"><div class="num">${totalAusentes}</div><div class="lbl">Ausencias</div></div><div class="stat-box"><div class="num">${totalEntradasTarde}</div><div class="lbl">Entradas Tarde</div></div><div class="stat-box"><div class="num">${totalSalidasPronto}</div><div class="lbl">Salidas Pronto</div></div><div class="stat-box"><div class="num">${totalCitasMedicas}</div><div class="lbl">Citas Médicas</div></div><div class="stat-box"><div class="num">${totalConciliaciones}</div><div class="lbl">Conciliaciones</div></div><div class="stat-box"><div class="num">${totalBajas}</div><div class="lbl">Bajas</div></div></div><h2> Lista de Alumnos</h2><table><thead><tr><th>Alumno</th><th>Presentes</th><th>Ausencias</th><th>Entradas Tarde</th><th>Salidas Pronto</th><th>Citas Médicas</th><th>Conciliaciones</th><th>Bajas</th></tr></thead><tbody>`;
 const sm={};ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
 R.forEach(r=>{if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++;if(esPresente(r.estado) && r.estado!=='presente') sm[r.alumno].presente++;});
 ALUMNOS.forEach(alumno=>{const s=sm[alumno];html+=`<tr><td><strong>${alumno}</strong></td><td>${s.presente}</td><td>${s.ausente}</td><td>${s.entrada_tarde}</td><td>${s.salida_pronto}</td><td>${s.cita_medica}</td><td>${s.conciliacion}</td><td>${s.baja}</td></tr>`;});
