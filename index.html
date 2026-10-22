@@ -592,6 +592,8 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 </div>
+
+<!-- MODALES -->
 <div class="modal-overlay" id="modalAsistencia">
 <div class="modal">
 <div class="modal-header">
@@ -703,6 +705,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 <div id="printArea" class="print-area"></div>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
@@ -724,6 +727,7 @@ window.firebaseGet = get;
 window.firebaseChild = child;
 console.log('✅ Firebase inicializado');
 </script>
+
 <script>
 const ALUMNOS_BASE=["AMEZ FUERTES, RAUL","BLANCO FRANCO, SANTIAGO ANDRÉS","FERNÁNDEZ MACAYO, M. ISABEL","MAIQUEZ DOMINGUEZ, HECTOR JOSÉ","MALLO RODRÍGUEZ, MIGUEL","MUÑIZ CAÑIBANO, MARÍA BELÉN"];
 const DIAS=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
@@ -1109,95 +1113,93 @@ subtabsContainer.querySelectorAll('.subtb').forEach(t=>t.classList.remove('on'))
 const btn=subtabsContainer.querySelector('[data-st="'+id+'"]');if(btn) btn.classList.add('on');
 const p9=document.getElementById('p9');p9.querySelectorAll('.pnl').forEach(p=>p.classList.remove('on'));
 document.getElementById(id).classList.add('on');
-if(id==='p2') renderMaquinas();
-if(id==='p3') renderTiempo();
-if(id==='p4') setTimeout(actualizarCalendarioDesdePeriodo,100);
+if(id==='p2') renderMaquinas();if(id==='p3') renderTiempo();if(id==='p4') setTimeout(actualizarCalendarioDesdePeriodo,100);
 }
 document.querySelectorAll('.tb').forEach(b=>b.addEventListener('click',function(){showTab(this.getAttribute('data-t'));}));
 document.querySelectorAll('#subtabsConsultas .subtb').forEach(b=>b.addEventListener('click',function(){showSubTab(this.getAttribute('data-st'));}));
 
 function renderAll(){
-  const R=getAll();
-  const totalPresentes=R.filter(r=>esPresente(r.estado)).length;
-  const totalAusentes=R.filter(r=>r.estado==='ausente'||r.estado==='baja').length;
-  const alumnosConRegistros=new Set(R.map(r=>r.alumno)).size;
-  const alumnosActivos=alumnosConRegistros>0?alumnosConRegistros:ALUMNOS.length;
-  document.getElementById('sP').textContent=totalPresentes;
-  document.getElementById('sH').textContent=totalAusentes;
-  document.getElementById('sC').textContent=alumnosActivos;
-  renderMaquinas();renderTiempo();
+const R=getAll();
+const totalPresentes=R.filter(r=>esPresente(r.estado)).length;
+const totalAusentes=R.filter(r=>r.estado==='ausente'||r.estado==='baja').length;
+const alumnosConRegistros=new Set(R.map(r=>r.alumno)).size;
+const alumnosActivos=alumnosConRegistros>0?alumnosConRegistros:ALUMNOS.length;
+document.getElementById('sP').textContent=totalPresentes;
+document.getElementById('sH').textContent=totalAusentes;
+document.getElementById('sC').textContent=alumnosActivos;
+renderMaquinas();renderTiempo();
 }
 
 function renderMaquinas(){
-  const R=getAll();const tb=document.getElementById('t2');tb.innerHTML='';
-  const sm={};ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
-  R.forEach(r=>{
-    if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++;
-    if(esPresente(r.estado) && r.estado!=='presente') sm[r.alumno].presente++;
-  });
-  let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
-  ALUMNOS.forEach(m=>{
-    const s=sm[m];
-    totales.presente+=s.presente;totales.ausente+=s.ausente;totales.entrada_tarde+=s.entrada_tarde;
-    totales.salida_pronto+=s.salida_pronto;totales.cita_medica+=s.cita_medica;totales.conciliacion+=s.conciliacion;
-    totales.baja+=s.baja;
-    tb.innerHTML+='<tr><td><a class="alumno-link" onclick="abrirDetalleAlumno(\''+m.replace(/'/g,"\\'")+'\')">'+m+'</a></td><td class="r">'+s.presente+'</td><td class="r">'+s.ausente+'</td><td class="r">'+s.entrada_tarde+'</td><td class="r">'+s.salida_pronto+'</td><td class="r">'+s.cita_medica+'</td><td class="r">'+s.conciliacion+'</td><td class="r">'+s.baja+'</td></tr>';
-  });
-  tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.cita_medica+'</td><td class="r">'+totales.conciliacion+'</td><td class="r">'+totales.baja+'</td></tr>';
+const R=getAll();const tb=document.getElementById('t2');tb.innerHTML='';
+const sm={};ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
+R.forEach(r=>{
+if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++;
+if(esPresente(r.estado) && r.estado!=='presente') sm[r.alumno].presente++;
+});
+let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
+ALUMNOS.forEach(m=>{
+const s=sm[m];
+totales.presente+=s.presente;totales.ausente+=s.ausente;totales.entrada_tarde+=s.entrada_tarde;
+totales.salida_pronto+=s.salida_pronto;totales.cita_medica+=s.cita_medica;totales.conciliacion+=s.conciliacion;
+totales.baja+=s.baja;
+tb.innerHTML+='<tr><td><a class="alumno-link" onclick="abrirDetalleAlumno(\''+m.replace(/'/g,"\\'")+'\')">'+m+'</a></td><td class="r">'+s.presente+'</td><td class="r">'+s.ausente+'</td><td class="r">'+s.entrada_tarde+'</td><td class="r">'+s.salida_pronto+'</td><td class="r">'+s.cita_medica+'</td><td class="r">'+s.conciliacion+'</td><td class="r">'+s.baja+'</td></tr>';
+});
+tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.cita_medica+'</td><td class="r">'+totales.conciliacion+'</td><td class="r">'+totales.baja+'</td></tr>';
 }
 
 function renderTiempo(){
-  const R=getAll();const fPeriodo=document.getElementById('fPeriodo').value;const falumno=document.getElementById('fMaq').value;
-  const tb=document.getElementById('t3');
-  const tbDetalle=document.getElementById('t3Detalle');
-  const tablaTiempoContainer=document.getElementById('tablaTiempoContainer');
-  const tablaDetalleMesContainer=document.getElementById('tablaDetalleMesContainer');
-  const tituloDetalleMes=document.getElementById('tituloDetalleMes');
-  let filt=R;
-  if(fPeriodo!=='ALL'){const parts=fPeriodo.split('-');filt=filt.filter(r=>r.y===parseInt(parts[0])&&r.m===parseInt(parts[1]));}
-  if(falumno!=='TODOS') filt=filt.filter(r=>r.alumno===falumno);
-  
-  if(fPeriodo!=='ALL'){
-    tablaTiempoContainer.style.display='none';
-    tablaDetalleMesContainer.style.display='block';
-    const parts=fPeriodo.split('-');
-    const anioMes=parseInt(parts[0]);
-    const mesNum=parseInt(parts[1]);
-    const nombreMes=getPeriodoLabel(anioMes,mesNum);
-    tituloDetalleMes.textContent='📊 Detalle de '+nombreMes;
-    tbDetalle.innerHTML='';
-    const sm={};
-    ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
-    filt.forEach(r=>{
-      if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++;
-      if(esPresente(r.estado) && r.estado!=='presente') sm[r.alumno].presente++;
-    });
-    let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
-    ALUMNOS.forEach(m=>{
-      const s=sm[m];
-      totales.presente+=s.presente;totales.ausente+=s.ausente;totales.entrada_tarde+=s.entrada_tarde;
-      totales.salida_pronto+=s.salida_pronto;totales.cita_medica+=s.cita_medica;totales.conciliacion+=s.conciliacion;
-      totales.baja+=s.baja;
-      tbDetalle.innerHTML+='<tr><td><a class="alumno-link" onclick="abrirDetalleAlumno(\''+m.replace(/'/g,"\\'")+'\')">'+m+'</a></td><td class="r">'+s.presente+'</td><td class="r">'+s.ausente+'</td><td class="r">'+s.entrada_tarde+'</td><td class="r">'+s.salida_pronto+'</td><td class="r">'+s.cita_medica+'</td><td class="r">'+s.conciliacion+'</td><td class="r">'+s.baja+'</td></tr>';
-    });
-    tbDetalle.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.cita_medica+'</td><td class="r">'+totales.conciliacion+'</td><td class="r">'+totales.baja+'</td></tr>';
-  }else{
-    tablaTiempoContainer.style.display='block';
-    tablaDetalleMesContainer.style.display='none';
-    tb.innerHTML='';
-    const ag={};
-    filt.forEach(r=>{
-      const k=getPeriodoLabel(r.y,r.m);
-      if(!ag[k]) ag[k]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};
-      if(ag[k][r.estado]!==undefined) ag[k][r.estado]++;
-      if(esPresente(r.estado) && r.estado!=='presente') ag[k].presente++;
-    });
-    const ks=Object.keys(ag).sort((a,b)=>{const partsA=a.split(' '),monthA=MESES_NOMBRES.indexOf(partsA[0]),yearA=parseInt(partsA[1]);const partsB=b.split(' '),monthB=MESES_NOMBRES.indexOf(partsB[0]),yearB=parseInt(partsB[1]);if(yearA!==yearB) return yearA-yearB;return monthA-monthB;});
-    let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};
-    if(ks.length===0){tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:#9ca3af">Sin registros</td></tr>';}
-    else{ks.forEach(k=>{totales.presente+=ag[k].presente;totales.ausente+=ag[k].ausente;totales.entrada_tarde+=ag[k].entrada_tarde;totales.salida_pronto+=ag[k].salida_pronto;totales.baja+=ag[k].baja;tb.innerHTML+='<tr><td>'+k+'</td><td class="r">'+ag[k].presente+'</td><td class="r">'+ag[k].ausente+'</td><td class="r">'+ag[k].entrada_tarde+'</td><td class="r">'+ag[k].salida_pronto+'</td><td class="r">'+ag[k].baja+'</td></tr>';});
-    tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.baja+'</td></tr>';}
-  }
+const R=getAll();const fPeriodo=document.getElementById('fPeriodo').value;const falumno=document.getElementById('fMaq').value;
+const tb=document.getElementById('t3');
+const tbDetalle=document.getElementById('t3Detalle');
+const tablaTiempoContainer=document.getElementById('tablaTiempoContainer');
+const tablaDetalleMesContainer=document.getElementById('tablaDetalleMesContainer');
+const tituloDetalleMes=document.getElementById('tituloDetalleMes');
+let filt=R;
+if(fPeriodo!=='ALL'){const parts=fPeriodo.split('-');filt=filt.filter(r=>r.y===parseInt(parts[0])&&r.m===parseInt(parts[1]));}
+if(falumno!=='TODOS') filt=filt.filter(r=>r.alumno===falumno);
+
+if(fPeriodo!=='ALL'){
+tablaTiempoContainer.style.display='none';
+tablaDetalleMesContainer.style.display='block';
+const parts=fPeriodo.split('-');
+const anioMes=parseInt(parts[0]);
+const mesNum=parseInt(parts[1]);
+const nombreMes=getPeriodoLabel(anioMes,mesNum);
+tituloDetalleMes.textContent='📊 Detalle de '+nombreMes;
+tbDetalle.innerHTML='';
+const sm={};
+ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
+filt.forEach(r=>{
+if(sm[r.alumno]&&sm[r.alumno][r.estado]!==undefined) sm[r.alumno][r.estado]++;
+if(esPresente(r.estado) && r.estado!=='presente') sm[r.alumno].presente++;
+});
+let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
+ALUMNOS.forEach(m=>{
+const s=sm[m];
+totales.presente+=s.presente;totales.ausente+=s.ausente;totales.entrada_tarde+=s.entrada_tarde;
+totales.salida_pronto+=s.salida_pronto;totales.cita_medica+=s.cita_medica;totales.conciliacion+=s.conciliacion;
+totales.baja+=s.baja;
+tbDetalle.innerHTML+='<tr><td><a class="alumno-link" onclick="abrirDetalleAlumno(\''+m.replace(/'/g,"\\'")+'\')">'+m+'</a></td><td class="r">'+s.presente+'</td><td class="r">'+s.ausente+'</td><td class="r">'+s.entrada_tarde+'</td><td class="r">'+s.salida_pronto+'</td><td class="r">'+s.cita_medica+'</td><td class="r">'+s.conciliacion+'</td><td class="r">'+s.baja+'</td></tr>';
+});
+tbDetalle.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.cita_medica+'</td><td class="r">'+totales.conciliacion+'</td><td class="r">'+totales.baja+'</td></tr>';
+}else{
+tablaTiempoContainer.style.display='block';
+tablaDetalleMesContainer.style.display='none';
+tb.innerHTML='';
+const ag={};
+filt.forEach(r=>{
+const k=getPeriodoLabel(r.y,r.m);
+if(!ag[k]) ag[k]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};
+if(ag[k][r.estado]!==undefined) ag[k][r.estado]++;
+if(esPresente(r.estado) && r.estado!=='presente') ag[k].presente++;
+});
+const ks=Object.keys(ag).sort((a,b)=>{const partsA=a.split(' '),monthA=MESES_NOMBRES.indexOf(partsA[0]),yearA=parseInt(partsA[1]);const partsB=b.split(' '),monthB=MESES_NOMBRES.indexOf(partsB[0]),yearB=parseInt(partsB[1]);if(yearA!==yearB) return yearA-yearB;return monthA-monthB;});
+let totales={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,baja:0};
+if(ks.length===0){tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:#9ca3af">Sin registros</td></tr>';}
+else{ks.forEach(k=>{totales.presente+=ag[k].presente;totales.ausente+=ag[k].ausente;totales.entrada_tarde+=ag[k].entrada_tarde;totales.salida_pronto+=ag[k].salida_pronto;totales.baja+=ag[k].baja;tb.innerHTML+='<tr><td>'+k+'</td><td class="r">'+ag[k].presente+'</td><td class="r">'+ag[k].ausente+'</td><td class="r">'+ag[k].entrada_tarde+'</td><td class="r">'+ag[k].salida_pronto+'</td><td class="r">'+ag[k].baja+'</td></tr>';});
+tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.baja+'</td></tr>';}
+}
 }
 
 function abrirDetalleAlumno(alumno){
@@ -1338,20 +1340,9 @@ const opt={margin:10,filename:'total_por_alumno.pdf',image:{type:'jpeg',quality:
 html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(element);mostrarAlerta('success','PDF generado');}).catch(err=>{document.body.removeChild(element);mostrarAlerta('error','Error: '+err.message);});
 }else if(tipo==='tiempo'){
 const R=getAll();const fPeriodo=document.getElementById('fPeriodo').value;const falumno=document.getElementById('fMaq').value;
-const tablaDetalleMesContainer=document.getElementById('tablaDetalleMesContainer');
 let filt=R;
 if(fPeriodo!=='ALL'){const parts=fPeriodo.split('-');filt=filt.filter(r=>r.y===parseInt(parts[0])&&r.m===parseInt(parts[1]));}
 if(falumno!=='TODOS') filt=filt.filter(r=>r.alumno===falumno);
-if(fPeriodo!=='ALL' && tablaDetalleMesContainer.style.display!=='none'){
-let html='<div class="pdf-content"><h1>📚 Control de Alumnos</h1>';
-html+='<h2>'+document.getElementById('tituloDetalleMes').textContent+'</h2>';
-html+='<p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>';
-html+=document.getElementById('tablaDetalleMesTbl').outerHTML;
-html+='</div>';
-const element=document.createElement('div');element.innerHTML=html;document.body.appendChild(element);
-const opt={margin:10,filename:'detalle_mes_'+fPeriodo.replace('-','_')+'.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
-html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(element);mostrarAlerta('success','PDF generado');}).catch(err=>{document.body.removeChild(element);mostrarAlerta('error','Error: '+err.message);});
-}else{
 let detallesHTML='';const periodosData={};
 filt.forEach(r=>{const k=getPeriodoLabel(r.y,r.m);if(!periodosData[k]) periodosData[k]=[];periodosData[k].push(r);});
 const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'🏥',conciliacion:'👨‍👩‍👧',baja:'🤒'};
@@ -1364,7 +1355,6 @@ html+='</div>';
 const element=document.createElement('div');element.innerHTML=html;document.body.appendChild(element);
 const opt={margin:10,filename:'resumen_periodo.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
 html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(element);mostrarAlerta('success','PDF generado');}).catch(err=>{document.body.removeChild(element);mostrarAlerta('error','Error: '+err.message);});
-}
 }
 }
 function generarCalendarioEntrada(){
@@ -1642,11 +1632,9 @@ function cerrarModalDetalle(){document.getElementById('modalDetalle').classList.
 function abrirModalAsistenciaDesdeDetalle(d){const periodoVal=document.getElementById('calPeriodo').value;const parts=periodoVal.split('-');mesSeleccionado=parseInt(parts[1]);anioSeleccionado=parseInt(parts[0]);const fecha=new Date(anioSeleccionado,mesSeleccionado-1,d);fecha.setHours(0,0,0,0);esDiaFuturo=fecha>FECHA_HOY;showTab('p7');setTimeout(()=>abrirModalAsistencia(d),200);}
 function editarDiaDesdeDetalle(){if(diaDetalleSeleccionado){abrirModalAsistenciaDesdeDetalle(diaDetalleSeleccionado.d);cerrarModalDetalle();}}
 function imprimir(tipo){
-const area=document.getElementById('printArea');
-let contenido='';
-if(tipo==='maquinas'){
-contenido='<h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Total por Alumno</h2><p style="color:#6b7280;margin-bottom:20px">Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>'+document.getElementById('tablaMaquinasTbl').outerHTML;
-}else if(tipo==='tiempo'){
+const area=document.getElementById('printArea');let contenido='';
+if(tipo==='maquinas') contenido='<h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Total por Alumno</h2><p style="color:#6b7280;margin-bottom:20px">Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>'+document.getElementById('tablaMaquinasTbl').outerHTML;
+else if(tipo==='tiempo'){
 const fPeriodo=document.getElementById('fPeriodo').value;
 const tablaDetalleMesContainer=document.getElementById('tablaDetalleMesContainer');
 if(fPeriodo!=='ALL' && tablaDetalleMesContainer.style.display!=='none'){
