@@ -269,6 +269,47 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 .pdf-content .pdf-stat-box{flex:1;min-width:100px;padding:12px;border-radius:6px;text-align:center}
 .pdf-content .pdf-stat-box .num{font-size:22px;font-weight:700}
 .pdf-content .pdf-stat-box .lbl{font-size:11px;margin-top:4px}
+
+/* === CALENDARIO TIPO HOJA DE CONTROL === */
+.calendario-control{overflow-x:auto;margin-top:16px;border:1px solid #e5e7eb;border-radius:10px;background:#fff}
+.calendario-control table{width:auto;border-collapse:collapse;margin:0;font-size:12px}
+.calendario-control th,.calendario-control td{border:1px solid #e5e7eb;padding:4px 6px;text-align:center;min-width:28px}
+.calendario-control th{background:#1e3a8a;color:#fff;font-weight:700;font-size:11px;position:sticky;top:0;z-index:2}
+.calendario-control th.dia-semana{background:#3b82f6;font-size:10px}
+.calendario-control th.dia-semana.fin-de-semana{background:#6b7280}
+.calendario-control th.dia-semana.festivo{background:#dc2626}
+.calendario-control th.col-alumno{background:#1e3a8a;text-align:left;min-width:180px;position:sticky;left:0;z-index:3}
+.calendario-control th.col-resumen{background:#1e3a8a;min-width:35px}
+.calendario-control td.celda-alumno{text-align:left;font-weight:600;position:sticky;left:0;background:#fff;z-index:1;min-width:180px}
+.calendario-control td.celda-resumen{font-weight:700;background:#f9fafb}
+.calendario-control td.celda-resumen.presentes{color:#166534}
+.calendario-control td.celda-resumen.ausencias{color:#dc2626}
+.calendario-control td.celda-dia{cursor:pointer;transition:all 0.15s}
+.calendario-control td.celda-dia:hover{transform:scale(1.15);box-shadow:0 2px 6px rgba(0,0,0,0.2);z-index:5;position:relative}
+.estado-celda-presente{background:#dcfce7;color:#166534}
+.estado-celda-ausente{background:#fee2e2;color:#991b1b}
+.estado-celda-entrada_tarde{background:#fef3c7;color:#92400e}
+.estado-celda-salida_pronto{background:#fce7f3;color:#9d174d}
+.estado-celda-cita_medica{background:#dbeafe;color:#1e40af}
+.estado-celda-conciliacion{background:#e0e7ff;color:#3730a3}
+.estado-celda-baja{background:#fecaca;color:#991b1b}
+.estado-celda-vacio{background:#f9fafb;color:#9ca3af}
+.estado-celda-fin-de-semana{background:#f3f4f6;color:#9ca3af;font-style:italic}
+.estado-celda-festivo{background:#faf5ff;color:#7c3aed}
+.estado-celda-vacaciones{background:#fff7ed;color:#ea580c}
+.estado-celda-futuro{background:#e5e7eb;color:#6b7280;opacity:0.6}
+.resumen-diario{margin-top:24px}
+.resumen-diario h3{color:#1e3a8a;margin-bottom:12px;font-size:18px}
+.resumen-diario-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px}
+.resumen-dia-card{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:8px;text-align:center;transition:all 0.2s}
+.resumen-dia-card:hover{box-shadow:0 2px 8px rgba(0,0,0,0.1);transform:translateY(-2px)}
+.resumen-dia-card .dia-num{font-size:18px;font-weight:700;color:#1e3a8a}
+.resumen-dia-card .dia-semana{font-size:10px;color:#6b7280;text-transform:uppercase}
+.resumen-dia-card .dia-presentes{font-size:11px;color:#166534;font-weight:600}
+.resumen-dia-card .dia-ausentes{font-size:11px;color:#dc2626;font-weight:600}
+.resumen-dia-card.fin-de-semana{background:#f9fafb;opacity:0.7}
+.resumen-dia-card.festivo{background:#faf5ff;border-color:#d8b4fe}
+
 @media print{body *{visibility:hidden}.print-area,.print-area *{visibility:visible}.print-area{position:absolute;left:0;top:0;display:block;width:100%}.no-print{display:none!important}}
 @media(max-width:768px){
 .calendar{grid-template-columns:repeat(7,1fr);gap:3px}
@@ -312,7 +353,7 @@ tr.tot{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);font-weight:700}
 </div>
 <button class="btn-login" onclick="verificarLogin()">🔓 ENTRAR</button>
 <div class="info">
-<strong>💡 Información:</strong><br>
+<strong> Información:</strong><br>
 Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
@@ -426,23 +467,32 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 <div id="p4" class="pnl" style="box-shadow:none;border:none;padding:0">
 <div class="informe-container">
-<h2>🗓️ Calendario de Asistencias</h2>
-<p style="color:#6b7280;margin-bottom:14px;font-size:12px">Visualiza rápidamente el estado de cada día. Haz clic en un día para ver el detalle completo.</p>
-<div class="cal-filtros">
-<div class="filter-group"><label>Periodo</label><select id="calPeriodo" onchange="actualizarCalendarioDesdePeriodo()" class="sel"></select></div>
-<div class="filter-group"><label>Filtrar por alumno</label><select id="calFiltroAlumno" onchange="actualizarCalendarioDesdePeriodo()" class="sel"><option value="TODOS">Todos los alumnos</option></select></div>
-<div class="filter-group"><label>Filtrar por estado</label><select id="calFiltroEstado" onchange="actualizarCalendarioDesdePeriodo()" class="sel"><option value="TODOS">Todos los estados</option><option value="ausente">Solo ausencias</option><option value="entrada_tarde">Solo entradas tarde</option><option value="salida_pronto">Solo salidas pronto</option><option value="cita_medica">Solo citas médicas</option><option value="conciliacion">Solo conciliaciones</option><option value="baja">Solo bajas</option></select></div>
+<div class="informe-header">
+<h2>️ Calendario de Control</h2>
+<div class="informe-botones">
+<button class="btn b4" onclick="imprimir('calendario')">🖨️ Imprimir</button>
+<button class="btn b7" onclick="crearPDF('calendario')">📄 Crear PDF</button>
 </div>
-<div class="leyenda">
-<div class="leyenda-item"><div class="leyenda-color" style="background:#dcfce7"></div>Todos presentes</div>
-<div class="leyenda-item"><div class="leyenda-color" style="background:#fee2e2"></div>Hay ausencias</div>
-<div class="leyenda-item"><div class="leyenda-color" style="background:#fef3c7"></div>Entradas tarde</div>
-<div class="leyenda-item"><div class="leyenda-color" style="background:#dbeafe"></div>Mixto</div>
+</div>
+<div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+<div class="filter-group"><label>Mes</label><select id="calPeriodo" onchange="renderCalendarioControl()" class="sel"></select></div>
+<div class="filter-group"><label>Filtrar por alumno</label><select id="calFiltroAlumno" onchange="renderCalendarioControl()" class="sel"><option value="TODOS">Todos los alumnos</option></select></div>
+<div class="filter-group"><label>Filtrar por estado</label><select id="calFiltroEstado" onchange="renderCalendarioControl()" class="sel"><option value="TODOS">Todos los estados</option><option value="ausente">Solo ausencias</option><option value="entrada_tarde">Solo entradas tarde</option><option value="salida_pronto">Solo salidas pronto</option><option value="cita_medica">Solo citas médicas</option><option value="conciliacion">Solo conciliaciones</option><option value="baja">Solo bajas</option></select></div>
+</div>
+<div class="leyenda" style="margin-bottom:12px">
+<div class="leyenda-item"><div class="leyenda-color" style="background:#dcfce7"></div>Presente</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#fee2e2"></div>Ausente</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#fef3c7"></div>Entrada tarde</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#fce7f3"></div>Salida pronto</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#dbeafe"></div>Cita médica</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#e0e7ff"></div>Conciliación</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#fecaca"></div>Baja</div>
 <div class="leyenda-item"><div class="leyenda-color" style="background:#faf5ff"></div>Festivo</div>
 <div class="leyenda-item"><div class="leyenda-color" style="background:#fff7ed"></div>Vacaciones</div>
-<div class="leyenda-item"><div class="leyenda-color" style="background:#f9fafb"></div>Fin de semana</div>
+<div class="leyenda-item"><div class="leyenda-color" style="background:#f3f4f6"></div>Fin de semana</div>
 </div>
-<div id="calendar" class="calendar"></div>
+<div id="calendarioControlContainer"></div>
+<div id="resumenDiarioContainer" class="resumen-diario"></div>
 </div>
 </div>
 </div>
@@ -503,7 +553,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 <div id="panelAlumnos" class="config-panel">
 <button class="config-volver" onclick="volverDashboardConfig()">← Volver</button>
 <div class="config-section">
-<h3>👥 Gestión de Alumnos</h3>
+<h3> Gestión de Alumnos</h3>
 <div class="config-form">
 <div class="filter-group"><label>Nombre del alumno</label><input type="text" id="nuevoAlumno" placeholder="Ej: GARCÍA LÓPEZ, JUAN"></div>
 <button class="btn b2" onclick="agregarAlumno()">➕ Añadir</button>
@@ -514,7 +564,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 <div id="panelFestivos" class="config-panel">
 <button class="config-volver" onclick="volverDashboardConfig()">← Volver</button>
 <div class="config-section">
-<h3>🎉 Gestión de Festivos</h3>
+<h3> Gestión de Festivos</h3>
 <div class="config-form">
 <div class="filter-group"><label>Día</label><select id="nuevoFestivoDia"></select></div>
 <div class="filter-group"><label>Mes</label><select id="nuevoFestivoMes"><option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option></select></div>
@@ -577,7 +627,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 <p class="backup-info">Se guardará como: <strong id="backupFilename">backup_curso_2026_27.html</strong></p>
 </div>
 <div class="backup-section" style="background:linear-gradient(135deg,#f5f3ff,#ede9fe);border-color:#a78bfa" id="seccionCambiarClave">
-<h3>🔑 Cambiar contraseña</h3>
+<h3> Cambiar contraseña</h3>
 <p>Modifica tu contraseña de acceso. Tu número de usuario no puede cambiarse.</p>
 <button class="btn b6" onclick="abrirModalCambioClave()" style="padding:12px 28px;font-size:15px">🔐 Cambiar contraseña</button>
 </div>
@@ -592,8 +642,6 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 </div>
-
-<!-- MODALES -->
 <div class="modal-overlay" id="modalAsistencia">
 <div class="modal">
 <div class="modal-header">
@@ -687,7 +735,7 @@ Si olvidaste la contraseña, contacta con el administrador.
 <ul style="margin:8px 0 0 20px;color:#64748b">
 <li id="req-longitud">⚪ Mínimo 6 caracteres</li>
 <li id="req-mayus">⚪ Al menos 1 mayúscula</li>
-<li id="req-minus">⚪ Al menos 1 minúscula</li>
+<li id="req-minus"> Al menos 1 minúscula</li>
 <li id="req-numero">⚪ Al menos 1 número</li>
 <li id="req-especial">⚪ Al menos 1 carácter especial</li>
 </ul>
@@ -705,7 +753,6 @@ Si olvidaste la contraseña, contacta con el administrador.
 </div>
 </div>
 <div id="printArea" class="print-area"></div>
-
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
@@ -727,12 +774,12 @@ window.firebaseGet = get;
 window.firebaseChild = child;
 console.log('✅ Firebase inicializado');
 </script>
-
 <script>
 const ALUMNOS_BASE=["AMEZ FUERTES, RAUL","BLANCO FRANCO, SANTIAGO ANDRÉS","FERNÁNDEZ MACAYO, M. ISABEL","MAIQUEZ DOMINGUEZ, HECTOR JOSÉ","MALLO RODRÍGUEZ, MIGUEL","MUÑIZ CAÑIBANO, MARÍA BELÉN"];
 const DIAS=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
 const MESES_NOMBRES=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 const DIAS_SEMANA=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+const DIAS_SEMANA_CORTO=['D','L','M','X','J','V','S'];
 const ANIO_MIN_DESPLEGABLE=2026;
 const ANIO_MAX_DESPLEGABLE=2035;
 let INICIO_CURSO={y:2026,m:3,d:1};
@@ -771,13 +818,21 @@ const DIA_HOY=FECHA_HOY.getDate();
 const MES_HOY=FECHA_HOY.getMonth()+1;
 const ANIO_HOY=FECHA_HOY.getFullYear();
 
-// FUNCIÓN AUXILIAR: ¿Es presente?
-function esPresente(estado) {
-  return estado === 'presente' || 
-         estado === 'entrada_tarde' || 
-         estado === 'salida_pronto' || 
-         estado === 'cita_medica' || 
-         estado === 'conciliacion';
+// FUNCIÓN AUXILIAR: ¿Es presente? (incluye incidencias)
+function esPresente(estado){
+return estado==='presente'||estado==='entrada_tarde'||estado==='salida_pronto'||estado==='cita_medica'||estado==='conciliacion';
+}
+
+// Buscar último día lectivo anterior
+function buscarUltimoDiaLectivoAnterior(y,m,d){
+let diaAnt=d-1;let mesAnt=m;let anioAnt=y;let intentos=0;
+while(intentos<400){
+if(diaAnt<1){mesAnt--;if(mesAnt<1){mesAnt=12;anioAnt--;}diaAnt=new Date(anioAnt,mesAnt,0).getDate();}
+const tipo=getDayType(anioAnt,mesAnt,diaAnt);
+if(tipo.type==='lectivo') return {y:anioAnt,m:mesAnt,d:diaAnt};
+diaAnt--;intentos++;
+}
+return null;
 }
 
 async function hashSHA256(texto){
@@ -869,17 +924,17 @@ document.getElementById('loginPassword').value='';
 document.getElementById('loginPassword').focus();
 }
 }
-function cerrarSesionManual() {
-  sessionStorage.removeItem('ca_sesionActiva');
-  sessionStorage.removeItem('ca_usuarioActual');
-  usuarioActual = null;
-  clearTimeout(inactivityTimer);
-  clearInterval(inactivityCountdown);
-  document.getElementById('loginOverlay').style.display = 'flex';
-  document.getElementById('loginUsuario').value = '';
-  document.getElementById('loginPassword').value = '';
-  document.getElementById('loginUsuario').focus();
-  mostrarAlerta('info', '🚪 Sesión cerrada correctamente');
+function cerrarSesionManual(){
+sessionStorage.removeItem('ca_sesionActiva');
+sessionStorage.removeItem('ca_usuarioActual');
+usuarioActual=null;
+clearTimeout(inactivityTimer);
+clearInterval(inactivityCountdown);
+document.getElementById('loginOverlay').style.display='flex';
+document.getElementById('loginUsuario').value='';
+document.getElementById('loginPassword').value='';
+document.getElementById('loginUsuario').focus();
+mostrarAlerta('info','🚪 Sesión cerrada correctamente');
 }
 function resetInactivityTimer(){
 clearTimeout(inactivityTimer);
@@ -996,7 +1051,7 @@ for(let y=ANIO_MIN_DESPLEGABLE;y<=ANIO_MAX_DESPLEGABLE;y++){const o=document.cre
 }
 function mostrarAlerta(tipo,mensaje,duracion=5000){
 const cont=document.getElementById('alertContainer');
-const iconos={info:'ℹ️',error:'❌',success:'✅',warning:'⚠️'};
+const iconos={info:'ℹ️',error:'',success:'✅',warning:'⚠️'};
 const alertDiv=document.createElement('div');
 alertDiv.className='alert alert-'+tipo;
 alertDiv.innerHTML='<span style="font-size:18px">'+(iconos[tipo]||'')+'</span><span>'+mensaje+'</span>';
@@ -1113,11 +1168,12 @@ subtabsContainer.querySelectorAll('.subtb').forEach(t=>t.classList.remove('on'))
 const btn=subtabsContainer.querySelector('[data-st="'+id+'"]');if(btn) btn.classList.add('on');
 const p9=document.getElementById('p9');p9.querySelectorAll('.pnl').forEach(p=>p.classList.remove('on'));
 document.getElementById(id).classList.add('on');
-if(id==='p2') renderMaquinas();if(id==='p3') renderTiempo();if(id==='p4') setTimeout(actualizarCalendarioDesdePeriodo,100);
+if(id==='p2') renderMaquinas();
+if(id==='p3') renderTiempo();
+if(id==='p4') setTimeout(renderCalendarioControl,100);
 }
 document.querySelectorAll('.tb').forEach(b=>b.addEventListener('click',function(){showTab(this.getAttribute('data-t'));}));
 document.querySelectorAll('#subtabsConsultas .subtb').forEach(b=>b.addEventListener('click',function(){showSubTab(this.getAttribute('data-st'));}));
-
 function renderAll(){
 const R=getAll();
 const totalPresentes=R.filter(r=>esPresente(r.estado)).length;
@@ -1129,7 +1185,6 @@ document.getElementById('sH').textContent=totalAusentes;
 document.getElementById('sC').textContent=alumnosActivos;
 renderMaquinas();renderTiempo();
 }
-
 function renderMaquinas(){
 const R=getAll();const tb=document.getElementById('t2');tb.innerHTML='';
 const sm={};ALUMNOS.forEach(m=>{sm[m]={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};});
@@ -1147,9 +1202,10 @@ tb.innerHTML+='<tr><td><a class="alumno-link" onclick="abrirDetalleAlumno(\''+m.
 });
 tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.cita_medica+'</td><td class="r">'+totales.conciliacion+'</td><td class="r">'+totales.baja+'</td></tr>';
 }
-
 function renderTiempo(){
-const R=getAll();const fPeriodo=document.getElementById('fPeriodo').value;const falumno=document.getElementById('fMaq').value;
+const R=getAll();
+const fPeriodo=document.getElementById('fPeriodo').value;
+const falumno=document.getElementById('fMaq').value;
 const tb=document.getElementById('t3');
 const tbDetalle=document.getElementById('t3Detalle');
 const tablaTiempoContainer=document.getElementById('tablaTiempoContainer');
@@ -1158,7 +1214,6 @@ const tituloDetalleMes=document.getElementById('tituloDetalleMes');
 let filt=R;
 if(fPeriodo!=='ALL'){const parts=fPeriodo.split('-');filt=filt.filter(r=>r.y===parseInt(parts[0])&&r.m===parseInt(parts[1]));}
 if(falumno!=='TODOS') filt=filt.filter(r=>r.alumno===falumno);
-
 if(fPeriodo!=='ALL'){
 tablaTiempoContainer.style.display='none';
 tablaDetalleMesContainer.style.display='block';
@@ -1201,7 +1256,6 @@ else{ks.forEach(k=>{totales.presente+=ag[k].presente;totales.ausente+=ag[k].ause
 tb.innerHTML+='<tr class="tot"><td>TOTAL</td><td class="r">'+totales.presente+'</td><td class="r">'+totales.ausente+'</td><td class="r">'+totales.entrada_tarde+'</td><td class="r">'+totales.salida_pronto+'</td><td class="r">'+totales.baja+'</td></tr>';}
 }
 }
-
 function abrirDetalleAlumno(alumno){
 alumnoDetalleActual=alumno;
 const registros=getAll().filter(r=>r.alumno===alumno).sort((a,b)=>{if(a.y!==b.y) return a.y-b.y;if(a.m!==b.m) return a.m-b.m;return a.d-b.d;});
@@ -1235,17 +1289,17 @@ else if(r.horaSalida&&r.horaLlegada) horario='🕐 '+r.horaSalida+' - '+r.horaLl
 let detalles='';
 if(r.justificada) detalles='<span style="color:#166534;font-weight:600">✓ Justificada</span>';
 else if(r.estado==='ausente') detalles='<span style="color:#dc2626">✗ No justificada</span>';
-if(r.causa) detalles+=(detalles?'<br>':'')+'<span class="causa-detalle">📝 '+r.causa+'</span>';
+if(r.causa) detalles+=(detalles?'<br>':'')+'<span class="causa-detalle"> '+r.causa+'</span>';
 t+='<tr><td><strong>'+fecha+'</strong></td><td>'+diaSemana+'</td><td class="hora-detalle">'+horario+'</td><td>'+(detalles||'-')+'</td></tr>';
 });
 t+='</tbody></table>';return t;
 }
 html+=generarTabla(ausencias,'Ausencias','❌');
-html+=generarTabla(entradasTarde,'Entradas tarde','⏰');
+html+=generarTabla(entradasTarde,'Entradas tarde','');
 html+=generarTabla(salidasPronto,'Salidas pronto','📤');
 html+=generarTabla(citasMedicas,'Citas médicas','🏥');
 html+=generarTabla(conciliaciones,'Conciliaciones','👨‍👩‍👧');
-html+=generarTabla(bajas,'Bajas','🤒');
+html+=generarTabla(bajas,'Bajas','');
 if(registros.filter(r=>!esPresente(r.estado)).length===0){
 html='<div style="padding:40px;text-align:center;color:#6b7280"><p style="font-size:48px;margin-bottom:12px">✅</p><p style="font-size:16px">Este alumno no tiene incidencias registradas</p></div>';
 }
@@ -1285,7 +1339,7 @@ const fecha=pad(r.d)+'/'+pad(r.m)+'/'+r.y;
 const fechaObj=new Date(r.y,r.m-1,r.d);
 const diaSemana=DIAS_SEMANA[fechaObj.getDay()];
 let horario='-';
-if(r.horaUnica) horario='🕐 '+r.horaUnica;
+if(r.horaUnica) horario=' '+r.horaUnica;
 else if(r.horaSalida&&r.horaLlegada) horario='🕐 '+r.horaSalida+' - '+r.horaLlegada;
 let detalles='';
 if(r.justificada) detalles+='✓ Justificada ';
@@ -1295,10 +1349,10 @@ t+='<tr><td><strong>'+fecha+'</strong></td><td>'+diaSemana+'</td><td>'+horario+'
 t+='</tbody></table>';return t;
 }
 html+=genTablaPDF(ausencias,'Ausencias','❌','#991b1b');
-html+=genTablaPDF(entradasTarde,'Entradas tarde','⏰','#92400e');
+html+=genTablaPDF(entradasTarde,'Entradas tarde','','#92400e');
 html+=genTablaPDF(salidasPronto,'Salidas pronto','📤','#9d174d');
 html+=genTablaPDF(citasMedicas,'Citas médicas','🏥','#1e40af');
-html+=genTablaPDF(conciliaciones,'Conciliaciones','👨‍👩‍👧','#3730a3');
+html+=genTablaPDF(conciliaciones,'Conciliaciones','👨‍‍👧','#3730a3');
 html+=genTablaPDF(bajas,'Bajas','🤒','#991b1b');
 html+='</div>';
 const element=document.createElement('div');element.innerHTML=html;document.body.appendChild(element);
@@ -1317,7 +1371,7 @@ Object.keys(porAlumno).sort().forEach(alumno=>{
 const regs=porAlumno[alumno];
 regs.forEach(r=>{
 const fecha=pad(r.d)+'/'+pad(r.m)+'/'+r.y;
-let horaInfo='';if(r.horaUnica) horaInfo='<span class="hora-info">🕐 '+r.horaUnica+'</span>';else if(r.horaSalida&&r.horaLlegada) horaInfo='<span class="hora-info">🕐 '+r.horaSalida+' - '+r.horaLlegada+'</span>';
+let horaInfo='';if(r.horaUnica) horaInfo='<span class="hora-info"> '+r.horaUnica+'</span>';else if(r.horaSalida&&r.horaLlegada) horaInfo='<span class="hora-info"> '+r.horaSalida+' - '+r.horaLlegada+'</span>';
 let justInfo='';if(r.justificada) justInfo=' <span style="color:#166534">✓ Justificada</span>';
 let causaInfo='';if(r.causa) causaInfo=' <em>('+r.causa+')</em>';
 html+='<li class="'+estado+'"><strong>'+alumno+'</strong> - '+fecha+horaInfo+justInfo+causaInfo+'</li>';
@@ -1329,7 +1383,7 @@ function crearPDF(tipo){
 mostrarAlerta('info','Generando PDF...');
 if(tipo==='maquinas'){
 const R=getAll();let detallesHTML='';
-const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'🏥',conciliacion:'👨‍👩‍👧',baja:'🤒'};
+const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'🏥',conciliacion:'👨‍👩‍',baja:'🤒'};
 ['presente','ausente','entrada_tarde','salida_pronto','cita_medica','conciliacion','baja'].forEach(estado=>{detallesHTML+=generarListaDetalladaPeriodo(R,estado,iconos[estado]);});
 let html='<div class="pdf-content"><h1>📚 Control de Alumnos</h1><h2>Total por Alumno</h2><p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>';
 html+=document.getElementById('tablaMaquinasTbl').outerHTML;
@@ -1339,13 +1393,26 @@ const element=document.createElement('div');element.innerHTML=html;document.body
 const opt={margin:10,filename:'total_por_alumno.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
 html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(element);mostrarAlerta('success','PDF generado');}).catch(err=>{document.body.removeChild(element);mostrarAlerta('error','Error: '+err.message);});
 }else if(tipo==='tiempo'){
-const R=getAll();const fPeriodo=document.getElementById('fPeriodo').value;const falumno=document.getElementById('fMaq').value;
+const R=getAll();
+const fPeriodo=document.getElementById('fPeriodo').value;
+const falumno=document.getElementById('fMaq').value;
+const tablaDetalleMesContainer=document.getElementById('tablaDetalleMesContainer');
 let filt=R;
 if(fPeriodo!=='ALL'){const parts=fPeriodo.split('-');filt=filt.filter(r=>r.y===parseInt(parts[0])&&r.m===parseInt(parts[1]));}
 if(falumno!=='TODOS') filt=filt.filter(r=>r.alumno===falumno);
+if(fPeriodo!=='ALL' && tablaDetalleMesContainer.style.display!=='none'){
+let html='<div class="pdf-content"><h1>📚 Control de Alumnos</h1>';
+html+='<h2>'+document.getElementById('tituloDetalleMes').textContent+'</h2>';
+html+='<p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>';
+html+=document.getElementById('tablaDetalleMesTbl').outerHTML;
+html+='</div>';
+const element=document.createElement('div');element.innerHTML=html;document.body.appendChild(element);
+const opt={margin:10,filename:'detalle_mes_'+fPeriodo.replace('-','_')+'.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
+html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(element);mostrarAlerta('success','PDF generado');}).catch(err=>{document.body.removeChild(element);mostrarAlerta('error','Error: '+err.message);});
+}else{
 let detallesHTML='';const periodosData={};
 filt.forEach(r=>{const k=getPeriodoLabel(r.y,r.m);if(!periodosData[k]) periodosData[k]=[];periodosData[k].push(r);});
-const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'📤',cita_medica:'🏥',conciliacion:'👨‍👩‍👧',baja:'🤒'};
+const iconos={presente:'✅',ausente:'❌',entrada_tarde:'⏰',salida_pronto:'',cita_medica:'🏥',conciliacion:'👨‍👩👧',baja:'🤒'};
 Object.keys(periodosData).sort().forEach(periodo=>{detallesHTML+='<h3 style="margin-top:20px;color:#1e3a8a;border-bottom:2px solid #e5e7eb;padding-bottom:8px">📅 '+periodo+'</h3>';['presente','ausente','entrada_tarde','salida_pronto','cita_medica','conciliacion','baja'].forEach(estado=>{detallesHTML+=generarListaDetalladaPeriodo(periodosData[periodo],estado,iconos[estado]);});});
 let html='<div class="pdf-content"><h1>📚 Control de Alumnos</h1><h2>Resumen por Periodo</h2><p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>';
 if(falumno!=='TODOS') html+='<p>Alumno: <strong>'+falumno+'</strong></p>';
@@ -1356,7 +1423,140 @@ const element=document.createElement('div');element.innerHTML=html;document.body
 const opt={margin:10,filename:'resumen_periodo.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
 html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(element);mostrarAlerta('success','PDF generado');}).catch(err=>{document.body.removeChild(element);mostrarAlerta('error','Error: '+err.message);});
 }
+}else if(tipo==='calendario'){
+const periodoVal=document.getElementById('calPeriodo').value;
+const parts=periodoVal.split('-');
+const y=parseInt(parts[0]);
+const m=parseInt(parts[1]);
+const nombreMes=getPeriodoLabel(y,m);
+let html='<div class="pdf-content"><h1>📚 Control de Alumnos</h1>';
+html+='<h2>Calendario de Control - '+nombreMes+'</h2>';
+html+='<p>Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>';
+html+=document.getElementById('calendarioControlContainer').innerHTML;
+html+='</div>';
+const element=document.createElement('div');element.innerHTML=html;document.body.appendChild(element);
+const opt={margin:10,filename:'calendario_'+periodoVal.replace('-','_')+'.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'landscape',orientation:'landscape'}};
+html2pdf().set(opt).from(element).save().then(()=>{document.body.removeChild(element);mostrarAlerta('success','PDF generado');}).catch(err=>{document.body.removeChild(element);mostrarAlerta('error','Error: '+err.message);});
 }
+}
+
+// === CALENDARIO TIPO HOJA DE CONTROL ===
+function renderCalendarioControl(){
+const periodoVal=document.getElementById('calPeriodo').value;
+const parts=periodoVal.split('-');
+const y=parseInt(parts[0]);
+const m=parseInt(parts[1]);
+const filtroAlumno=document.getElementById('calFiltroAlumno').value;
+const filtroEstado=document.getElementById('calFiltroEstado').value;
+const R=getAll();
+let filt=R.filter(r=>r.y===y&&r.m===m);
+if(filtroAlumno!=='TODOS') filt=filt.filter(r=>r.alumno===filtroAlumno);
+if(filtroEstado!=='TODOS') filt=filt.filter(r=>r.estado===filtroEstado);
+const ultimoDia=new Date(y,m,0).getDate();
+let alumnosAMostrar=[...ALUMNOS];
+if(filtroAlumno!=='TODOS') alumnosAMostrar=[filtroAlumno];
+let html='<div class="calendario-control"><table>';
+html+='<tr><th class="col-alumno">Alumno</th>';
+for(let d=1;d<=ultimoDia;d++){
+const fecha=new Date(y,m-1,d);
+const diaSem=fecha.getDay();
+const esFinde=(diaSem===0||diaSem===6);
+const dayInfo=getDayType(y,m,d);
+let clase='';
+if(esFinde) clase='fin-de-semana';
+else if(dayInfo.type==='holiday') clase='festivo';
+html+=`<th class="${clase}">${d}</th>`;
+}
+html+='<th class="col-resumen" title="Presentes">✓</th>';
+html+='<th class="col-resumen" title="Ausencias/Incidencias"></th>';
+html+='</tr>';
+html+='<tr><th class="col-alumno"></th>';
+for(let d=1;d<=ultimoDia;d++){
+const fecha=new Date(y,m-1,d);
+const diaSem=fecha.getDay();
+const esFinde=(diaSem===0||diaSem===6);
+const dayInfo=getDayType(y,m,d);
+let clase='dia-semana';
+if(esFinde) clase+=' fin-de-semana';
+else if(dayInfo.type==='holiday') clase+=' festivo';
+html+=`<th class="${clase}">${DIAS_SEMANA_CORTO[diaSem]}</th>`;
+}
+html+='<th class="col-resumen"></th><th class="col-resumen"></th></tr>';
+alumnosAMostrar.forEach(alumno=>{
+html+=`<tr><td class="celda-alumno">${alumno}</td>`;
+let presentes=0;
+let ausencias=0;
+for(let d=1;d<=ultimoDia;d++){
+const fecha=new Date(y,m-1,d);
+const diaSem=fecha.getDay();
+const esFinde=(diaSem===0||diaSem===6);
+const dayInfo=getDayType(y,m,d);
+const esFuturo=fecha>FECHA_HOY;
+const reg=filt.find(r=>r.alumno===alumno&&r.d===d);
+let clase='celda-dia ';
+let contenido='';
+let onclick='';
+if(esFinde){clase+='estado-celda-fin-de-semana';}
+else if(dayInfo.type==='holiday'){clase+='estado-celda-festivo';contenido='F';}
+else if(dayInfo.type==='vacation'){clase+='estado-celda-vacaciones';contenido='V';}
+else if(dayInfo.type==='before-course'||dayInfo.type==='after-course'){clase+='estado-celda-vacio';}
+else if(esFuturo){clase+='estado-celda-futuro';}
+else if(reg){
+clase+='estado-celda-'+reg.estado;
+if(reg.estado==='presente'){contenido='✓';presentes++;}
+else if(reg.estado==='ausente'){contenido='✗';ausencias++;}
+else if(reg.estado==='entrada_tarde'){contenido='T';presentes++;}
+else if(reg.estado==='salida_pronto'){contenido='S';presentes++;}
+else if(reg.estado==='cita_medica'){contenido='C';presentes++;}
+else if(reg.estado==='conciliacion'){contenido='O';presentes++;}
+else if(reg.estado==='baja'){contenido='B';ausencias++;}
+onclick=`onclick="abrirModalDetalle(${y},${m},${d})"`;
+}else{
+clase+='estado-celda-vacio';
+onclick=`onclick="abrirModalDetalle(${y},${m},${d})"`;
+}
+html+=`<td class="${clase}" ${onclick} title="${alumno} - ${pad(d)}/${pad(m)}/${y}">${contenido}</td>`;
+}
+html+=`<td class="celda-resumen presentes">${presentes}</td>`;
+html+=`<td class="celda-resumen ausencias">${ausencias}</td>`;
+html+='</tr>';
+});
+html+='</table></div>';
+document.getElementById('calendarioControlContainer').innerHTML=html;
+renderResumenDiario(y,m,ultimoDia);
+}
+
+function renderResumenDiario(y,m,ultimoDia){
+const R=getAll().filter(r=>r.y===y&&r.m===m);
+const diasSemanaNombres=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+const mesesNombres=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+let html='<h3> Resumen diario</h3><div class="resumen-diario-grid">';
+for(let d=1;d<=ultimoDia;d++){
+const fecha=new Date(y,m-1,d);
+const diaSem=fecha.getDay();
+const esFinde=(diaSem===0||diaSem===6);
+const dayInfo=getDayType(y,m,d);
+const registrosDia=R.filter(r=>r.d===d);
+let presentes=0;
+let ausencias=0;
+registrosDia.forEach(r=>{
+if(esPresente(r.estado)) presentes++;
+else ausencias++;
+});
+let clase='resumen-dia-card';
+if(esFinde) clase+=' fin-de-semana';
+if(dayInfo.type==='holiday') clase+=' festivo';
+html+=`<div class="${clase}">`;
+html+=`<div class="dia-num">${d}</div>`;
+html+=`<div class="dia-semana">${diasSemanaNombres[diaSem]} · ${mesesNombres[m-1]}</div>`;
+html+=`<div class="dia-presentes">✓ ${presentes}</div>`;
+html+=`<div class="dia-ausentes">✗ ${ausencias}</div>`;
+html+=`</div>`;
+}
+html+='</div>';
+document.getElementById('resumenDiarioContainer').innerHTML=html;
+}
+
 function generarCalendarioEntrada(){
 mesSeleccionado=parseInt(document.getElementById('erMes').value);
 anioSeleccionado=calcularAnioParaMes(mesSeleccionado);
@@ -1387,32 +1587,10 @@ else if(esFuturo) html+='<div class="day-info">🔒 Futuro</div>';
 else{const completado=registrosDia.length===ALUMNOS.length;html+='<div class="day-info">'+registrosDia.length+'/'+ALUMNOS.length+(completado?' ✅':'')+'</div>';}
 e.innerHTML=html;
 const claveNota=anioSeleccionado+'-'+mesSeleccionado+'-'+d;
-if(notasPorDia[claveNota]){const iconoNota=document.createElement('div');iconoNota.style.cssText='position:absolute;top:3px;right:3px;font-size:10px;cursor:help';iconoNota.textContent='📝';iconoNota.title=notasPorDia[claveNota];e.appendChild(iconoNota);}
+if(notasPorDia[claveNota]){const iconoNota=document.createElement('div');iconoNota.style.cssText='position:absolute;top:3px;right:3px;font-size:10px;cursor:help';iconoNota.textContent='';iconoNota.title=notasPorDia[claveNota];e.appendChild(iconoNota);}
 if(!esFinde&&dayInfo.type==='lectivo'){e.onclick=(function(dia,futuro){return function(){esDiaFuturo=futuro;abrirModalAsistencia(dia);};})(d,esFuturo);}
 cont.appendChild(e);
 }
-}
-// Buscar el último día lectivo anterior a una fecha dada
-function buscarUltimoDiaLectivoAnterior(y, m, d) {
-  let diaAnt = d - 1;
-  let mesAnt = m;
-  let anioAnt = y;
-  let intentos = 0;
-  
-  while (intentos < 400) {
-    if (diaAnt < 1) {
-      mesAnt--;
-      if (mesAnt < 1) { mesAnt = 12; anioAnt--; }
-      diaAnt = new Date(anioAnt, mesAnt, 0).getDate();
-    }
-    const tipo = getDayType(anioAnt, mesAnt, diaAnt);
-    if (tipo.type === 'lectivo') {
-      return { y: anioAnt, m: mesAnt, d: diaAnt };
-    }
-    diaAnt--;
-    intentos++;
-  }
-  return null;
 }
 function abrirModalAsistencia(dia){
 diaSeleccionado=dia;
@@ -1548,7 +1726,7 @@ copiados++;
 }
 }
 });
-mostrarAlerta('success','📋 Copiados '+copiados+' registros del día '+pad(diaAnt)+'/'+pad(mesAnt)+'/'+anioAnt);
+mostrarAlerta('success',' Copiados '+copiados+' registros del día '+pad(diaAnt)+'/'+pad(mesAnt)+'/'+anioAnt);
 }
 function marcarTodosPresentes(){const filas=document.querySelectorAll('.alumno-row');filas.forEach(fila=>{const select=fila.querySelector('.alumno-select');select.value='presente';toggleCamposHora(select);});mostrarAlerta('success','✅ Todos marcados como presentes');}
 function limpiarTodos(){const filas=document.querySelectorAll('.alumno-row');filas.forEach(fila=>{const select=fila.querySelector('.alumno-select');select.value='';toggleCamposHora(select);const chk=fila.querySelector('.chk-justificada');if(chk) chk.checked=false;const txt=fila.querySelector('.txt-causa');if(txt) txt.value='';});mostrarAlerta('info','🔄 Registros limpiados');}
@@ -1579,45 +1757,6 @@ if(p7&&p7.classList.contains('on')){if(e.key==='ArrowLeft'){e.preventDefault();n
 }
 });
 document.getElementById('nuevaClave').addEventListener('input',actualizarRequisitosClave);
-function actualizarCalendarioDesdePeriodo(){const periodoVal=document.getElementById('calPeriodo').value;const parts=periodoVal.split('-');actualizarCalendario(parseInt(parts[0]),parseInt(parts[1]));}
-function actualizarCalendario(y,m){
-const cal=document.getElementById('calendar');cal.innerHTML='';
-DIAS.forEach(d=>{const h=document.createElement('div');h.className='cal-header';h.textContent=d;cal.appendChild(h);});
-const first=new Date(y,m-1,1);const last=new Date(y,m,0);const start=first.getDay()||7;
-for(let i=1;i<start;i++){const e=document.createElement('div');e.className='cal-day empty';cal.appendChild(e);}
-const filtroAlumno=document.getElementById('calFiltroAlumno').value;
-const filtroEstado=document.getElementById('calFiltroEstado').value;
-let R=getAll().filter(r=>r.y===y&&r.m===m);
-if(filtroAlumno!=='TODOS') R=R.filter(r=>r.alumno===filtroAlumno);
-if(filtroEstado!=='TODOS') R=R.filter(r=>r.estado===filtroEstado);
-const byDay={};
-R.forEach(r=>{if(!byDay[r.d]) byDay[r.d]={counts:{presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0}};byDay[r.d].counts[r.estado]++;});
-for(let d=1;d<=last.getDate();d++){
-const dayInfo=getDayType(y,m,d);
-const e=document.createElement('div');e.className='cal-day';
-const counts=byDay[d]?byDay[d].counts:null;
-if(dayInfo.type==='holiday') e.classList.add('status-holiday');
-else if(dayInfo.type==='vacation') e.classList.add('status-vacation');
-else if(dayInfo.type==='weekend') e.classList.add('status-weekend');
-else if(dayInfo.type==='before-course'||dayInfo.type==='after-course') e.classList.add('status-weekend');
-else if(counts){
-const totalPresentesReal = counts.presente + counts.entrada_tarde + counts.salida_pronto + counts.cita_medica + counts.conciliacion;
-if(counts.ausente>0 || counts.baja>0) e.classList.add('status-absent');
-else if(counts.entrada_tarde>0 || counts.salida_pronto>0) e.classList.add('status-late');
-else if(counts.cita_medica>0 || counts.conciliacion>0) e.classList.add('status-mixed');
-else if(totalPresentesReal>0) e.classList.add('status-all-present');
-}
-let html='<div class="day-num">'+d+'</div>';
-if(dayInfo.type==='holiday'||dayInfo.type==='vacation') html+='<div class="day-info">'+dayInfo.label+'</div>';
-else if(dayInfo.type==='weekend') html+='<div class="day-info">Fin de semana</div>';
-else if(dayInfo.type==='before-course'||dayInfo.type==='after-course'){html+='<div class="day-info">Fuera del curso</div>';e.style.opacity='0.4';}
-else if(counts){const stats=[];const totalPresentesReal = counts.presente + counts.entrada_tarde + counts.salida_pronto + counts.cita_medica + counts.conciliacion;if(totalPresentesReal>0) stats.push('✓'+totalPresentesReal);if(counts.ausente>0) stats.push('✗'+counts.ausente);if(counts.entrada_tarde>0) stats.push('⏰'+counts.entrada_tarde);if(counts.salida_pronto>0) stats.push('📤'+counts.salida_pronto);if(counts.cita_medica>0) stats.push('🏥'+counts.cita_medica);if(counts.conciliacion>0) stats.push('👨‍👩‍👧'+counts.conciliacion);if(counts.baja>0) stats.push('🤒'+counts.baja);html+='<div class="day-stats">'+stats.join(' ')+'</div>';}
-else html+='<div class="day-info">Sin registros</div>';
-e.innerHTML=html;
-if(dayInfo.type==='lectivo'){e.style.cursor='pointer';e.onclick=(function(dia){return function(){abrirModalDetalle(y,m,dia);};})(d);}
-cal.appendChild(e);
-}
-}
 function abrirModalDetalle(y,m,d){
 diaDetalleSeleccionado={y,m,d};
 const registros=getAll().filter(r=>r.y===y&&r.m===m&&r.d===d);
@@ -1630,7 +1769,7 @@ if(registros.length===0){html+='<div style="padding:20px;text-align:center;color
 else{
 const counts={presente:0,ausente:0,entrada_tarde:0,salida_pronto:0,cita_medica:0,conciliacion:0,baja:0};
 registros.forEach(r=>{if(counts[r.estado]!==undefined) counts[r.estado]++;});
-const totalPresentesReal = counts.presente + counts.entrada_tarde + counts.salida_pronto + counts.cita_medica + counts.conciliacion;
+const totalPresentesReal=counts.presente+counts.entrada_tarde+counts.salida_pronto+counts.cita_medica+counts.conciliacion;
 const porcentajeAsistencia=Math.round((totalPresentesReal/ALUMNOS.length)*100);
 html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:18px">';
 html+='<div style="padding:10px;background:#dcfce7;border-radius:6px;text-align:center"><div style="font-size:22px;font-weight:700;color:#166534">'+totalPresentesReal+'</div><div style="font-size:11px;color:#166534">Presentes</div></div>';
@@ -1654,9 +1793,11 @@ function cerrarModalDetalle(){document.getElementById('modalDetalle').classList.
 function abrirModalAsistenciaDesdeDetalle(d){const periodoVal=document.getElementById('calPeriodo').value;const parts=periodoVal.split('-');mesSeleccionado=parseInt(parts[1]);anioSeleccionado=parseInt(parts[0]);const fecha=new Date(anioSeleccionado,mesSeleccionado-1,d);fecha.setHours(0,0,0,0);esDiaFuturo=fecha>FECHA_HOY;showTab('p7');setTimeout(()=>abrirModalAsistencia(d),200);}
 function editarDiaDesdeDetalle(){if(diaDetalleSeleccionado){abrirModalAsistenciaDesdeDetalle(diaDetalleSeleccionado.d);cerrarModalDetalle();}}
 function imprimir(tipo){
-const area=document.getElementById('printArea');let contenido='';
-if(tipo==='maquinas') contenido='<h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Total por Alumno</h2><p style="color:#6b7280;margin-bottom:20px">Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - '+new Date().toLocaleDateString('es-ES')+'</p>'+document.getElementById('tablaMaquinasTbl').outerHTML;
-else if(tipo==='tiempo'){
+const area=document.getElementById('printArea');
+let contenido='';
+if(tipo==='maquinas'){
+contenido='<h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Total por Alumno</h2><p style="color:#6b7280;margin-bottom:20px">Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>'+document.getElementById('tablaMaquinasTbl').outerHTML;
+}else if(tipo==='tiempo'){
 const fPeriodo=document.getElementById('fPeriodo').value;
 const tablaDetalleMesContainer=document.getElementById('tablaDetalleMesContainer');
 if(fPeriodo!=='ALL' && tablaDetalleMesContainer.style.display!=='none'){
@@ -1664,13 +1805,18 @@ contenido='<h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><
 }else{
 contenido='<h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Resumen por Periodo</h2><p style="color:#6b7280;margin-bottom:20px">Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>'+document.getElementById('tablaTiempoTbl').outerHTML;
 }
+}else if(tipo==='calendario'){
+const periodoVal=document.getElementById('calPeriodo').value;
+const parts=periodoVal.split('-');
+const nombreMes=getPeriodoLabel(parseInt(parts[0]),parseInt(parts[1]));
+contenido='<h1 style="color:#1e3a8a;margin-bottom:10px">Control de Alumnos</h1><h2 style="margin-bottom:20px">Calendario de Control - '+nombreMes+'</h2><p style="color:#6b7280;margin-bottom:20px">Curso '+INICIO_CURSO.y+'/'+FIN_CURSO.y+' - Generado el '+new Date().toLocaleDateString('es-ES')+'</p>'+document.getElementById('calendarioControlContainer').innerHTML;
 }
 area.innerHTML='<div style="padding:20px">'+contenido+'</div>';
 window.print();
 setTimeout(()=>{area.innerHTML='';},1000);
 }
 function confirmarResetear(){abrirModalConfirmacion('⚠️ Haz un backup primero','<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:15px;border-radius:6px;margin-bottom:15px"><strong>💡 Recomendación:</strong> Exporta un backup antes de borrar.</div><p>¿Seguro que quieres resetear TODOS los datos?</p><ul style="text-align:left;margin-left:20px;margin-bottom:15px"><li>Todos los alumnos</li><li>Todos los registros</li><li>Festivos y vacaciones</li><li>Fechas del curso</li></ul><p style="color:#dc2626;font-weight:600">Esta acción NO se puede deshacer.</p>',function(){abrirModalConfirmacion('⚠️ ÚLTIMA CONFIRMACIÓN','¿REALMENTE ESTÁS SEGURO?\nSe borrarán TODOS los datos.',function(){localStorage.removeItem('ca_cache');const db=window.firebaseDB;const dbRef=window.firebaseRef(db,'datos');window.firebaseSet(dbRef,null).then(()=>{mostrarAlerta('success','Datos eliminados');setTimeout(()=>{location.reload();},1500);}).catch(err=>{console.error('Error:',err);mostrarAlerta('error','Error: '+err.message);});});});}
-function confirmarVaciarActividades(){abrirModalConfirmacion('⚠️ Haz un backup primero','<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:15px;border-radius:6px;margin-bottom:15px"><strong>💡 Recomendación:</strong> Exporta un backup antes.</div><p>¿Seguro que quieres borrar <strong>TODOS los registros de asistencia</strong>?</p><p style="background:#dcfce7;padding:10px;border-radius:6px;margin-bottom:15px"><strong>Se mantendrán:</strong><br>• Alumnos<br>• Festivos<br>• Vacaciones<br>• Fechas del curso</p>',function(){historicalRecords=[];userRecords=[];saveUser();renderAll();generarCalendarioEntrada();renderConfiguracion();guardarEnNube('✅ Actividades vaciadas');});}
+function confirmarVaciarActividades(){abrirModalConfirmacion('️ Haz un backup primero','<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:15px;border-radius:6px;margin-bottom:15px"><strong>💡 Recomendación:</strong> Exporta un backup antes.</div><p>¿Seguro que quieres borrar <strong>TODOS los registros de asistencia</strong>?</p><p style="background:#dcfce7;padding:10px;border-radius:6px;margin-bottom:15px"><strong>Se mantendrán:</strong><br>• Alumnos<br>• Festivos<br>• Vacaciones<br>• Fechas del curso</p>',function(){historicalRecords=[];userRecords=[];saveUser();renderAll();generarCalendarioEntrada();renderConfiguracion();guardarEnNube('✅ Actividades vaciadas');});}
 function abrirModalConfirmacion(titulo,contenido,callback){confirmacionCallback=callback;document.getElementById('modalConfirmacionTitulo').textContent=titulo;document.getElementById('modalConfirmacionContenido').innerHTML='<div style="padding:20px;background:#fef3c7;border-radius:8px;border-left:4px solid #f59e0b;margin-bottom:16px"><p style="white-space:pre-line;color:#92400e;line-height:1.6">'+contenido+'</p></div>';document.getElementById('btnConfirmarAccion').onclick=function(){if(confirmacionCallback) confirmacionCallback();cerrarModalConfirmacion();};document.getElementById('modalConfirmacion').classList.add('show');}
 function cerrarModalConfirmacion(){document.getElementById('modalConfirmacion').classList.remove('show');confirmacionCallback=null;}
 function guardarFechasCurso(){
@@ -1750,7 +1896,7 @@ html+=`<div class="footer"><p>Backup generado automáticamente</p><p>Curso ${cur
 const blob=new Blob([html],{type:'text/html'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`backup_curso_${cursoAnio.replace('/','_')}.html`;document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);mostrarAlerta('success','✅ Backup exportado');
 }
 document.getElementById('fPeriodo').addEventListener('change',renderTiempo);
-document.getElementById('todayDate').textContent='📅 Hoy: '+DIA_HOY+'/'+pad(MES_HOY)+'/'+ANIO_HOY;
+document.getElementById('todayDate').textContent=' Hoy: '+DIA_HOY+'/'+pad(MES_HOY)+'/'+ANIO_HOY;
 async function iniciarSistema(){
 let intentos=0;
 while(!window.firebaseRef&&intentos<50){await new Promise(r=>setTimeout(r,100));intentos++;}
