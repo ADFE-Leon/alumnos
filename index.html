@@ -1392,6 +1392,28 @@ if(!esFinde&&dayInfo.type==='lectivo'){e.onclick=(function(dia,futuro){return fu
 cont.appendChild(e);
 }
 }
+// Buscar el último día lectivo anterior a una fecha dada
+function buscarUltimoDiaLectivoAnterior(y, m, d) {
+  let diaAnt = d - 1;
+  let mesAnt = m;
+  let anioAnt = y;
+  let intentos = 0;
+  
+  while (intentos < 400) {
+    if (diaAnt < 1) {
+      mesAnt--;
+      if (mesAnt < 1) { mesAnt = 12; anioAnt--; }
+      diaAnt = new Date(anioAnt, mesAnt, 0).getDate();
+    }
+    const tipo = getDayType(anioAnt, mesAnt, diaAnt);
+    if (tipo.type === 'lectivo') {
+      return { y: anioAnt, m: mesAnt, d: diaAnt };
+    }
+    diaAnt--;
+    intentos++;
+  }
+  return null;
+}
 function abrirModalAsistencia(dia){
 diaSeleccionado=dia;
 const registrosDia=getAll().filter(r=>r.y===anioSeleccionado&&r.m===mesSeleccionado&&r.d===dia);
